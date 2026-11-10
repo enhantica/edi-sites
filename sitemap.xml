@@ -1,645 +1,645 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://enhantica.github.io/edi/</loc>
+        <loc>https://easydiffraction.org/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/about/</loc>
+        <loc>https://easydiffraction.org/about/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/about/citation/</loc>
+        <loc>https://easydiffraction.org/about/citation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/about/community/</loc>
+        <loc>https://easydiffraction.org/about/community/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/about/licence/</loc>
+        <loc>https://easydiffraction.org/about/licence/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/</loc>
+        <loc>https://easydiffraction.org/application/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis-workflow/</loc>
+        <loc>https://easydiffraction.org/application/analysis-workflow/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/</loc>
+        <loc>https://easydiffraction.org/application/analysis/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/aliases/</loc>
+        <loc>https://easydiffraction.org/application/analysis/aliases/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/constraints/</loc>
+        <loc>https://easydiffraction.org/application/analysis/constraints/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/experiment-fit-result/</loc>
+        <loc>https://easydiffraction.org/application/analysis/experiment-fit-result/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/fit-result/</loc>
+        <loc>https://easydiffraction.org/application/analysis/fit-result/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/fit-start-values/</loc>
+        <loc>https://easydiffraction.org/application/analysis/fit-start-values/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/fitted-reflections/</loc>
+        <loc>https://easydiffraction.org/application/analysis/fitted-reflections/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/fitting-mode/</loc>
+        <loc>https://easydiffraction.org/application/analysis/fitting-mode/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/joint-fit-weights/</loc>
+        <loc>https://easydiffraction.org/application/analysis/joint-fit-weights/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/minimizer/</loc>
+        <loc>https://easydiffraction.org/application/analysis/minimizer/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/parameters-shown/</loc>
+        <loc>https://easydiffraction.org/application/analysis/parameters-shown/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/parameters/</loc>
+        <loc>https://easydiffraction.org/application/analysis/parameters/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/pattern-updates/</loc>
+        <loc>https://easydiffraction.org/application/analysis/pattern-updates/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/performance/</loc>
+        <loc>https://easydiffraction.org/application/analysis/performance/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/scan-extraction-rules/</loc>
+        <loc>https://easydiffraction.org/application/analysis/scan-extraction-rules/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/sequential-fit/</loc>
+        <loc>https://easydiffraction.org/application/analysis/sequential-fit/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/analysis/structure-fit-result/</loc>
+        <loc>https://easydiffraction.org/application/analysis/structure-fit-result/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/browser/</loc>
+        <loc>https://easydiffraction.org/application/browser/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/desktop/</loc>
+        <loc>https://easydiffraction.org/application/desktop/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/</loc>
+        <loc>https://easydiffraction.org/application/experiment/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/absorption/</loc>
+        <loc>https://easydiffraction.org/application/experiment/absorption/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/background-estimation/</loc>
+        <loc>https://easydiffraction.org/application/experiment/background-estimation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/background/</loc>
+        <loc>https://easydiffraction.org/application/experiment/background/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/calculation-range/</loc>
+        <loc>https://easydiffraction.org/application/experiment/calculation-range/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/data-source/</loc>
+        <loc>https://easydiffraction.org/application/experiment/data-source/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/excluded-regions/</loc>
+        <loc>https://easydiffraction.org/application/experiment/excluded-regions/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/experiments/</loc>
+        <loc>https://easydiffraction.org/application/experiment/experiments/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/extinction/</loc>
+        <loc>https://easydiffraction.org/application/experiment/extinction/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/fitted-reflections/</loc>
+        <loc>https://easydiffraction.org/application/experiment/fitted-reflections/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/instrument/</loc>
+        <loc>https://easydiffraction.org/application/experiment/instrument/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/linked-structures/</loc>
+        <loc>https://easydiffraction.org/application/experiment/linked-structures/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/measured-data/</loc>
+        <loc>https://easydiffraction.org/application/experiment/measured-data/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/observed-reflections/</loc>
+        <loc>https://easydiffraction.org/application/experiment/observed-reflections/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/peak-profile/</loc>
+        <loc>https://easydiffraction.org/application/experiment/peak-profile/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/performance/</loc>
+        <loc>https://easydiffraction.org/application/experiment/performance/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/preferred-orientations/</loc>
+        <loc>https://easydiffraction.org/application/experiment/preferred-orientations/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/reflections/</loc>
+        <loc>https://easydiffraction.org/application/experiment/reflections/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/experiment/scattering-source/</loc>
+        <loc>https://easydiffraction.org/application/experiment/scattering-source/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/project/</loc>
+        <loc>https://easydiffraction.org/application/project/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/project/examples/</loc>
+        <loc>https://easydiffraction.org/application/project/examples/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/project/get-started/</loc>
+        <loc>https://easydiffraction.org/application/project/get-started/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/project/recent-projects/</loc>
+        <loc>https://easydiffraction.org/application/project/recent-projects/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/project/standard-uncertainties/</loc>
+        <loc>https://easydiffraction.org/application/project/standard-uncertainties/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/report/</loc>
+        <loc>https://easydiffraction.org/application/report/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/report/contents/</loc>
+        <loc>https://easydiffraction.org/application/report/contents/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/report/export/</loc>
+        <loc>https://easydiffraction.org/application/report/export/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/report/saved-reports/</loc>
+        <loc>https://easydiffraction.org/application/report/saved-reports/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/</loc>
+        <loc>https://easydiffraction.org/application/structure/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/appearance/</loc>
+        <loc>https://easydiffraction.org/application/structure/appearance/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/atom-sites/</loc>
+        <loc>https://easydiffraction.org/application/structure/atom-sites/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/atomic-displacement/</loc>
+        <loc>https://easydiffraction.org/application/structure/atomic-displacement/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/atoms-in-the-cell/</loc>
+        <loc>https://easydiffraction.org/application/structure/atoms-in-the-cell/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/bonds/</loc>
+        <loc>https://easydiffraction.org/application/structure/bonds/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/cell/</loc>
+        <loc>https://easydiffraction.org/application/structure/cell/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/magnetic-form-factors/</loc>
+        <loc>https://easydiffraction.org/application/structure/magnetic-form-factors/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/magnetic-moments/</loc>
+        <loc>https://easydiffraction.org/application/structure/magnetic-moments/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/magnetic-operators/</loc>
+        <loc>https://easydiffraction.org/application/structure/magnetic-operators/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/magnetic-space-group/</loc>
+        <loc>https://easydiffraction.org/application/structure/magnetic-space-group/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/moments-in-the-cell/</loc>
+        <loc>https://easydiffraction.org/application/structure/moments-in-the-cell/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/propagation-vectors/</loc>
+        <loc>https://easydiffraction.org/application/structure/propagation-vectors/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/scattering-lengths/</loc>
+        <loc>https://easydiffraction.org/application/structure/scattering-lengths/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/space-group/</loc>
+        <loc>https://easydiffraction.org/application/structure/space-group/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/structures/</loc>
+        <loc>https://easydiffraction.org/application/structure/structures/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/structure/symmetry-operators/</loc>
+        <loc>https://easydiffraction.org/application/structure/symmetry-operators/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/assistant/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/assistant/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_lbco_simulation/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_lbco_simulation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-tof_si-sepd/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-tof_si-sepd/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
+        <loc>https://easydiffraction.org/application/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/application/workspace/</loc>
+        <loc>https://easydiffraction.org/application/workspace/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/changelog/</loc>
+        <loc>https://easydiffraction.org/changelog/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/</loc>
+        <loc>https://easydiffraction.org/cli/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/analysis-workflow/</loc>
+        <loc>https://easydiffraction.org/cli/analysis-workflow/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/batch/</loc>
+        <loc>https://easydiffraction.org/cli/batch/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/calculate/</loc>
+        <loc>https://easydiffraction.org/cli/calculate/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/data/</loc>
+        <loc>https://easydiffraction.org/cli/data/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/experiments/</loc>
+        <loc>https://easydiffraction.org/cli/experiments/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/files/</loc>
+        <loc>https://easydiffraction.org/cli/files/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/fit/</loc>
+        <loc>https://easydiffraction.org/cli/fit/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/python/</loc>
+        <loc>https://easydiffraction.org/cli/python/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/reference/</loc>
+        <loc>https://easydiffraction.org/cli/reference/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/reports/</loc>
+        <loc>https://easydiffraction.org/cli/reports/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/setup/</loc>
+        <loc>https://easydiffraction.org/cli/setup/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/standalone/</loc>
+        <loc>https://easydiffraction.org/cli/standalone/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/structures/</loc>
+        <loc>https://easydiffraction.org/cli/structures/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/assistant/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/assistant/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-tof_si-sepd/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-tof_si-sepd/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/cli/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/</loc>
+        <loc>https://easydiffraction.org/physics/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/background/</loc>
+        <loc>https://easydiffraction.org/physics/background/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/calibration/</loc>
+        <loc>https://easydiffraction.org/physics/calibration/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/conventions/</loc>
+        <loc>https://easydiffraction.org/physics/conventions/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/corrections/</loc>
+        <loc>https://easydiffraction.org/physics/corrections/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/corrections/absorption/</loc>
+        <loc>https://easydiffraction.org/physics/corrections/absorption/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/corrections/extinction/</loc>
+        <loc>https://easydiffraction.org/physics/corrections/extinction/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/corrections/intensity/</loc>
+        <loc>https://easydiffraction.org/physics/corrections/intensity/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/corrections/orientation/</loc>
+        <loc>https://easydiffraction.org/physics/corrections/orientation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/crystallography/</loc>
+        <loc>https://easydiffraction.org/physics/crystallography/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/diffraction-model/</loc>
+        <loc>https://easydiffraction.org/physics/diffraction-model/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/diffraction/</loc>
+        <loc>https://easydiffraction.org/physics/diffraction/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/displacement/</loc>
+        <loc>https://easydiffraction.org/physics/displacement/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/experiment-model/</loc>
+        <loc>https://easydiffraction.org/physics/experiment-model/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/fitting/</loc>
+        <loc>https://easydiffraction.org/physics/fitting/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/magnetic/</loc>
+        <loc>https://easydiffraction.org/physics/magnetic/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/minimization/</loc>
+        <loc>https://easydiffraction.org/physics/minimization/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/models/</loc>
+        <loc>https://easydiffraction.org/physics/models/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/parameters/</loc>
+        <loc>https://easydiffraction.org/physics/parameters/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/physical-models/</loc>
+        <loc>https://easydiffraction.org/physics/physical-models/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/profiles/</loc>
+        <loc>https://easydiffraction.org/physics/profiles/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/profiles/cw/</loc>
+        <loc>https://easydiffraction.org/physics/profiles/cw/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/profiles/tof/</loc>
+        <loc>https://easydiffraction.org/physics/profiles/tof/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/reliability/</loc>
+        <loc>https://easydiffraction.org/physics/reliability/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/physics/rietveld/</loc>
+        <loc>https://easydiffraction.org/physics/rietveld/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/</loc>
+        <loc>https://easydiffraction.org/python/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/analysis-workflow/</loc>
+        <loc>https://easydiffraction.org/python/analysis-workflow/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/calculate/</loc>
+        <loc>https://easydiffraction.org/python/calculate/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/data/</loc>
+        <loc>https://easydiffraction.org/python/data/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/experiments/</loc>
+        <loc>https://easydiffraction.org/python/experiments/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/fit/</loc>
+        <loc>https://easydiffraction.org/python/fit/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/projects/</loc>
+        <loc>https://easydiffraction.org/python/projects/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/reference/</loc>
+        <loc>https://easydiffraction.org/python/reference/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/reports/</loc>
+        <loc>https://easydiffraction.org/python/reports/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/results/</loc>
+        <loc>https://easydiffraction.org/python/results/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/setup/</loc>
+        <loc>https://easydiffraction.org/python/setup/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/structures/</loc>
+        <loc>https://easydiffraction.org/python/structures/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/assistant/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/assistant/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_scan-213f/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_hs-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_lbco_simulation/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco_simulation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_y2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_cecoal-polaris/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ceo2-pearl/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_lbco-si-mcstas/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ncaf-wish/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-tof_si-sepd/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_si-sepd/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_lam7o3-p021/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_latp-bm01_scan/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_pbso4-lab/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_cosio-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/python/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
+        <loc>https://easydiffraction.org/python/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/</loc>
+        <loc>https://easydiffraction.org/user-guide/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/ai-assistant/</loc>
+        <loc>https://easydiffraction.org/user-guide/ai-assistant/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/analysis/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/analysis/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/experiment/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/experiment/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/project/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/project/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/report/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/report/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/analysis-workflow/structure/</loc>
+        <loc>https://easydiffraction.org/user-guide/analysis-workflow/structure/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/concepts/</loc>
+        <loc>https://easydiffraction.org/user-guide/concepts/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/data-formats/</loc>
+        <loc>https://easydiffraction.org/user-guide/data-formats/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/features/</loc>
+        <loc>https://easydiffraction.org/user-guide/features/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/glossary/</loc>
+        <loc>https://easydiffraction.org/user-guide/glossary/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/parameters/</loc>
+        <loc>https://easydiffraction.org/user-guide/parameters/</loc>
       </url>
       <url>
-        <loc>https://enhantica.github.io/edi/user-guide/tutorials/</loc>
+        <loc>https://easydiffraction.org/user-guide/tutorials/</loc>
       </url>
 </urlset>

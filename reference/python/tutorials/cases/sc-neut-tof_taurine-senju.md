@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-tof_taurine-senju/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d42e09fd8e9ae537bbb4d2d3eb16c49fbe3f7999/docs/user/tutorials/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/281d1666dcc2210ea837a5b5d68acfbdc2006e28/docs/user/tutorials/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -93,7 +93,7 @@ edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, sen
    iter   time (s) wR(F²) (%)  reduced χ²   change
                        179.47      5665.97
       1      0.003      51.73       470.74   91.7% ↓
-      2      0.006      51.73       470.73   
+      2      0.005      51.73       470.73   
   done · converged · 2 iters · reduced χ² 470.73 · wR(F²) 51.73 % · 0.01 s
 ```
 
@@ -128,11 +128,11 @@ edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, sen
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         51.73       477.84
       1      0.005      31.17       173.48   63.7% ↓
-      2      0.010      27.18       131.89   24.0% ↓
+      2      0.009      27.18       131.89   24.0% ↓
       3      0.014      26.94       129.62   1.7% ↓
       4      0.018      26.94       129.57   
-      5      0.021      26.94       129.56   
-      6      0.027      26.94       129.56   
+      5      0.023      26.94       129.56   
+      6      0.028      26.94       129.56   
   done · converged · 6 iters · reduced χ² 129.56 · wR(F²) 26.94 % · 0.03 s
 ```
 
@@ -167,12 +167,12 @@ project.display.fit.results()
 edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 23 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         26.94       129.98
-      1      0.003      22.14        87.84   32.4% ↓
+      1      0.004      22.14        87.84   32.4% ↓
       2      0.008      20.47        75.09   14.5% ↓
-      3      0.012      20.27        73.57   2.0% ↓
-      4      0.016      20.26        73.55   
-      5      0.021      20.26        73.55   
-  done · converged · 5 iters · reduced χ² 73.55 · wR(F²) 20.26 % · 0.03 s
+      3      0.011      20.27        73.57   2.0% ↓
+      4      0.015      20.26        73.55   
+      5      0.019      20.26        73.55   
+  done · converged · 5 iters · reduced χ² 73.55 · wR(F²) 20.26 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -207,10 +207,10 @@ project.display.fit.results()
 edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 65 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         20.26        77.05
-      1      0.006      17.17        55.36   28.2% ↓
-      2      0.013      17.04        54.51   1.5% ↓
-      3      0.019      17.04        54.49   
-      4      0.025      17.04        54.49   
+      1      0.008      17.17        55.36   28.2% ↓
+      2      0.016      17.04        54.51   1.5% ↓
+      3      0.022      17.04        54.49   
+      4      0.028      17.04        54.49   
   done · converged · 4 iters · reduced χ² 54.49 · wR(F²) 17.04 % · 0.04 s
 ```
 
@@ -243,33 +243,33 @@ for tensor in structure.atom_site_aniso:
 ```
 
 ```text
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.S1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.S1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.N1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.N1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H11.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H11.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H12.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H12.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H21.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H21.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4219/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H22.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4224/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H22.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
 ```
 
@@ -282,10 +282,10 @@ project.display.fit.results()
 edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 135 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         17.04        59.19
-      1      0.015      13.02        34.56   41.6% ↓
-      2      0.031      12.20        30.32   12.3% ↓
-      3      0.046      12.19        30.27   0.2% ↓
-      4      0.068      12.19        30.27   
+      1      0.022      13.02        34.56   41.6% ↓
+      2      0.037      12.20        30.32   12.3% ↓
+      3      0.058      12.19        30.27   0.2% ↓
+      4      0.073      12.19        30.27   
   done · converged · 4 iters · reduced χ² 30.27 · wR(F²) 12.19 % · 0.13 s
 ```
 

@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://enhantica.github.io/edi/python/setup/">
+        <link rel="canonical" href="https://easydiffraction.org/python/setup/">
       
       
       
@@ -10230,7 +10230,7 @@ on GitHub; its dependencies come from PyPI.</p>
 </code></pre></div>
 <p>In <code>pixi.toml</code>, add the EasyDiffraction package index:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[pypi-options]</span>
-<span class="n">extra-index-urls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://enhantica.github.io/edi-download/pypi/simple/&quot;</span><span class="p">]</span>
+<span class="n">extra-index-urls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://download.easydiffraction.org/pypi/simple/&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Then add the package and check it:</p>
 <div class="highlight"><pre><span></span><code><span class="go">pixi add --pypi &quot;easydiffraction==2026.11.0&quot;</span>
@@ -10245,7 +10245,7 @@ on GitHub; its dependencies come from PyPI.</p>
 </code></pre></div>
 <p>Activate it with <code>source .venv/bin/activate</code> on macOS or Linux, or
 <code>.\.venv\Scripts\Activate.ps1</code> in Windows PowerShell. Then install and check:</p>
-<div class="highlight"><pre><span></span><code><span class="go">python -m pip install &quot;easydiffraction==2026.11.0&quot; --extra-index-url https://enhantica.github.io/edi-download/pypi/simple/</span>
+<div class="highlight"><pre><span></span><code><span class="go">python -m pip install &quot;easydiffraction==2026.11.0&quot; --extra-index-url https://download.easydiffraction.org/pypi/simple/</span>
 <span class="go">python -c &quot;import easydiffraction as edi; print(edi.Project)&quot;</span>
 <span class="go">python -m edi --help</span>
 </code></pre></div>
@@ -10253,7 +10253,6 @@ on GitHub; its dependencies come from PyPI.</p>
 </div>
 </div>
 </div>
-<p>Building edi from source is described in the <a href="https://easydiffraction.org/dev/">contributor documentation</a>.</p>
 <h2 id="in-a-notebook">In a notebook<a class="headerlink" href="#in-a-notebook" title="Permanent link">&para;</a></h2>
 <p>Install and launch JupyterLab from the environment where you installed edi.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Pixi</label><label for="__tabbed_2_2">Python + pip</label></div>

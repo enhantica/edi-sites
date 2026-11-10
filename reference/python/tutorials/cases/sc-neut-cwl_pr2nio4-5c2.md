@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d42e09fd8e9ae537bbb4d2d3eb16c49fbe3f7999/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/281d1666dcc2210ea837a5b5d68acfbdc2006e28/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -117,27 +117,27 @@ edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 6 free
       1      0.001      47.49      1106.20   7.2% ↓
       2      0.002      46.77      1072.93   3.0% ↓
       3      0.003      46.69      1069.03   0.4% ↓
-      4      0.004      46.64      1067.00   0.2% ↓
-      5      0.005      46.63      1066.25   0.1% ↓
-      6      0.006      46.61      1065.55   0.1% ↓
-      7      0.007      46.60      1065.20   
-      8      0.008      46.60      1064.86   
-      9      0.009      46.59      1064.67   
-     10      0.010      46.59      1064.48   
-     11      0.011      46.59      1064.37   
-     12      0.012      46.58      1064.26   
-     13      0.013      46.58      1064.19   
-     14      0.014      46.58      1064.13   
-     15      0.015      46.58      1064.09   
-     16      0.016      46.58      1064.05   
-     17      0.017      46.58      1064.02   
-     18      0.018      46.58      1063.99   
-     19      0.019      46.58      1063.98   
-     20      0.020      46.58      1063.96   
-     21      0.021      46.58      1063.95   
-     22      0.022      46.58      1063.94   
-     23      0.023      46.58      1063.93   
-  done · converged · 23 iters · reduced χ² 1063.93 · wR(F²) 46.58 % · 0.02 s
+      4      0.005      46.64      1067.00   0.2% ↓
+      5      0.006      46.63      1066.25   0.1% ↓
+      6      0.007      46.61      1065.55   0.1% ↓
+      7      0.008      46.60      1065.20   
+      8      0.009      46.60      1064.86   
+      9      0.010      46.59      1064.67   
+     10      0.011      46.59      1064.48   
+     11      0.012      46.59      1064.37   
+     12      0.013      46.58      1064.26   
+     13      0.014      46.58      1064.19   
+     14      0.015      46.58      1064.13   
+     15      0.016      46.58      1064.09   
+     16      0.017      46.58      1064.05   
+     17      0.018      46.58      1064.02   
+     18      0.019      46.58      1063.99   
+     19      0.020      46.58      1063.98   
+     20      0.021      46.58      1063.96   
+     21      0.022      46.58      1063.95   
+     22      0.023      46.58      1063.94   
+     23      0.024      46.58      1063.93   
+  done · converged · 23 iters · reduced χ² 1063.93 · wR(F²) 46.58 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -213,15 +213,15 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 23 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         46.51      1164.22
-      1      0.001      16.34       143.71   87.7% ↓
+      1      0.002      16.34       143.71   87.7% ↓
       2      0.003       4.78        12.28   91.5% ↓
-      3      0.004       4.34        10.15   17.4% ↓
-      4      0.006       4.29         9.89   2.6% ↓
-      5      0.007       4.27         9.79   0.9% ↓
-      6      0.009       4.26         9.76   0.3% ↓
-      7      0.010       4.26         9.75   0.1% ↓
-      8      0.012       4.26         9.75   
-      9      0.014       4.26         9.75   
+      3      0.006       4.34        10.15   17.4% ↓
+      4      0.007       4.29         9.89   2.6% ↓
+      5      0.009       4.27         9.79   0.9% ↓
+      6      0.011       4.26         9.76   0.3% ↓
+      7      0.012       4.26         9.75   0.1% ↓
+      8      0.014       4.26         9.75   
+      9      0.016       4.26         9.75   
   done · converged · 9 iters · reduced χ² 9.75 · wR(F²) 4.26 % · 0.02 s
 ```
 
