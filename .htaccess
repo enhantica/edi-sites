@@ -1,0 +1,2 @@
+# The host serves .wasm as text by default; browsers need this type to start the web app.
+AddType application/wasm .wasm
