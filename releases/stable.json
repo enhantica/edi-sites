@@ -1,0 +1,28 @@
+{
+  "schema": "edi.releases/1",
+  "baseline_commit": "2327853b85b27428dfaddab885b3a9a7c6ee5c69",
+  "releases": [
+    {
+      "version": "2026.11.0",
+      "date": "2026-11-10",
+      "commit": "e9334c7713570499c3a02e4010c0832ce46d44fd",
+      "notes": {
+        "Added": [
+          {
+            "title": "This is the first release of the new EasyDiffraction, based on crysta",
+            "pull_request": 3,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python",
+              "cli-python",
+              "cli-standalone"
+            ]
+          }
+        ],
+        "Fixed": [],
+        "Changed": []
+      }
+    }
+  ]
+}
