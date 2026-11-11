@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_yalo3-al2o3-spodi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d515b6f49c6d9e9df74f5e052de32110f3790475/docs/user/tutorials/pd-neut-cwl_yalo3-al2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b665bb8f7f66aa43269a426fec07e2a3d78bb0bd/docs/user/tutorials/pd-neut-cwl_yalo3-al2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_yalo3-al2o3-spodi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -78,12 +78,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 8 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        18.59       201.52
-      1      0.073     13.38       104.43   48.2% ↓
-      2      0.083     13.38       104.42   
-      3      0.092     13.38       104.42   
-      4      0.102     13.38       104.42   
-      5      0.118     13.38       104.42   
-  done · converged · 5 iters · reduced χ² 104.42 · Rwp 13.38 % · 0.13 s
+      1      0.076     13.38       104.43   48.2% ↓
+      2      0.087     13.38       104.42   
+      3      0.097     13.38       104.42   
+      4      0.108     13.38       104.42   
+      5      0.124     13.38       104.42   
+  done · converged · 5 iters · reduced χ² 104.42 · Rwp 13.38 % · 0.14 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -114,14 +114,14 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 33 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.38       105.32
-      1      0.146     11.96        84.07   20.2% ↓
-      2      0.160     11.96        84.06   
-      3      0.170     11.96        84.06   
+      1      0.142     11.96        84.07   20.2% ↓
+      2      0.157     11.96        84.06   
+      3      0.169     11.96        84.06   
       4      0.183     11.96        84.06   
-      5      0.193     11.96        84.06   
-      6      0.206     11.96        84.06   
-      7      0.265     11.96        84.06   
-  done · converged · 7 iters · reduced χ² 84.06 · Rwp 11.96 % · 0.28 s
+      5      0.195     11.96        84.06   
+      6      0.209     11.96        84.06   
+      7      0.259     11.96        84.06   
+  done · converged · 7 iters · reduced χ² 84.06 · Rwp 11.96 % · 0.27 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -156,25 +156,25 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 37 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.96        84.18
-      1      0.138     11.46        77.33   8.1% ↓
-      2      0.148     11.46        77.33   
-      3      0.161     11.46        77.33   
-      4      0.172     11.46        77.33   
-      5      0.185     11.46        77.33   
-      6      0.195     11.46        77.33   
-      7      0.208     11.46        77.33   
-      8      0.219     11.46        77.33   
-      9      0.231     11.46        77.33   
-     10      0.242     11.46        77.33   
-     11      0.255     11.46        77.33   
-     12      0.265     11.46        77.32   
-     13      0.278     11.46        77.32   
-     14      0.289     11.46        77.32   
-     15      0.301     11.46        77.32   
-     16      0.312     11.46        77.32   
-     17      0.325     11.46        77.32   
-     18      0.382     11.46        77.32   
-  done · converged · 18 iters · reduced χ² 77.32 · Rwp 11.46 % · 0.39 s
+      1      0.137     11.46        77.33   8.1% ↓
+      2      0.149     11.46        77.33   
+      3      0.164     11.46        77.33   
+      4      0.177     11.46        77.33   
+      5      0.191     11.46        77.33   
+      6      0.203     11.46        77.33   
+      7      0.218     11.46        77.33   
+      8      0.230     11.46        77.33   
+      9      0.244     11.46        77.33   
+     10      0.256     11.46        77.33   
+     11      0.272     11.46        77.33   
+     12      0.284     11.46        77.32   
+     13      0.299     11.46        77.32   
+     14      0.311     11.46        77.32   
+     15      0.326     11.46        77.32   
+     16      0.338     11.46        77.32   
+     17      0.352     11.46        77.32   
+     18      0.401     11.46        77.32   
+  done · converged · 18 iters · reduced χ² 77.32 · Rwp 11.46 % · 0.41 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -209,10 +209,10 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 41 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.46        77.43
-      1      0.130     11.28        74.99   3.2% ↓
-      2      0.142     11.28        74.99   
-      3      0.201     11.28        74.99   
-  done · converged · 3 iters · reduced χ² 74.99 · Rwp 11.28 % · 0.22 s
+      1      0.150     11.28        74.99   3.2% ↓
+      2      0.164     11.28        74.99   
+      3      0.215     11.28        74.99   
+  done · converged · 3 iters · reduced χ² 74.99 · Rwp 11.28 % · 0.23 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -252,19 +252,19 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 50 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.28        75.22
-      1      0.189      6.46        24.69   67.2% ↓
-      2      0.204      6.46        24.69   
-      3      0.219      6.46        24.69   
-      4      0.233      6.46        24.69   
-      5      0.252      6.46        24.69   
-      6      0.266      6.46        24.69   
-      7      0.281      6.46        24.69   
-      8      0.295      6.46        24.69   
-      9      0.309      6.46        24.69   
-     10      0.322      6.46        24.69   
-     11      0.342      6.46        24.69   
-     12      0.402      6.46        24.69   
-  done · converged · 12 iters · reduced χ² 24.69 · Rwp 6.46 % · 0.42 s
+      1      0.190      6.46        24.69   67.2% ↓
+      2      0.208      6.46        24.69   
+      3      0.225      6.46        24.69   
+      4      0.242      6.46        24.69   
+      5      0.264      6.46        24.69   
+      6      0.281      6.46        24.69   
+      7      0.299      6.46        24.69   
+      8      0.317      6.46        24.69   
+      9      0.334      6.46        24.69   
+     10      0.351      6.46        24.69   
+     11      0.375      6.46        24.69   
+     12      0.430      6.46        24.69   
+  done · converged · 12 iters · reduced χ² 24.69 · Rwp 6.46 % · 0.45 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -298,19 +298,19 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_yalo3-al2o3-spodi, 2959 pts fitted / 2959 loaded, 56 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.46        24.74
-      1      0.165      4.06         9.77   60.5% ↓
-      2      0.181      4.06         9.77   
-      3      0.196      4.06         9.77   
-      4      0.212      4.06         9.76   
-      5      0.227      4.06         9.76   0.1% ↓
-      6      0.242      4.05         9.74   0.1% ↓
-      7      0.257      4.05         9.73   0.1% ↓
-      8      0.273      4.05         9.73   
-      9      0.289      4.05         9.73   
-     10      0.305      4.05         9.73   
-     11      0.322      4.05         9.73   
-     12      0.390      4.05         9.73   
-  done · converged · 12 iters · reduced χ² 9.73 · Rwp 4.05 % · 0.41 s
+      1      0.168      4.06         9.77   60.5% ↓
+      2      0.188      4.06         9.77   
+      3      0.210      4.06         9.77   
+      4      0.231      4.06         9.76   
+      5      0.253      4.06         9.76   0.1% ↓
+      6      0.274      4.05         9.74   0.1% ↓
+      7      0.296      4.05         9.73   0.1% ↓
+      8      0.318      4.05         9.73   
+      9      0.339      4.05         9.73   
+     10      0.360      4.05         9.73   
+     11      0.381      4.05         9.73   
+     12      0.452      4.05         9.73   
+  done · converged · 12 iters · reduced χ² 9.73 · Rwp 4.05 % · 0.47 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
