@@ -5,83 +5,83 @@
    "id": "pd-neut-cwl_cosio-d20",
    "kind": "tutorial",
    "name": "Co₂SiO₄ on D20",
-   "description": "This tutorial fits the olivine Co₂SiO₄ to constant-wavelength neutron powder data measured on D20 at the ILL. Its structure and its measured pattern come from EasyDiffraction's collection; the tutorial describes the experiment, links the two and fits the coordinates, the displacements and the oxygen occupancies.",
+   "description": "",
    "order": 1,
    "files": [
     {
      "path": "pd-neut-cwl_cosio-d20.ipynb",
      "format": "ipynb",
-     "sha256": "1759309f590e99d9386b3943e3cc91f51135029fd508a625668472b35a392810",
-     "bytes": 19344
+     "sha256": "6df710bd5c86a0d6de99f45ee76b0922d58aa8a120f3f86e981110d98d3af34d",
+     "bytes": 21116
     },
     {
      "path": "pd-neut-cwl_cosio-d20.py",
      "format": "py",
-     "sha256": "cab0d8484d070b7c7cfff5f4d1451f864712d6db61241475bd93cdcab5e34de3",
-     "bytes": 12426
+     "sha256": "41762566c9d8525795b103d8aa1a5262f495ccb1f82d6faf7fdbb4af58996713",
+     "bytes": 14123
     }
    ]
   },
   {
    "id": "pd-neut-cwl_cosio-d20_2k",
    "kind": "tutorial",
-   "name": "Magnetic structure fit: Co₂SiO₄ at 2.3 K, D20",
-   "description": "Fit the magnetic structure of the olivine Co₂SiO₄ to constant-wavelength neutron powder data from D20 at ILL, measured at 2.3 K, below its ordering temperature. The cobalt moments order with k = 0 in the magnetic space group Pnma.1: Co1 may point in any direction, Co2 only along b.",
+   "name": "Co₂SiO₄ on D20 at 2.3 K",
+   "description": "",
    "order": 2,
    "files": [
     {
      "path": "pd-neut-cwl_cosio-d20_2k.ipynb",
      "format": "ipynb",
-     "sha256": "55005f6c77c94a535b3dc44bc2fb57bcb8ee02da2bf9a056c1b5176024417934",
-     "bytes": 19288
+     "sha256": "a841ec64ad431763a4b4db3302a2f81464f379c3be6295c7b181cdf6288e4468",
+     "bytes": 21152
     },
     {
      "path": "pd-neut-cwl_cosio-d20_2k.py",
      "format": "py",
-     "sha256": "deba985c17e80dc042a1f4c96a02a9c3661d40b424e9bc99b9c647c1a3250399",
-     "bytes": 13503
+     "sha256": "a6b8947be2f74c3ee9a3b17f5c38af1790dfe8ad336afe36bf8dd8433a9937ae",
+     "bytes": 15296
     }
    ]
   },
   {
    "id": "pd-neut-cwl_cosio-d20_scan-213f",
    "kind": "tutorial",
-   "name": "Sequential magnetic fit: Co₂SiO₄, D20 scan from 2.3 K",
-   "description": "Fit the olivine Co₂SiO₄ with its magnetic structure to the whole D20 cooling scan, 213 patterns from 497.4 K down to 2.3 K, one after another and from the lowest temperature up. First the fit is staged on the 2.3 K pattern, the scan's template; then each later pattern starts from the previous result. The cobalt moments stay free at every temperature and fall towards zero near the Néel temperature, about 50 K.",
+   "name": "Co₂SiO₄ on D20, cooling scan",
+   "description": "",
    "order": 3,
    "files": [
     {
      "path": "pd-neut-cwl_cosio-d20_scan-213f.ipynb",
      "format": "ipynb",
-     "sha256": "2ac5fdbb5215c778a1d1401037a977d4c876bef522e3ab91a3f6c6bb07e9f7a0",
-     "bytes": 21407
+     "sha256": "596ea9bf5585ee9e20c0e910ae9fb8c41ee092a4c45d1cc62036dcd438899cea",
+     "bytes": 23276
     },
     {
      "path": "pd-neut-cwl_cosio-d20_scan-213f.py",
      "format": "py",
-     "sha256": "0fcd01525a18e07995732b2c3a62fc9d79d0e76b2ce8426ca52ebb4019e794c7",
-     "bytes": 15541
+     "sha256": "b583025e325326736427b6237166451587fc6951756b28f239c6a3f028a175b0",
+     "bytes": 17339
     }
    ]
   },
   {
    "id": "pd-neut-cwl_hs-hrpt",
    "kind": "tutorial",
-   "name": "Rietveld fit: herbertsmithite, HRPT",
-   "description": "Fit herbertsmithite, ZnCu₃(OD)₆Cl₂, a deuterated kagome antiferromagnet, to constant-wavelength neutron powder data from HRPT at PSI, with a pseudo-Voigt profile and Bérar-Baldinozzi asymmetry.",
+   "name": "ZnCu₃(OD)₆Cl₂ on HRPT",
+   "description": "",
    "order": 4,
    "files": [
     {
      "path": "pd-neut-cwl_hs-hrpt.ipynb",
      "format": "ipynb",
-     "sha256": "1664d6b8fe3e3078d3ce4856a8dd06e3a5ce3856195a90f3170ef19eab425f34",
-     "bytes": 15165
+     "sha256": "1fb9b674b2645dc026a99295ed24f8d71028b0824e979e09d2bccb8294b2259b",
+     "bytes": 16929
     },
     {
      "path": "pd-neut-cwl_hs-hrpt.py",
      "format": "py",
-     "sha256": "f0b8f2623c580131947c78505a7993e6a99be83eca4ba661069acdeae3fc67b7",
-     "bytes": 9844
+     "sha256": "457639aeae6c1ad36e33a1b78aa0d9d9c1cadf2cce0a3f297dc84f920dae3e28",
+     "bytes": 11533
     }
    ]
   },
@@ -89,419 +89,419 @@
    "id": "pd-neut-cwl_lbco-hrpt",
    "kind": "tutorial",
    "name": "La₀.₅Ba₀.₅CoO₃ on HRPT",
-   "description": "This tutorial fits the cubic perovskite La₀.₅Ba₀.₅CoO₃ to constant-wavelength neutron powder data measured on HRPT at PSI. It builds the structure by hand, loads the measured pattern from EasyDiffraction's collection, describes the experiment, links the two and fits them, showing the pattern and the parameters after each step. The other tutorials load their structures from a CIF.",
+   "description": "",
    "order": 5,
    "files": [
     {
      "path": "pd-neut-cwl_lbco-hrpt.ipynb",
      "format": "ipynb",
-     "sha256": "8edeff8a9efe68f51b0205beefaab0095b974cc59db6a1c5e958230d17731684",
-     "bytes": 19666
+     "sha256": "594339bcc971e3f58e078b48432379a8aeb5681c71767d8adf4b414cfcef32c7",
+     "bytes": 21438
     },
     {
      "path": "pd-neut-cwl_lbco-hrpt.py",
      "format": "py",
-     "sha256": "f3abe3fd279c137e798293c22d881e0a5d6befa51990eca4e8eff68f4415a49f",
-     "bytes": 12925
+     "sha256": "8ee793ec4f96fc61af6f32565dc5655b3eca120f13b8e79c7c5866272d6a3089",
+     "bytes": 14622
     }
    ]
   },
   {
    "id": "pd-neut-cwl_lbco_simulation",
    "kind": "tutorial",
-   "name": "Calculation without data: La₀.₅Ba₀.₅CoO₃, HRPT",
-   "description": "Calculate a constant-wavelength neutron pattern of the cubic perovskite La₀.₅Ba₀.₅CoO₃ without any measured data. The structure, the HRPT instrument, the peak profile and the background are in the project, and edi calculates the pattern over the project's 2θ range.",
+   "name": "La₀.₅Ba₀.₅CoO₃ on HRPT",
+   "description": "",
    "order": 6,
    "files": [
     {
      "path": "pd-neut-cwl_lbco_simulation.ipynb",
      "format": "ipynb",
-     "sha256": "fe2b2a5b3e4d9981ef484251ca75a0e70a7df9d841cf58b6ac0a22e29d648c18",
-     "bytes": 10169
+     "sha256": "cf87b015bd20e96a45282563c9626b24f6b524af4e4d412405148eeefe3c2625",
+     "bytes": 11921
     },
     {
      "path": "pd-neut-cwl_lbco_simulation.py",
      "format": "py",
-     "sha256": "a20a1c63f9ef894fd39b818ef55b62ae530a02191d9e6d0b1ddf70775b0cbac8",
-     "bytes": 8080
+     "sha256": "dae0a6a942477d4b9b4b27a09a193f2c1dd29f7e2a84785b1e9aa1d4c7587e8b",
+     "bytes": 9757
     }
    ]
   },
   {
    "id": "pd-neut-cwl_lmo-echidna",
    "kind": "tutorial",
-   "name": "Rietveld fit: LiNiO₂, ECHIDNA",
-   "description": "Fit the layered oxide LiNiO₂ to constant-wavelength neutron powder data from ECHIDNA at ANSTO. Li and Ni mix between two sites, held to full occupancy by constraints, and the profile has Finger-Cox-Jephcoat asymmetry.",
+   "name": "LiNiO₂ on ECHIDNA",
+   "description": "",
    "order": 7,
    "files": [
     {
      "path": "pd-neut-cwl_lmo-echidna.ipynb",
      "format": "ipynb",
-     "sha256": "317a82a48c2592c2ba3a6da05341d0e2479556bb0e92372058419063a429a124",
-     "bytes": 16071
+     "sha256": "bbac893d052e06cc26126c94c8af58e63aa2c9e932daf1bb9be12b35387def81",
+     "bytes": 17831
     },
     {
      "path": "pd-neut-cwl_lmo-echidna.py",
      "format": "py",
-     "sha256": "7ef57c1390f999fa6f23dd7c1e3ac4632a74e97e309a48398df00e495c92323e",
-     "bytes": 10261
+     "sha256": "e73bd1b60da0d869dccda213d40c0c07a23b52fdc33d2ca74be222762686b018",
+     "bytes": 11946
     }
    ]
   },
   {
    "id": "pd-neut-cwl_y2o3-spodi",
    "kind": "tutorial",
-   "name": "Rietveld fit: Y₂O₃, SPODI",
-   "description": "Fit cubic Y₂O₃ to constant-wavelength neutron powder data from SPODI at FRM II, with anisotropic displacement tensors whose components the site symmetry ties together.",
+   "name": "Y₂O₃ on SPODI",
+   "description": "",
    "order": 8,
    "files": [
     {
      "path": "pd-neut-cwl_y2o3-spodi.ipynb",
      "format": "ipynb",
-     "sha256": "64c7df494cd224aa73bd00568156b8a880ab26a0c8930715326eeac17e8d8a14",
-     "bytes": 14868
+     "sha256": "ae8ae0a30514df51687ce6e5357032de17450e59011db4bb2845ad6ee10739b8",
+     "bytes": 16628
     },
     {
      "path": "pd-neut-cwl_y2o3-spodi.py",
      "format": "py",
-     "sha256": "5f0f97492aa6908203a7059c758d82c88f1ead23f9aa0f26e8b33c9f844cc895",
-     "bytes": 9817
+     "sha256": "81cd59be30854e0d7d04fab539135de1fa88d670b59055e65e235b64d481bbcf",
+     "bytes": 11502
     }
    ]
   },
   {
    "id": "pd-neut-cwl_yalo3-al2o3-spodi",
    "kind": "tutorial",
-   "name": "Two-phase fit: YAlO₃ and Al₂O₃, SPODI",
-   "description": "Fit two phases, YAlO₃ and corundum Al₂O₃, in one constant-wavelength neutron pattern from SPODI at FRM II, measured at 3 K, with a shared Bérar-Baldinozzi profile and cylinder absorption.",
+   "name": "YAlO₃ and Al₂O₃ on SPODI",
+   "description": "",
    "order": 9,
    "files": [
     {
      "path": "pd-neut-cwl_yalo3-al2o3-spodi.ipynb",
      "format": "ipynb",
-     "sha256": "996b8d4243220de47bc510fdcab6c41978640887e4557c1be6356e915bf6d24e",
-     "bytes": 15695
+     "sha256": "08e7c286b5845c19b0189d091807a82e1633af403bb1ede6e47fc3e9461d462f",
+     "bytes": 17454
     },
     {
      "path": "pd-neut-cwl_yalo3-al2o3-spodi.py",
      "format": "py",
-     "sha256": "2bd76286be53aac3d3d47108df103f4c59b794174b2dfae2b3d949bd9ced3d87",
-     "bytes": 10288
+     "sha256": "69ac15647136a67a8a1f5ed545db0ad0ac8526544783549db5c22c8b1e2dd46a",
+     "bytes": 11972
     }
    ]
   },
   {
    "id": "pd-neut-tof_cecoal-polaris",
    "kind": "tutorial",
-   "name": "Rietveld fit: CeCoAl₃, POLARIS",
-   "description": "Fit CeCoAl₃ to time-of-flight neutron powder data from POLARIS at ISIS: structure and profile, with a 24-term Chebyshev background.",
+   "name": "CeCoAl₃ on POLARIS",
+   "description": "",
    "order": 10,
    "files": [
     {
      "path": "pd-neut-tof_cecoal-polaris.ipynb",
      "format": "ipynb",
-     "sha256": "f4c90f5cb5de039dd048fc5c2d0f6b6b824bcfc582ed89e2c433195778c4802f",
-     "bytes": 15738
+     "sha256": "c8e764b0185d9e348e5fe70df4d82a5a2c1e8f29559dc55dbe46e018ff2ca732",
+     "bytes": 17498
     },
     {
      "path": "pd-neut-tof_cecoal-polaris.py",
      "format": "py",
-     "sha256": "0db6b7ea169c7e5894d207c9b1dfcfa523977dc59b27d5e47dc9408fb429fed3",
-     "bytes": 9966
+     "sha256": "4673089ce081c09c6d8a8ddf4f535dc32269a77cf59afb46b297fe9aff0c2d34",
+     "bytes": 11651
     }
    ]
   },
   {
    "id": "pd-neut-tof_ceo2-pearl",
    "kind": "tutorial",
-   "name": "Calibration fit: CeO₂, PEARL",
-   "description": "Fit the CeO₂ standard to time-of-flight neutron powder data from PEARL at ISIS: the calibration and the profile, with a polynomial background.",
+   "name": "CeO₂ on PEARL",
+   "description": "",
    "order": 11,
    "files": [
     {
      "path": "pd-neut-tof_ceo2-pearl.ipynb",
      "format": "ipynb",
-     "sha256": "9bbe16a88b8411719d72bae17950cd8b3b5a00c37e13b50953e4847f493c8f53",
-     "bytes": 15595
+     "sha256": "aa2e283f46e45b757f11f5bd87b57b3118389149283f21c3da127a3d2bfd7027",
+     "bytes": 17352
     },
     {
      "path": "pd-neut-tof_ceo2-pearl.py",
      "format": "py",
-     "sha256": "16ed84838df762cbb0c3e7ffa9999eae29194f6e19ebedd4e7d1cee88f015fd8",
-     "bytes": 9833
+     "sha256": "b6dbc657b5fe6811bc7778be58c082c3743fa46c2bb77d3126be43f6fedae035",
+     "bytes": 11515
     }
    ]
   },
   {
    "id": "pd-neut-tof_ferrite-austenite-beer",
    "kind": "tutorial",
-   "name": "Joint fit: ferrite and austenite, BEER",
-   "description": "Calibrate the BEER instrument at ESS with two McStas-simulated banks of a ferrite and austenite duplex steel, fitted together: each bank has its own zero and resolution.",
+   "name": "Ferrite and austenite on BEER",
+   "description": "",
    "order": 12,
    "files": [
     {
      "path": "pd-neut-tof_ferrite-austenite-beer.ipynb",
      "format": "ipynb",
-     "sha256": "ba9d1112cbe8e3af55e35a80effd62845b98464c87ef05b160f023270f6fbfa7",
-     "bytes": 18139
+     "sha256": "5d6f46b63b8de06a7988ba623fd251f33fc74abdf416baa5ff92823581039f98",
+     "bytes": 19902
     },
     {
      "path": "pd-neut-tof_ferrite-austenite-beer.py",
      "format": "py",
-     "sha256": "b8826aa598d7aeca31119f14ea9b02c9566bc73c8ef4387bcf0d1041897af411",
-     "bytes": 13117
+     "sha256": "7f2a4712cf03b9ea0e977e25e9ec78035e4e25a3e7ef001b893fc674a1d87620",
+     "bytes": 14805
     }
    ]
   },
   {
    "id": "pd-neut-tof_lbco-si-mcstas",
    "kind": "tutorial",
-   "name": "Two-phase fit: La₀.₅Ba₀.₅CoO₃ and Si, McStas",
-   "description": "Fit two phases, La₀.₅Ba₀.₅CoO₃ and silicon, to a time-of-flight pattern simulated with McStas.",
+   "name": "La₀.₅Ba₀.₅CoO₃ and Si on a McStas instrument",
+   "description": "",
    "order": 13,
    "files": [
     {
      "path": "pd-neut-tof_lbco-si-mcstas.ipynb",
      "format": "ipynb",
-     "sha256": "c1341aafd29ba40b31c5e5ad38b550d067c836993330631f1ed9a44ffc385b62",
-     "bytes": 14107
+     "sha256": "8eb2f0bafb0ca6a83b155b87b06a01a2cb89e4165e925d10fb1087c6f8e04add",
+     "bytes": 15879
     },
     {
      "path": "pd-neut-tof_lbco-si-mcstas.py",
      "format": "py",
-     "sha256": "f412fca501d7f7e3ac49340477360f614e26a987ff9b3e8e5c2345fe524bc23b",
-     "bytes": 9240
+     "sha256": "ec7bc511b4983fb8025173df5e107fddd6a8b5c8a5eeded1fe61df3334d66e0f",
+     "bytes": 10937
     }
    ]
   },
   {
    "id": "pd-neut-tof_ncaf-wish",
    "kind": "tutorial",
-   "name": "Joint fit: Na₂Ca₃Al₂F₁₄, WISH",
-   "description": "Fit Na₂Ca₃Al₂F₁₄ to time-of-flight neutron powder data from WISH at ISIS, all five detector bank pairs at once. Each bank has its own calibration and profile; the structure is shared.",
+   "name": "Na₂Ca₃Al₂F₁₄ on WISH",
+   "description": "",
    "order": 14,
    "files": [
     {
      "path": "pd-neut-tof_ncaf-wish.ipynb",
      "format": "ipynb",
-     "sha256": "624f6ed61a617d7e571772ffa2e8d6c34fe33d642058a756980d02fff43b8643",
-     "bytes": 26391
+     "sha256": "c7ddca498e82ac015ee465a8df93d379929159924ff2a2ebd262863c67efc541",
+     "bytes": 28154
     },
     {
      "path": "pd-neut-tof_ncaf-wish.py",
      "format": "py",
-     "sha256": "d64f13cd68a57b2b28357849452fe3a994bda6dbde063bf8322922062fe9af65",
-     "bytes": 16497
+     "sha256": "c52891b55e9b79061c391e776f5c3b4103ae51a9af9febc942b33a69b062191a",
+     "bytes": 18185
     }
    ]
   },
   {
    "id": "pd-neut-tof_si-sepd",
    "kind": "tutorial",
-   "name": "Rietveld fit: Si, SEPD",
-   "description": "Fit silicon to time-of-flight neutron powder data from SEPD at Argonne, with the Jorgensen-Von Dreele profile.",
+   "name": "Si on SEPD",
+   "description": "",
    "order": 15,
    "files": [
     {
      "path": "pd-neut-tof_si-sepd.ipynb",
      "format": "ipynb",
-     "sha256": "36030bee6584f2c327bb30eaa35aaee4f2a094f8c50854ea5efa1ae4da8627de",
-     "bytes": 16221
+     "sha256": "e79b494b5d9612bad02c1775413fef9e8981b0446ef6e34db61c9f64ac42e79b",
+     "bytes": 17981
     },
     {
      "path": "pd-neut-tof_si-sepd.py",
      "format": "py",
-     "sha256": "710fc88efab620a3a824882c1d8e51ead25d68680d3ae7ec48d2edb59c2af9d9",
-     "bytes": 10434
+     "sha256": "c071ca24b7b98bf2ea3e85148c9b7053ea81aae496bae35f270ee95b814333d4",
+     "bytes": 12119
     }
    ]
   },
   {
    "id": "pd-neut-xray-cwl_pbso4-d1a-lab",
    "kind": "tutorial",
-   "name": "Joint fit: PbSO₄, neutron and X-ray",
-   "description": "Fit PbSO₄ to two patterns at once, the Rietveld round robin's neutron pattern from D1A at ILL and its laboratory X-ray pattern: one structure, two experiments.",
+   "name": "PbSO₄ on D1A and a laboratory diffractometer",
+   "description": "",
    "order": 16,
    "files": [
     {
      "path": "pd-neut-xray-cwl_pbso4-d1a-lab.ipynb",
      "format": "ipynb",
-     "sha256": "36d16a1cd0454bf1913774c253b4d6a9422bf2602913ddfb91ac2ca58c9714f5",
-     "bytes": 20640
+     "sha256": "ae1808103613c9d58b94129a895a22793be5ac2b5fbe599990de3ad01d760668",
+     "bytes": 22774
     },
     {
      "path": "pd-neut-xray-cwl_pbso4-d1a-lab.py",
      "format": "py",
-     "sha256": "a5f6b52a207d89716ba6e49f38781267044232b88304e914cad898c1f3acfc57",
-     "bytes": 13831
+     "sha256": "371d45604802a876d9a81b038ad20f467ca2d6f5524ca0b75d0e32246379ea88",
+     "bytes": 15884
     }
    ]
   },
   {
    "id": "pd-xray-cwl_lam7o3-p021",
    "kind": "tutorial",
-   "name": "Rietveld fit: high-entropy perovskite, P02.1",
-   "description": "Fit the high-entropy perovskite La(Ti,Cr,Mn,Fe,Co,Ni,Cu)O₃, seven cations on one site, to synchrotron X-ray powder data from P02.1 at PETRA III.",
+   "name": "La(Ti,Cr,Mn,Fe,Co,Ni,Cu)O₃ on P02.1",
+   "description": "",
    "order": 17,
    "files": [
     {
      "path": "pd-xray-cwl_lam7o3-p021.ipynb",
      "format": "ipynb",
-     "sha256": "0ed74c06bc49939ae1445bff8502151f7c943f76ddf7b46308f204559e96968f",
-     "bytes": 15274
+     "sha256": "e76e7929be38933fb04759b82a903c4296162917cdf5b39862a23a51839b8fc0",
+     "bytes": 17039
     },
     {
      "path": "pd-xray-cwl_lam7o3-p021.py",
      "format": "py",
-     "sha256": "6506f02796a4b72eebbf0299023c9e0280a10bf3f3df87af5d1cef206890649a",
-     "bytes": 9965
+     "sha256": "2c860949c78b8bfb7fcd0ad91c61594e018c69e3069f2a98ae7ab25ca0805436",
+     "bytes": 11655
     }
    ]
   },
   {
    "id": "pd-xray-cwl_latp-bm01_scan",
    "kind": "tutorial",
-   "name": "Sequential fit: LATP, BM01",
-   "description": "Fit three phases, LATP and two AlPO₄ forms, to 73 synchrotron X-ray patterns from BM01 at ESRF, one after another, with linked displacement parameters.",
+   "name": "LATP and AlPO₄ on BM01",
+   "description": "",
    "order": 18,
    "files": [
     {
      "path": "pd-xray-cwl_latp-bm01_scan.ipynb",
      "format": "ipynb",
-     "sha256": "f7b67ce4f0ea812b7ed10796c093b2da7ddbb5b36d3d999d2422ef60dac5ecaf",
-     "bytes": 18743
+     "sha256": "2ef9be0f620e3e7c4a128fcaad8d2b3ff096b26e756bb1d9aedbe13be06d6d59",
+     "bytes": 20521
     },
     {
      "path": "pd-xray-cwl_latp-bm01_scan.py",
      "format": "py",
-     "sha256": "1e65dbaad1362d0ef455d19f3e1e41238c92aec268a55fb3a096318657a59ca8",
-     "bytes": 12293
+     "sha256": "405f159a1300c866e39f7446f68974cdb1fe2d8a272c65cbd1b3f706a16bb364",
+     "bytes": 13996
     }
    ]
   },
   {
    "id": "pd-xray-cwl_pbso4-lab",
    "kind": "tutorial",
-   "name": "Rietveld fit: PbSO₄, laboratory X-ray",
-   "description": "Fit PbSO₄ to the Rietveld round robin's laboratory X-ray pattern, with the Cu K&alpha; doublet and Bérar-Baldinozzi asymmetry.",
+   "name": "PbSO₄ on a laboratory diffractometer",
+   "description": "",
    "order": 19,
    "files": [
     {
      "path": "pd-xray-cwl_pbso4-lab.ipynb",
      "format": "ipynb",
-     "sha256": "0c716ca89168633237cf4e4602e9b34d88c5d299ac088a994ce5b7e6fc7e17bd",
-     "bytes": 16356
+     "sha256": "d650c0292e3dc23267bdb3b55eb30cc2c87aa010e7f4334c64e29c0d4146eef6",
+     "bytes": 18127
     },
     {
      "path": "pd-xray-cwl_pbso4-lab.py",
      "format": "py",
-     "sha256": "caba0ad0f849f76762f6d5e9eff9c24a03bf71503a62728074e4a9620c66a3c6",
-     "bytes": 10075
+     "sha256": "3591af3424c16380024b17b89e5b5f7f0b7f21412d755c303b07b35a10faa7a8",
+     "bytes": 11771
     }
    ]
   },
   {
    "id": "sc-neut-cwl_cosio-heidi",
    "kind": "tutorial",
-   "name": "Single-crystal fit: Co₂SiO₄ at three temperatures, HEiDi",
-   "description": "Fit one Co₂SiO₄ crystal measured on HEiDi at MLZ at 300 K, 55 K and 2.5 K. Each temperature has its own structure and its own reflections, and the three are fitted independently: each fit sees only its own data and gives its own goodness of fit and uncertainties. At 2.5 K the cobalt moments order, and the magnetic structure is fitted too.",
+   "name": "Co₂SiO₄ on HEiDi",
+   "description": "",
    "order": 20,
    "files": [
     {
      "path": "sc-neut-cwl_cosio-heidi.ipynb",
      "format": "ipynb",
-     "sha256": "84d1660636ded5f7235949d0880679cb60f1505d1629ac510b67ee118c5b993e",
-     "bytes": 30590
+     "sha256": "08775a74258c3ea8576e7321c587fe063a9f830284afd66c8a87091801a5270f",
+     "bytes": 32444
     },
     {
      "path": "sc-neut-cwl_cosio-heidi.py",
      "format": "py",
-     "sha256": "9d11be56682b428166980a16b26bf2279ad8eb461ca88281fc56bffb8a34e94e",
-     "bytes": 20465
+     "sha256": "6e633588066748274bc9f9cda0a4b3725facd0fafab9301c5053912291a1c631",
+     "bytes": 22248
     }
    ]
   },
   {
    "id": "sc-neut-cwl_pr2nio4-5c2",
    "kind": "tutorial",
-   "name": "Single-crystal fit: Pr₂NiO₄, 5C2",
-   "description": "Fit the layered nickelate Pr₂NiO₄ to constant-wavelength neutron single-crystal data from 5C2 at LLB, with anisotropic displacements.",
+   "name": "Pr₂NiO₄ on 5C2",
+   "description": "",
    "order": 21,
    "files": [
     {
      "path": "sc-neut-cwl_pr2nio4-5c2.ipynb",
      "format": "ipynb",
-     "sha256": "4ab4119a5338dedee9f898366b67a1ba0207d53b0e56477471b91d4e640010d1",
-     "bytes": 13448
+     "sha256": "2e0cc256adc65eaada0eef362c1509c39402fbd142f9a80af3fb20576a1f32cf",
+     "bytes": 15202
     },
     {
      "path": "sc-neut-cwl_pr2nio4-5c2.py",
      "format": "py",
-     "sha256": "85c5c686fe9942f9fb6f1180fa927ccf09a3ac227abaf6f99e9e8bb12481ac13",
-     "bytes": 9154
+     "sha256": "e2e4f29129341d9682b9c477cc17b4348bdfcb1a42e95b5c208823649dd43562",
+     "bytes": 10833
     }
    ]
   },
   {
    "id": "sc-neut-cwl_tb2ti2o7-heidi",
    "kind": "tutorial",
-   "name": "Single-crystal fit: Tb₂Ti₂O₇, HEiDi",
-   "description": "Fit the pyrochlore Tb₂Ti₂O₇ to constant-wavelength neutron single-crystal data from HEiDi at MLZ, with anisotropic displacements and Becker-Coppens extinction.",
+   "name": "Tb₂Ti₂O₇ on HEiDi",
+   "description": "",
    "order": 22,
    "files": [
     {
      "path": "sc-neut-cwl_tb2ti2o7-heidi.ipynb",
      "format": "ipynb",
-     "sha256": "7411b5932359d4cfa2e647c3d015547a4a472db08e32a8e38f2cfd005a16c2ca",
-     "bytes": 13311
+     "sha256": "ab309631e2121654006a22c6f1522fe255193f8d3f6ae848cf43d30910dcbaa1",
+     "bytes": 15065
     },
     {
      "path": "sc-neut-cwl_tb2ti2o7-heidi.py",
      "format": "py",
-     "sha256": "6d8b9dc2529fd3feb16c25a476c22a9b6df87c7d3088535b75a6575906309485",
-     "bytes": 9041
+     "sha256": "7ab2052327892ebd55684fdd560621f5c08df01838f929ecb4fab6dbe184bd86",
+     "bytes": 10720
     }
    ]
   },
   {
    "id": "sc-neut-cwl_tb2ti2o7-heidi_simulation",
    "kind": "tutorial",
-   "name": "Calculation without data: Tb₂Ti₂O₇, HEiDi",
-   "description": "Calculate the single-crystal neutron reflections of the pyrochlore Tb₂Ti₂O₇ on HEiDi at MLZ without any measured data. The structure, the wavelength and the extinction are in the project, and edi calculates every reflection up to the project's sin θ/λ limit.",
+   "name": "Tb₂Ti₂O₇ on HEiDi",
+   "description": "",
    "order": 23,
    "files": [
     {
      "path": "sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb",
      "format": "ipynb",
-     "sha256": "7c7d923fdc6ac1be915ea7bdc733f1fe9d9155d9e1b674fe2b17a50ab5665479",
-     "bytes": 9790
+     "sha256": "fe5adf995afa7eb38650b7cddf18e849e05777537e19e7f42ea5a9fcaee2b780",
+     "bytes": 11542
     },
     {
      "path": "sc-neut-cwl_tb2ti2o7-heidi_simulation.py",
      "format": "py",
-     "sha256": "31b6969b3f811716b25ca06e55836b965b1f43674ca758c7080b4749597b8bc9",
-     "bytes": 7697
+     "sha256": "76395d7c52e8baa57f8e4f8eac5e0fa8373be279af66e00c71d3ceb1d4ce3682",
+     "bytes": 9374
     }
    ]
   },
   {
    "id": "sc-neut-tof_taurine-senju",
    "kind": "tutorial",
-   "name": "Single-crystal fit: taurine, SENJU",
-   "description": "Fit the amino-sulfonic acid taurine to six time-of-flight neutron single-crystal datasets from SENJU at J-PARC together, each reflection measured at its own wavelength.",
+   "name": "Taurine on SENJU",
+   "description": "",
    "order": 24,
    "files": [
     {
      "path": "sc-neut-tof_taurine-senju.ipynb",
      "format": "ipynb",
-     "sha256": "9df515aac338a81aa0baec3564426dbd57e7b0e39b8b7c7e7259f4b2926506c2",
-     "bytes": 18119
+     "sha256": "14ea94be8444fc60873e2a803f31f8c512c740f78e07b6b7dbbe30af08e34810",
+     "bytes": 19873
     },
     {
      "path": "sc-neut-tof_taurine-senju.py",
      "format": "py",
-     "sha256": "749728eb33012f63121011a919521724e86395dacf7fa1e1be8de5fa62d218bf",
-     "bytes": 13209
+     "sha256": "240c2b1703ea4ad30efa0da3c25da97c0544da1a735dc56d1f6c3c4fe0815571",
+     "bytes": 14888
     }
    ]
   }
