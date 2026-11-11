@@ -229,7 +229,7 @@
         // A released web app's build.json names the release it was archived as; the app shows that version when the
         // commit is its own (ApplicationInfo::version).
         const release = folders.release && typeof folders.release.version === "string" ? folders.release : null;
-        const environment = release ? { EDI_RELEASE_VERSION: release.version, EDI_RELEASE_COMMIT: String(release.commit || "") } : {};
+        const environment = {};
         await qtLoad({
           locateFile: (file) => `${folder}/${file}`,
           qt: {
