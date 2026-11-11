@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ncaf-wish/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/c453212441057d172e4ce97bd9f1928103440b7f/docs/user/tutorials/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/33dbf3adbced48d36ef76aae03d93b83b61f0410/docs/user/tutorials/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -97,13 +97,13 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        29.70       140.21
-      1      0.889     19.91        62.98   55.1% ↓
-      2      0.989     19.90        62.95   
-      3      1.127     19.90        62.95   
-      4      1.264     19.90        62.95   
-      5      1.402     19.90        62.95   
-      6      1.615     19.90        62.95   
-  done · converged · 6 iters · reduced χ² 62.95 · Rwp 19.90 % · 1.75 s
+      1      0.961     19.91        62.98   55.1% ↓
+      2      1.068     19.90        62.95   
+      3      1.217     19.90        62.95   
+      4      1.366     19.90        62.95   
+      5      1.514     19.90        62.95   
+      6      1.750     19.90        62.95   
+  done · converged · 6 iters · reduced χ² 62.95 · Rwp 19.90 % · 1.90 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -178,8 +178,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 149 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        19.90        63.39
-      1      1.540     13.97        31.21   50.8% ↓
-  done · converged · 1 iters · reduced χ² 31.21 · Rwp 13.97 % · 1.78 s
+      1      1.625     13.97        31.21   50.8% ↓
+  done · converged · 1 iters · reduced χ² 31.21 · Rwp 13.97 % · 1.87 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -259,19 +259,19 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 165 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.97        31.24
-      1      1.505     10.41        17.36   44.4% ↓
-      2      1.687     10.30        17.00   2.1% ↓
-      3      1.869     10.26        16.85   0.9% ↓
-      4      2.056     10.24        16.80   0.3% ↓
-      5      2.235     10.23        16.78   0.1% ↓
-      6      2.414     10.23        16.77   
-      7      2.597     10.23        16.77   
-      8      2.822     10.23        16.77   
-      9      3.048     10.23        16.77   
-     10      3.273     10.23        16.77   
-     11      3.499     10.23        16.77   
-     12      3.841     10.23        16.77   
-  done · converged · 12 iters · reduced χ² 16.77 · Rwp 10.23 % · 4.14 s
+      1      1.560     10.41        17.36   44.4% ↓
+      2      1.745     10.30        17.00   2.1% ↓
+      3      1.932     10.26        16.85   0.9% ↓
+      4      2.119     10.24        16.80   0.3% ↓
+      5      2.306     10.23        16.78   0.1% ↓
+      6      2.494     10.23        16.77   
+      7      2.681     10.23        16.77   
+      8      2.925     10.23        16.77   
+      9      3.165     10.23        16.77   
+     10      3.406     10.23        16.77   
+     11      3.647     10.23        16.77   
+     12      4.011     10.23        16.77   
+  done · converged · 12 iters · reduced χ² 16.77 · Rwp 10.23 % · 4.31 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -309,20 +309,20 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 172 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.23        16.78
-      1      1.733     10.00        16.02   4.5% ↓
-      2      1.980     10.00        16.02   
-      3      2.225     10.00        16.02   
-      4      2.472     10.00        16.02   
-      5      2.716     10.00        16.02   
-      6      2.959     10.00        16.02   
-      7      3.154     10.00        16.01   
-      8      3.349      9.99        16.00   0.1% ↓
-      9      3.543      9.99        15.98   0.2% ↓
-     10      3.742      9.98        15.96   0.1% ↓
-     11      3.948      9.97        15.93   0.2% ↓
-     12      4.204      9.97        15.93   
-     13      4.591      9.97        15.93   
-  done · converged · 13 iters · reduced χ² 15.93 · Rwp 9.97 % · 4.92 s
+      1      1.854     10.00        16.02   4.5% ↓
+      2      2.116     10.00        16.02   
+      3      2.378     10.00        16.02   
+      4      2.639     10.00        16.02   
+      5      2.901     10.00        16.02   
+      6      3.162     10.00        16.02   
+      7      3.365     10.00        16.01   
+      8      3.569      9.99        16.00   0.1% ↓
+      9      3.772      9.99        15.98   0.2% ↓
+     10      3.981      9.98        15.96   0.1% ↓
+     11      4.197      9.97        15.93   0.2% ↓
+     12      4.473      9.97        15.93   
+     13      4.890      9.97        15.93   
+  done · converged · 13 iters · reduced χ² 15.93 · Rwp 9.97 % · 5.23 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -354,8 +354,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 173 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.97        15.93
-      1      2.770      9.97        15.93   
-  done · converged · 1 iters · reduced χ² 15.93 · Rwp 9.97 % · 3.27 s
+      1      3.217      9.97        15.93   
+  done · converged · 1 iters · reduced χ² 15.93 · Rwp 9.97 % · 3.76 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -422,10 +422,10 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 177 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.97        15.94
-      1      2.342      9.91        15.74   1.2% ↓
-      2      2.604      9.91        15.74   
-      3      2.989      9.91        15.74   
-  done · converged · 3 iters · reduced χ² 15.74 · Rwp 9.91 % · 3.32 s
+      1      2.563      9.91        15.74   1.2% ↓
+      2      2.839      9.91        15.74   
+      3      3.256      9.91        15.74   
+  done · converged · 3 iters · reduced χ² 15.74 · Rwp 9.91 % · 3.60 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -491,10 +491,10 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 187 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.91        15.75
-      1      2.488      8.07        10.43   33.8% ↓
-      2      2.777      8.07        10.43   
-      3      3.175      8.07        10.43   
-  done · converged · 3 iters · reduced χ² 10.43 · Rwp 8.07 % · 3.60 s
+      1      2.678      8.07        10.43   33.8% ↓
+      2      2.979      8.07        10.43   
+      3      3.404      8.07        10.43   
+  done · converged · 3 iters · reduced χ² 10.43 · Rwp 8.07 % · 3.84 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -557,9 +557,9 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 193 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.07        10.43
-      1     15.849      7.69         9.50   9.0% ↓
-      2     16.853      7.69         9.50   
-  done · converged · 2 iters · reduced χ² 9.50 · Rwp 7.69 % · 17.72 s
+      1     18.825      7.69         9.50   9.0% ↓
+      2     19.900      7.69         9.50   
+  done · converged · 2 iters · reduced χ² 9.50 · Rwp 7.69 % · 20.81 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
