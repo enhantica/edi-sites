@@ -88,9 +88,9 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        29.38        81.99
-      1      0.020      8.05         6.16   92.5% ↓
-      2      0.025      8.05         6.16   
-  done · converged · 2 iters · reduced χ² 6.16 · Rwp 8.05 % · 0.03 s
+      1      0.009      8.05         6.16   92.5% ↓
+      2      0.012      8.05         6.16   
+  done · converged · 2 iters · reduced χ² 6.16 · Rwp 8.05 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -124,8 +124,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 6 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.05         6.16
-      1      0.022      8.04         6.14   0.3% ↓
-  done · converged · 1 iters · reduced χ² 6.14 · Rwp 8.04 % · 0.03 s
+      1      0.010      8.04         6.14   0.3% ↓
+  done · converged · 1 iters · reduced χ² 6.14 · Rwp 8.04 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -158,8 +158,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.04         6.16
-      1      0.029      6.46         3.98   35.4% ↓
-  done · converged · 1 iters · reduced χ² 3.98 · Rwp 6.46 % · 0.03 s
+      1      0.014      6.46         3.98   35.4% ↓
+  done · converged · 1 iters · reduced χ² 3.98 · Rwp 6.46 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -192,8 +192,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.46         3.99
-      1      0.028      6.39         3.90   2.2% ↓
-  done · converged · 1 iters · reduced χ² 3.90 · Rwp 6.39 % · 0.03 s
+      1      0.013      6.39         3.90   2.2% ↓
+  done · converged · 1 iters · reduced χ² 3.90 · Rwp 6.39 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -225,8 +225,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.39         3.90
-      1      0.034      6.20         3.67   6.0% ↓
-  done · converged · 1 iters · reduced χ² 3.67 · Rwp 6.20 % · 0.04 s
+      1      0.014      6.20         3.67   6.0% ↓
+  done · converged · 1 iters · reduced χ² 3.67 · Rwp 6.20 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -260,9 +260,9 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.20         3.67
-      1      0.031      5.31         2.70   26.6% ↓
-      2      0.040      5.31         2.70   
-  done · converged · 2 iters · reduced χ² 2.70 · Rwp 5.31 % · 0.05 s
+      1      0.014      5.31         2.70   26.6% ↓
+      2      0.017      5.31         2.70   
+  done · converged · 2 iters · reduced χ² 2.70 · Rwp 5.31 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -295,8 +295,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.31         2.70
-      1      0.040      4.99         2.39   11.5% ↓
-  done · converged · 1 iters · reduced χ² 2.39 · Rwp 4.99 % · 0.05 s
+      1      0.015      4.99         2.39   11.5% ↓
+  done · converged · 1 iters · reduced χ² 2.39 · Rwp 4.99 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
