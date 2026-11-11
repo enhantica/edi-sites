@@ -23,6 +23,26 @@
         "Fixed": [],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.8",
+      "date": "2026-11-11",
+      "commit": "19a185cad542a0e6d980b8eb513e0ba16cf092eb",
+      "notes": {
+        "Added": [
+          {
+            "title": "Survey, GUI and docs updates for the next release",
+            "pull_request": 34,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python"
+            ]
+          }
+        ],
+        "Fixed": [],
+        "Changed": []
+      }
     }
   ]
 }
