@@ -82,6 +82,24 @@
         "Fixed": [],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.11",
+      "date": "2026-11-11",
+      "commit": "c453212441057d172e4ce97bd9f1928103440b7f",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Find Qt from the macOS assistant guard",
+            "pull_request": 49,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
