@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_si-sepd/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/217063650841f2f195eb92def27f23fd6a06b489/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -87,9 +87,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        52.36       204.71
-      1      0.129     10.45         8.16   96.0% ↓
-      2      0.159     10.45         8.16   
-  done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.18 s
+      1      0.113     10.45         8.16   96.0% ↓
+      2      0.141     10.45         8.16   
+  done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.16 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -122,8 +122,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.45         8.18
-      1      0.136      7.45         4.16   49.1% ↓
-  done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.16 s
+      1      0.121      7.45         4.16   49.1% ↓
+  done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.14 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -158,8 +158,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.45         4.16
-      1      0.176      7.42         4.13   0.8% ↓
-  done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.20 s
+      1      0.156      7.42         4.13   0.8% ↓
+  done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.18 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -191,8 +191,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.42         4.13
-      1      0.181      7.28         3.97   3.7% ↓
-  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.20 s
+      1      0.160      7.28         3.97   3.7% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.18 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -222,8 +222,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.98
-      1      0.182      7.28         3.97   0.2% ↓
-  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.21 s
+      1      0.161      7.28         3.97   0.2% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.18 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -256,9 +256,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.97
-      1      0.165      7.18         3.86   2.7% ↓
-      2      0.204      7.18         3.86   
-  done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.23 s
+      1      0.146      7.18         3.86   2.7% ↓
+      2      0.181      7.18         3.86   
+  done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.20 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

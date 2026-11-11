@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_cosio-heidi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/217063650841f2f195eb92def27f23fd6a06b489/docs/user/tutorials/sc-neut-cwl_cosio-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/sc-neut-cwl_cosio-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_cosio-heidi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -151,8 +151,8 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         33.37        14.23
-      1      0.010      15.51         3.07   78.4% ↓
-  done · converged · 1 iters · reduced χ² 3.07 · wR(F²) 15.51 % · 0.01 s
+      1      0.012      15.51         3.07   78.4% ↓
+  done · converged · 1 iters · reduced χ² 3.07 · wR(F²) 15.51 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -184,8 +184,8 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         15.51         3.09
-      1      0.017      15.34         3.03   2.2% ↓
-  done · converged · 1 iters · reduced χ² 3.03 · wR(F²) 15.34 % · 0.02 s
+      1      0.026      15.34         3.03   2.2% ↓
+  done · converged · 1 iters · reduced χ² 3.03 · wR(F²) 15.34 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -224,8 +224,8 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 40 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         15.34         3.08
-      1      0.046       7.67         0.77   75.0% ↓
-  done · converged · 1 iters · reduced χ² 0.77 · wR(F²) 7.67 % · 0.05 s
+      1      0.050       7.67         0.77   75.0% ↓
+  done · converged · 1 iters · reduced χ² 0.77 · wR(F²) 7.67 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -262,7 +262,7 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          7.67         0.77
-      1      0.044       6.15         0.50   35.6% ↓
+      1      0.045       6.15         0.50   35.6% ↓
   done · converged · 1 iters · reduced χ² 0.50 · wR(F²) 6.15 % · 0.05 s
 ```
 
@@ -299,7 +299,7 @@ edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         36.92        69.94
-      1      0.010       8.90         4.06   94.2% ↓
+      1      0.012       8.90         4.06   94.2% ↓
   done · converged · 2 iters · reduced χ² 2.21 · wR(F²) 8.38 % · 0.04 s
 ```
 
@@ -332,11 +332,11 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.030       6.15         0.50   
+      1      0.028       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          8.90         4.09
-      1      0.016       8.78         3.98   2.7% ↓
+      1      0.018       8.78         3.98   2.7% ↓
   done · converged · 2 iters · reduced χ² 2.17 · wR(F²) 8.28 % · 0.06 s
 ```
 
@@ -375,13 +375,13 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.040       6.15         0.50   
+      1      0.034       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 18 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          8.78         4.00
-      1      0.017       6.58         2.25   43.9% ↓
-      2      0.020       6.58         2.25   
-  done · converged · 3 iters · reduced χ² 1.33 · wR(F²) 6.49 % · 0.08 s
+      1      0.019       6.58         2.25   43.9% ↓
+      2      0.022       6.58         2.25   
+  done · converged · 3 iters · reduced χ² 1.33 · wR(F²) 6.49 % · 0.07 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -420,11 +420,11 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.037       6.15         0.50   
+      1      0.050       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.58         2.29
-      1      0.057       3.79         0.76   66.7% ↓
+      1      0.040       3.79         0.76   66.7% ↓
   done · converged · 2 iters · reduced χ² 0.62 · wR(F²) 4.41 % · 0.11 s
 ```
 
@@ -457,16 +457,16 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.045       6.15         0.50   
+      1      0.039       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          3.79         0.76
-      1      0.018       3.79         0.76   
+      1      0.019       3.79         0.76   
 edi fit: project cosio_heidi, 1424 pts fitted / 1424 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         39.10        63.48
-      1      0.010      13.12         7.15   88.7% ↓
-  done · converged · 3 iters · reduced χ² 2.72 · wR(F²) 8.82 % · 0.10 s
+      1      0.012      13.12         7.15   88.7% ↓
+  done · converged · 3 iters · reduced χ² 2.72 · wR(F²) 8.82 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -498,16 +498,16 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.034       6.15         0.50   
+      1      0.049       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          3.79         0.76
-      1      0.029       3.79         0.76   
+      1      0.026       3.79         0.76   
 edi fit: project cosio_heidi, 1424 pts fitted / 1424 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         13.12         7.21
-      1      0.022      13.01         7.08   1.7% ↓
-  done · converged · 3 iters · reduced χ² 2.69 · wR(F²) 8.75 % · 0.11 s
+      1      0.027      13.01         7.08   1.7% ↓
+  done · converged · 3 iters · reduced χ² 2.69 · wR(F²) 8.75 % · 0.13 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -542,17 +542,17 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.038       6.15         0.50   
+      1      0.040       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          3.79         0.76
-      1      0.025       3.79         0.76   
+      1      0.030       3.79         0.76   
 edi fit: project cosio_heidi, 1424 pts fitted / 1424 loaded, 18 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         13.01         7.11
-      1      0.022      11.88         5.93   16.6% ↓
-      2      0.026      11.88         5.93   
-  done · converged · 4 iters · reduced χ² 2.32 · wR(F²) 8.12 % · 0.12 s
+      1      0.019      11.88         5.93   16.6% ↓
+      2      0.022      11.88         5.93   
+  done · converged · 4 iters · reduced χ² 2.32 · wR(F²) 8.12 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -591,11 +591,11 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.046       6.15         0.50   
+      1      0.039       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          3.79         0.76
-      1      0.038       3.79         0.76   
+      1      0.040       3.79         0.76   
 edi fit: project cosio_heidi, 1424 pts fitted / 1424 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         11.88         6.05
@@ -640,18 +640,18 @@ project.display.fit.results()
 edi fit: project cosio_heidi, 1624 pts fitted / 1624 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.15         0.50
-      1      0.038       6.15         0.50   
+      1      0.049       6.15         0.50   
 edi fit: project cosio_heidi, 1465 pts fitted / 1465 loaded, 46 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          3.79         0.76
-      1      0.035       3.79         0.76   
+      1      0.050       3.79         0.76   
 edi fit: project cosio_heidi, 1424 pts fitted / 1424 loaded, 50 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         10.51         4.76
       1      0.096       3.77         0.61   87.1% ↓
-      2      0.109       3.77         0.61   
-      3      0.124       3.77         0.61   
-  done · converged · 5 iters · reduced χ² 0.62 · wR(F²) 4.18 % · 0.23 s
+      2      0.108       3.77         0.61   
+      3      0.120       3.77         0.61   
+  done · converged · 5 iters · reduced χ² 0.62 · wR(F²) 4.18 % · 0.25 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
