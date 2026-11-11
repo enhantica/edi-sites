@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_lbco-si-mcstas/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/35da5c317f0ada6673fa27ea30ff8040bb9dda14/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/31c4020e3f94ad78b1fe5aa418770054995eab79/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -81,11 +81,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        50.18       398.16
-      1      0.047     26.80       113.57   71.5% ↓
-      2      0.094     23.13        84.56   25.5% ↓
-      3      0.142     23.12        84.52   
-      4      0.192     23.12        84.52   
-  done · converged · 4 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.22 s
+      1      0.449     23.12        84.52   78.8% ↓
+      2      0.512     23.12        84.52   
+  done · converged · 2 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.55 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -116,10 +114,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        23.12        86.31
-      1      0.058     21.09        71.82   16.8% ↓
-      2      0.105     21.09        71.82   
-      3      0.167     21.09        71.82   
-  done · converged · 3 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.20 s
+      1      0.501     21.09        71.82   16.8% ↓
+  done · converged · 1 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.54 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -151,20 +147,15 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        21.09        72.17
-      1      0.060     21.05        71.92   0.4% ↓
-      2      0.106     21.05        71.87   0.1% ↓
-      3      0.153     21.04        71.81   0.1% ↓
-      4      0.199     21.03        71.75   0.1% ↓
-      5      0.247     21.02        71.69   0.1% ↓
-      6      0.294     21.01        71.62   0.1% ↓
-      7      0.341     20.99        71.51   0.2% ↓
-      8      0.387     20.97        71.33   0.3% ↓
-      9      0.434     20.93        71.09   0.3% ↓
-     10      0.480     20.90        70.86   0.3% ↓
-     11      0.527     20.88        70.75   0.2% ↓
-     12      0.573     20.88        70.73   
-     13      0.630     20.88        70.73   
-  done · converged · 13 iters · reduced χ² 70.73 · Rwp 20.88 % · 0.66 s
+      1      0.486     21.02        71.67   0.7% ↓
+      2      0.545     21.00        71.52   0.2% ↓
+      3      0.606     20.95        71.22   0.4% ↓
+      4      0.664     20.90        70.86   0.5% ↓
+      5      0.723     20.88        70.73   0.2% ↓
+      6      0.781     20.88        70.73   
+      7      0.839     20.88        70.73   
+      8      0.912     20.88        70.73   
+  done · converged · 8 iters · reduced χ² 70.73 · Rwp 20.88 % · 0.95 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -196,12 +187,10 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.88        71.07
-      1      0.015     20.86        70.93   0.2% ↓
-      2      0.022     20.86        70.93   
-      3      0.029     20.86        70.92   
-      4      0.036     20.86        70.92   
-      5      0.052     20.86        70.92   
-  done · converged · 5 iters · reduced χ² 70.92 · Rwp 20.86 % · 0.06 s
+      1      0.082     20.86        70.92   0.2% ↓
+      2      0.092     20.86        70.91   
+      3      0.113     20.86        70.91   
+  done · converged · 3 iters · reduced χ² 70.91 · Rwp 20.86 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -234,22 +223,16 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.86        71.15
-      1      0.018      7.47         9.13   87.2% ↓
-      2      0.027      6.22         6.33   30.7% ↓
-      3      0.037      5.98         5.85   7.7% ↓
-      4      0.046      5.73         5.36   8.3% ↓
-      5      0.054      5.53         5.00   6.8% ↓
-      6      0.061      5.43         4.83   3.4% ↓
-      7      0.069      5.38         4.73   2.0% ↓
-      8      0.077      5.31         4.61   2.6% ↓
-      9      0.085      5.22         4.45   3.4% ↓
-     10      0.093      5.13         4.30   3.4% ↓
-     11      0.101      5.07         4.20   2.2% ↓
-     12      0.109      5.05         4.17   0.9% ↓
-     13      0.117      5.04         4.16   0.2% ↓
-     14      0.125      5.04         4.16   
-     15      0.143      5.04         4.16   
-  done · converged · 15 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.15 s
+      1      0.089      5.50         4.94   93.1% ↓
+      2      0.101      5.38         4.74   4.0% ↓
+      3      0.113      5.27         4.54   4.3% ↓
+      4      0.126      5.13         4.30   5.2% ↓
+      5      0.138      5.06         4.18   2.8% ↓
+      6      0.151      5.04         4.16   0.6% ↓
+      7      0.164      5.04         4.16   
+      8      0.176      5.04         4.16   
+      9      0.199      5.04         4.16   
+  done · converged · 9 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.21 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

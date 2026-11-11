@@ -4,8 +4,13 @@ Canonical page: https://easydiffraction.org/python/
 
 Work with Python objects in scripts and notebooks, with direct access to parameters, data arrays and results.
 
+## Set up Python
+
+Install the `easydiffraction` package in a Python environment.
+
 [Set up Python](https://easydiffraction.org/python/setup/){ .md-button .md-button--primary }
-[Run a notebook example](https://easydiffraction.org/python/tutorials/){ .md-button }
+
+## Scripts and notebooks
 
 <!-- interface-preview:python -->
 <figure class="ed-interface-preview" data-interface-hero>
@@ -13,12 +18,15 @@ Work with Python objects in scripts and notebooks, with direct access to paramet
 </figure>
 <!-- /interface-preview -->
 
-Both approaches use the same Python API.
+Both use the same Python API:
 
-- :simple-python: **Python scripts** combine `edi` with your own data preparation and analysis tools.
-- :simple-jupyter: **Jupyter notebooks** run code one cell at a time and keep plots and results alongside it.
+- **Python scripts** combine `edi` with your own data preparation and analysis tools.
+- **Jupyter notebooks** run code one cell at a time and keep plots and results beside it.
 
-[Python API reference](https://easydiffraction.org/python/reference/){ .md-button }
-[Download the example notebook](https://easydiffraction.org/assets/interfaces/fit.ipynb){ .md-button }
+To try it, download the [example notebook](https://easydiffraction.org/assets/interfaces/fit.ipynb) and the
+[example project](https://easydiffraction.org/assets/interfaces/example-project.zip) it opens.
 
-[Download the example project](https://easydiffraction.org/assets/interfaces/example-project.zip) to run the notebook.
+## Next steps
+
+- Run a [notebook tutorial](https://easydiffraction.org/python/tutorials/).
+- Look up a call in the [Python quick reference](https://easydiffraction.org/python/reference/).

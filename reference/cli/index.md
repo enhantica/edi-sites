@@ -2,19 +2,25 @@ Canonical page: https://easydiffraction.org/cli/
 
 # Start here
 
-Run saved projects from a terminal or shell script. The standalone executable fits projects with `edi fit`. The Python package also supports calculation, export, undo, collections, reports, and live fit progress. Both run directly from a terminal.
+Run saved projects from a terminal or a shell script.
+
+## Choose an installation
 
 === ":fa5-terminal: Standalone executable"
 
-    Download the executable for your operating system and run `edi …`. No Python installation is required.
+    Download the executable for your operating system and run `edi …`. No Python is needed. It fits projects with
+    `edi fit`.
 
-    [Download the standalone executable](https://easydiffraction.org/cli/standalone/#download){ .md-button }
+    [Download the standalone executable](https://easydiffraction.org/cli/standalone/#download){ .md-button .md-button--primary }
 
 === ":simple-python: Python package"
 
-    Install `edi` in a Python environment and run `python -m edi …` from your terminal.
+    Install `edi` in a Python environment and run `python -m edi …`. Besides fitting, it calculates patterns,
+    exports, undoes, manages collections, writes reports and shows live fit progress.
 
-    [Set up the Python package's command line](https://easydiffraction.org/cli/python/){ .md-button }
+    [Set up the Python package's command line](https://easydiffraction.org/cli/python/){ .md-button .md-button--primary }
+
+## What a run looks like
 
 <!-- interface-preview:cli -->
 <figure class="ed-interface-preview" data-interface-hero>
@@ -22,7 +28,9 @@ Run saved projects from a terminal or shell script. The standalone executable fi
 </figure>
 <!-- /interface-preview -->
 
-In the guides, select the tab for your installation to see the matching command.
+The guides show each command for both installations; pick the tab that matches yours.
 
-[Run an example](https://easydiffraction.org/cli/tutorials/){ .md-button }
-[Command reference](https://easydiffraction.org/cli/reference/){ .md-button }
+## Next steps
+
+- Run an [example](https://easydiffraction.org/cli/tutorials/).
+- Look up a command in the [command reference](https://easydiffraction.org/cli/reference/).

@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_si-sepd/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/35da5c317f0ada6673fa27ea30ff8040bb9dda14/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/31c4020e3f94ad78b1fe5aa418770054995eab79/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -87,12 +87,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        52.36       204.71
-      1      0.008     19.80        29.28   85.7% ↓
-      2      0.014     10.94         8.93   69.5% ↓
-      3      0.020     10.45         8.16   8.7% ↓
-      4      0.025     10.45         8.16   
-      5      0.038     10.45         8.16   
-  done · converged · 5 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.05 s
+      1      0.067     10.45         8.16   96.0% ↓
+      2      0.083     10.45         8.16   
+  done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -125,9 +122,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.45         8.18
-      1      0.014      7.45         4.16   49.1% ↓
-      2      0.028      7.45         4.16   
-  done · converged · 2 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.04 s
+      1      0.074      7.45         4.16   49.1% ↓
+  done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -162,11 +158,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.45         4.16
-      1      0.017      7.42         4.13   0.8% ↓
-      2      0.025      7.42         4.13   
-      3      0.032      7.42         4.13   
-      4      0.048      7.42         4.13   
-  done · converged · 4 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.06 s
+      1      0.095      7.42         4.13   0.8% ↓
+  done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -198,10 +191,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.42         4.13
-      1      0.015      7.28         3.98   3.7% ↓
-      2      0.022      7.28         3.97   
-      3      0.038      7.28         3.97   
-  done · converged · 3 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.05 s
+      1      0.094      7.28         3.97   3.7% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -231,10 +222,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.98
-      1      0.017      7.28         3.97   0.2% ↓
-      2      0.025      7.28         3.97   
-      3      0.040      7.28         3.97   
-  done · converged · 3 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.05 s
+      1      0.096      7.28         3.97   0.2% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -267,12 +256,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.97
-      1      0.015      7.18         3.87   2.5% ↓
-      2      0.023      7.18         3.86   0.2% ↓
-      3      0.030      7.18         3.86   
-      4      0.037      7.18         3.86   
-      5      0.052      7.18         3.86   
-  done · converged · 5 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.06 s
+      1      0.088      7.18         3.86   2.7% ↓
+      2      0.108      7.18         3.86   
+  done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

@@ -91,9 +91,12 @@ From a terminal or shell script
 
 A **structure** describes the crystalline material. An **experiment** describes how its pattern is measured or simulated, including instrumental effects and background. The **analysis** joins them: calculate a prediction, select parameters that may vary, and fit against observations when those observations are available.
 
-The [Concept](https://easydiffraction.org/user-guide/concepts/) page explains where this analysis sits after acquisition and reduction. The [analysis workflow](https://easydiffraction.org/user-guide/analysis-workflow/) follows a project from its inputs to an assessed result and report.
+[From measurement to analysis](https://easydiffraction.org/user-guide/concepts/) explains where this analysis sits after acquisition and reduction.
 
 ## Follow the workflow
+
+Each stage has its own page; the [analysis workflow](https://easydiffraction.org/user-guide/analysis-workflow/) follows a project from its inputs to
+an assessed result and a report.
 
 <!-- workflow-diagram -->
 <ol class="ed-workflow-diagram" aria-label="Analysis workflow">
@@ -105,13 +108,12 @@ The [Concept](https://easydiffraction.org/user-guide/concepts/) page explains wh
 </ol>
 <!-- /workflow-diagram -->
 
-The [workflow overview](https://easydiffraction.org/user-guide/analysis-workflow/) connects these stages.
-
 ## Start from a reproducible example
 
 An [example project](https://easydiffraction.org/user-guide/tutorials/) includes structures, experiments and starting conditions together. Use an example that matches your intended measurement, and read its provenance and reference comparison before treating it as a template for new work.
 
-For your own analysis, retain the source of the structure and data, experimental conditions, fitting choices and software version. These two outputs serve different purposes: a report communicates the result to others, while the complete project is what you reopen to continue the analysis.
+For your own analysis, keep the source of the structure and data, the experimental conditions, the fitting choices and
+the software version. A report tells others about the result; the saved project is what you reopen to continue.
 
 ## Understand the physics
 

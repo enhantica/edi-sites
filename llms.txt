@@ -12,10 +12,11 @@ This export supplies reference content; it does not implement a chat integration
 
 ## Documentation in Markdown
 
-- [Citation](https://easydiffraction.org/reference/about/citation.md)
+- [How to cite](https://easydiffraction.org/reference/about/citation.md)
 - [Get in touch](https://easydiffraction.org/reference/about/community.md)
 - [About](https://easydiffraction.org/reference/about/index.md)
 - [Licence](https://easydiffraction.org/reference/about/licence.md)
+- [Survey](https://easydiffraction.org/reference/about/survey.md)
 - [<span class="ed-reference-icon" data-reference-category="alias" aria-hidden="true">&#61483;</span> Aliases](https://easydiffraction.org/reference/application/analysis/aliases.md)
 - [<span class="ed-reference-icon" data-reference-category="constraint" aria-hidden="true">&#62764;</span> Constraints](https://easydiffraction.org/reference/application/analysis/constraints.md)
 - [<span class="ed-reference-icon" data-reference-category="fit-result-bank" aria-hidden="true">&#61452;</span> Experiment fit result](https://easydiffraction.org/reference/application/analysis/experiment-fit-result.md)
@@ -224,5 +225,6 @@ This export supplies reference content; it does not implement a chat integration
 - [Features](https://easydiffraction.org/reference/user-guide/features.md)
 - [Glossary](https://easydiffraction.org/reference/user-guide/glossary.md)
 - [User guide: Foundations](https://easydiffraction.org/reference/user-guide/index.md)
+- [Online sources](https://easydiffraction.org/reference/user-guide/online-sources.md)
 - [Parameters](https://easydiffraction.org/reference/user-guide/parameters.md)
 - [Tutorials](https://easydiffraction.org/reference/user-guide/tutorials/index.md)

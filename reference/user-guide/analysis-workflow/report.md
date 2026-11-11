@@ -33,4 +33,4 @@ Check report state before sharing it. Keep the report together with the matching
 - [Python: report rendering and save methods](https://easydiffraction.org/python/reports/).
 - [Command line: report output and freshness checks](https://easydiffraction.org/cli/reports/).
 
-Use [citation and reproducibility](https://easydiffraction.org/about/citation/) when preparing a publication or handing an analysis to a collaborator.
+See [How to cite](https://easydiffraction.org/about/citation/) when preparing a publication or handing an analysis to a collaborator.

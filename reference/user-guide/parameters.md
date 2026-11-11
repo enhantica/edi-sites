@@ -364,8 +364,8 @@ Compare names used in the app, saved Edi projects, Python and CIF. Select a para
 
     | Parameter or field | Python name |
     | --- | --- |
-    | [Type](https://easydiffraction.org/physics/parameters/#scattering-length-type-symbol) | — |
-    | [Neutron scattering length](https://easydiffraction.org/physics/parameters/#scattering-length-length-fm) | — |
+    | [Type](https://easydiffraction.org/physics/parameters/#scattering-length-type-symbol) | <code>project.structures[0].scattering_lengths_fm</code> |
+    | [Neutron scattering length](https://easydiffraction.org/physics/parameters/#scattering-length-length-fm) | <code>project.structures[0].scattering_lengths_fm</code> |
 
     **[<span class="ed-reference-icon" data-reference-category="geom" aria-hidden="true">&#62790;</span> Bond settings](https://easydiffraction.org/physics/parameters/#geom)**
 

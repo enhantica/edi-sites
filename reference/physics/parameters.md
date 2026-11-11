@@ -2132,7 +2132,7 @@ TOF sample absorption coefficient ABSCOR1 (muR = ABSCOR1 * lambda; refinable).
 
 TOF sample absorption lambda-power ABSCOR2 (round-tripped, held fixed; freeing it is a hard error).
 
-<span role="img" aria-label="Planned" title="Planned">:status-planned:</span> Read and saved, but not yet used in the calculation (planned).
+Read and saved, but not used in the calculation.
 
 [Equation and conventions](https://easydiffraction.org/physics/corrections/absorption/#eq-hewat) · [Names across interfaces](https://easydiffraction.org/user-guide/parameters/#names-absorption)
 
@@ -2883,11 +2883,9 @@ The descent strategy of the minimizer.
 
 | Option | Meaning |
 | --- | --- |
-| Ladder | The default descent. |
-| Fast descent | A faster descent that takes fewer steps. |
-| Fast descent with linear snap | The fast descent, solving the linear parameters exactly at each step. |
-| Fast descent with guarded linear snap | The fast descent, keeping a linear snap only when it lowers χ². |
-| Multi-start with pruning | Several starts, the worse ones dropped as the fit goes on. |
+| Ladder | A damped descent that retries each step with growing damping. |
+| Fast descent | A damped descent that adjusts the damping within each step. |
+| Fast descent and ladder | The default: fast descent and the ladder run from the start, and the one at the lower χ² continues. |
 
 [Names across interfaces](https://easydiffraction.org/user-guide/parameters/#names-minimizer)
 

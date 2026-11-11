@@ -2,10 +2,16 @@ Canonical page: https://easydiffraction.org/application/
 
 # Start here
 
-Work visually, with the pattern or crystal structure beside the controls you are editing. Use the same application in your browser or install it on your computer.
+Work visually, with the pattern or crystal structure beside the controls you are editing.
+
+## Get the application
+
+The same application runs in your browser, with nothing to install, or on your desktop.
 
 [Open the web app](https://app.easydiffraction.org/){ .md-button .md-button--primary }
 [Download for desktop](https://easydiffraction.org/application/desktop/#download){ .md-button }
+
+## What you see
 
 <!-- interface-preview:application -->
 <figure class="ed-interface-preview" data-interface-hero>
@@ -13,9 +19,12 @@ Work visually, with the pattern or crystal structure beside the controls you are
 </figure>
 <!-- /interface-preview -->
 
-The same application runs in your browser or on your desktop, with workflow pages across the top, a main view on the left, related controls in the sidebar and status information below. Use the pattern, tables and structure view to inspect changes as you work.
+The workflow pages run across the top, the main view with the pattern, tables or structure is on the left, the
+controls for the current step are in the sidebar, and the status bar is at the bottom.
+[The application layout](https://easydiffraction.org/application/workspace/) explains each part.
 
-[Explore the application layout](https://easydiffraction.org/application/workspace/){ .md-button }
-[Follow an example fit](https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_y2o3-spodi/){ .md-button }
+## Next steps
 
-For file access and saving, read [<span class="ed-interface-icons" aria-hidden="true">:fa5-globe:</span> <span class="ed-icon-text">Web application</span>](https://easydiffraction.org/application/browser/){ .ed-interface-link .ed-icon-label } or [<span class="ed-interface-icons" aria-hidden="true">:fa5-desktop:</span> <span class="ed-icon-text">Desktop application</span>](https://easydiffraction.org/application/desktop/){ .ed-interface-link .ed-icon-label }.
+- [Follow an example fit](https://easydiffraction.org/application/tutorials/cases/pd-neut-cwl_y2o3-spodi/) from a new project to a fitted structure.
+- Read how files are opened and saved in the [web application](https://easydiffraction.org/application/browser/) or the [desktop application](https://easydiffraction.org/application/desktop/).
+- Browse the [application tutorials](https://easydiffraction.org/application/tutorials/).
