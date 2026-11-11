@@ -161,8 +161,8 @@
     {
      "path": "structures/pd-neut-cwl_cosio-d20_2k-cosio.edi",
      "format": "edi",
-     "sha256": "6221e1604607d65988c9eaefee54aa246caef1e86b57ea75fed6e66b53ff29c2",
-     "bytes": 1611
+     "sha256": "4505d34c32bb8f576900ea17b478bdd8589bb5ca40f7e5d293db03ad71dcd034",
+     "bytes": 1621
     }
    ]
   },
@@ -2958,8 +2958,8 @@
     {
      "path": "projects/pd-neut-cwl_cosio-d20_2k.zip",
      "format": "zip",
-     "sha256": "683d6db07336539506be7402ec16c97269e7b641faabaf7bdb63184a3340fd18",
-     "bytes": 16095
+     "sha256": "84d4534215e51f5b4276fd8dc1c5808cadc5981ca5a4d019e7259d230159a6c8",
+     "bytes": 16098
     }
    ],
    "case": {
