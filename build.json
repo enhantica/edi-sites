@@ -1,1 +1,8 @@
-{"multithread": "multithread-4820702fd2ad", "singlethread": "singlethread-0ba71b4ed84b"}
+{
+  "multithread": "multithread-eafbcebc130f",
+  "singlethread": "singlethread-f1737073a097",
+  "release": {
+    "version": "2026.11.10",
+    "commit": "e440f08e0be1ef4383d3663070a2342838f5dbe8"
+  }
+}
