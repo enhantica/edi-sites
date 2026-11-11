@@ -4,6 +4,20 @@ Canonical page: https://easydiffraction.org/changelog/
 
 Changes in published EasyDiffraction releases, newest first.
 
+## edi 2026.11.10
+
+**Stable** · 2026-11-11 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.10)
+
+**EasyDiffraction 2026.11.10**
+
+**Added**
+
+- Survey notice, download buttons, assistant start errors and tags ([#48](https://github.com/enhantica/edi/pull/48)) **:fa5-desktop: Desktop app**{ .ed-release-interface } **:fa5-globe: Web app**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-11 -->
+
+---
+
 ## edi 2026.11.9
 
 **Stable** · 2026-11-11 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.9)
