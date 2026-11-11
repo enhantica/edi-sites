@@ -63,6 +63,25 @@
         "Fixed": [],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.10",
+      "date": "2026-11-11",
+      "commit": "e440f08e0be1ef4383d3663070a2342838f5dbe8",
+      "notes": {
+        "Added": [
+          {
+            "title": "Survey notice, download buttons, assistant start errors and tags",
+            "pull_request": 48,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Fixed": [],
+        "Changed": []
+      }
     }
   ]
 }
