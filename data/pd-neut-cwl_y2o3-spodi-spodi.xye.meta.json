@@ -1,0 +1,15 @@
+{
+ "id": "pd-neut-cwl_y2o3-spodi-spodi-data",
+ "elements": [
+  "O",
+  "Y"
+ ],
+ "formula": "O Y",
+ "name": "Y₂O₃ [Ia-3]",
+ "description": "Anisotropic β tensors tied by site symmetry · Coordinates, profile and background",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "SPODI",
+ "facility": "FRM II",
+ "source": "EasyDiffraction"
+}

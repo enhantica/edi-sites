@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-tof_lbco-si-mcstas",
+ "elements": [
+  "Ba",
+  "Co",
+  "La",
+  "O",
+  "Si"
+ ],
+ "formula": "Ba Co La O Si",
+ "name": "La₀.₅Ba₀.₅CoO₃ [Pm-3m] / Silicon [Fd-3m]",
+ "description": "2 phases · Simulated TOF pattern · Jorgensen profile",
+ "radiation": "neutron",
+ "technique": "powder time-of-flight",
+ "instrument": "McStas",
+ "source": "EasyDiffraction"
+}

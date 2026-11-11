@@ -1,0 +1,6 @@
+{
+ "id": "pd-neut-tof_ferrite-austenite-beer-ferrite",
+ "name": "Ferrite [Im-3m] / Austenite [Fm-3m]",
+ "description": "Instrument calibration · 2 McStas-simulated banks fitted jointly · Per-bank zero and resolution",
+ "source": "EasyDiffraction"
+}

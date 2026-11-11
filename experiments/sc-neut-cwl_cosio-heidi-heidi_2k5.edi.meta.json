@@ -1,0 +1,19 @@
+{
+ "id": "sc-neut-cwl_cosio-heidi-heidi_2k5",
+ "structures": [
+  "sc-neut-cwl_cosio-heidi-cosio_2k5"
+ ],
+ "elements": [
+  "Co",
+  "O",
+  "Si"
+ ],
+ "formula": "Co O Si",
+ "name": "Co₂SiO₄ [Pnma] at 300 K, 55 K and 2.5 K",
+ "description": "Single crystal · Three temperatures fitted independently, moments at 2.5 K",
+ "radiation": "neutron",
+ "technique": "single crystal constant wavelength",
+ "instrument": "HEiDi",
+ "facility": "MLZ (FRM II)",
+ "source": "EasyDiffraction"
+}

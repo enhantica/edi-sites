@@ -1,0 +1,16 @@
+{
+ "id": "sc-neut-cwl_tb2ti2o7-heidi_simulation",
+ "elements": [
+  "O",
+  "Tb",
+  "Ti"
+ ],
+ "formula": "O Tb Ti",
+ "name": "Tb₂Ti₂O₇ [Fd-3m]",
+ "description": "Single crystal · Calculated reflections without measured data",
+ "radiation": "neutron",
+ "technique": "single crystal constant wavelength",
+ "instrument": "HEiDi",
+ "facility": "MLZ (FRM II)",
+ "source": "EasyDiffraction"
+}

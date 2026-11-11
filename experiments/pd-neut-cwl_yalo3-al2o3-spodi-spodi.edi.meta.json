@@ -1,0 +1,20 @@
+{
+ "id": "pd-neut-cwl_yalo3-al2o3-spodi-spodi",
+ "structures": [
+  "pd-neut-cwl_yalo3-al2o3-spodi-YAlO3",
+  "pd-neut-cwl_yalo3-al2o3-spodi-Al2O3"
+ ],
+ "elements": [
+  "Al",
+  "O",
+  "Y"
+ ],
+ "formula": "Al O Y",
+ "name": "YAlO₃ [Pbnm] / Al₂O₃ [R-3c]",
+ "description": "2 phases at 3 K · Shared Bérar-Baldinozzi profile · Cylinder absorption",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "SPODI",
+ "facility": "FRM II",
+ "source": "EasyDiffraction"
+}

@@ -1,0 +1,19 @@
+{
+ "id": "sc-neut-cwl_pr2nio4-5c2-llb_5c2",
+ "structures": [
+  "sc-neut-cwl_pr2nio4-5c2-pr2nio4"
+ ],
+ "elements": [
+  "Ni",
+  "O",
+  "Pr"
+ ],
+ "formula": "Ni O Pr",
+ "name": "Pr₂NiO₄ [Fmmm]",
+ "description": "Single crystal · Anisotropic displacements and coordinates from a rough start",
+ "radiation": "neutron",
+ "technique": "single crystal constant wavelength",
+ "instrument": "5C2",
+ "facility": "LLB",
+ "source": "EasyDiffraction"
+}

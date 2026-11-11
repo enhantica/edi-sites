@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-cwl_lbco-hrpt-hrpt-data",
+ "elements": [
+  "Ba",
+  "Co",
+  "La",
+  "O"
+ ],
+ "formula": "Ba Co La O",
+ "name": "La₀.₅Ba₀.₅CoO₃ [Pm-3m]",
+ "description": "Cubic perovskite · La and Ba sharing one site · Profile, background, displacements",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "HRPT",
+ "facility": "PSI",
+ "source": "EasyDiffraction"
+}

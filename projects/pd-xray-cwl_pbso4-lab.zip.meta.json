@@ -1,0 +1,14 @@
+{
+ "id": "pd-xray-cwl_pbso4-lab",
+ "elements": [
+  "O",
+  "Pb",
+  "S"
+ ],
+ "formula": "O Pb S",
+ "name": "PbSO₄ [Pnma]",
+ "description": "Rietveld round-robin data · Cu Kα doublet · Bérar-Baldinozzi asymmetry",
+ "radiation": "xray",
+ "technique": "powder constant wavelength",
+ "source": "EasyDiffraction"
+}

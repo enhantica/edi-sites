@@ -1,0 +1,16 @@
+{
+ "id": "pd-neut-cwl_cosio-d20",
+ "elements": [
+  "Co",
+  "O",
+  "Si"
+ ],
+ "formula": "Co O Si",
+ "name": "Co₂SiO₄ [Pnma]",
+ "description": "Olivine · Coordinates, displacements and oxygen occupancies",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "D20",
+ "facility": "ILL",
+ "source": "EasyDiffraction"
+}

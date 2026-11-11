@@ -1,0 +1,16 @@
+{
+ "id": "pd-neut-cwl_cosio-d20_scan-213f",
+ "elements": [
+  "Co",
+  "O",
+  "Si"
+ ],
+ "formula": "Co O Si",
+ "name": "Co₂SiO₄ [Pnma.1]",
+ "description": "Cooling scan · 213 patterns from 497.4 to 2.3 K, fitted from 2.3 K up with the magnetic structure",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "D20",
+ "facility": "ILL",
+ "source": "EasyDiffraction"
+}

@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-cwl_hs-hrpt-hrpt-data",
+ "elements": [
+  "Cl",
+  "Cu",
+  "O",
+  "Zn"
+ ],
+ "formula": "Cl Cu O Zn",
+ "name": "ZnCu₃(OD)₆Cl₂ [R-3m]",
+ "description": "Herbertsmithite · Deuterated kagome antiferromagnet · Bérar-Baldinozzi asymmetry",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "HRPT",
+ "facility": "PSI",
+ "source": "EasyDiffraction"
+}

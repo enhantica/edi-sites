@@ -1,0 +1,23 @@
+{
+ "id": "pd-xray-cwl_latp-bm01_scan-bm01",
+ "structures": [
+  "pd-xray-cwl_latp-bm01_scan-latp",
+  "pd-xray-cwl_latp-bm01_scan-alpo4_c2221",
+  "pd-xray-cwl_latp-bm01_scan-alpo4_p63mc"
+ ],
+ "elements": [
+  "Al",
+  "Li",
+  "O",
+  "P",
+  "Ti"
+ ],
+ "formula": "Al Li O P Ti",
+ "name": "LATP [R-3c] / AlPO₄ [C222₁] / AlPO₄ [P6₃mc]",
+ "description": "3 phases · 73 synchrotron patterns · Linked displacement parameters",
+ "radiation": "xray",
+ "technique": "powder constant wavelength",
+ "instrument": "BM01",
+ "facility": "ESRF",
+ "source": "EasyDiffraction"
+}

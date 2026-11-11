@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-xray-cwl_pbso4-d1a-lab-lab",
+ "structures": [
+  "pd-neut-xray-cwl_pbso4-d1a-lab-pbso4"
+ ],
+ "elements": [
+  "O",
+  "Pb",
+  "S"
+ ],
+ "formula": "O Pb S",
+ "name": "PbSO₄ [Pnma]",
+ "description": "Rietveld round-robin data · Neutron and X-ray patterns fitted jointly",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "source": "EasyDiffraction"
+}

@@ -1,0 +1,21 @@
+{
+ "id": "sc-neut-tof_taurine-senju-senju_6",
+ "structures": [
+  "sc-neut-tof_taurine-senju-taurine"
+ ],
+ "elements": [
+  "C",
+  "H",
+  "N",
+  "O",
+  "S"
+ ],
+ "formula": "C H N O S",
+ "name": "Taurine [P2₁/c]",
+ "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+ "radiation": "neutron",
+ "technique": "single crystal time-of-flight",
+ "instrument": "SENJU",
+ "facility": "J-PARC",
+ "source": "EasyDiffraction"
+}

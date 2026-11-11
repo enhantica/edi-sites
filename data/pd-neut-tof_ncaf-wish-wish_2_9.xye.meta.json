@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-tof_ncaf-wish-wish_2_9-data",
+ "elements": [
+  "Al",
+  "Ca",
+  "F",
+  "Na"
+ ],
+ "formula": "Al Ca F Na",
+ "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+ "description": "All five detector bank pairs fitted jointly · Jorgensen–Von Dreele profile · Per-bank calibration",
+ "radiation": "neutron",
+ "technique": "powder time-of-flight",
+ "instrument": "WISH",
+ "facility": "ISIS",
+ "source": "EasyDiffraction"
+}

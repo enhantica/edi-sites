@@ -1,0 +1,5 @@
+# The app and notebooks fetch these files from other origins.
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Cross-Origin-Resource-Policy "cross-origin"
+</IfModule>

@@ -1,0 +1,17 @@
+{
+ "id": "pd-neut-tof_si-sepd-sepd",
+ "structures": [
+  "pd-neut-tof_si-sepd-si"
+ ],
+ "elements": [
+  "Si"
+ ],
+ "formula": "Si",
+ "name": "Silicon [Fd-3m]",
+ "description": "Silicon standard · Jorgensen–Von Dreele profile · Time-of-flight neutron powder data",
+ "radiation": "neutron",
+ "technique": "powder time-of-flight",
+ "instrument": "SEPD",
+ "facility": "Argonne",
+ "source": "EasyDiffraction"
+}

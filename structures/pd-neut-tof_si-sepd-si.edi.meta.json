@@ -1,0 +1,6 @@
+{
+ "id": "pd-neut-tof_si-sepd-si",
+ "name": "Silicon [Fd-3m]",
+ "description": "Silicon standard · Jorgensen–Von Dreele profile · Time-of-flight neutron powder data",
+ "source": "EasyDiffraction"
+}

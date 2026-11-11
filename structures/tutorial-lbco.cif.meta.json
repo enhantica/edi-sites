@@ -1,0 +1,13 @@
+{
+ "elements": [
+  "Ba",
+  "Co",
+  "La",
+  "O"
+ ],
+ "formula": "Ba Co La O",
+ "id": "tutorial-lbco",
+ "name": "La0.5Ba0.5CoO3",
+ "description": "The onboarding tutorials' input",
+ "source": "EasyDiffraction"
+}

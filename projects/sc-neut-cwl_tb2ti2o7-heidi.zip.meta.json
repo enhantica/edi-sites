@@ -1,0 +1,16 @@
+{
+ "id": "sc-neut-cwl_tb2ti2o7-heidi",
+ "elements": [
+  "O",
+  "Tb",
+  "Ti"
+ ],
+ "formula": "O Tb Ti",
+ "name": "Tb₂Ti₂O₇ [Fd-3m]",
+ "description": "Single crystal · Anisotropic displacements and extinction from a rough start",
+ "radiation": "neutron",
+ "technique": "single crystal constant wavelength",
+ "instrument": "HEiDi",
+ "facility": "MLZ (FRM II)",
+ "source": "EasyDiffraction"
+}

@@ -1,0 +1,19 @@
+{
+ "id": "pd-neut-cwl_lmo-echidna-echidna",
+ "structures": [
+  "pd-neut-cwl_lmo-echidna-lmo"
+ ],
+ "elements": [
+  "Li",
+  "Ni",
+  "O"
+ ],
+ "formula": "Li Ni O",
+ "name": "LiNiO₂ [R-3m]",
+ "description": "Layered oxide · Li/Ni site mixing · Occupancy constraints · TCH × FCJ asymmetry",
+ "radiation": "neutron",
+ "technique": "powder constant wavelength",
+ "instrument": "ECHIDNA",
+ "facility": "ANSTO",
+ "source": "EasyDiffraction"
+}

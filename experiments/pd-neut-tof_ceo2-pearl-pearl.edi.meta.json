@@ -1,0 +1,18 @@
+{
+ "id": "pd-neut-tof_ceo2-pearl-pearl",
+ "structures": [
+  "pd-neut-tof_ceo2-pearl-ceo2"
+ ],
+ "elements": [
+  "Ce",
+  "O"
+ ],
+ "formula": "Ce O",
+ "name": "CeO₂ [Fm-3m]",
+ "description": "NBS SRM 674a standard · Calibration and profile fit · 6-term polynomial background",
+ "radiation": "neutron",
+ "technique": "powder time-of-flight",
+ "instrument": "PEARL",
+ "facility": "ISIS",
+ "source": "EasyDiffraction"
+}
