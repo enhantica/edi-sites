@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b665bb8f7f66aa43269a426fec07e2a3d78bb0bd/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/217063650841f2f195eb92def27f23fd6a06b489/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -78,8 +78,8 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         22.22        75.58
-      1      0.002      19.62        58.90   22.1% ↓
-  done · converged · 1 iters · reduced χ² 58.90 · wR(F²) 19.62 % · 0.00 s
+      1      0.004      19.62        58.90   22.1% ↓
+  done · converged · 1 iters · reduced χ² 58.90 · wR(F²) 19.62 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -111,8 +111,8 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 2 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         19.62        59.17
-      1      0.004      14.74        33.42   43.5% ↓
-  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.00 s
+      1      0.009      14.74        33.42   43.5% ↓
+  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -151,7 +151,7 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 10 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         14.74        34.69
-      1      0.007       6.09         5.93   82.9% ↓
+      1      0.011       6.09         5.93   82.9% ↓
   done · converged · 1 iters · reduced χ² 5.93 · wR(F²) 6.09 % · 0.01 s
 ```
 
@@ -185,15 +185,15 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.09         5.98
-      1      0.005       2.90         1.35   77.4% ↓
-      2      0.007       2.88         1.33   1.6% ↓
-      3      0.008       2.88         1.33   
-      4      0.009       2.88         1.33   
-      5      0.010       2.88         1.33   
-      6      0.011       2.88         1.33   
-      7      0.012       2.88         1.33   
-      8      0.013       2.88         1.33   
-  done · converged · 8 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.01 s
+      1      0.012       2.90         1.35   77.4% ↓
+      2      0.015       2.88         1.33   1.6% ↓
+      3      0.017       2.88         1.33   
+      4      0.020       2.88         1.33   
+      5      0.023       2.88         1.33   
+      6      0.025       2.88         1.33   
+      7      0.028       2.88         1.33   
+      8      0.030       2.88         1.33   
+  done · converged · 8 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
