@@ -10286,7 +10286,7 @@
 installation works in scripts, notebooks, and with <code>python -m edi</code>.</p>
 <h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
 <p>Use CPython 3.12 or newer on macOS with Apple Silicon or Linux x86-64; Windows follows in a later
-release. The package comes from the <a href="https://github.com/enhantica/edi/releases/tag/v2026.11.1">v2026.11.1 release</a>
+release. The package comes from the <a href="https://github.com/enhantica/edi/releases/tag/v2026.11.8">v2026.11.8 release</a>
 on GitHub; its dependencies come from PyPI.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pixi</label><label for="__tabbed_1_2">Python + pip</label></div>
 <div class="tabbed-content">
@@ -10301,7 +10301,7 @@ on GitHub; its dependencies come from PyPI.</p>
 <span class="n">extra-index-urls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://download.easydiffraction.org/pypi/simple/&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Then add the package and check it:</p>
-<div class="highlight"><pre><span></span><code><span class="go">pixi add --pypi &quot;easydiffraction==2026.11.1&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="go">pixi add --pypi &quot;easydiffraction==2026.11.8&quot;</span>
 <span class="go">pixi run python -c &quot;import easydiffraction as edi; print(edi.Project)&quot;</span>
 <span class="go">pixi run python -m edi --help</span>
 </code></pre></div>
@@ -10313,7 +10313,7 @@ on GitHub; its dependencies come from PyPI.</p>
 </code></pre></div>
 <p>Activate it with <code>source .venv/bin/activate</code> on macOS or Linux, or
 <code>.\.venv\Scripts\Activate.ps1</code> in Windows PowerShell. Then install and check:</p>
-<div class="highlight"><pre><span></span><code><span class="go">python -m pip install &quot;easydiffraction==2026.11.1&quot; --extra-index-url https://download.easydiffraction.org/pypi/simple/</span>
+<div class="highlight"><pre><span></span><code><span class="go">python -m pip install &quot;easydiffraction==2026.11.8&quot; --extra-index-url https://download.easydiffraction.org/pypi/simple/</span>
 <span class="go">python -c &quot;import easydiffraction as edi; print(edi.Project)&quot;</span>
 <span class="go">python -m edi --help</span>
 </code></pre></div>

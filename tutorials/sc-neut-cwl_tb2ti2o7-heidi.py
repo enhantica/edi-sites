@@ -4,7 +4,7 @@
 import importlib.util
 
 if importlib.util.find_spec('easydiffraction') is None:
-    # %pip install easydiffraction==2026.11.1 --extra-index-url https://download.easydiffraction.org/pypi/simple/
+    # %pip install easydiffraction==2026.11.8 --extra-index-url https://download.easydiffraction.org/pypi/simple/
 
 
 # %% [markdown]

@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/19a185cad542a0e6d980b8eb513e0ba16cf092eb/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d515b6f49c6d9e9df74f5e052de32110f3790475/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -121,7 +121,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        14.03        54.89
-      1      0.024     13.20        48.60   11.5% ↓
+      1      0.026     13.20        48.60   11.5% ↓
   done · converged · 1 iters · reduced χ² 48.60 · Rwp 13.20 % · 0.03 s
 ```
 
@@ -155,7 +155,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.20        48.74
-      1      0.035     13.13        48.23   1.0% ↓
+      1      0.034     13.13        48.23   1.0% ↓
   done · converged · 1 iters · reduced χ² 48.23 · Rwp 13.13 % · 0.04 s
 ```
 
@@ -189,14 +189,14 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 26 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.13        48.26
-      1      0.176     13.13        48.26   
-      2      0.183     13.13        48.26   
-      3      0.189     13.13        48.26   
-      4      0.195     13.13        48.25   
-      5      0.202     13.13        48.25   
-      6      0.208     13.13        48.25   
-      7      0.217     13.13        48.25   
-  done · converged · 7 iters · reduced χ² 48.25 · Rwp 13.13 % · 0.22 s
+      1      0.179     13.13        48.26   
+      2      0.186     13.13        48.26   
+      3      0.192     13.13        48.26   
+      4      0.198     13.13        48.25   
+      5      0.204     13.13        48.25   
+      6      0.210     13.13        48.25   
+      7      0.218     13.13        48.25   
+  done · converged · 7 iters · reduced χ² 48.25 · Rwp 13.13 % · 0.23 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -268,17 +268,17 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 41 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.06        48.28
-      1      0.053      5.57         8.79   81.8% ↓
-      2      0.060      5.26         7.84   10.8% ↓
-      3      0.069      5.09         7.33   6.5% ↓
-      4      0.077      4.89         6.76   7.7% ↓
-      5      0.085      4.88         6.74   0.4% ↓
-      6      0.094      4.88         6.73   0.2% ↓
-      7      0.104      4.87         6.72   0.2% ↓
-      8      0.113      4.87         6.71   0.1% ↓
-      9      0.124      4.87         6.71   
-     10      0.134      4.87         6.71   
-     11      0.150      4.87         6.71   
+      1      0.052      5.57         8.79   81.8% ↓
+      2      0.059      5.26         7.84   10.8% ↓
+      3      0.066      5.09         7.33   6.5% ↓
+      4      0.074      4.89         6.76   7.7% ↓
+      5      0.082      4.88         6.74   0.4% ↓
+      6      0.090      4.88         6.73   0.2% ↓
+      7      0.099      4.87         6.72   0.2% ↓
+      8      0.108      4.87         6.71   0.1% ↓
+      9      0.119      4.87         6.71   
+     10      0.129      4.87         6.71   
+     11      0.147      4.87         6.71   
   done · converged · 11 iters · reduced χ² 6.71 · Rwp 4.87 % · 0.16 s
 ```
 
@@ -312,16 +312,16 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 42 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.87         6.72
-      1      0.065      4.70         6.25   7.0% ↓
+      1      0.066      4.70         6.25   7.0% ↓
       2      0.076      4.70         6.25   
       3      0.086      4.70         6.25   
-      4      0.098      4.70         6.25   
-      5      0.109      4.70         6.25   
-      6      0.119      4.70         6.25   
-      7      0.130      4.70         6.25   
-      8      0.139      4.70         6.25   
-      9      0.150      4.70         6.25   
-     10      0.164      4.70         6.25   
+      4      0.096      4.70         6.25   
+      5      0.106      4.70         6.25   
+      6      0.116      4.70         6.25   
+      7      0.126      4.70         6.25   
+      8      0.135      4.70         6.25   
+      9      0.145      4.70         6.25   
+     10      0.159      4.70         6.25   
   done · converged · 10 iters · reduced χ² 6.25 · Rwp 4.70 % · 0.17 s
 ```
 
