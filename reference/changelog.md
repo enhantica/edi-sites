@@ -4,6 +4,20 @@ Canonical page: https://easydiffraction.org/changelog/
 
 Changes in published EasyDiffraction releases, newest first.
 
+## edi 2026.11.11
+
+**Stable** · 2026-11-11 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.11)
+
+**EasyDiffraction 2026.11.11**
+
+**Fixed**
+
+- Find Qt from the macOS assistant guard ([#49](https://github.com/enhantica/edi/pull/49)) **:fa5-desktop: Desktop app**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-11 -->
+
+---
+
 ## edi 2026.11.10
 
 **Stable** · 2026-11-11 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.10)
