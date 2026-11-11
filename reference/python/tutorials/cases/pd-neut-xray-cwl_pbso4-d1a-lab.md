@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-xray-cwl_pbso4-d1a-lab/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-xray-cwl_pbso4-d1a-lab.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/pd-neut-xray-cwl_pbso4-d1a-lab.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-xray-cwl_pbso4-d1a-lab.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -30,7 +30,7 @@ lab = project.experiments['lab']
 ```
 
 ```text
-Data 'pd-neut-xray-cwl_pbso4-d1a-lab' is at data/pd-neut-xray-cwl_pbso4-d1a-lab-ce92206a5a9d/pd-neut-xray-cwl_pbso4-d1a-lab
+Data 'pd-neut-xray-cwl_pbso4-d1a-lab' is at data/pd-neut-xray-cwl_pbso4-d1a-lab-d8bb1240e949/pd-neut-xray-cwl_pbso4-d1a-lab
 ```
 
 The project marks what its fit frees. The fit below frees it in stages, so start with all of it
@@ -84,37 +84,37 @@ edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 
    iter   time (s)   Rwp (%)  reduced χ²   change
                        64.60       241.50
       1      0.370     27.86        44.92   81.4% ↓
-      2      0.415     27.34        43.27   3.7% ↓
+      2      0.416     27.34        43.27   3.7% ↓
       3      0.461     26.85        41.73   3.6% ↓
       4      0.507     26.38        40.29   3.4% ↓
-      5      0.552     25.95        38.96   3.3% ↓
-      6      0.597     25.50        37.63   3.4% ↓
-      7      0.643     25.02        36.23   3.7% ↓
-      8      0.688     24.52        34.79   4.0% ↓
-      9      0.733     24.01        33.36   4.1% ↓
-     10      0.779     23.47        31.88   4.4% ↓
-     11      0.824     22.90        30.36   4.8% ↓
-     12      0.869     22.34        28.88   4.9% ↓
-     13      0.914     21.80        27.51   4.7% ↓
-     14      0.959     21.31        26.28   4.5% ↓
-     15      1.005     20.89        25.26   3.9% ↓
-     16      1.050     20.57        24.49   3.0% ↓
-     17      1.096     20.35        23.96   2.2% ↓
-     18      1.141     20.21        23.63   1.4% ↓
-     19      1.186     20.12        23.44   0.8% ↓
-     20      1.232     20.08        23.33   0.5% ↓
-     21      1.277     20.05        23.27   0.2% ↓
-     22      1.322     20.04        23.24   0.1% ↓
-     23      1.368     20.03        23.23   0.1% ↓
-     24      1.413     20.03        23.22   
-     25      1.458     20.03        23.22   
-     26      1.503     20.03        23.22   
-     27      1.549     20.03        23.21   
-     28      1.594     20.03        23.21   
-     29      1.639     20.03        23.21   
-     30      1.685     20.03        23.21   
-     31      1.764     20.03        23.21   
-  done · converged · 31 iters · reduced χ² 23.21 · Rwp 20.03 % · 1.82 s
+      5      0.555     25.95        38.96   3.3% ↓
+      6      0.604     25.50        37.63   3.4% ↓
+      7      0.654     25.02        36.23   3.7% ↓
+      8      0.703     24.52        34.79   4.0% ↓
+      9      0.753     24.01        33.36   4.1% ↓
+     10      0.802     23.47        31.88   4.4% ↓
+     11      0.851     22.90        30.36   4.8% ↓
+     12      0.900     22.34        28.88   4.9% ↓
+     13      0.946     21.80        27.51   4.7% ↓
+     14      0.992     21.31        26.28   4.5% ↓
+     15      1.037     20.89        25.26   3.9% ↓
+     16      1.082     20.57        24.49   3.0% ↓
+     17      1.127     20.35        23.96   2.2% ↓
+     18      1.174     20.21        23.63   1.4% ↓
+     19      1.219     20.12        23.44   0.8% ↓
+     20      1.264     20.08        23.33   0.5% ↓
+     21      1.309     20.05        23.27   0.2% ↓
+     22      1.355     20.04        23.24   0.1% ↓
+     23      1.400     20.03        23.23   0.1% ↓
+     24      1.445     20.03        23.22   
+     25      1.490     20.03        23.22   
+     26      1.535     20.03        23.22   
+     27      1.581     20.03        23.21   
+     28      1.626     20.03        23.21   
+     29      1.671     20.03        23.21   
+     30      1.716     20.03        23.21   
+     31      1.796     20.03        23.21   
+  done · converged · 31 iters · reduced χ² 23.21 · Rwp 20.03 % · 1.85 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -157,8 +157,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.03        23.25
-      1      0.398     19.11        21.17   9.0% ↓
-      2      0.480     19.11        21.17   
+      1      0.402     19.11        21.17   9.0% ↓
+      2      0.483     19.11        21.17   
   done · converged · 2 iters · reduced χ² 21.17 · Rwp 19.11 % · 0.54 s
 ```
 
@@ -204,17 +204,17 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 29 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        19.11        21.19
-      1      0.601     11.62         7.84   63.0% ↓
-      2      0.706     11.49         7.66   2.3% ↓
-      3      0.819     11.42         7.57   1.1% ↓
-      4      0.934     11.40         7.54   0.4% ↓
-      5      1.051     11.39         7.53   0.1% ↓
+      1      0.614     11.62         7.84   63.0% ↓
+      2      0.717     11.49         7.66   2.3% ↓
+      3      0.827     11.42         7.57   1.1% ↓
+      4      0.941     11.40         7.54   0.4% ↓
+      5      1.055     11.39         7.53   0.1% ↓
       6      1.170     11.39         7.53   
-      7      1.289     11.39         7.53   
-      8      1.407     11.39         7.53   
-      9      1.525     11.39         7.53   
-     10      1.729     11.39         7.53   
-  done · converged · 10 iters · reduced χ² 7.53 · Rwp 11.39 % · 1.87 s
+      7      1.284     11.39         7.53   
+      8      1.399     11.39         7.53   
+      9      1.514     11.39         7.53   
+     10      1.714     11.39         7.53   
+  done · converged · 10 iters · reduced χ² 7.53 · Rwp 11.39 % · 1.86 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -257,14 +257,14 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 33 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.39         7.53
-      1      0.933      9.65         5.40   28.2% ↓
-      2      1.017      9.64         5.39   0.2% ↓
-      3      1.100      9.64         5.39   
-      4      1.181      9.64         5.39   
-      5      1.263      9.64         5.39   
-      6      1.345      9.64         5.39   
-      7      1.483      9.64         5.39   
-  done · converged · 7 iters · reduced χ² 5.39 · Rwp 9.64 % · 1.59 s
+      1      0.916      9.65         5.40   28.2% ↓
+      2      1.000      9.64         5.39   0.2% ↓
+      3      1.081      9.64         5.39   
+      4      1.161      9.64         5.39   
+      5      1.241      9.64         5.39   
+      6      1.321      9.64         5.39   
+      7      1.457      9.64         5.39   
+  done · converged · 7 iters · reduced χ² 5.39 · Rwp 9.64 % · 1.56 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -305,12 +305,12 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 35 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.64         5.39
-      1      0.743      9.45         5.19   3.9% ↓
-      2      0.832      9.45         5.19   
-      3      0.922      9.45         5.19   
-      4      1.014      9.45         5.19   
-      5      1.179      9.45         5.19   
-  done · converged · 5 iters · reduced χ² 5.19 · Rwp 9.45 % · 1.29 s
+      1      0.751      9.45         5.19   3.9% ↓
+      2      0.846      9.45         5.19   
+      3      0.942      9.45         5.19   
+      4      1.038      9.45         5.19   
+      5      1.213      9.45         5.19   
+  done · converged · 5 iters · reduced χ² 5.19 · Rwp 9.45 % · 1.33 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -353,9 +353,9 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 46 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.45         5.19
-      1      0.939      8.47         4.17   19.7% ↓
-      2      1.106      8.47         4.17   
-  done · converged · 2 iters · reduced χ² 4.17 · Rwp 8.47 % · 1.24 s
+      1      0.962      8.47         4.17   19.7% ↓
+      2      1.134      8.47         4.17   
+  done · converged · 2 iters · reduced χ² 4.17 · Rwp 8.47 % · 1.27 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -394,9 +394,9 @@ project.display.fit.results()
 edi fit: joint project pd-neut-xray-cwl_pbso4-d1a-lab, 2 banks (d1a, lab), 8709 pts fitted / 8911 loaded, 51 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.47         4.17
-      1      0.726      5.80         1.96   53.1% ↓
-      2      0.842      5.80         1.96   
-  done · converged · 2 iters · reduced χ² 1.96 · Rwp 5.80 % · 0.93 s
+      1      0.687      5.80         1.96   53.1% ↓
+      2      0.804      5.80         1.96   
+  done · converged · 2 iters · reduced χ² 1.96 · Rwp 5.80 % · 0.90 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

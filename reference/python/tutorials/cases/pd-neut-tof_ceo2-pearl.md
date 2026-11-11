@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ceo2-pearl/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -29,7 +29,7 @@ experiment = project.experiments['pearl']
 ```
 
 ```text
-Data 'pd-neut-tof_ceo2-pearl' is at data/pd-neut-tof_ceo2-pearl-d212831a55d0/pd-neut-tof_ceo2-pearl
+Data 'pd-neut-tof_ceo2-pearl' is at data/pd-neut-tof_ceo2-pearl-672773a1ed12/pd-neut-tof_ceo2-pearl
 ```
 
 The project marks what its fit frees. The fit below frees it in stages, so start with all of it
@@ -115,7 +115,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.03        23.41
-      1      0.092      6.73         6.24   73.4% ↓
+      1      0.093      6.73         6.24   73.4% ↓
   done · converged · 1 iters · reduced χ² 6.24 · Rwp 6.73 % · 0.10 s
 ```
 
@@ -149,8 +149,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 12 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.73         6.24
-      1      0.090      6.27         5.43   13.0% ↓
-  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.10 s
+      1      0.092      6.27         5.43   13.0% ↓
+  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -182,7 +182,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 13 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.27         5.43
-      1      0.097      6.19         5.30   2.5% ↓
+      1      0.100      6.19         5.30   2.5% ↓
   done · converged · 1 iters · reduced χ² 5.30 · Rwp 6.19 % · 0.11 s
 ```
 
@@ -249,8 +249,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.67         4.44
-      1      0.103      5.29         3.88   12.7% ↓
-  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.12 s
+      1      0.098      5.29         3.88   12.7% ↓
+  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -283,7 +283,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.29         3.88
-      1      0.085      5.29         3.88   
+      1      0.084      5.29         3.88   
   done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.10 s
 ```
 

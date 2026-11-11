@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_y2o3-spodi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -29,7 +29,7 @@ experiment = project.experiments['spodi']
 ```
 
 ```text
-Data 'pd-neut-cwl_y2o3-spodi' is at data/pd-neut-cwl_y2o3-spodi-7967c3a09e3f/pd-neut-cwl_y2o3-spodi
+Data 'pd-neut-cwl_y2o3-spodi' is at data/pd-neut-cwl_y2o3-spodi-6856c2525734/pd-neut-cwl_y2o3-spodi
 ```
 
 The project marks what its fit frees. The fit below frees it in stages, so start with all of it
@@ -88,8 +88,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         3.47         7.84
-      1      0.039      2.53         4.17   46.8% ↓
-      2      0.047      2.53         4.17   
+      1      0.040      2.53         4.17   46.8% ↓
+      2      0.048      2.53         4.17   
   done · converged · 2 iters · reduced χ² 4.17 · Rwp 2.53 % · 0.05 s
 ```
 
@@ -123,7 +123,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.53         4.20
-      1      0.039      2.37         3.68   12.4% ↓
+      1      0.038      2.37         3.68   12.4% ↓
   done · converged · 1 iters · reduced χ² 3.68 · Rwp 2.37 % · 0.05 s
 ```
 
@@ -156,7 +156,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 27 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.37         3.69
-      1      0.054      1.78         2.08   43.5% ↓
+      1      0.053      1.78         2.08   43.5% ↓
   done · converged · 1 iters · reduced χ² 2.08 · Rwp 1.78 % · 0.06 s
 ```
 
@@ -191,7 +191,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 31 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.78         2.09
-      1      0.055      1.42         1.33   36.5% ↓
+      1      0.057      1.42         1.33   36.5% ↓
   done · converged · 1 iters · reduced χ² 1.33 · Rwp 1.42 % · 0.06 s
 ```
 
@@ -233,7 +233,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 43 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.42         1.33
-      1      0.068      1.33         1.17   11.9% ↓
+      1      0.067      1.33         1.17   11.9% ↓
   done · converged · 1 iters · reduced χ² 1.17 · Rwp 1.33 % · 0.08 s
 ```
 

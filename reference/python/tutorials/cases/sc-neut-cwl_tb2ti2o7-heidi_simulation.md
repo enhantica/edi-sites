@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -33,7 +33,7 @@ print('Experiments:', ', '.join(experiment.name for experiment in project.experi
 ```
 
 ```text
-Data 'sc-neut-cwl_tb2ti2o7-heidi_simulation' is at data/sc-neut-cwl_tb2ti2o7-heidi_simulation-8168d11af581/sc-neut-cwl_tb2ti2o7-heidi_simulation
+Data 'sc-neut-cwl_tb2ti2o7-heidi_simulation' is at data/sc-neut-cwl_tb2ti2o7-heidi_simulation-4b9d196caef2/sc-neut-cwl_tb2ti2o7-heidi_simulation
 Tb₂Ti₂O₇ [Fd-3m] · HEiDi @ MLZ (FRM II)
 Structures: tb2ti2o7
 Experiments: heidi

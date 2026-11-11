@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -33,7 +33,7 @@ print('Fitting mode:', project.fitting_mode)
 ```
 
 ```text
-Data 'pd-neut-cwl_lbco_simulation' is at data/pd-neut-cwl_lbco_simulation-156565971ae8/pd-neut-cwl_lbco_simulation
+Data 'pd-neut-cwl_lbco_simulation' is at data/pd-neut-cwl_lbco_simulation-e5794bb040ac/pd-neut-cwl_lbco_simulation
 La₀.₅Ba₀.₅CoO₃ [Pm-3m] · HRPT @ PSI
 Structures: lbco
 Experiments: hrpt

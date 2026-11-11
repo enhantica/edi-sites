@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -29,7 +29,7 @@ experiment = project.experiments['heidi']
 ```
 
 ```text
-Data 'sc-neut-cwl_tb2ti2o7-heidi' is at data/sc-neut-cwl_tb2ti2o7-heidi-38a48062af12/sc-neut-cwl_tb2ti2o7-heidi
+Data 'sc-neut-cwl_tb2ti2o7-heidi' is at data/sc-neut-cwl_tb2ti2o7-heidi-11aa5eb35229/sc-neut-cwl_tb2ti2o7-heidi
 ```
 
 The project marks what its fit frees. The fit below frees it in stages, so start with all of it
@@ -111,8 +111,8 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 2 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         19.62        59.17
-      1      0.009      14.74        33.42   43.5% ↓
-  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.01 s
+      1      0.013      14.74        33.42   43.5% ↓
+  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -185,15 +185,15 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.09         5.98
-      1      0.013       2.90         1.35   77.4% ↓
-      2      0.015       2.88         1.33   1.6% ↓
-      3      0.017       2.88         1.33   
-      4      0.019       2.88         1.33   
-      5      0.022       2.88         1.33   
-      6      0.024       2.88         1.33   
-      7      0.027       2.88         1.33   
-      8      0.029       2.88         1.33   
-  done · converged · 8 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.03 s
+      1      0.018       2.90         1.35   77.4% ↓
+      2      0.021       2.88         1.33   1.6% ↓
+      3      0.023       2.88         1.33   
+      4      0.025       2.88         1.33   
+      5      0.028       2.88         1.33   
+      6      0.031       2.88         1.33   
+      7      0.033       2.88         1.33   
+      8      0.036       2.88         1.33   
+  done · converged · 8 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

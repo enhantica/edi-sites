@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco-hrpt/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d7c02db17aac3254f27711b10edc61accb050d80/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/e440f08e0be1ef4383d3663070a2342838f5dbe8/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -180,8 +180,8 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        53.67        71.21
-      1      0.008     12.56         3.90   94.5% ↓
-      2      0.010     12.56         3.90   
+      1      0.009     12.56         3.90   94.5% ↓
+      2      0.011     12.56         3.90   
   done · converged · 2 iters · reduced χ² 3.90 · Rwp 12.56 % · 0.01 s
 ```
 
@@ -289,7 +289,7 @@ edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 16 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.75         2.87
       1      0.013      7.23         1.30   54.7% ↓
-      2      0.017      7.23         1.30   
+      2      0.016      7.23         1.30   
   done · converged · 2 iters · reduced χ² 1.30 · Rwp 7.23 % · 0.02 s
 ```
 
@@ -341,7 +341,7 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.23         1.30
-      1      0.011      7.23         1.30   
+      1      0.012      7.23         1.30   
   done · converged · 1 iters · reduced χ² 1.30 · Rwp 7.23 % · 0.01 s
 ```
 
