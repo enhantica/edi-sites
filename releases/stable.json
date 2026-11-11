@@ -43,6 +43,26 @@
         "Fixed": [],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.9",
+      "date": "2026-11-11",
+      "commit": "b665bb8f7f66aa43269a426fec07e2a3d78bb0bd",
+      "notes": {
+        "Added": [
+          {
+            "title": "Docs screenshots, tutorial fixes and edi's DOI",
+            "pull_request": 45,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python"
+            ]
+          }
+        ],
+        "Fixed": [],
+        "Changed": []
+      }
     }
   ]
 }
