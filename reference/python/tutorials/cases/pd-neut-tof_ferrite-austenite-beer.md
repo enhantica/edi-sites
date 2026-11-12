@@ -88,8 +88,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        41.43       229.76
-      1      0.016     23.83        76.04   66.9% ↓
-      2      0.019     23.83        76.04   
+      1      0.014     23.83        76.04   66.9% ↓
+      2      0.017     23.83        76.04   
   done · converged · 2 iters · reduced χ² 76.04 · Rwp 23.83 % · 0.02 s
 ```
 
@@ -135,8 +135,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 64 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        23.83        76.86
-      1      0.149     18.05        44.10   42.6% ↓
-  done · converged · 1 iters · reduced χ² 44.10 · Rwp 18.05 % · 0.17 s
+      1      0.144     18.05        44.10   42.6% ↓
+  done · converged · 1 iters · reduced χ² 44.10 · Rwp 18.05 % · 0.16 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -183,7 +183,7 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 72 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        18.05        44.16
-      1      0.168     16.38        36.35   17.7% ↓
+      1      0.169     16.38        36.35   17.7% ↓
   done · converged · 1 iters · reduced χ² 36.35 · Rwp 16.38 % · 0.19 s
 ```
 
@@ -224,8 +224,8 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 73 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        16.38        36.36
-      1      0.116      7.13         6.89   81.0% ↓
-      2      0.178      7.13         6.89   
+      1      0.117      7.13         6.89   81.0% ↓
+      2      0.177      7.13         6.89   
   done · converged · 2 iters · reduced χ² 6.89 · Rwp 7.13 % · 0.20 s
 ```
 
