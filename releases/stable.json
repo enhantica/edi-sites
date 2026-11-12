@@ -127,6 +127,39 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.13",
+      "date": "2026-11-12",
+      "commit": "313f69052872095c2ba9162a7d827abdf4e06dbf",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Fix the assistant on Windows; install EasyDiffraction with shortcuts",
+            "pull_request": 60,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": [
+          {
+            "title": "New tutorial screenshots in the docs",
+            "pull_request": 57,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Start the Windows installer from Command Prompt when Run anyway is missing",
+            "pull_request": 58,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ]
+      }
     }
   ]
 }
