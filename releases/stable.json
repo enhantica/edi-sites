@@ -100,6 +100,33 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.12",
+      "date": "2026-11-12",
+      "commit": "fd84ffc00c1672f8f3c4f206b2f198f520e4e858",
+      "notes": {
+        "Added": [
+          {
+            "title": "Tutorials in fewer clear steps, consistent numbers and GUI fixes",
+            "pull_request": 55,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Export ENV so the web app can show its release version",
+            "pull_request": 53,
+            "interfaces": [
+              "web"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
