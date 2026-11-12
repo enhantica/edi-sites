@@ -4,6 +4,25 @@ Canonical page: https://easydiffraction.org/changelog/
 
 Changes in published EasyDiffraction releases, newest first.
 
+## edi 2026.11.13
+
+**Stable** · 2026-11-12 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.13)
+
+**EasyDiffraction 2026.11.13**
+
+**Fixed**
+
+- Fix the assistant on Windows; install EasyDiffraction with shortcuts ([#60](https://github.com/enhantica/edi/pull/60)) **:fa5-desktop: Desktop app**{ .ed-release-interface }
+
+**Changed**
+
+- New tutorial screenshots in the docs ([#57](https://github.com/enhantica/edi/pull/57)) **:fa5-desktop: Desktop app**{ .ed-release-interface }
+- Start the Windows installer from Command Prompt when Run anyway is missing ([#58](https://github.com/enhantica/edi/pull/58)) **:fa5-desktop: Desktop app**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-12 -->
+
+---
+
 ## edi 2026.11.12
 
 **Stable** · 2026-11-12 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.12)

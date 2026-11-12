@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ceo2-pearl/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/76770405cfe5ece123802a75edb1c8f6398c2579/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/313f69052872095c2ba9162a7d827abdf4e06dbf/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -81,8 +81,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        14.21        27.74
-      1      0.085     13.03        23.34   15.8% ↓
-  done · converged · 1 iters · reduced χ² 23.34 · Rwp 13.03 % · 0.10 s
+      1      0.047     13.03        23.34   15.8% ↓
+  done · converged · 1 iters · reduced χ² 23.34 · Rwp 13.03 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -115,8 +115,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.03        23.41
-      1      0.092      6.73         6.24   73.4% ↓
-  done · converged · 1 iters · reduced χ² 6.24 · Rwp 6.73 % · 0.10 s
+      1      0.058      6.73         6.24   73.4% ↓
+  done · converged · 1 iters · reduced χ² 6.24 · Rwp 6.73 % · 0.07 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -149,8 +149,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 12 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.73         6.24
-      1      0.090      6.27         5.43   13.0% ↓
-  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.10 s
+      1      0.052      6.27         5.43   13.0% ↓
+  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -182,8 +182,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 13 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.27         5.43
-      1      0.097      6.19         5.30   2.5% ↓
-  done · converged · 1 iters · reduced χ² 5.30 · Rwp 6.19 % · 0.11 s
+      1      0.053      6.19         5.30   2.5% ↓
+  done · converged · 1 iters · reduced χ² 5.30 · Rwp 6.19 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -217,8 +217,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 16 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.19         5.30
-      1      0.089      5.67         4.44   16.3% ↓
-  done · converged · 1 iters · reduced χ² 4.44 · Rwp 5.67 % · 0.10 s
+      1      0.050      5.67         4.44   16.3% ↓
+  done · converged · 1 iters · reduced χ² 4.44 · Rwp 5.67 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -249,8 +249,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.67         4.44
-      1      0.095      5.29         3.88   12.7% ↓
-  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.11 s
+      1      0.054      5.29         3.88   12.7% ↓
+  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -283,8 +283,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.29         3.88
-      1      0.082      5.29         3.88   
-  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.09 s
+      1      0.046      5.29         3.88   
+  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
