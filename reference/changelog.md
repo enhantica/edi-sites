@@ -4,6 +4,24 @@ Canonical page: https://easydiffraction.org/changelog/
 
 Changes in published EasyDiffraction releases, newest first.
 
+## edi 2026.11.12
+
+**Stable** · 2026-11-12 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.12)
+
+**EasyDiffraction 2026.11.12**
+
+**Added**
+
+- Tutorials in fewer clear steps, consistent numbers and GUI fixes ([#55](https://github.com/enhantica/edi/pull/55)) **:fa5-desktop: Desktop app**{ .ed-release-interface } **:fa5-globe: Web app**{ .ed-release-interface }
+
+**Fixed**
+
+- Export ENV so the web app can show its release version ([#53](https://github.com/enhantica/edi/pull/53)) **:fa5-globe: Web app**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-12 -->
+
+---
+
 ## edi 2026.11.11
 
 **Stable** · 2026-11-11 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.11)

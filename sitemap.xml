@@ -364,6 +364,9 @@
         <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_lbco-hrpt/</loc>
       </url>
       <url>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_lbco_simulation/</loc>
+      </url>
+      <url>
         <loc>https://easydiffraction.org/cli/tutorials/cases/pd-neut-cwl_lmo-echidna/</loc>
       </url>
       <url>
@@ -410,6 +413,9 @@
       </url>
       <url>
         <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/</loc>
+      </url>
+      <url>
+        <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/</loc>
       </url>
       <url>
         <loc>https://easydiffraction.org/cli/tutorials/cases/sc-neut-tof_taurine-senju/</loc>
