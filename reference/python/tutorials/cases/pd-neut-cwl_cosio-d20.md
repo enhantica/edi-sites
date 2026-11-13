@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/313f69052872095c2ba9162a7d827abdf4e06dbf/docs/user/tutorials/pd-neut-cwl_cosio-d20.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b16f9867ef1de464dfed731796848eb5ba60e739/docs/user/tutorials/pd-neut-cwl_cosio-d20.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_cosio-d20.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -169,7 +169,7 @@ project.display.fit.results()
 edi fit: project cosio_d20, 1418 pts fitted / 1418 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.09       112.25
-      1      0.021      5.51         8.45   92.5% ↓
+      1      0.019      5.51         8.45   92.5% ↓
   done · converged · 1 iters · reduced χ² 8.45 · Rwp 5.51 % · 0.02 s
 ```
 
@@ -206,9 +206,9 @@ project.display.fit.results()
 edi fit: project cosio_d20, 1418 pts fitted / 1418 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.51         8.47
-      1      0.022      4.80         6.42   24.2% ↓
-      2      0.025      4.80         6.42   
-      3      0.030      4.80         6.42   
+      1      0.020      4.80         6.42   24.2% ↓
+      2      0.023      4.80         6.42   
+      3      0.027      4.80         6.42   
   done · converged · 3 iters · reduced χ² 6.42 · Rwp 4.80 % · 0.03 s
 ```
 
@@ -279,7 +279,7 @@ project.display.fit.results()
 edi fit: project cosio_d20, 1418 pts fitted / 1418 loaded, 40 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.14         4.84
-      1      0.031      3.99         4.49   7.2% ↓
+      1      0.030      3.99         4.49   7.2% ↓
   done · converged · 1 iters · reduced χ² 4.49 · Rwp 3.99 % · 0.04 s
 ```
 

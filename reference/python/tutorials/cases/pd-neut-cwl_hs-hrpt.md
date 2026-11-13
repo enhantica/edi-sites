@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_hs-hrpt/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/313f69052872095c2ba9162a7d827abdf4e06dbf/docs/user/tutorials/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b16f9867ef1de464dfed731796848eb5ba60e739/docs/user/tutorials/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -91,13 +91,13 @@ edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 4 free
       8      0.023     24.27        44.73   0.1% ↓
       9      0.024     24.27        44.71   
      10      0.026     24.26        44.70   
-     11      0.027     24.26        44.69   
+     11      0.028     24.26        44.69   
      12      0.029     24.26        44.69   
      13      0.031     24.26        44.69   
-     14      0.032     24.26        44.68   
+     14      0.033     24.26        44.68   
      15      0.034     24.26        44.68   
-     16      0.035     24.26        44.68   
-     17      0.037     24.26        44.68   
+     16      0.036     24.26        44.68   
+     17      0.038     24.26        44.68   
   done · converged · 17 iters · reduced χ² 44.68 · Rwp 24.26 % · 0.04 s
 ```
 
@@ -172,7 +172,7 @@ edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 18 free
       1      0.017     13.45        13.79   61.8% ↓
       2      0.020     13.44        13.77   0.1% ↓
       3      0.023     13.44        13.77   
-      4      0.025     13.44        13.77   
+      4      0.026     13.44        13.77   
       5      0.028     13.44        13.77   
       6      0.031     13.44        13.77   
       7      0.036     13.44        13.77   
@@ -247,7 +247,7 @@ edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 28 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.21         5.16
       1      0.025      5.45         2.27   56.0% ↓
-      2      0.030      5.45         2.27   
+      2      0.031      5.45         2.27   
   done · converged · 2 iters · reduced χ² 2.27 · Rwp 5.45 % · 0.03 s
 ```
 
@@ -283,9 +283,9 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 32 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.45         2.27
-      1      0.028      5.30         2.15   5.3% ↓
-      2      0.033      5.30         2.15   
-      3      0.039      5.30         2.15   
+      1      0.026      5.30         2.15   5.3% ↓
+      2      0.030      5.30         2.15   
+      3      0.035      5.30         2.15   
   done · converged · 3 iters · reduced χ² 2.15 · Rwp 5.30 % · 0.04 s
 ```
 
