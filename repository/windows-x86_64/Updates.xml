@@ -6,30 +6,30 @@
   <Name>org.easyscience.edi</Name>
   <DisplayName>EasyDiffraction</DisplayName>
   <Description>Diffraction analysis with crysta and Qt.</Description>
-  <Version>2026.11.13</Version>
-  <ReleaseDate>2026-11-12</ReleaseDate>
+  <Version>2026.11.14</Version>
+  <ReleaseDate>2026-11-13</ReleaseDate>
   <Default>true</Default>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="84585648" OS="Any" UncompressedSize="237366856"/>
+  <UpdateFile CompressedSize="84601996" OS="Any" UncompressedSize="237468232"/>
   <DownloadableArchives>bin.7z,lib.7z,libexec.7z,share.7z,content.7z</DownloadableArchives>
   <Licenses>
    <License file="COPYING" name="GNU General Public License v3 (application)"/>
   </Licenses>
-  <SHA1>56009111c9faa35109d9e145257a52192d53466b</SHA1>
+  <SHA1>a3bffa0328208d133e8c7abb333f0d0d0db6e759</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easyscience.edi.assistant</Name>
   <DisplayName>AI assistant</DisplayName>
   <Description>Optional runtime for the ChatGPT assistant in EasyDiffraction.</Description>
-  <Version>2026.11.13</Version>
-  <ReleaseDate>2026-11-12</ReleaseDate>
+  <Version>2026.11.14</Version>
+  <ReleaseDate>2026-11-13</ReleaseDate>
   <Dependencies>org.easyscience.edi</Dependencies>
   <Default>false</Default>
   <RequiresAdminRights>false</RequiresAdminRights>
   <UpdateFile CompressedSize="85340450" OS="Any" UncompressedSize="360159256"/>
   <DownloadableArchives>libexec.7z,content.7z</DownloadableArchives>
-  <SHA1>7556e64f34733d58385c1831daecf6dfee8db6c1</SHA1>
+  <SHA1>c514fcef6c4bb24e0af1351a76feda63116481ff</SHA1>
  </PackageUpdate>
 </Updates>

@@ -160,6 +160,24 @@
           }
         ]
       }
+    },
+    {
+      "version": "2026.11.14",
+      "date": "2026-11-13",
+      "commit": "b16f9867ef1de464dfed731796848eb5ba60e739",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Improve scan responsiveness and fit progress reporting",
+            "pull_request": 64,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
