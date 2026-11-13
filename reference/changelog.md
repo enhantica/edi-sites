@@ -4,6 +4,20 @@ Canonical page: https://easydiffraction.org/changelog/
 
 Changes in published EasyDiffraction releases, newest first.
 
+## edi 2026.11.14
+
+**Stable** · 2026-11-13 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.14)
+
+**EasyDiffraction 2026.11.14**
+
+**Fixed**
+
+- Improve scan responsiveness and fit progress reporting ([#64](https://github.com/enhantica/edi/pull/64)) **:fa5-desktop: Desktop app**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-13 -->
+
+---
+
 ## edi 2026.11.13
 
 **Stable** · 2026-11-12 · [View on GitHub](https://github.com/enhantica/edi/releases/tag/v2026.11.13)
