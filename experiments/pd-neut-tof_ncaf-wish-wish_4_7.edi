@@ -16,28 +16,28 @@ _scattering_source.neutron_scattering_length sears1992
 _peak.type tof-jorgensen-von-dreele
 _peak.cutoff_fwhm 8
 _peak.broad_gauss_sigma_0 0
-_peak.broad_gauss_sigma_1 14()
-_peak.broad_gauss_sigma_2 8.9()
+_peak.broad_gauss_sigma_1 14
+_peak.broad_gauss_sigma_2 8.9
 _peak.broad_lorentz_gamma_0 0
 _peak.broad_lorentz_gamma_1 0.0
 _peak.broad_lorentz_gamma_2 0
-_peak.decay_beta_0 0.0074()
-_peak.decay_beta_1 0.017()
-_peak.rise_alpha_0 -0.015()
-_peak.rise_alpha_1 0.16()
+_peak.decay_beta_0 0.0074
+_peak.decay_beta_1 0.017
+_peak.rise_alpha_0 -0.015
+_peak.rise_alpha_1 0.16
 _peak.broad_gauss_size 0
 _peak.broad_gauss_strain 0
 _peak.broad_lorentz_size 0
 _peak.broad_lorentz_strain 0
 
 _instrument.setup_twotheta_bank 121.66
-_instrument.calib_d_to_tof_offset 0()
-_instrument.calib_d_to_tof_linear 18660.1()
+_instrument.calib_d_to_tof_offset 0
+_instrument.calib_d_to_tof_linear 18660.1
 _instrument.calib_d_to_tof_quadratic -0.47488
 _instrument.calib_d_to_tof_reciprocal 0
 
 _absorption.type cylinder
-_absorption.abscor1 0()
+_absorption.abscor1 0
 
 loop_
 _excluded_region.id
@@ -49,7 +49,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-ncaf 40()
+ncaf 40
 
 _background.type line-segment
 
@@ -57,34 +57,34 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 9089.7529 250.0()
-2 10671.6523 250.0()
-3 12287.2100 250.0()
-4 14037.3975 250.0()
-5 15451.0088 250.0()
-6 16763.6504 250.0()
-7 18076.2910 250.0()
-8 19456.2461 250.0()
-9 20465.9688 250.0()
-10 21879.5801 250.0()
-11 23798.0566 250.0()
-12 25447.2715 250.0()
-13 28072.5508 250.0()
-14 30058.3418 250.0()
-15 32582.6504 250.0()
-16 34804.0391 250.0()
-17 37160.0625 250.0()
-18 40323.8594 250.0()
-19 46894.5391 250.0()
-20 50630.5156 250.0()
-21 54602.0938 250.0()
-22 58439.0430 250.0()
-23 66519.8203 250.0()
-24 75001.5000 250.0()
-25 83649.2188 250.0()
-26 92770.3828 250.0()
-27 101524.3047 250.0()
-28 107313.3906 250.0()
+1 9089.7529 250.0
+2 10671.6523 250.0
+3 12287.2100 250.0
+4 14037.3975 250.0
+5 15451.0088 250.0
+6 16763.6504 250.0
+7 18076.2910 250.0
+8 19456.2461 250.0
+9 20465.9688 250.0
+10 21879.5801 250.0
+11 23798.0566 250.0
+12 25447.2715 250.0
+13 28072.5508 250.0
+14 30058.3418 250.0
+15 32582.6504 250.0
+16 34804.0391 250.0
+17 37160.0625 250.0
+18 40323.8594 250.0
+19 46894.5391 250.0
+20 50630.5156 250.0
+21 54602.0938 250.0
+22 58439.0430 250.0
+23 66519.8203 250.0
+24 75001.5000 250.0
+25 83649.2188 250.0
+26 92770.3828 250.0
+27 101524.3047 250.0
+28 107313.3906 250.0
 
 loop_
 _data.time_of_flight

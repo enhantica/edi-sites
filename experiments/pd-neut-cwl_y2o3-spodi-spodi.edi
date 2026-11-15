@@ -14,15 +14,15 @@ _instrument.facility "FRM II"
 _scattering_source.neutron_scattering_length sears1992
 
 _peak.type cwl-tch-pseudo-voigt
-_peak.broad_gauss_u 0.04()
-_peak.broad_gauss_v -0.07()
-_peak.broad_gauss_w 0.1()
+_peak.broad_gauss_u 0.04
+_peak.broad_gauss_v -0.07
+_peak.broad_gauss_w 0.1
 _peak.broad_lorentz_x 0
 _peak.broad_lorentz_y 0
 _peak.cutoff_fwhm 20
 
 _instrument.setup_wavelength 1.54822
-_instrument.calib_twotheta_offset 0()
+_instrument.calib_twotheta_offset 0
 
 loop_
 _excluded_region.id
@@ -34,7 +34,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-y2o3 0.1()
+y2o3 0.1
 
 _background.type line-segment
 
@@ -42,27 +42,27 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 12.5856 6400.0()
-2 19.4181 6400.0()
-3 21.8751 6400.0()
-4 27.8998 6400.0()
-5 32.9147 6400.0()
-6 39.1152 6400.0()
-7 45.712 6400.0()
-8 51.9387 6400.0()
-9 60.558 6400.0()
-10 68.1982 6400.0()
-11 81.3276 6400.0()
-12 88.7996 6400.0()
-13 94.3171 6400.0()
-14 98.1541 6400.0()
-15 100.9813 6400.0()
-16 104.3134 6400.0()
-17 108.7225 6400.0()
-18 116.0673 6400.0()
-19 121.4862 6400.0()
-20 131.2805 6400.0()
-21 135.7928 6400.0()
+1 12.5856 6400.0
+2 19.4181 6400.0
+3 21.8751 6400.0
+4 27.8998 6400.0
+5 32.9147 6400.0
+6 39.1152 6400.0
+7 45.712 6400.0
+8 51.9387 6400.0
+9 60.558 6400.0
+10 68.1982 6400.0
+11 81.3276 6400.0
+12 88.7996 6400.0
+13 94.3171 6400.0
+14 98.1541 6400.0
+15 100.9813 6400.0
+16 104.3134 6400.0
+17 108.7225 6400.0
+18 116.0673 6400.0
+19 121.4862 6400.0
+20 131.2805 6400.0
+21 135.7928 6400.0
 
 loop_
 _data.two_theta

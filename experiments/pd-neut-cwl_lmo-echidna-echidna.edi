@@ -14,19 +14,19 @@ _instrument.facility ANSTO
 _scattering_source.neutron_scattering_length sears1992
 
 _peak.type cwl-tch-pseudo-voigt-fcj
-_peak.broad_gauss_u 0.1()
-_peak.broad_gauss_v -0.3()
-_peak.broad_gauss_w 0.4()
+_peak.broad_gauss_u 0.1
+_peak.broad_gauss_v -0.3
+_peak.broad_gauss_w 0.4
 _peak.broad_lorentz_x 0
-_peak.broad_lorentz_y 0.1()
+_peak.broad_lorentz_y 0.1
 _peak.asym_fcj_1 0.08
 _peak.asym_fcj_2 0.08
 _peak.cutoff_fwhm 12
 
 _instrument.setup_wavelength 1.6215
-_instrument.calib_twotheta_offset 0()
-_instrument.calib_sample_displacement 0()
-_instrument.calib_sample_transparency 0()
+_instrument.calib_twotheta_offset 0
+_instrument.calib_sample_displacement 0
+_instrument.calib_sample_transparency 0
 
 _absorption.type cylinder-hewat
 _absorption.mu_r 0.3
@@ -41,7 +41,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-lmo 10()
+lmo 10
 
 _background.type line-segment
 
@@ -49,15 +49,15 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 12 550.0()
-2 30 550.0()
-3 50 550.0()
-4 70 550.0()
-5 90 550.0()
-6 110 550.0()
-7 130 550.0()
-8 150 550.0()
-9 162 550.0()
+1 12 550.0
+2 30 550.0
+3 50 550.0
+4 70 550.0
+5 90 550.0
+6 110 550.0
+7 130 550.0
+8 150 550.0
+9 162 550.0
 
 loop_
 _data.two_theta

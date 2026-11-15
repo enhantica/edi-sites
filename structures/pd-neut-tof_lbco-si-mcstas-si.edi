@@ -2,7 +2,7 @@ data_si
 
 _edi.schema_version 3
 
-_cell.length_a 5.43()
+_cell.length_a 5.43
 _cell.length_b 5.43
 _cell.length_c 5.43
 _cell.angle_alpha 90

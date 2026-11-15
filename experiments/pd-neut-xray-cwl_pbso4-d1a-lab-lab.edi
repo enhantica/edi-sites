@@ -15,13 +15,13 @@ _scattering_source.xray_form_factor it1992
 _scattering_source.xray_dispersion sasaki1989
 
 _peak.type cwl-pseudo-voigt-berar-baldinozzi
-_peak.broad_gauss_u 0.02()
-_peak.broad_gauss_v -0.02()
-_peak.broad_gauss_w 0.008()
-_peak.mixing_eta_0 0.5()
+_peak.broad_gauss_u 0.02
+_peak.broad_gauss_v -0.02
+_peak.broad_gauss_w 0.008
+_peak.mixing_eta_0 0.5
 _peak.mixing_eta_1 0
-_peak.asym_beba_a0 0()
-_peak.asym_beba_b0 0()
+_peak.asym_beba_a0 0
+_peak.asym_beba_b0 0
 _peak.asym_beba_a1 0
 _peak.asym_beba_b1 0
 _peak.asym_beba_limit 160
@@ -32,7 +32,7 @@ _instrument.setup_wavelength_2 1.5444
 _instrument.setup_wavelength_2_to_1_ratio 0.5
 _instrument.setup_polarization_coefficient 0.5
 _instrument.setup_monochromator_twotheta 26.5650511771
-_instrument.calib_twotheta_offset 0()
+_instrument.calib_twotheta_offset 0
 
 loop_
 _excluded_region.id
@@ -44,7 +44,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-pbso4 0.001()
+pbso4 0.001
 
 _background.type chebyshev
 _background.x_min 15
@@ -54,12 +54,12 @@ loop_
 _background.id
 _background.order
 _background.coef
-1 0 140.0()
-2 1 0()
-3 2 0()
-4 3 0()
-5 4 0()
-6 5 0()
+1 0 140.0
+2 1 0
+3 2 0
+4 3 0
+5 4 0
+6 5 0
 
 loop_
 _data.two_theta

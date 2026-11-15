@@ -14,25 +14,25 @@ _instrument.facility PSI
 _scattering_source.neutron_scattering_length sears1992
 
 _peak.type cwl-pseudo-voigt-berar-baldinozzi
-_peak.broad_gauss_u 0.1()
-_peak.broad_gauss_v -0.2()
-_peak.broad_gauss_w 0.2()
-_peak.mixing_eta_0 0.5()
+_peak.broad_gauss_u 0.1
+_peak.broad_gauss_v -0.2
+_peak.broad_gauss_w 0.2
+_peak.mixing_eta_0 0.5
 _peak.mixing_eta_1 0
-_peak.asym_beba_a0 0()
-_peak.asym_beba_b0 0()
-_peak.asym_beba_a1 0()
-_peak.asym_beba_b1 0()
+_peak.asym_beba_a0 0
+_peak.asym_beba_b0 0
+_peak.asym_beba_a1 0
+_peak.asym_beba_b1 0
 _peak.asym_beba_limit 180
 _peak.cutoff_fwhm 8
 
 _instrument.setup_wavelength 1.89
-_instrument.calib_twotheta_offset 0()
+_instrument.calib_twotheta_offset 0
 
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-hs 0.5()
+hs 0.5
 
 _background.type line-segment
 
@@ -40,16 +40,16 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 4 460.0()
-2 20 460.0()
-3 40 460.0()
-4 60 460.0()
-5 80 460.0()
-6 100 460.0()
-7 120 460.0()
-8 140 460.0()
-9 160 460.0()
-10 165 460.0()
+1 4 460.0
+2 20 460.0
+3 40 460.0
+4 60 460.0
+5 80 460.0
+6 100 460.0
+7 120 460.0
+8 140 460.0
+9 160 460.0
+10 165 460.0
 
 loop_
 _data.two_theta

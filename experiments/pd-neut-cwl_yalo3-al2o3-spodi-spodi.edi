@@ -14,20 +14,20 @@ _instrument.facility "FRM II"
 _scattering_source.neutron_scattering_length sears1992
 
 _peak.type cwl-pseudo-voigt-berar-baldinozzi
-_peak.broad_gauss_u 0.04()
-_peak.broad_gauss_v -0.05()
-_peak.broad_gauss_w 0.1()
-_peak.mixing_eta_0 0.1()
+_peak.broad_gauss_u 0.04
+_peak.broad_gauss_v -0.05
+_peak.broad_gauss_w 0.1
+_peak.mixing_eta_0 0.1
 _peak.mixing_eta_1 0
-_peak.asym_beba_a0 0()
-_peak.asym_beba_b0 0()
-_peak.asym_beba_a1 0()
-_peak.asym_beba_b1 0()
+_peak.asym_beba_a0 0
+_peak.asym_beba_b0 0
+_peak.asym_beba_a1 0
+_peak.asym_beba_b1 0
 _peak.asym_beba_limit 160
 _peak.cutoff_fwhm 20
 
 _instrument.setup_wavelength 1.54816
-_instrument.calib_twotheta_offset 0()
+_instrument.calib_twotheta_offset 0
 
 _absorption.type cylinder-hewat
 _absorption.mu_r 0.0221
@@ -42,8 +42,8 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-YAlO3 30()
-Al2O3 0.2()
+YAlO3 30
+Al2O3 0.2
 
 _background.type line-segment
 
@@ -51,31 +51,31 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 4.0500 2100.0()
-2 4.7770 2100.0()
-3 6.7860 2100.0()
-4 13.2590 2100.0()
-5 18.1700 2100.0()
-6 23.7500 2100.0()
-7 32.0090 2100.0()
-8 36.4730 2100.0()
-9 47.1880 2100.0()
-10 52.0980 2100.0()
-11 59.0180 2100.0()
-12 69.9550 2100.0()
-13 80.0000 2100.0()
-14 90.4910 2100.0()
-15 101.2050 2100.0()
-16 106.3390 2100.0()
-17 108.7950 2100.0()
-18 112.5890 2100.0()
-19 119.2860 2100.0()
-20 128.2140 2100.0()
-21 133.1250 2100.0()
-22 140.9380 2100.0()
-23 145.6250 2100.0()
-24 148.0800 2100.0()
-25 151.9000 2100.0()
+1 4.0500 2100.0
+2 4.7770 2100.0
+3 6.7860 2100.0
+4 13.2590 2100.0
+5 18.1700 2100.0
+6 23.7500 2100.0
+7 32.0090 2100.0
+8 36.4730 2100.0
+9 47.1880 2100.0
+10 52.0980 2100.0
+11 59.0180 2100.0
+12 69.9550 2100.0
+13 80.0000 2100.0
+14 90.4910 2100.0
+15 101.2050 2100.0
+16 106.3390 2100.0
+17 108.7950 2100.0
+18 112.5890 2100.0
+19 119.2860 2100.0
+20 128.2140 2100.0
+21 133.1250 2100.0
+22 140.9380 2100.0
+23 145.6250 2100.0
+24 148.0800 2100.0
+25 151.9000 2100.0
 
 loop_
 _data.two_theta

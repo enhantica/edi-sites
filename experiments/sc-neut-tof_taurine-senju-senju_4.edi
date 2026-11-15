@@ -25,7 +25,7 @@ _extinction.coefficient_23 0
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-taurine 2.809()
+taurine 2.809
 
 loop_
 _refln.id

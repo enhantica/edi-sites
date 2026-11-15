@@ -15,15 +15,15 @@ _scattering_source.neutron_scattering_length sears1992
 
 _peak.type tof-pseudo-voigt
 _peak.cutoff_fwhm 12
-_peak.broad_gauss_sigma_0 900()
-_peak.broad_gauss_sigma_1 1000()
-_peak.broad_gauss_sigma_2 300()
-_peak.broad_lorentz_gamma_0 5()
+_peak.broad_gauss_sigma_0 900
+_peak.broad_gauss_sigma_1 1000
+_peak.broad_gauss_sigma_2 300
+_peak.broad_lorentz_gamma_0 5
 _peak.broad_lorentz_gamma_1 0
 _peak.broad_lorentz_gamma_2 0
 
 _instrument.setup_twotheta_bank 90.0
-_instrument.calib_d_to_tof_offset 0()
+_instrument.calib_d_to_tof_offset 0
 _instrument.calib_d_to_tof_linear 54902.1875
 _instrument.calib_d_to_tof_quadratic 0
 _instrument.calib_d_to_tof_reciprocal 0
@@ -40,8 +40,8 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-ferrite 400()
-austenite 100()
+ferrite 400
+austenite 100
 
 _background.type line-segment
 
@@ -49,36 +49,36 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 40111.8789 0.18()
-2 41193.5664 0.18()
-3 42041.3750 0.18()
-4 42713.7734 0.18()
-5 44409.3945 0.18()
-6 45198.7344 0.18()
-7 46251.1875 0.18()
-8 49350.0742 0.18()
-9 51289.6836 0.18()
-10 55245.1992 0.18()
-11 55679.7070 0.18()
-12 56383.9102 0.18()
-13 58956.1797 0.18()
-14 61536.4570 0.18()
-15 63768.0469 0.18()
-16 65581.2109 0.18()
-17 70183.8516 0.18()
-18 71787.8203 0.18()
-19 78343.1094 0.18()
-20 80016.8047 0.18()
-21 98141.8516 0.18()
-22 99262.2344 0.18()
-23 100985.8516 0.18()
-24 101933.8516 0.18()
-25 108656.0312 0.18()
-26 110896.7500 0.18()
-27 113137.4844 0.18()
-28 114430.2031 0.18()
-29 116929.4844 0.18()
-30 119428.7422 0.18()
+1 40111.8789 0.18
+2 41193.5664 0.18
+3 42041.3750 0.18
+4 42713.7734 0.18
+5 44409.3945 0.18
+6 45198.7344 0.18
+7 46251.1875 0.18
+8 49350.0742 0.18
+9 51289.6836 0.18
+10 55245.1992 0.18
+11 55679.7070 0.18
+12 56383.9102 0.18
+13 58956.1797 0.18
+14 61536.4570 0.18
+15 63768.0469 0.18
+16 65581.2109 0.18
+17 70183.8516 0.18
+18 71787.8203 0.18
+19 78343.1094 0.18
+20 80016.8047 0.18
+21 98141.8516 0.18
+22 99262.2344 0.18
+23 100985.8516 0.18
+24 101933.8516 0.18
+25 108656.0312 0.18
+26 110896.7500 0.18
+27 113137.4844 0.18
+28 114430.2031 0.18
+29 116929.4844 0.18
+30 119428.7422 0.18
 31 134506.3438 0.18
 
 loop_

@@ -2,7 +2,7 @@ data_lbco
 
 _edi.schema_version 3
 
-_cell.length_a 3.8909()
+_cell.length_a 3.8909
 _cell.length_b 3.8909
 _cell.length_c 3.8909
 _cell.angle_alpha 90
@@ -24,5 +24,5 @@ _atom_site.adp_iso
 _atom_site.adp_type
 La La 0 0 0 a 0.5 0.5 Biso
 Ba Ba 0 0 0 a 0.5 0.5 Biso
-Co Co 0.5 0.5 0.5 b 1 0.5() Biso
-O O 0 0.5 0.5 c 1 0.5() Biso
+Co Co 0.5 0.5 0.5 b 1 0.5 Biso
+O O 0 0.5 0.5 c 1 0.5 Biso

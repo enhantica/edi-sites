@@ -131,8 +131,8 @@
     {
      "path": "structures/pd-neut-cwl_cosio-d20-cosio.edi",
      "format": "edi",
-     "sha256": "ed3e7f5594f4cab7b193440098431f483428082499f191b4d8640dd12a2d6c84",
-     "bytes": 648
+     "sha256": "3b2727c3eae6b674b8166d53dda3a51c095324f6f2e2ef7662fc7d705cc3399a",
+     "bytes": 604
     }
    ]
   },
@@ -161,8 +161,8 @@
     {
      "path": "structures/pd-neut-cwl_cosio-d20_2k-cosio.edi",
      "format": "edi",
-     "sha256": "4505d34c32bb8f576900ea17b478bdd8589bb5ca40f7e5d293db03ad71dcd034",
-     "bytes": 1621
+     "sha256": "f087442497d2fbd9b9a4956796f64dee4420ba5be63e83d7e27030d8721a5968",
+     "bytes": 1573
     }
    ]
   },
@@ -191,8 +191,8 @@
     {
      "path": "structures/pd-neut-cwl_cosio-d20_scan-213f-cosio.edi",
      "format": "edi",
-     "sha256": "70324d6326ee447d4c4d83d26918e6a7ce2f0fd929e261e999ee30af8d8b329a",
-     "bytes": 1623
+     "sha256": "c890c8c778a1c202e67b42d5773509484db6f037f41f05f714f8a51908dd5000",
+     "bytes": 1577
     }
    ]
   },
@@ -222,8 +222,8 @@
     {
      "path": "structures/pd-neut-cwl_hs-hrpt-hs.edi",
      "format": "edi",
-     "sha256": "3d18bdb07a5053f136abe3e69b51940389e439aea3ba47c2251fe5ce998a0e8b",
-     "bytes": 579
+     "sha256": "1a4820ef483003f024470df8aa36514965d4655bd063f294f7119d2b412363ad",
+     "bytes": 555
     }
    ]
   },
@@ -253,8 +253,8 @@
     {
      "path": "structures/pd-neut-cwl_lbco-hrpt-lbco.edi",
      "format": "edi",
-     "sha256": "d1c245e00052e5ba22a07a5f26d645d97bc4576e369599467bfc85af224bfb04",
-     "bytes": 530
+     "sha256": "c4cd9712556b9d39513b186e86d5c87a04455111c0e34ca064875e36ba5eabff",
+     "bytes": 522
     }
    ]
   },
@@ -314,8 +314,8 @@
     {
      "path": "structures/pd-neut-cwl_lmo-echidna-lmo.edi",
      "format": "edi",
-     "sha256": "e9d889ae30298b4df82d49720b6ef23c181646c8afd8b8a44a68e455cf93f61d",
-     "bytes": 569
+     "sha256": "4d0985c80e9ea1c3e664043e678f4d97336216bf52b612cdd8f9868c063a2d98",
+     "bytes": 555
     }
    ]
   },
@@ -343,8 +343,8 @@
     {
      "path": "structures/pd-neut-cwl_y2o3-spodi-y2o3.edi",
      "format": "edi",
-     "sha256": "0035a2409b1fa26521d4b59c9520c37d8c4bb8c2ec9e53c50ff227ad87d53ccf",
-     "bytes": 812
+     "sha256": "9b534b4a12e8f2c79de27f0e97ad3399c2ff94145cef39d87490b59a67a73e96",
+     "bytes": 778
     }
    ]
   },
@@ -372,8 +372,8 @@
     {
      "path": "structures/pd-neut-cwl_yalo3-al2o3-spodi-Al2O3.edi",
      "format": "edi",
-     "sha256": "37791064fcee7bd1e29a0b64b03c7f7b326c4b37ab97d4b01098e7e49aedb6b0",
-     "bytes": 482
+     "sha256": "d3a5e62b1bd71cbfbc787cffe951014a570b75430b60994b220430ec3207818f",
+     "bytes": 470
     }
    ]
   },
@@ -402,8 +402,8 @@
     {
      "path": "structures/pd-neut-cwl_yalo3-al2o3-spodi-YAlO3.edi",
      "format": "edi",
-     "sha256": "582a5e23201b519fced17407e697e46d11718a9b4d6b260c12df2ccaab5b1580",
-     "bytes": 529
+     "sha256": "8de1354d08facf1a296d3d88a7056fc3811634c16648c65278b6d4ceb3bc458e",
+     "bytes": 501
     }
    ]
   },
@@ -432,8 +432,8 @@
     {
      "path": "structures/pd-neut-tof_cecoal-polaris-cecoal.edi",
      "format": "edi",
-     "sha256": "def09ded57c181a601e481deef7bf49b135374646e4b05a7e6939e44a5a6acf4",
-     "bytes": 561
+     "sha256": "2da546df464e6e0a9b85444dca5c5a613a38f92d4a207bbc10900b62f173e4f6",
+     "bytes": 533
     }
    ]
   },
@@ -461,8 +461,8 @@
     {
      "path": "structures/pd-neut-tof_ceo2-pearl-ceo2.edi",
      "format": "edi",
-     "sha256": "c0736a60e1ee6a225e5d068304ba28caf8f86b0ab1fd104c6b4fa67117f7e60e",
-     "bytes": 450
+     "sha256": "50c195f4f7a6767525bd8e02143abf7b9f392b691fcff2db23b631abda72690a",
+     "bytes": 446
     }
    ]
   },
@@ -517,8 +517,8 @@
     {
      "path": "structures/pd-neut-tof_ferrite-austenite-beer-ferrite.edi",
      "format": "edi",
-     "sha256": "ec49d823d61e5c7224a554dd51a842edd9465868af93a6b94209ae775e20d5d0",
-     "bytes": 443
+     "sha256": "e522aa57216921efff6bb4fea6ccd7d8797e2bf930138579513d4bcd05a62d92",
+     "bytes": 441
     }
    ]
   },
@@ -548,8 +548,8 @@
     {
      "path": "structures/pd-neut-tof_lbco-si-mcstas-lbco.edi",
      "format": "edi",
-     "sha256": "924577a5d681aa43253ffbc435048da628318f7d0290fedd3ca6bc9602dcdf4b",
-     "bytes": 534
+     "sha256": "6f2b4c4bd3b5900807ea7400f9513fda0f3b1a24681a26d9ed4d89d385097810",
+     "bytes": 528
     }
    ]
   },
@@ -576,8 +576,8 @@
     {
      "path": "structures/pd-neut-tof_lbco-si-mcstas-si.edi",
      "format": "edi",
-     "sha256": "d266b86077ac8cf3a8e35f802fcae5728244b9189f30dd17b8479f132e406304",
-     "bytes": 435
+     "sha256": "fa666b4f5cc7ac626575d74923318727a1f96af3f111c963bd1e47c6728b96ca",
+     "bytes": 433
     }
    ]
   },
@@ -607,8 +607,8 @@
     {
      "path": "structures/pd-neut-tof_ncaf-wish-ncaf.edi",
      "format": "edi",
-     "sha256": "7eefbd591ab966a95b10bf062be50d0302820a06b62f5207371857c408a0be99",
-     "bytes": 656
+     "sha256": "08bfaab03c607d14b0d0ffc2ff092351fc36b96d9e0b7d7f1d9c31e04821e3b8",
+     "bytes": 624
     }
    ]
   },
@@ -635,8 +635,8 @@
     {
      "path": "structures/pd-neut-tof_si-sepd-si.edi",
      "format": "edi",
-     "sha256": "a873319a522398a2c26fbd3b155bb8974a9af54f4fe381277f66f72777f448bc",
-     "bytes": 452
+     "sha256": "1923e98e340ce5c3a6eb8f1febb921014d10df79310fab98574e8c0b6bd68bbd",
+     "bytes": 448
     }
    ]
   },
@@ -665,8 +665,8 @@
     {
      "path": "structures/pd-neut-xray-cwl_pbso4-d1a-lab-pbso4.edi",
      "format": "edi",
-     "sha256": "24770242effa8a4d410836f2cef855fc6454d84e5f3cd2d2bd7ab760f21b3ba5",
-     "bytes": 614
+     "sha256": "1efaf68686989c6f5489b604613b820d8b9901fa908497208cfd3d5644ada9ea",
+     "bytes": 576
     }
    ]
   },
@@ -701,8 +701,8 @@
     {
      "path": "structures/pd-xray-cwl_lam7o3-p021-lam7o3.edi",
      "format": "edi",
-     "sha256": "f3ac01debabaf3539ce5bb66a3cbb5f4974bd89ddec736b82bd94f2c10be4e47",
-     "bytes": 752
+     "sha256": "df4e0df3f172b2c8052a7d1914f5af1a7ebd8affe51f97d7a353aee2eae1d26c",
+     "bytes": 726
     }
    ]
   },
@@ -731,8 +731,8 @@
     {
      "path": "structures/pd-xray-cwl_latp-bm01_scan-alpo4_c2221.edi",
      "format": "edi",
-     "sha256": "b42662d5570b1a08f3b1df6451af8ff1f5c6e69ea3b40bd78f39dd2b181c5306",
-     "bytes": 625
+     "sha256": "8a20aeeadb2c828fb127dd286ef344a76a24aafdcd1dc9ddf934aeeb0ef6d081",
+     "bytes": 615
     }
    ]
   },
@@ -761,8 +761,8 @@
     {
      "path": "structures/pd-xray-cwl_latp-bm01_scan-alpo4_p63mc.edi",
      "format": "edi",
-     "sha256": "350e4eb631946104099c05296a072d96fd63ed5a28e13ada6e081bfd77610d5e",
-     "bytes": 724
+     "sha256": "4787aa9b9bd8e05269ae1cb6cd87985bda180a1f6bd00e88419662482b1fbf73",
+     "bytes": 717
     }
    ]
   },
@@ -793,8 +793,8 @@
     {
      "path": "structures/pd-xray-cwl_latp-bm01_scan-latp.edi",
      "format": "edi",
-     "sha256": "2fa22f4a9a8554731d4abc98d471cb0a81a9b9a39eec390b7219a72d4d1ad3a9",
-     "bytes": 823
+     "sha256": "10b2cf9df3440cab8348617d0ee41f7f8832e323a41809f6a1419b8d54343b8a",
+     "bytes": 781
     }
    ]
   },
@@ -823,8 +823,8 @@
     {
      "path": "structures/pd-xray-cwl_pbso4-lab-pbso4.edi",
      "format": "edi",
-     "sha256": "24770242effa8a4d410836f2cef855fc6454d84e5f3cd2d2bd7ab760f21b3ba5",
-     "bytes": 614
+     "sha256": "1efaf68686989c6f5489b604613b820d8b9901fa908497208cfd3d5644ada9ea",
+     "bytes": 576
     }
    ]
   },
@@ -853,8 +853,8 @@
     {
      "path": "structures/sc-neut-cwl_cosio-heidi-cosio_2k5.edi",
      "format": "edi",
-     "sha256": "1a0d69436ecc043b523edc7d7f5c43de1754969e906f30f577c5237909c96569",
-     "bytes": 2253
+     "sha256": "6052f00f5c813cabeca6c39d0bbe81db1031ed03159aa06d4706828345c108f6",
+     "bytes": 2167
     }
    ]
   },
@@ -883,8 +883,8 @@
     {
      "path": "structures/sc-neut-cwl_cosio-heidi-cosio_300k.edi",
      "format": "edi",
-     "sha256": "2fd26bc4d305b15beccfeabaa8391d3ec33845624501443e783774fbed58fe5d",
-     "bytes": 1109
+     "sha256": "42b459481c0dbea27f7b3cc0f34075971118c6fc6e22d876b3572864bb86995c",
+     "bytes": 1031
     }
    ]
   },
@@ -913,8 +913,8 @@
     {
      "path": "structures/sc-neut-cwl_cosio-heidi-cosio_55k.edi",
      "format": "edi",
-     "sha256": "2cbf27891099826ff14e4b1817fcbbc9ef328966696e671b41635c570328dcfb",
-     "bytes": 1109
+     "sha256": "a7cadbf612ab16338acf4c1af6cba28569d54d9fe1c2b69f5ecf917aca64f80c",
+     "bytes": 1031
     }
    ]
   },
@@ -943,8 +943,8 @@
     {
      "path": "structures/sc-neut-cwl_pr2nio4-5c2-pr2nio4.edi",
      "format": "edi",
-     "sha256": "a37a18c113ba4738af270329671dfbed3992098d997d59deff3cd92f6bc016d6",
-     "bytes": 875
+     "sha256": "14ea4b3b948907773de1de6cd3875e9ff5820f531e74340805ee3eb9a52b900a",
+     "bytes": 831
     }
    ]
   },
@@ -973,8 +973,8 @@
     {
      "path": "structures/sc-neut-cwl_tb2ti2o7-heidi-tb2ti2o7.edi",
      "format": "edi",
-     "sha256": "b08d754705c5a5ad4f5ed79567fb90152f5be830af86fdd39f2614fc88bb3206",
-     "bytes": 867
+     "sha256": "745e6cd90c21ab52226e3dc3fc5693682b5570a4e0515fc0f780f4c47b3c499e",
+     "bytes": 849
     }
    ]
   },
@@ -1035,8 +1035,8 @@
     {
      "path": "structures/sc-neut-tof_taurine-senju-taurine.edi",
      "format": "edi",
-     "sha256": "6c8f4067c2be3cecc08a60d72f7bbac4f0fa8c899112e82ec49eeb1e3ed7e372",
-     "bytes": 1634
+     "sha256": "522a94d4e4538ee7250f263a6d5ff3d0755c23dd82f9d3ab0b285afc59a4a6e7",
+     "bytes": 1382
     }
    ]
   },
@@ -1094,8 +1094,8 @@
     {
      "path": "experiments/pd-neut-cwl_cosio-d20-d20.edi",
      "format": "edi",
-     "sha256": "8378801265ba8a0613ca8bec8ad2e70dc897320f2918c8ca8e1e799d270bb31e",
-     "bytes": 32643
+     "sha256": "d5e3ef9f8203e5ff214c0d6010a782cd209d2e620c8bc2db9f6ffc89d025c461",
+     "bytes": 32603
     }
    ]
   },
@@ -1122,8 +1122,8 @@
     {
      "path": "experiments/pd-neut-cwl_cosio-d20_2k-d20.edi",
      "format": "edi",
-     "sha256": "50e40518f4864b3e310c0b76de5d43d5f48af1a8b89191a6f03cfd9ab87e280d",
-     "bytes": 35252
+     "sha256": "2279dd699c734329fd21c96319de7856f63e893bbce8e27f66045a9dfa93f776",
+     "bytes": 35206
     }
    ]
   },
@@ -1150,8 +1150,8 @@
     {
      "path": "experiments/pd-neut-cwl_cosio-d20_scan-213f-d20.edi",
      "format": "edi",
-     "sha256": "f647dd3cc5b10ab31a05ed5660f635c9df6090c44986cc8c0857db992fe4076f",
-     "bytes": 35256
+     "sha256": "cc01d72f4ebee6eda3bb9ccdf898419c8bbc5391b436de84fbf82bff3b70213d",
+     "bytes": 35214
     }
    ]
   },
@@ -1179,8 +1179,8 @@
     {
      "path": "experiments/pd-neut-cwl_hs-hrpt-hrpt.edi",
      "format": "edi",
-     "sha256": "4f23d90585bdcd91c8f8fd31fd0ec90a7a96ffee63d24730dc09136c466ffcaa",
-     "bytes": 60717
+     "sha256": "71e6defe4810dddd033c5fce131b857b74f0e8892cfb8027ac7a63a0413ee470",
+     "bytes": 60677
     }
    ]
   },
@@ -1208,8 +1208,8 @@
     {
      "path": "experiments/pd-neut-cwl_lbco-hrpt-hrpt.edi",
      "format": "edi",
-     "sha256": "f0c0e3839ffa3b6043992fb768eef3794ced6c869ceb7da52a57b8a387cac3f2",
-     "bytes": 46359
+     "sha256": "2da6e670d972691cfcbb23ddea1c62f9a76bf89554f6d9d3a7984d118f5d66e7",
+     "bytes": 46337
     }
    ]
   },
@@ -1265,8 +1265,8 @@
     {
      "path": "experiments/pd-neut-cwl_lmo-echidna-echidna.edi",
      "format": "edi",
-     "sha256": "d56417f998d7593acb3c9e5141c62ca8dc03d0d13fbe1748f19994e5e6c48cac",
-     "bytes": 83055
+     "sha256": "a8d4acb958c7a1ddc6ee028b3d326aa31ccb75d34b7d796517d927d61b2fe811",
+     "bytes": 83021
     }
    ]
   },
@@ -1292,8 +1292,8 @@
     {
      "path": "experiments/pd-neut-cwl_y2o3-spodi-spodi.edi",
      "format": "edi",
-     "sha256": "c6ff7236515100d6a5559271a52772142d435583d2b477f87b82411848a45eb3",
-     "bytes": 44708
+     "sha256": "be15352f04392f30886c292428669a7dcfa3eb41816f8a88ad3a3acb58b0f8b1",
+     "bytes": 44656
     }
    ]
   },
@@ -1321,8 +1321,8 @@
     {
      "path": "experiments/pd-neut-cwl_yalo3-al2o3-spodi-spodi.edi",
      "format": "edi",
-     "sha256": "a6f88e8187d2cc3774f1d1400f161b3081d6d8eb288effa18b4a95fb560daad0",
-     "bytes": 43105
+     "sha256": "1d6bb943a13c7ec5294b7aca885b558c05380bad7f9f0363558d3929fab5a8e2",
+     "bytes": 43033
     }
    ]
   },
@@ -1349,8 +1349,8 @@
     {
      "path": "experiments/pd-neut-tof_cecoal-polaris-polaris.edi",
      "format": "edi",
-     "sha256": "70c40cf98c599997bab7fe5e13df40d9f90cf75a6db3ea17e8ddca4f5ccb1055",
-     "bytes": 88590
+     "sha256": "0559e587265df9710ce5805399f4ea3b5b44b812e0b6de281748c5d90f20dff4",
+     "bytes": 88554
     }
    ]
   },
@@ -1376,8 +1376,8 @@
     {
      "path": "experiments/pd-neut-tof_ceo2-pearl-pearl.edi",
      "format": "edi",
-     "sha256": "4771535965b6b60e78d5b4fb50cf32ec81c0b8b45b9533b2312de028a1567b92",
-     "bytes": 72531
+     "sha256": "90bfd8f6e7498ce2b31ffb3220e95fa9649be01098e2f75cfbd8fc3ff0dd69ce",
+     "bytes": 72497
     }
    ]
   },
@@ -1403,8 +1403,8 @@
     {
      "path": "experiments/pd-neut-tof_ferrite-austenite-beer-expt_n2.edi",
      "format": "edi",
-     "sha256": "c58fe0e38e1b7e747eba9b6daad4e9711e1d278a6cc0e7e470a1b8b3529e7562",
-     "bytes": 180047
+     "sha256": "802286e1782c030330a645e836be0b564a1c9b55c7b237bb8ec7e85d1b04c0a8",
+     "bytes": 179977
     }
    ]
   },
@@ -1430,8 +1430,8 @@
     {
      "path": "experiments/pd-neut-tof_ferrite-austenite-beer-expt_s2.edi",
      "format": "edi",
-     "sha256": "d2ec37dd7d1769a7fe2a33909f9345a7265cef6d927a700e90f6459090f2a582",
-     "bytes": 180167
+     "sha256": "5bc7d0bae0bd20214d4939b442b4594fe47b8cc0b169ff015ec3b5cc58f01357",
+     "bytes": 180093
     }
    ]
   },
@@ -1461,8 +1461,8 @@
     {
      "path": "experiments/pd-neut-tof_lbco-si-mcstas-mcstas.edi",
      "format": "edi",
-     "sha256": "38c082a578e07f028fbd6a987629063c19a9dcfd0824d759c06c00037f41b57a",
-     "bytes": 76591
+     "sha256": "5aeffc4f398a598ff236ca42693f5a0e7be06b450ca9a1ce9dcd5f03a7b2a58d",
+     "bytes": 76549
     }
    ]
   },
@@ -1490,8 +1490,8 @@
     {
      "path": "experiments/pd-neut-tof_ncaf-wish-wish_1_10.edi",
      "format": "edi",
-     "sha256": "4514f391447a2185292d91abca87735a1223daf23a82427dbb9c7d7499db798e",
-     "bytes": 119600
+     "sha256": "a700d7d2b478890a5a4842fc083988231ce7398ceb507ba0bb153e256a542e88",
+     "bytes": 119526
     }
    ]
   },
@@ -1519,8 +1519,8 @@
     {
      "path": "experiments/pd-neut-tof_ncaf-wish-wish_2_9.edi",
      "format": "edi",
-     "sha256": "d6d02af28ebde0e639fcb73ac84c920736b4a50ff3f4076fc5b7cf723e2868bb",
-     "bytes": 118072
+     "sha256": "cbadd3b53efe0cfcd7af51c35a4b48e51a85c7a7903ebef8d311496abb5f69ee",
+     "bytes": 118006
     }
    ]
   },
@@ -1548,8 +1548,8 @@
     {
      "path": "experiments/pd-neut-tof_ncaf-wish-wish_3_8.edi",
      "format": "edi",
-     "sha256": "178e567fa9fe5bd37a63e3ae26a61fa66ef6d26a4cdb26c6bf04eae651961e02",
-     "bytes": 112471
+     "sha256": "f168dc74cf735a3b8ae99c86efbda715783c56e41e324797faa5c9d29f95f15a",
+     "bytes": 112407
     }
    ]
   },
@@ -1577,8 +1577,8 @@
     {
      "path": "experiments/pd-neut-tof_ncaf-wish-wish_4_7.edi",
      "format": "edi",
-     "sha256": "b060accc88a249c9d9b9ab9f83721b5892f9425c8c64eec18b717f74a5a444e9",
-     "bytes": 114647
+     "sha256": "92fbfca1ff1350b55dd498b5208ee38ac910fbc2b4626f1063403544136d6fa9",
+     "bytes": 114571
     }
    ]
   },
@@ -1606,8 +1606,8 @@
     {
      "path": "experiments/pd-neut-tof_ncaf-wish-wish_5_6.edi",
      "format": "edi",
-     "sha256": "9c01fd07fc198e3d66134fc94391e017c4b4663843982a1ba222d9913bc56399",
-     "bytes": 116735
+     "sha256": "624ae08fbbb1cb5ae07387f312f45f32cb4717d3e6ec76d8b080c5e53f8bc5a4",
+     "bytes": 116661
     }
    ]
   },
@@ -1632,8 +1632,8 @@
     {
      "path": "experiments/pd-neut-tof_si-sepd-sepd.edi",
      "format": "edi",
-     "sha256": "0b4d62e18dc5313073dc3cca68c2812c29ff09b4c3b04b39bdba42995adc4ea9",
-     "bytes": 97333
+     "sha256": "06f5d1c530b6188dfc1482f1013942be5e6813a0d1f24efb12553ccf4b6d093e",
+     "bytes": 97291
     }
    ]
   },
@@ -1660,8 +1660,8 @@
     {
      "path": "experiments/pd-neut-xray-cwl_pbso4-d1a-lab-d1a.edi",
      "format": "edi",
-     "sha256": "c406a2d1db09164700276a9d4f788ae4f313e0b3c8b49a2efdd5b9d99070a87e",
-     "bytes": 72774
+     "sha256": "f751f9dfa6b1d8279a61a33cbfe31c1176f77c25fcaac60190e4b46ddf9fe1e6",
+     "bytes": 72738
     }
    ]
   },
@@ -1688,8 +1688,8 @@
     {
      "path": "experiments/pd-neut-xray-cwl_pbso4-d1a-lab-lab.edi",
      "format": "edi",
-     "sha256": "03612d4eb40d09e8e223e85f2f1f139aa558bca595a93efac4daf6bf08b8525e",
-     "bytes": 153661
+     "sha256": "141a9de45adbf1958a1662f2a048de52728d8b2255692906cb4f94a10294a89f",
+     "bytes": 153633
     }
    ]
   },
@@ -1722,8 +1722,8 @@
     {
      "path": "experiments/pd-xray-cwl_lam7o3-p021-p021.edi",
      "format": "edi",
-     "sha256": "dfcd48810e7d43aea27835c0a31cc0d1efd18124d192552b1bd4606a43d493a9",
-     "bytes": 53377
+     "sha256": "eb3dec0089e2857a3820bf24c606f59d5e1864c952b305c623f6bbea876fc630",
+     "bytes": 53325
     }
    ]
   },
@@ -1754,8 +1754,8 @@
     {
      "path": "experiments/pd-xray-cwl_latp-bm01_scan-bm01.edi",
      "format": "edi",
-     "sha256": "af58e09874522d486a4aab817a6e65e285674fd84b45164110e19d5213709af6",
-     "bytes": 101819
+     "sha256": "e75f1fd81e04102b67a5f59c8509e4048116bcd412ee5a7878a20ea8a0a3fba1",
+     "bytes": 101540
     }
    ]
   },
@@ -1782,8 +1782,8 @@
     {
      "path": "experiments/pd-xray-cwl_pbso4-lab-lab.edi",
      "format": "edi",
-     "sha256": "47b9b557d67b3c452769275c66d2a6475cb5585bde3e6552773690b2572976e2",
-     "bytes": 173357
+     "sha256": "ef37569b1dcd4e9f627b5fbb3d74accdc6c7013e52d237d555cf3886da3f42eb",
+     "bytes": 173329
     }
    ]
   },
@@ -1810,8 +1810,8 @@
     {
      "path": "experiments/sc-neut-cwl_cosio-heidi-heidi_2k5.edi",
      "format": "edi",
-     "sha256": "942c52ea8de5e11cc9cf892de335b19c0a7da4297ba4eb2250255c3ae3d5dfff",
-     "bytes": 33366
+     "sha256": "89df7a0eede534e4bd1128150977d3a5bf56ef0c4e7a920581982e67db0b63a7",
+     "bytes": 33352
     }
    ]
   },
@@ -1838,8 +1838,8 @@
     {
      "path": "experiments/sc-neut-cwl_cosio-heidi-heidi_300k.edi",
      "format": "edi",
-     "sha256": "b6223d3a5a943ccaaafa1971b7b2ddce91f3e43962cbc8447b66fc27018ca965",
-     "bytes": 37796
+     "sha256": "2acb4116d422497c03cd1c931fb9ee0ad51b8121a03d0c57567e27fc8f319b8e",
+     "bytes": 37782
     }
    ]
   },
@@ -1866,8 +1866,8 @@
     {
      "path": "experiments/sc-neut-cwl_cosio-heidi-heidi_55k.edi",
      "format": "edi",
-     "sha256": "bb9ae92f454146e7c6a7baa1dd248c42696acd620a624504a808a9a9854a3102",
-     "bytes": 33223
+     "sha256": "348896f6f1d05548d20e435a5aed5b2530a905e471e2c76932acafe361b2dc6c",
+     "bytes": 33209
     }
    ]
   },
@@ -1894,8 +1894,8 @@
     {
      "path": "experiments/sc-neut-cwl_pr2nio4-5c2-llb_5c2.edi",
      "format": "edi",
-     "sha256": "64054c5c3e0a9e6f39c2939f5a859de01bc7579b464a8ad5045171c79a53f6ad",
-     "bytes": 5557
+     "sha256": "033d452f320cbd74f872dd0c64bf3ceb5d7c1d5775419d5ba916fa63e7e660c3",
+     "bytes": 5555
     }
    ]
   },
@@ -1922,8 +1922,8 @@
     {
      "path": "experiments/sc-neut-cwl_tb2ti2o7-heidi-heidi.edi",
      "format": "edi",
-     "sha256": "d62059565f31efd60e18618d7c3a018c4313f849866cfe59a4ce62df727ac660",
-     "bytes": 6587
+     "sha256": "04fa449b88200fd94c8f2b9931edbc4a8992604d7901cf1593f28fe745dd75bf",
+     "bytes": 6581
     }
    ]
   },
@@ -1980,8 +1980,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_1.edi",
      "format": "edi",
-     "sha256": "2a6e0901b6bf4cbd18970f3a6e9e83e3fd3e81b5d9b8552fdd504c3fe78f1392",
-     "bytes": 8939
+     "sha256": "18f6d6cdccaa0700997566b67fc849f19d74f85194682ce3cf1cb77441d695a5",
+     "bytes": 8931
     }
    ]
   },
@@ -2010,8 +2010,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_2.edi",
      "format": "edi",
-     "sha256": "ca5096ede58af9d5bd78a15226e0d5c96f1fca9748b8776ef0dbc58b21562fae",
-     "bytes": 8379
+     "sha256": "1d4d82c04da4a1859becf5d702ac7028f84b5833de8d117abe9352ea267705be",
+     "bytes": 8377
     }
    ]
   },
@@ -2040,8 +2040,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_3.edi",
      "format": "edi",
-     "sha256": "c3ef76e3488936060121a0f7a5e5bd6ec73aff874503a6d28e66f29f4e874a1b",
-     "bytes": 8825
+     "sha256": "0a25c6ad82a395e713d189d8efb64d2fae3c40c66c9aaf1428de8e9f44748675",
+     "bytes": 8823
     }
    ]
   },
@@ -2070,8 +2070,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_4.edi",
      "format": "edi",
-     "sha256": "b2e318e885e2cd84edc47ebcabf32582fa28cb8603debcd613e04191721bd287",
-     "bytes": 7261
+     "sha256": "33287e9ad6487dfc884d69947acda8a7ffd344c61d3a3c558b56c049b8787203",
+     "bytes": 7259
     }
    ]
   },
@@ -2100,8 +2100,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_5.edi",
      "format": "edi",
-     "sha256": "5f665115817628ded3829783e17e0a6b543b829e466259f32f94d6c0c1322ba2",
-     "bytes": 7619
+     "sha256": "40308538d8a4c6b990bfd33971b5656a49b089916a5a148bca684057691eed7b",
+     "bytes": 7617
     }
    ]
   },
@@ -2130,8 +2130,8 @@
     {
      "path": "experiments/sc-neut-tof_taurine-senju-senju_6.edi",
      "format": "edi",
-     "sha256": "a5b659d99e047542bd17755a6c38e33ade6df963227441b3243f691ab9496a3a",
-     "bytes": 8099
+     "sha256": "8c24921520c970493c880d4ebe19f3d30efa5bd58b5d43a1278b84ebcac60b0b",
+     "bytes": 8097
     }
    ]
   },
@@ -2207,6 +2207,31 @@
      "format": "xye",
      "sha256": "6720dd5d195a98e7396763f7f1b2f19d0fae3b98381619af9d18d1a4674cb7a5",
      "bytes": 33955
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-cwl_cosio-d20_scan-213f-scan",
+   "kind": "data",
+   "name": "Co₂SiO₄ [Pnma.1]",
+   "description": "Cooling scan · 213 patterns from 497.4 to 2.3 K, fitted from 2.3 K up with the magnetic structure",
+   "formula": "Co O Si",
+   "elements": [
+    "Co",
+    "O",
+    "Si"
+   ],
+   "radiation": "neutron",
+   "technique": "powder constant wavelength",
+   "instrument": "D20",
+   "facility": "ILL",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-cwl_cosio-d20_scan-213f-scan.zip",
+     "format": "zip",
+     "sha256": "c88dea7c1a3a447da9b3cd1ecefe216fdd3ad5c4c074baeef64449ec60ee3179",
+     "bytes": 3320372
     }
    ]
   },
@@ -2715,6 +2740,33 @@
    ]
   },
   {
+   "id": "pd-xray-cwl_latp-bm01_scan-scan",
+   "kind": "data",
+   "name": "LATP [R-3c] / AlPO₄ [C222₁] / AlPO₄ [P6₃mc]",
+   "description": "3 phases · 73 synchrotron patterns · Linked displacement parameters",
+   "formula": "Al Li O P Ti",
+   "elements": [
+    "Al",
+    "Li",
+    "O",
+    "P",
+    "Ti"
+   ],
+   "radiation": "xray",
+   "technique": "powder constant wavelength",
+   "instrument": "BM01",
+   "facility": "ESRF",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-xray-cwl_latp-bm01_scan-scan.zip",
+     "format": "zip",
+     "sha256": "4f7b05e4d46a7e076f2265ddec9f310e70e8e8b109eaa69ce39db38f22ef084a",
+     "bytes": 3236625
+    }
+   ]
+  },
+  {
    "id": "pd-xray-cwl_pbso4-lab-lab-data",
    "kind": "data",
    "name": "PbSO₄ [Pnma]",
@@ -2809,6 +2861,218 @@
      "format": "hkl",
      "sha256": "b8db9c18892623bd8df3f064f4767be1dcba671879af0f1d97e065cbb8815371",
      "bytes": 73426
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-cwl_pr2nio4-5c2-llb_5c2-data",
+   "kind": "data",
+   "name": "Pr₂NiO₄ [Fmmm]",
+   "description": "Single crystal · Anisotropic displacements and coordinates from a rough start",
+   "formula": "Ni O Pr",
+   "elements": [
+    "Ni",
+    "O",
+    "Pr"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal constant wavelength",
+   "instrument": "5C2",
+   "facility": "LLB",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-cwl_pr2nio4-5c2-llb_5c2.hkl",
+     "format": "hkl",
+     "sha256": "5e481bcecf96d7a3f6bab6dbaec2a59e5640a31952c773b90c8862489fc624fb",
+     "bytes": 4327
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-cwl_tb2ti2o7-heidi-heidi-data",
+   "kind": "data",
+   "name": "Tb₂Ti₂O₇ [Fd-3m]",
+   "description": "Single crystal · Anisotropic displacements and extinction from a rough start",
+   "formula": "O Tb Ti",
+   "elements": [
+    "O",
+    "Tb",
+    "Ti"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal constant wavelength",
+   "instrument": "HEiDi",
+   "facility": "MLZ (FRM II)",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-cwl_tb2ti2o7-heidi-heidi.hkl",
+     "format": "hkl",
+     "sha256": "1149f74d113f2a3c2886fe78f9b36bf77b216935da50e3bcec8500b18b85dd5a",
+     "bytes": 5111
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_1-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_1.hkl",
+     "format": "hkl",
+     "sha256": "9373e7d74ba7c67ae5818eebf5a1c93b04b761aca7682f1f88d943ff8c1f5d4b",
+     "bytes": 7196
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_2-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_2.hkl",
+     "format": "hkl",
+     "sha256": "28ac2c43089ad145928482bbaafad8c7db09cddb35b99dce72b1ce2b6247497b",
+     "bytes": 6766
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_3-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_3.hkl",
+     "format": "hkl",
+     "sha256": "a0a89d1f46068ad9c4d8c30db9f6d7e71e51a1d912aeee5ae00b09a959775d35",
+     "bytes": 7128
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_4-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_4.hkl",
+     "format": "hkl",
+     "sha256": "c28bf2e39c6684021702fd0ae6a921a2ac6ef7bd878910d4a16fcce79601696d",
+     "bytes": 5784
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_5-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_5.hkl",
+     "format": "hkl",
+     "sha256": "0ebef806e1359762e642d08ff09cd7f17d1a9d731887d8d1fead158690f3dfd1",
+     "bytes": 6058
+    }
+   ]
+  },
+  {
+   "id": "sc-neut-tof_taurine-senju-senju_6-data",
+   "kind": "data",
+   "name": "Taurine [P2₁/c]",
+   "description": "Single crystal · Time of flight · Six datasets · Anisotropic displacements",
+   "formula": "C H N O S",
+   "elements": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+   ],
+   "radiation": "neutron",
+   "technique": "single crystal time-of-flight",
+   "instrument": "SENJU",
+   "facility": "J-PARC",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/sc-neut-tof_taurine-senju-senju_6.hkl",
+     "format": "hkl",
+     "sha256": "e2d4b02c8dfa109201d3b0b769205380a4d20bca635762cee157b418a93e0b51",
+     "bytes": 6466
     }
    ]
   },

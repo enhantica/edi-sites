@@ -16,28 +16,28 @@ _scattering_source.neutron_scattering_length sears1992
 _peak.type tof-jorgensen-von-dreele
 _peak.cutoff_fwhm 8
 _peak.broad_gauss_sigma_0 0
-_peak.broad_gauss_sigma_1 34()
-_peak.broad_gauss_sigma_2 11()
+_peak.broad_gauss_sigma_1 34
+_peak.broad_gauss_sigma_2 11
 _peak.broad_lorentz_gamma_0 0
-_peak.broad_lorentz_gamma_1 1()
+_peak.broad_lorentz_gamma_1 1
 _peak.broad_lorentz_gamma_2 0
-_peak.decay_beta_0 0.0061()
-_peak.decay_beta_1 0.096()
-_peak.rise_alpha_0 0.053()
-_peak.rise_alpha_1 0.031()
+_peak.decay_beta_0 0.0061
+_peak.decay_beta_1 0.096
+_peak.rise_alpha_0 0.053
+_peak.rise_alpha_1 0.031
 _peak.broad_gauss_size 0
 _peak.broad_gauss_strain 0
 _peak.broad_lorentz_size 0
 _peak.broad_lorentz_strain 0
 
 _instrument.setup_twotheta_bank 58.33
-_instrument.calib_d_to_tof_offset 0()
-_instrument.calib_d_to_tof_linear 10389.9()
+_instrument.calib_d_to_tof_offset 0
+_instrument.calib_d_to_tof_linear 10389.9
 _instrument.calib_d_to_tof_quadratic 1.85233
 _instrument.calib_d_to_tof_reciprocal 0
 
 _absorption.type cylinder
-_absorption.abscor1 0()
+_absorption.abscor1 0
 
 loop_
 _excluded_region.id
@@ -49,7 +49,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-ncaf 40()
+ncaf 40
 
 _background.type line-segment
 
@@ -57,28 +57,28 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 7246.0732 220.0()
-2 9265.5195 220.0()
-3 11097.9795 220.0()
-4 13080.0303 220.0()
-5 15473.4473 220.0()
-6 16931.9355 220.0()
-7 18614.8086 220.0()
-8 20596.8594 220.0()
-9 22504.1133 220.0()
-10 26169.0332 220.0()
-11 28113.6875 220.0()
-12 30320.1172 220.0()
-13 34770.3828 220.0()
-14 40155.5703 220.0()
-15 48341.8086 220.0()
-16 58540.0156 220.0()
-17 69139.8672 220.0()
-18 80953.6328 220.0()
-19 94214.6562 220.0()
-20 107677.6328 220.0()
-21 120889.3047 220.0()
-22 132602.0938 220.0()
+1 7246.0732 220.0
+2 9265.5195 220.0
+3 11097.9795 220.0
+4 13080.0303 220.0
+5 15473.4473 220.0
+6 16931.9355 220.0
+7 18614.8086 220.0
+8 20596.8594 220.0
+9 22504.1133 220.0
+10 26169.0332 220.0
+11 28113.6875 220.0
+12 30320.1172 220.0
+13 34770.3828 220.0
+14 40155.5703 220.0
+15 48341.8086 220.0
+16 58540.0156 220.0
+17 69139.8672 220.0
+18 80953.6328 220.0
+19 94214.6562 220.0
+20 107677.6328 220.0
+21 120889.3047 220.0
+22 132602.0938 220.0
 
 loop_
 _data.time_of_flight

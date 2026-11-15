@@ -12,12 +12,12 @@ _instrument.name D20
 _instrument.facility ILL
 
 _peak.type cwl-tch-pseudo-voigt-fcj
-_peak.broad_gauss_u 0.273527()
-_peak.broad_gauss_v -0.589718()
-_peak.broad_gauss_w 0.413007()
+_peak.broad_gauss_u 0.273527
+_peak.broad_gauss_v -0.589718
+_peak.broad_gauss_w 0.413007
 _peak.broad_lorentz_x 0
-_peak.broad_lorentz_y 0.017548()
-_peak.asym_fcj_1 0()
+_peak.broad_lorentz_y 0.017548
+_peak.asym_fcj_1 0
 _peak.asym_fcj_2 0
 _peak.cutoff_fwhm 8
 
@@ -25,7 +25,7 @@ _absorption.type cylinder-hewat
 _absorption.mu_r 0.230
 
 _instrument.setup_wavelength 1.87
-_instrument.calib_twotheta_offset 0.29433()
+_instrument.calib_twotheta_offset 0.29433
 
 loop_
 _excluded_region.id
@@ -38,7 +38,7 @@ _excluded_region.end
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-cosio 1.817226()
+cosio 1.817226
 
 _background.type line-segment
 
@@ -46,22 +46,22 @@ loop_
 _background.id
 _background.position
 _background.intensity
-1 6 603.5()
-2 6.5 585.0()
-3 7 568.5()
-4 7.6 528.8()
-5 12.6 418.9()
-6 13 420.2()
-7 13.5 416.5()
-8 15 416.0542()
-9 25 394.7747()
-10 30 373.1628()
-11 50 406.3737()
-12 70 408.5056()
-13 90 395.9971()
-14 110 345.9223()
-15 130 279.0409()
-16 150 230.6987()
+1 6 603.5
+2 6.5 585.0
+3 7 568.5
+4 7.6 528.8
+5 12.6 418.9
+6 13 420.2
+7 13.5 416.5
+8 15 416.0542
+9 25 394.7747
+10 30 373.1628
+11 50 406.3737
+12 70 408.5056
+13 90 395.9971
+14 110 345.9223
+15 130 279.0409
+16 150 230.6987
 
 loop_
 _data.two_theta

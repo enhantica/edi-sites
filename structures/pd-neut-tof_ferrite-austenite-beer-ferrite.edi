@@ -22,4 +22,4 @@ _atom_site.wyckoff_letter
 _atom_site.occupancy
 _atom_site.adp_iso
 _atom_site.adp_type
-Fe Fe 0 0 0 a 1 0.5() Biso
+Fe Fe 0 0 0 a 1 0.5 Biso

@@ -17,17 +17,17 @@ _calculator.type crysta
 _instrument.setup_wavelength 0.552
 
 _extinction.type larson-anisotropic
-_extinction.coefficient_11 0()
-_extinction.coefficient_22 0()
-_extinction.coefficient_33 0()
-_extinction.coefficient_12 0()
-_extinction.coefficient_13 0()
-_extinction.coefficient_23 0()
+_extinction.coefficient_11 0
+_extinction.coefficient_22 0
+_extinction.coefficient_33 0
+_extinction.coefficient_12 0
+_extinction.coefficient_13 0
+_extinction.coefficient_23 0
 
 loop_
 _linked_structure.structure_id
 _linked_structure.scale
-cosio_55k 10()
+cosio_55k 10
 
 loop_
 _refln.id

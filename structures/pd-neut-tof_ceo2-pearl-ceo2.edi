@@ -21,5 +21,5 @@ _atom_site.wyckoff_letter
 _atom_site.occupancy
 _atom_site.adp_iso
 _atom_site.adp_type
-Ce Ce 0 0 0 a 1 0.5() Biso
-O O 0.25 0.25 0.25 c 1 0.5() Biso
+Ce Ce 0 0 0 a 1 0.5 Biso
+O O 0.25 0.25 0.25 c 1 0.5 Biso
