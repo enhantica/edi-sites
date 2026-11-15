@@ -131,7 +131,7 @@ The current [nuclear neutron](https://easydiffraction.org/physics/diffraction/#e
 | --- | --- | --- |
 | `ladder` | least-squares; selected strategies have bound restrictions | [Physics](https://easydiffraction.org/physics/minimization/#eq-lm) |
 | `fast_descent` | least-squares; selected strategies have bound restrictions | [Physics](https://easydiffraction.org/physics/minimization/#eq-lm) |
-| `multistart_prune` | least-squares; selected strategies have bound restrictions | [Physics](https://easydiffraction.org/physics/minimization/#eq-lm) |
+| `fast_descent_and_ladder` | least-squares; selected strategies have bound restrictions | [Physics](https://easydiffraction.org/physics/minimization/#eq-lm) |
 
 ## <span class="ed-reference-icon" data-reference-category="preferred-orientation" aria-hidden="true">&#61774;</span> Preferred orientation {#preferred-orientation}
 
