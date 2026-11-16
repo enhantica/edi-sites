@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_lbco-si-mcstas/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -11,33 +11,99 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_l
 
 Fit two phases, La₀.₅Ba₀.₅CoO₃ and silicon, to a time-of-flight pattern simulated with McStas.
 
-The project is the catalogue case `pd-neut-tof_lbco-si-mcstas`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `pd-neut-tof_lbco-si-mcstas` step by step: the same project the
+command line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_lbco-si-mcstas', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-tof_lbco-si-mcstas')
+```
+
+## Define the structures
+
+Load the two structures from EasyDiffraction's collection. Each CIF gives its space group, cell
+and atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_lbco-si-mcstas-lbco', destination='data')
+project.structures.add_from_cif_path(path)
+path = edi.download_data('pd-neut-tof_lbco-si-mcstas-si', destination='data')
+project.structures.add_from_cif_path(path)
 lbco = project.structures['lbco']
 si = project.structures['si']
-experiment = project.experiments['mcstas']
 ```
 
 ```text
-Data 'pd-neut-tof_lbco-si-mcstas' is at data/pd-neut-tof_lbco-si-mcstas-8ef16c898212/pd-neut-tof_lbco-si-mcstas
+Data 'pd-neut-tof_lbco-si-mcstas-lbco' is at data/pd-neut-tof_lbco-si-mcstas-lbco.edi
+Data 'pd-neut-tof_lbco-si-mcstas-si' is at data/pd-neut-tof_lbco-si-mcstas-si.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('lbco')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-tof_lbco-si-mcstas-mcstas-data', destination='data')
+project.experiments.add_from_data_path(
+    name='mcstas',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['mcstas']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'tof-jorgensen'
+experiment.instrument.name = 'McStas'
+experiment.peak.broad_gauss_sigma_0 = 50000
+experiment.peak.broad_gauss_sigma_1 = -50000
+experiment.peak.broad_gauss_sigma_2 = 20000
+experiment.peak.rise_alpha_1 = 0.01
+experiment.peak.decay_beta_0 = 0.006
+experiment.peak.decay_beta_1 = 0.004
+experiment.peak.cutoff_fwhm = 30
+experiment.instrument.setup_twotheta_bank = 94.90931761529106
+experiment.instrument.calib_d_to_tof_linear = 58724.76869981215
+experiment.excluded_regions.create(start=0, end=40000)
+experiment.excluded_regions.create(start=108000, end=200000)
+experiment.linked_structures.create(structure_id='lbco', scale=4)
+experiment.linked_structures.create(structure_id='si', scale=0.2)
+experiment.background.create(position=45000, intensity=0.23)
+experiment.background.create(position=50000, intensity=0.23)
+experiment.background.create(position=55000, intensity=0.23)
+experiment.background.create(position=65000, intensity=0.23)
+experiment.background.create(position=70000, intensity=0.23)
+experiment.background.create(position=75000, intensity=0.23)
+experiment.background.create(position=80000, intensity=0.23)
+experiment.background.create(position=85000, intensity=0.23)
+experiment.background.create(position=90000, intensity=0.23)
+experiment.background.create(position=95000, intensity=0.23)
+experiment.background.create(position=100000, intensity=0.23)
+experiment.background.create(position=105000, intensity=0.23)
+experiment.background.create(position=110000, intensity=0.23)
+```
+
+```text
+Data 'pd-neut-tof_lbco-si-mcstas-mcstas-data' is at data/pd-neut-tof_lbco-si-mcstas-mcstas.xye
 ```
 
 ```python
@@ -45,7 +111,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -69,7 +135,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/2.html"></iframe>
+<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/3.html"></iframe>
 </div>
 
 ```python
@@ -81,13 +147,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        50.18       398.16
-      1      0.356     23.12        84.52   78.8% ↓
-      2      0.407     23.12        84.52   
-  done · converged · 2 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.43 s
+      1      0.437     23.12        84.52   78.8% ↓
+      2      0.510     23.12        84.52   
+  done · converged · 2 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.55 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/4.html"></iframe>
 </div>
 
 ```python
@@ -95,7 +161,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/5.html"></iframe>
 </div>
 
 ### Background
@@ -114,12 +180,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        23.12        86.31
-      1      0.379     21.09        71.82   16.8% ↓
-  done · converged · 1 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.41 s
+      1      0.492     21.09        71.82   16.8% ↓
+  done · converged · 1 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.53 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/6.html"></iframe>
 </div>
 
 ```python
@@ -127,7 +193,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/7.html"></iframe>
 </div>
 
 ### Peak widths
@@ -147,19 +213,19 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        21.09        72.17
-      1      0.397     21.02        71.67   0.7% ↓
-      2      0.446     21.00        71.52   0.2% ↓
-      3      0.495     20.95        71.22   0.4% ↓
-      4      0.543     20.90        70.86   0.5% ↓
-      5      0.591     20.88        70.73   0.2% ↓
-      6      0.638     20.88        70.73   
-      7      0.685     20.88        70.73   
-      8      0.741     20.88        70.73   
-  done · converged · 8 iters · reduced χ² 70.73 · Rwp 20.88 % · 0.77 s
+      1      0.512     21.02        71.67   0.7% ↓
+      2      0.574     21.00        71.52   0.2% ↓
+      3      0.636     20.95        71.22   0.4% ↓
+      4      0.698     20.90        70.86   0.5% ↓
+      5      0.758     20.88        70.73   0.2% ↓
+      6      0.819     20.88        70.73   
+      7      0.879     20.88        70.73   
+      8      0.955     20.88        70.73   
+  done · converged · 8 iters · reduced χ² 70.73 · Rwp 20.88 % · 0.99 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/8.html"></iframe>
 </div>
 
 ```python
@@ -167,7 +233,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/9.html"></iframe>
 </div>
 
 ### Rise and decay
@@ -187,14 +253,14 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.88        71.07
-      1      0.062     20.86        70.92   0.2% ↓
-      2      0.069     20.86        70.91   
-      3      0.084     20.86        70.91   
-  done · converged · 3 iters · reduced χ² 70.91 · Rwp 20.86 % · 0.09 s
+      1      0.085     20.86        70.92   0.2% ↓
+      2      0.095     20.86        70.91   
+      3      0.116     20.86        70.91   
+  done · converged · 3 iters · reduced χ² 70.91 · Rwp 20.86 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/10.html"></iframe>
 </div>
 
 ```python
@@ -202,7 +268,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/11.html"></iframe>
 </div>
 
 ### Displacements
@@ -223,20 +289,20 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.86        71.15
-      1      0.064      5.50         4.94   93.1% ↓
-      2      0.072      5.38         4.74   4.0% ↓
-      3      0.079      5.27         4.54   4.3% ↓
-      4      0.087      5.13         4.30   5.2% ↓
-      5      0.094      5.06         4.18   2.8% ↓
-      6      0.102      5.04         4.16   0.6% ↓
-      7      0.110      5.04         4.16   
-      8      0.120      5.04         4.16   
-      9      0.139      5.04         4.16   
-  done · converged · 9 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.15 s
+      1      0.090      5.50         4.94   93.1% ↓
+      2      0.100      5.38         4.74   4.0% ↓
+      3      0.110      5.27         4.54   4.3% ↓
+      4      0.121      5.13         4.30   5.2% ↓
+      5      0.133      5.06         4.18   2.8% ↓
+      6      0.144      5.04         4.16   0.6% ↓
+      7      0.155      5.04         4.16   
+      8      0.166      5.04         4.16   
+      9      0.190      5.04         4.16   
+  done · converged · 9 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.20 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/12.html"></iframe>
 </div>
 
 ```python
@@ -244,7 +310,7 @@ project.display.pattern('mcstas')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/13.html"></iframe>
 </div>
 
 ```python
@@ -252,7 +318,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/13.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/14.html"></iframe>
 </div>
 
 ```python
@@ -260,7 +326,7 @@ project.display.structure('lbco')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/14.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/15.html"></iframe>
 </div>
 
 ```python
@@ -268,17 +334,28 @@ project.display.structure('si')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/15.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_lbco-si-mcstas/16.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_lbco-si-mcstas.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_lbco-si-mcstas.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_lbco-si-mcstas')
-project.report.save_html('pd-neut-tof_lbco-si-mcstas.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_lbco-si-mcstas'
-Saving report to 'pd-neut-tof_lbco-si-mcstas.html'
 ```

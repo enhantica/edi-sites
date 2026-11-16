@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-tof_taurine-senju/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-tof_taurine-senju.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,50 +12,238 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-tof_t
 Fit the amino-sulfonic acid taurine to six time-of-flight neutron single-crystal datasets from
 SENJU at J-PARC together, each reflection measured at its own wavelength.
 
-The project is the catalogue case `sc-neut-tof_taurine-senju`, the one the command line and the
-app's Examples open. Banks 2 to 6 share bank 1's three extinction terms, from the start.
+It builds the catalogue case `sc-neut-tof_taurine-senju` step by step: the same project the
+command line fits and the app's Examples open. Banks 2 to 6 share bank 1's three extinction
+terms.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them. The joint
+fitting mode fits every experiment at once, against one set of structures.
 
 ```python
-project_path = edi.download_data('sc-neut-tof_taurine-senju', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='sc-neut-tof_taurine-senju')
+project.analysis.fitting_mode = 'joint'
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('sc-neut-tof_taurine-senju-taurine', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['taurine']
-senju_1 = project.experiments['senju_1']
-senju_2 = project.experiments['senju_2']
-senju_3 = project.experiments['senju_3']
-senju_4 = project.experiments['senju_4']
-senju_5 = project.experiments['senju_5']
-senju_6 = project.experiments['senju_6']
-project.display.constraints()
 ```
 
 ```text
-Data 'sc-neut-tof_taurine-senju' is at data/sc-neut-tof_taurine-senju-e6658237e2b5/sc-neut-tof_taurine-senju
+Data 'sc-neut-tof_taurine-senju-taurine' is at data/sc-neut-tof_taurine-senju-taurine.edi
+```
+
+```python
+project.display.structure('taurine')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 1020px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/1.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/1.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+## Define the experiments
+
+Create the six experiments from their measured data in EasyDiffraction's collection, then
+describe each one's instrument, peak profile, background and the structures it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_1-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_1',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_1 = project.experiments['senju_1']
+senju_1.neutron_scattering_length = 'sears1992'
+senju_1.extinction.type = 'larson-anisotropic'
+senju_1.instrument.name = 'SENJU'
+senju_1.instrument.facility = 'J-PARC'
+senju_1.linked_structures.create(structure_id='taurine', scale=2.762)
 ```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_1-data' is at data/sc-neut-tof_taurine-senju-senju_1.hkl
+```
+
+```python
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_2-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_2',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_2 = project.experiments['senju_2']
+senju_2.neutron_scattering_length = 'sears1992'
+senju_2.extinction.type = 'larson-anisotropic'
+senju_2.instrument.name = 'SENJU'
+senju_2.instrument.facility = 'J-PARC'
+senju_2.linked_structures.create(structure_id='taurine', scale=3.829)
+```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_2-data' is at data/sc-neut-tof_taurine-senju-senju_2.hkl
+```
+
+```python
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_3-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_3',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_3 = project.experiments['senju_3']
+senju_3.neutron_scattering_length = 'sears1992'
+senju_3.extinction.type = 'larson-anisotropic'
+senju_3.instrument.name = 'SENJU'
+senju_3.instrument.facility = 'J-PARC'
+senju_3.linked_structures.create(structure_id='taurine', scale=3.211)
+```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_3-data' is at data/sc-neut-tof_taurine-senju-senju_3.hkl
+```
+
+```python
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_4-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_4',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_4 = project.experiments['senju_4']
+senju_4.neutron_scattering_length = 'sears1992'
+senju_4.extinction.type = 'larson-anisotropic'
+senju_4.instrument.name = 'SENJU'
+senju_4.instrument.facility = 'J-PARC'
+senju_4.linked_structures.create(structure_id='taurine', scale=2.809)
+```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_4-data' is at data/sc-neut-tof_taurine-senju-senju_4.hkl
+```
+
+```python
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_5-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_5',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_5 = project.experiments['senju_5']
+senju_5.neutron_scattering_length = 'sears1992'
+senju_5.extinction.type = 'larson-anisotropic'
+senju_5.instrument.name = 'SENJU'
+senju_5.instrument.facility = 'J-PARC'
+senju_5.linked_structures.create(structure_id='taurine', scale=2.739)
+```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_5-data' is at data/sc-neut-tof_taurine-senju-senju_5.hkl
+```
+
+```python
+data_path = edi.download_data('sc-neut-tof_taurine-senju-senju_6-data', destination='data')
+project.experiments.add_from_data_path(
+    name='senju_6',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+senju_6 = project.experiments['senju_6']
+senju_6.neutron_scattering_length = 'sears1992'
+senju_6.extinction.type = 'larson-anisotropic'
+senju_6.instrument.name = 'SENJU'
+senju_6.instrument.facility = 'J-PARC'
+senju_6.linked_structures.create(structure_id='taurine', scale=2.936)
+```
+
+```text
+Data 'sc-neut-tof_taurine-senju-senju_6-data' is at data/sc-neut-tof_taurine-senju-senju_6.hkl
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='x11_1', param=senju_1.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_1', param=senju_1.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_1', param=senju_1.extinction.coefficient_33)
+project.analysis.aliases.create(id='x11_2', param=senju_2.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_2', param=senju_2.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_2', param=senju_2.extinction.coefficient_33)
+project.analysis.aliases.create(id='x11_3', param=senju_3.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_3', param=senju_3.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_3', param=senju_3.extinction.coefficient_33)
+project.analysis.aliases.create(id='x11_4', param=senju_4.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_4', param=senju_4.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_4', param=senju_4.extinction.coefficient_33)
+project.analysis.aliases.create(id='x11_5', param=senju_5.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_5', param=senju_5.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_5', param=senju_5.extinction.coefficient_33)
+project.analysis.aliases.create(id='x11_6', param=senju_6.extinction.coefficient_11)
+project.analysis.aliases.create(id='x22_6', param=senju_6.extinction.coefficient_22)
+project.analysis.aliases.create(id='x33_6', param=senju_6.extinction.coefficient_33)
+project.analysis.constraints.create(id='x11_2', expression='x11_2 = x11_1')
+project.analysis.constraints.create(id='x22_2', expression='x22_2 = x22_1')
+project.analysis.constraints.create(id='x33_2', expression='x33_2 = x33_1')
+project.analysis.constraints.create(id='x11_3', expression='x11_3 = x11_1')
+project.analysis.constraints.create(id='x22_3', expression='x22_3 = x22_1')
+project.analysis.constraints.create(id='x33_3', expression='x33_3 = x33_1')
+project.analysis.constraints.create(id='x11_4', expression='x11_4 = x11_1')
+project.analysis.constraints.create(id='x22_4', expression='x22_4 = x22_1')
+project.analysis.constraints.create(id='x33_4', expression='x33_4 = x33_1')
+project.analysis.constraints.create(id='x11_5', expression='x11_5 = x11_1')
+project.analysis.constraints.create(id='x22_5', expression='x22_5 = x22_1')
+project.analysis.constraints.create(id='x33_5', expression='x33_5 = x33_1')
+project.analysis.constraints.create(id='x11_6', expression='x11_6 = x11_1')
+project.analysis.constraints.create(id='x22_6', expression='x22_6 = x22_1')
+project.analysis.constraints.create(id='x33_6', expression='x33_6 = x33_1')
+```
+
+```python
+project.display.constraints()
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 1020px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/2.html"></iframe>
+</div>
 
 ```python
 project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -80,7 +268,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/3.html"></iframe>
+<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/4.html"></iframe>
 </div>
 
 ```python
@@ -89,15 +277,15 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 6 free
+edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 1540 pts fitted / 1540 loaded, 6 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
-                       179.47      5665.97
-      1      0.009      51.73       470.73   91.7% ↓
-  done · converged · 1 iters · reduced χ² 470.73 · wR(F²) 51.73 % · 0.01 s
+                       603.89     39397.22
+      1      0.017      74.43       598.54   98.5% ↓
+  done · converged · 1 iters · reduced χ² 598.54 · wR(F²) 74.43 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/5.html"></iframe>
 </div>
 
 ```python
@@ -105,7 +293,7 @@ project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/6.html"></iframe>
 </div>
 
 ### Isotropic displacements
@@ -123,17 +311,17 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 20 free
+edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 1540 pts fitted / 1540 loaded, 20 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
-                        51.73       477.84
-      1      0.014      26.94       129.57   72.9% ↓
-      2      0.016      26.94       129.56   
-      3      0.018      26.94       129.56   
-  done · converged · 3 iters · reduced χ² 129.56 · wR(F²) 26.94 % · 0.02 s
+                        74.43       604.05
+      1      0.023      58.82       377.23   37.6% ↓
+      2      0.026      58.82       377.22   
+      3      0.030      58.82       377.22   
+  done · converged · 3 iters · reduced χ² 377.22 · wR(F²) 58.82 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/6.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/7.html"></iframe>
 </div>
 
 ```python
@@ -141,7 +329,7 @@ project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/8.html"></iframe>
 </div>
 
 ### Extinction
@@ -160,16 +348,16 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 23 free
+edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 1540 pts fitted / 1540 loaded, 23 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
-                        26.94       129.98
-      1      0.019      20.26        73.55   43.4% ↓
-      2      0.022      20.26        73.55   
-  done · converged · 2 iters · reduced χ² 73.55 · wR(F²) 20.26 % · 0.03 s
+                        58.82       377.97
+      1      0.024      56.89       353.56   6.5% ↓
+      2      0.030      56.89       353.56   
+  done · converged · 2 iters · reduced χ² 353.56 · wR(F²) 56.89 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/8.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/9.html"></iframe>
 </div>
 
 ```python
@@ -177,7 +365,7 @@ project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/10.html"></iframe>
 </div>
 
 ### Positions
@@ -197,16 +385,27 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 65 free
+edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 1540 pts fitted / 1540 loaded, 65 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
-                        20.26        77.05
-      1      0.022      17.04        54.49   29.3% ↓
-      2      0.026      17.04        54.49   
-  done · converged · 2 iters · reduced χ² 54.49 · wR(F²) 17.04 % · 0.03 s
+                        56.89       363.63
+      1      0.046      55.50       346.03   4.8% ↓
+      2      0.053      54.60       334.99   3.2% ↓
+      3      0.060      48.09       259.81   22.4% ↓
+      4      0.075      41.94       197.62   23.9% ↓
+      5      0.084      34.60       134.50   31.9% ↓
+      6      0.093      32.18       116.35   13.5% ↓
+      7      0.102      31.76       113.36   2.6% ↓
+      8      0.111      31.67       112.70   0.6% ↓
+      9      0.120      31.65       112.56   0.1% ↓
+     10      0.129      31.65       112.53   
+     11      0.138      31.65       112.52   
+     12      0.147      31.65       112.52   
+     13      0.157      31.65       112.52   
+  done · converged · 13 iters · reduced χ² 112.52 · wR(F²) 31.65 % · 0.17 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/11.html"></iframe>
 </div>
 
 ```python
@@ -214,7 +413,7 @@ project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/12.html"></iframe>
 </div>
 
 ### Anisotropic displacements
@@ -234,33 +433,33 @@ for tensor in structure.atom_site_aniso:
 ```
 
 ```text
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.S1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.S1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.O3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.N1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.N1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H3.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C1.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H11.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H11.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H12.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H12.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.C2.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H21.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H21.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
-/tmp/ipykernel_4198/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H22.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
+/tmp/ipykernel_4263/4011545669.py:4: UserWarning: crysta.domain.dependent_free_ignored: parameter 'taurine.atom_site.H22.adp_iso' is constrained by 'the equivalent isotropic value of its beta tensor'; free = True is ignored and it stays dependent (cannot be fitted: set by a constraint)
   tensor.adp_11.free = True
 ```
 
@@ -270,16 +469,20 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 947 pts fitted / 1540 loaded, 135 free
+edi fit: joint project sc-neut-tof_taurine-senju, 6 banks (senju_1, senju_2, senju_3, senju_4, senju_5, senju_6), 1540 pts fitted / 1540 loaded, 135 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
-                        17.04        59.19
-      1      0.086      12.19        30.27   48.9% ↓
-      2      0.096      12.19        30.27   
-  done · converged · 2 iters · reduced χ² 30.27 · wR(F²) 12.19 % · 0.12 s
+                        31.65       118.12
+      1      0.115      20.73        50.70   57.1% ↓
+      2      0.133      20.69        50.47   0.5% ↓
+      3      0.150      20.68        50.43   0.1% ↓
+      4      0.166      20.68        50.42   
+      5      0.182      20.68        50.42   
+      6      0.203      20.67        50.42   
+  done · converged · 6 iters · reduced χ² 50.42 · wR(F²) 20.67 % · 0.24 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/12.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/13.html"></iframe>
 </div>
 
 ```python
@@ -287,7 +490,7 @@ project.display.pattern('senju_1')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/14.html"></iframe>
 </div>
 
 ```python
@@ -295,7 +498,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/14.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/15.html"></iframe>
 </div>
 
 ```python
@@ -303,17 +506,28 @@ project.display.structure('taurine')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/15.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-tof_taurine-senju/16.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('sc-neut-tof_taurine-senju.html')
+```
+
+```text
+Saving report to 'sc-neut-tof_taurine-senju.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('sc-neut-tof_taurine-senju')
-project.report.save_html('sc-neut-tof_taurine-senju.html')
 ```
 
 ```text
 Saving project to 'sc-neut-tof_taurine-senju'
-Saving report to 'sc-neut-tof_taurine-senju.html'
 ```

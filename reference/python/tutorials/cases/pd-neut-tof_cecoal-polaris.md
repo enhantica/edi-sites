@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_cecoal-polaris/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_cecoal-polaris.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_cecoal-polaris.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_cecoal-polaris.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,32 +12,93 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_c
 Fit CeCoAl₃ to time-of-flight neutron powder data from POLARIS at ISIS: structure and profile,
 with a 24-term Chebyshev background.
 
-The project is the catalogue case `pd-neut-tof_cecoal-polaris`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `pd-neut-tof_cecoal-polaris` step by step: the same project the
+command line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_cecoal-polaris', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-tof_cecoal-polaris')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_cecoal-polaris-cecoal', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['cecoal']
-experiment = project.experiments['polaris']
 ```
 
 ```text
-Data 'pd-neut-tof_cecoal-polaris' is at data/pd-neut-tof_cecoal-polaris-6a9fe6f6a3d7/pd-neut-tof_cecoal-polaris
+Data 'pd-neut-tof_cecoal-polaris-cecoal' is at data/pd-neut-tof_cecoal-polaris-cecoal.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('cecoal')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-tof_cecoal-polaris-polaris-data', destination='data')
+project.experiments.add_from_data_path(
+    name='polaris',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['polaris']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'tof-jorgensen-von-dreele'
+experiment.absorption.type = 'cylinder'
+experiment.background.type = 'chebyshev'
+experiment.instrument.name = 'POLARIS'
+experiment.instrument.facility = 'ISIS'
+experiment.peak.cutoff_fwhm = 4.2
+experiment.peak.rise_alpha_1 = 0.2971
+experiment.peak.decay_beta_0 = 0.043085
+experiment.peak.decay_beta_1 = 0.002867
+experiment.peak.broad_gauss_sigma_1 = 40
+experiment.peak.broad_lorentz_gamma_1 = 5
+experiment.instrument.setup_twotheta_bank = 145.0
+experiment.instrument.calib_d_to_tof_linear = 6176.03076
+experiment.instrument.calib_d_to_tof_quadratic = -1.92194
+experiment.background_x_min = 3001.5891
+experiment.background_x_max = 19004.6582
+experiment.excluded_regions.create(start=2000.1, end=3000.0)
+experiment.excluded_regions.create(start=19000.0, end=20000.0)
+experiment.linked_structures.create(structure_id='cecoal', scale=20000)
+terms = []
+for coef in (25000.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0):
+    term = edi.PolynomialTerm()
+    term.order = len(terms)
+    term.coef = coef
+    terms.append(term)
+experiment.background_terms = terms
+```
+
+```text
+Data 'pd-neut-tof_cecoal-polaris-polaris-data' is at data/pd-neut-tof_cecoal-polaris-polaris.xye
 ```
 
 ```python
@@ -45,7 +106,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -71,7 +132,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/2.html"></iframe>
+<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/3.html"></iframe>
 </div>
 
 ```python
@@ -83,12 +144,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 6 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.38        84.57
-      1      0.395      4.13        11.13   86.8% ↓
-  done · converged · 1 iters · reduced χ² 11.13 · Rwp 4.13 % · 0.45 s
+      1      0.484      4.13        11.13   86.8% ↓
+      2      0.595      4.13        11.13   
+  done · converged · 2 iters · reduced χ² 11.13 · Rwp 4.13 % · 0.67 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/4.html"></iframe>
 </div>
 
 ```python
@@ -96,7 +158,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/5.html"></iframe>
 </div>
 
 ### Background
@@ -118,12 +180,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.13        11.17
-      1      0.405      2.31         3.51   68.5% ↓
-  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.46 s
+      1      0.580      2.31         3.51   68.5% ↓
+  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.65 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/6.html"></iframe>
 </div>
 
 ```python
@@ -131,7 +193,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/7.html"></iframe>
 </div>
 
 ### Peak widths
@@ -150,12 +212,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.31         3.51
-      1      0.445      2.31         3.51   0.2% ↓
-  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.50 s
+      1      0.588      2.31         3.51   0.2% ↓
+  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.66 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/8.html"></iframe>
 </div>
 
 ```python
@@ -163,7 +225,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/9.html"></iframe>
 </div>
 
 ### Atom positions
@@ -185,12 +247,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.31         3.51
-      1      0.521      2.14         3.00   14.5% ↓
-  done · converged · 1 iters · reduced χ² 3.00 · Rwp 2.14 % · 0.58 s
+      1      0.549      2.14         3.00   14.5% ↓
+      2      0.665      2.14         3.00   
+  done · converged · 2 iters · reduced χ² 3.00 · Rwp 2.14 % · 0.74 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/10.html"></iframe>
 </div>
 
 ```python
@@ -198,7 +261,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/11.html"></iframe>
 </div>
 
 ### Displacements
@@ -217,12 +280,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 30 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.14         3.01
-      1      0.450      2.10         2.89   3.7% ↓
-  done · converged · 1 iters · reduced χ² 2.89 · Rwp 2.10 % · 0.50 s
+      1      0.602      2.10         2.89   3.7% ↓
+  done · converged · 1 iters · reduced χ² 2.89 · Rwp 2.10 % · 0.68 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/12.html"></iframe>
 </div>
 
 ```python
@@ -230,7 +293,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/13.html"></iframe>
 </div>
 
 ### Absorption
@@ -251,13 +314,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 31 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.10         2.90
-      1      0.408      2.08         2.86   1.3% ↓
-      2      0.494      2.08         2.86   
-  done · converged · 2 iters · reduced χ² 2.86 · Rwp 2.08 % · 0.55 s
+      1      0.549      2.08         2.86   1.3% ↓
+      2      0.666      2.08         2.86   
+  done · converged · 2 iters · reduced χ² 2.86 · Rwp 2.08 % · 0.75 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/13.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/14.html"></iframe>
 </div>
 
 ```python
@@ -265,7 +328,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/15.html"></iframe>
 </div>
 
 ### Al3 occupancy
@@ -285,12 +348,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 32 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.08         2.86
-      1      0.490      2.08         2.85   0.2% ↓
-  done · converged · 1 iters · reduced χ² 2.85 · Rwp 2.08 % · 0.55 s
+      1      0.614      2.08         2.85   0.2% ↓
+  done · converged · 1 iters · reduced χ² 2.85 · Rwp 2.08 % · 0.69 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/15.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/16.html"></iframe>
 </div>
 
 ```python
@@ -298,7 +361,7 @@ project.display.pattern('polaris')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/16.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/17.html"></iframe>
 </div>
 
 ```python
@@ -306,7 +369,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/17.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/18.html"></iframe>
 </div>
 
 ```python
@@ -314,17 +377,28 @@ project.display.structure('cecoal')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/18.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_cecoal-polaris/19.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_cecoal-polaris.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_cecoal-polaris.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_cecoal-polaris')
-project.report.save_html('pd-neut-tof_cecoal-polaris.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_cecoal-polaris'
-Saving report to 'pd-neut-tof_cecoal-polaris.html'
 ```

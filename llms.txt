@@ -110,6 +110,7 @@ This export supplies reference content; it does not implement a chat integration
 - [Single-crystal fit: taurine, SENJU](https://easydiffraction.org/reference/application/tutorials/cases/sc-neut-tof_taurine-senju.md)
 - [Application tutorials](https://easydiffraction.org/reference/application/tutorials/index.md)
 - [Application layout](https://easydiffraction.org/reference/application/workspace.md)
+- [Assistant prompt trials](https://easydiffraction.org/reference/assistant-prompt-trials.md)
 - [What's new](https://easydiffraction.org/reference/changelog.md)
 - [Analysis workflow](https://easydiffraction.org/reference/cli/analysis-workflow/index.md)
 - [:fa5-calculator: Repeat an analysis](https://easydiffraction.org/reference/cli/batch.md)

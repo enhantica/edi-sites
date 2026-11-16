@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lmo-echidna/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -13,46 +13,129 @@ Fit the layered oxide LiNiO₂ to constant-wavelength neutron powder data from E
 Li and Ni mix between two sites, held to full occupancy by constraints, and the profile has
 Finger-Cox-Jephcoat asymmetry.
 
-The project is the catalogue case `pd-neut-cwl_lmo-echidna`, the one the command line and the
-app's Examples open. Li and Ni share their sites through five relations (displacements and
-occupancies), kept from the start.
+It builds the catalogue case `pd-neut-cwl_lmo-echidna` step by step: the same project the command
+line fits and the app's Examples open. Li and Ni share their sites through five relations
+(displacements and occupancies).
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-cwl_lmo-echidna', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-cwl_lmo-echidna')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-cwl_lmo-echidna-lmo', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['lmo']
-experiment = project.experiments['echidna']
-project.display.constraints()
 ```
 
 ```text
-Data 'pd-neut-cwl_lmo-echidna' is at data/pd-neut-cwl_lmo-echidna-5c7381684463/pd-neut-cwl_lmo-echidna
+Data 'pd-neut-cwl_lmo-echidna-lmo' is at data/pd-neut-cwl_lmo-echidna-lmo.edi
+```
+
+```python
+project.display.structure('lmo')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 460px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/1.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/1.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-cwl_lmo-echidna-echidna-data', destination='data')
+project.experiments.add_from_data_path(
+    name='echidna',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['echidna']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'cwl-tch-pseudo-voigt-fcj'
+experiment.absorption.type = 'cylinder-hewat'
+experiment.instrument.name = 'ECHIDNA'
+experiment.instrument.facility = 'ANSTO'
+experiment.peak.broad_gauss_u = 0.1
+experiment.peak.broad_gauss_v = -0.3
+experiment.peak.broad_gauss_w = 0.4
+experiment.peak.broad_lorentz_y = 0.1
+experiment.peak.asym_fcj_1 = 0.08
+experiment.peak.asym_fcj_2 = 0.08
+experiment.peak.cutoff_fwhm = 12
+experiment.instrument.setup_wavelength = 1.6215
+experiment.instrument.calib_sample_displacement = 0
+experiment.instrument.calib_sample_transparency = 0
+experiment.absorption.mu_r = 0.3
+experiment.excluded_regions.create(start=0, end=12)
+experiment.excluded_regions.create(start=162, end=180)
+experiment.linked_structures.create(structure_id='lmo', scale=10)
+experiment.background.create(position=12, intensity=550.0)
+experiment.background.create(position=30, intensity=550.0)
+experiment.background.create(position=50, intensity=550.0)
+experiment.background.create(position=70, intensity=550.0)
+experiment.background.create(position=90, intensity=550.0)
+experiment.background.create(position=110, intensity=550.0)
+experiment.background.create(position=130, intensity=550.0)
+experiment.background.create(position=150, intensity=550.0)
+experiment.background.create(position=162, intensity=550.0)
 ```
+
+```text
+Data 'pd-neut-cwl_lmo-echidna-echidna-data' is at data/pd-neut-cwl_lmo-echidna-echidna.xye
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='biso_Li1', param=structure.atom_sites['Li1'].adp_iso)
+project.analysis.aliases.create(id='biso_Li2', param=structure.atom_sites['Li2'].adp_iso)
+project.analysis.aliases.create(id='biso_Ni1', param=structure.atom_sites['Ni1'].adp_iso)
+project.analysis.aliases.create(id='biso_Ni2', param=structure.atom_sites['Ni2'].adp_iso)
+project.analysis.aliases.create(id='occ_Li1', param=structure.atom_sites['Li1'].occupancy)
+project.analysis.aliases.create(id='occ_Li2', param=structure.atom_sites['Li2'].occupancy)
+project.analysis.aliases.create(id='occ_Ni1', param=structure.atom_sites['Ni1'].occupancy)
+project.analysis.aliases.create(id='occ_Ni2', param=structure.atom_sites['Ni2'].occupancy)
+project.analysis.constraints.create(id='1', expression='biso_Ni1 = biso_Li1')
+project.analysis.constraints.create(id='2', expression='biso_Li2 = biso_Ni2')
+project.analysis.constraints.create(id='3', expression='occ_Ni1 = 1 - occ_Li1')
+project.analysis.constraints.create(id='4', expression='occ_Li2 = 1 - occ_Li1')
+project.analysis.constraints.create(id='5', expression='occ_Ni2 = occ_Li1')
+```
+
+```python
+project.display.constraints()
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 460px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/2.html"></iframe>
+</div>
 
 ```python
 project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -76,7 +159,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/3.html"></iframe>
+<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/4.html"></iframe>
 </div>
 
 ```python
@@ -88,13 +171,13 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        29.38        81.99
-      1      0.008      8.05         6.16   92.5% ↓
-      2      0.010      8.05         6.16   
-  done · converged · 2 iters · reduced χ² 6.16 · Rwp 8.05 % · 0.01 s
+      1      0.014      8.05         6.16   92.5% ↓
+      2      0.017      8.05         6.16   
+  done · converged · 2 iters · reduced χ² 6.16 · Rwp 8.05 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/5.html"></iframe>
 </div>
 
 ```python
@@ -102,7 +185,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/6.html"></iframe>
 </div>
 
 ### Sample displacement and transparency
@@ -124,12 +207,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 6 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.05         6.16
-      1      0.009      8.04         6.14   0.3% ↓
-  done · converged · 1 iters · reduced χ² 6.14 · Rwp 8.04 % · 0.01 s
+      1      0.018      8.04         6.14   0.3% ↓
+  done · converged · 1 iters · reduced χ² 6.14 · Rwp 8.04 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/6.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/7.html"></iframe>
 </div>
 
 ```python
@@ -137,7 +220,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/8.html"></iframe>
 </div>
 
 ### Background
@@ -158,12 +241,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.04         6.16
-      1      0.011      6.46         3.98   35.4% ↓
-  done · converged · 1 iters · reduced χ² 3.98 · Rwp 6.46 % · 0.01 s
+      1      0.018      6.46         3.98   35.4% ↓
+  done · converged · 1 iters · reduced χ² 3.98 · Rwp 6.46 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/8.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/9.html"></iframe>
 </div>
 
 ```python
@@ -171,16 +254,19 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/10.html"></iframe>
 </div>
 
 ### Peak widths
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.broad_lorentz_y.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.broad_lorentz_y,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -192,12 +278,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.46         3.99
-      1      0.012      6.39         3.90   2.2% ↓
-  done · converged · 1 iters · reduced χ² 3.90 · Rwp 6.39 % · 0.01 s
+      1      0.019      6.39         3.90   2.2% ↓
+  done · converged · 1 iters · reduced χ² 3.90 · Rwp 6.39 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/11.html"></iframe>
 </div>
 
 ```python
@@ -205,7 +291,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/12.html"></iframe>
 </div>
 
 ### Oxygen position
@@ -225,12 +311,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.39         3.90
-      1      0.013      6.20         3.67   6.0% ↓
-  done · converged · 1 iters · reduced χ² 3.67 · Rwp 6.20 % · 0.01 s
+      1      0.021      6.20         3.67   6.0% ↓
+  done · converged · 1 iters · reduced χ² 3.67 · Rwp 6.20 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/12.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/13.html"></iframe>
 </div>
 
 ```python
@@ -238,7 +324,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/14.html"></iframe>
 </div>
 
 ### Displacements
@@ -260,13 +346,13 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.20         3.67
-      1      0.013      5.31         2.70   26.6% ↓
-      2      0.015      5.31         2.70   
-  done · converged · 2 iters · reduced χ² 2.70 · Rwp 5.31 % · 0.02 s
+      1      0.027      5.31         2.70   26.6% ↓
+      2      0.033      5.31         2.70   
+  done · converged · 2 iters · reduced χ² 2.70 · Rwp 5.31 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/14.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/15.html"></iframe>
 </div>
 
 ```python
@@ -274,7 +360,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/15.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/16.html"></iframe>
 </div>
 
 ### Li/Ni mixing
@@ -295,12 +381,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.31         2.70
-      1      0.016      4.99         2.39   11.5% ↓
-  done · converged · 1 iters · reduced χ² 2.39 · Rwp 4.99 % · 0.02 s
+      1      0.027      4.99         2.39   11.5% ↓
+  done · converged · 1 iters · reduced χ² 2.39 · Rwp 4.99 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/16.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/17.html"></iframe>
 </div>
 
 ```python
@@ -308,7 +394,7 @@ project.display.pattern('echidna')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/17.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/18.html"></iframe>
 </div>
 
 ```python
@@ -316,7 +402,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/18.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/19.html"></iframe>
 </div>
 
 ```python
@@ -324,17 +410,28 @@ project.display.structure('lmo')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/19.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lmo-echidna/20.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-cwl_lmo-echidna.html')
+```
+
+```text
+Saving report to 'pd-neut-cwl_lmo-echidna.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-cwl_lmo-echidna')
-project.report.save_html('pd-neut-cwl_lmo-echidna.html')
 ```
 
 ```text
 Saving project to 'pd-neut-cwl_lmo-echidna'
-Saving report to 'pd-neut-cwl_lmo-echidna.html'
 ```

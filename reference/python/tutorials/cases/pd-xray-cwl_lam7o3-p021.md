@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_lam7o3-p021/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-xray-cwl_lam7o3-p021.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-xray-cwl_lam7o3-p021.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-xray-cwl_lam7o3-p021.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,46 +12,138 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_l
 Fit the high-entropy perovskite La(Ti,Cr,Mn,Fe,Co,Ni,Cu)O₃, seven cations on one site, to
 synchrotron X-ray powder data from P02.1 at PETRA III.
 
-The project is the catalogue case `pd-xray-cwl_lam7o3-p021`, the one the command line and the
-app's Examples open. The seven metals sharing one site have one displacement, held by
-constraints from the start.
+It builds the catalogue case `pd-xray-cwl_lam7o3-p021` step by step: the same project the command
+line fits and the app's Examples open. The seven metals sharing one site have one displacement,
+held by constraints.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-xray-cwl_lam7o3-p021', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-xray-cwl_lam7o3-p021')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-xray-cwl_lam7o3-p021-lam7o3', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['lam7o3']
-experiment = project.experiments['p021']
-project.display.constraints()
 ```
 
 ```text
-Data 'pd-xray-cwl_lam7o3-p021' is at data/pd-xray-cwl_lam7o3-p021-0a974b5c31e3/pd-xray-cwl_lam7o3-p021
+Data 'pd-xray-cwl_lam7o3-p021-lam7o3' is at data/pd-xray-cwl_lam7o3-p021-lam7o3.edi
+```
+
+```python
+project.display.structure('lam7o3')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 544px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/1.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/1.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-xray-cwl_lam7o3-p021-p021-data', destination='data')
+project.experiments.add_from_data_path(
+    name='p021',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='xray',
+    scattering_type='bragg',
+)
+experiment = project.experiments['p021']
+experiment.xray_form_factor = 'it1992'
+experiment.xray_dispersion = 'sasaki1989'
+experiment.peak.type = 'cwl-tch-pseudo-voigt'
+experiment.instrument.name = 'P02.1'
+experiment.instrument.facility = 'PETRA III'
+experiment.peak.broad_gauss_u = 0.04
+experiment.peak.broad_gauss_v = -0.01
+experiment.peak.broad_gauss_w = 0.001
+experiment.peak.broad_lorentz_x = 0.1
+experiment.peak.cutoff_fwhm = 30
+experiment.instrument.setup_wavelength = 0.207109
+experiment.excluded_regions.create(start=0, end=2)
+experiment.excluded_regions.create(start=15, end=20)
+experiment.linked_structures.create(structure_id='lam7o3', scale=0.000005)
+experiment.background.create(id='2.0', position=2.0033379, intensity=300)
+experiment.background.create(id='2.3', position=2.297792, intensity=300)
+experiment.background.create(id='2.7', position=2.7079241, intensity=300)
+experiment.background.create(id='2.9', position=2.8761833, intensity=300)
+experiment.background.create(id='3.0', position=2.9813454, intensity=300)
+experiment.background.create(id='3.1', position=3.1180563, intensity=300)
+experiment.background.create(id='3.7', position=3.7174802, intensity=300)
+experiment.background.create(id='4.1', position=4.1381288, intensity=300)
+experiment.background.create(id='4.3', position=4.2748394, intensity=300)
+experiment.background.create(id='4.4', position=4.3905177, intensity=300)
+experiment.background.create(id='4.5', position=4.5482607, intensity=300)
+experiment.background.create(id='4.9', position=4.9268441, intensity=300)
+experiment.background.create(id='5.1', position=5.1371684, intensity=300)
+experiment.background.create(id='7', position=7.4086699, intensity=300)
+experiment.background.create(id='8', position=8.0922232, intensity=300)
+experiment.background.create(id='10', position=9.7748175, intensity=300)
+experiment.background.create(id='11', position=10.910567, intensity=300)
+experiment.background.create(id='12', position=12.498515, intensity=300)
+experiment.background.create(id='14.7', position=14.70692, intensity=300)
+experiment.background.create(id='15.0', position=14.990857, intensity=300)
 ```
+
+```text
+Data 'pd-xray-cwl_lam7o3-p021-p021-data' is at data/pd-xray-cwl_lam7o3-p021-p021.xye
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='biso_Ti', param=structure.atom_sites['Ti'].adp_iso)
+project.analysis.aliases.create(id='biso_Cr', param=structure.atom_sites['Cr'].adp_iso)
+project.analysis.aliases.create(id='biso_Mn', param=structure.atom_sites['Mn'].adp_iso)
+project.analysis.aliases.create(id='biso_Fe', param=structure.atom_sites['Fe'].adp_iso)
+project.analysis.aliases.create(id='biso_Co', param=structure.atom_sites['Co'].adp_iso)
+project.analysis.aliases.create(id='biso_Ni', param=structure.atom_sites['Ni'].adp_iso)
+project.analysis.aliases.create(id='biso_Cu', param=structure.atom_sites['Cu'].adp_iso)
+project.analysis.aliases.create(id='biso_O1', param=structure.atom_sites['O1'].adp_iso)
+project.analysis.aliases.create(id='biso_O2', param=structure.atom_sites['O2'].adp_iso)
+project.analysis.constraints.create(id='1', expression='biso_Cr = biso_Ti')
+project.analysis.constraints.create(id='2', expression='biso_Mn = biso_Ti')
+project.analysis.constraints.create(id='3', expression='biso_Fe = biso_Ti')
+project.analysis.constraints.create(id='4', expression='biso_Co = biso_Ti')
+project.analysis.constraints.create(id='5', expression='biso_Ni = biso_Ti')
+project.analysis.constraints.create(id='6', expression='biso_Cu = biso_Ti')
+project.analysis.constraints.create(id='7', expression='biso_O2 = biso_O1')
+```
+
+```python
+project.display.constraints()
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 544px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/2.html"></iframe>
+</div>
 
 ```python
 project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -75,7 +167,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 236px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/3.html"></iframe>
+<iframe style="width: 100%; height: 236px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/4.html"></iframe>
 </div>
 
 ```python
@@ -84,34 +176,31 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 5 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 5 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        60.60       246.85
-      1      0.003     42.69       122.50   50.4% ↓
-      2      0.005     38.20        98.09   19.9% ↓
-      3      0.008     35.23        83.41   15.0% ↓
-      4      0.010     34.19        78.58   5.8% ↓
-      5      0.013     33.91        77.27   1.7% ↓
-      6      0.015     33.81        76.83   0.6% ↓
-      7      0.018     33.76        76.62   0.3% ↓
-      8      0.020     33.73        76.49   0.2% ↓
-      9      0.022     33.72        76.41   0.1% ↓
-     10      0.025     33.70        76.35   0.1% ↓
-     11      0.027     33.69        76.31   0.1% ↓
-     12      0.029     33.69        76.29   
-     13      0.032     33.68        76.27   
-     14      0.034     33.68        76.26   
-     15      0.036     33.68        76.25   
-     16      0.039     33.68        76.25   
-     17      0.041     33.68        76.24   
-     18      0.043     33.68        76.24   
-     19      0.046     33.68        76.24   
-     20      0.049     33.68        76.24   
-  done · converged · 20 iters · reduced χ² 76.24 · Rwp 33.68 % · 0.05 s
+      1      0.026     34.19        78.59   68.2% ↓
+      2      0.029     33.91        77.28   1.7% ↓
+      3      0.033     33.81        76.83   0.6% ↓
+      4      0.037     33.76        76.62   0.3% ↓
+      5      0.040     33.73        76.49   0.2% ↓
+      6      0.044     33.72        76.41   0.1% ↓
+      7      0.047     33.70        76.35   0.1% ↓
+      8      0.051     33.69        76.31   0.1% ↓
+      9      0.055     33.69        76.29   
+     10      0.058     33.68        76.27   
+     11      0.062     33.68        76.26   
+     12      0.065     33.68        76.25   
+     13      0.069     33.68        76.25   
+     14      0.073     33.68        76.24   
+     15      0.076     33.68        76.24   
+     16      0.080     33.68        76.24   
+     17      0.085     33.68        76.24   
+  done · converged · 17 iters · reduced χ² 76.24 · Rwp 33.68 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/5.html"></iframe>
 </div>
 
 ```python
@@ -119,7 +208,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/6.html"></iframe>
 </div>
 
 ### Background
@@ -135,29 +224,26 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 25 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        33.68        77.50
-      1      0.004     10.57         7.63   90.2% ↓
-      2      0.006     10.53         7.58   0.6% ↓
-      3      0.008     10.53         7.58   0.1% ↓
-      4      0.011     10.53         7.58   
-      5      0.013     10.53         7.57   
-      6      0.015     10.53         7.57   
-      7      0.018     10.53         7.57   
-      8      0.020     10.53         7.57   
-      9      0.022     10.53         7.57   
-     10      0.024     10.53         7.57   
-     11      0.027     10.52         7.57   
-     12      0.029     10.52         7.57   
-     13      0.031     10.52         7.57   
-     14      0.034     10.52         7.57   
-     15      0.037     10.52         7.57   
-  done · converged · 15 iters · reduced χ² 7.57 · Rwp 10.52 % · 0.04 s
+      1      0.030     10.53         7.58   90.2% ↓
+      2      0.034     10.53         7.57   
+      3      0.038     10.53         7.57   
+      4      0.043     10.53         7.57   
+      5      0.047     10.53         7.57   
+      6      0.051     10.53         7.57   
+      7      0.055     10.53         7.57   
+      8      0.059     10.52         7.57   
+      9      0.063     10.52         7.57   
+     10      0.067     10.52         7.57   
+     11      0.071     10.52         7.57   
+     12      0.077     10.52         7.57   
+  done · converged · 12 iters · reduced χ² 7.57 · Rwp 10.52 % · 0.08 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/6.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/7.html"></iframe>
 </div>
 
 ```python
@@ -165,7 +251,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/8.html"></iframe>
 </div>
 
 ### Peak widths
@@ -173,10 +259,13 @@ project.display.pattern('p021')
 The Gaussian widths and the Lorentzian X.
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.broad_lorentz_x.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.broad_lorentz_x,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -185,42 +274,39 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 29 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 29 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.52         7.59
-      1      0.004      7.07         3.43   54.9% ↓
-      2      0.007      6.29         2.71   20.8% ↓
-      3      0.011      6.04         2.50   7.8% ↓
-      4      0.014      5.89         2.38   5.0% ↓
-      5      0.018      5.77         2.29   3.9% ↓
-      6      0.021      5.74         2.26   1.1% ↓
-      7      0.028      5.64         2.18   3.5% ↓
-      8      0.032      5.30         1.92   11.8% ↓
-      9      0.036      4.77         1.56   19.0% ↓
-     10      0.039      4.13         1.17   24.9% ↓
-     11      0.042      3.65         0.91   22.1% ↓
-     12      0.046      3.59         0.88   3.1% ↓
-     13      0.049      3.57         0.87   1.3% ↓
-     14      0.052      3.56         0.87   0.2% ↓
-     15      0.055      3.56         0.87   0.1% ↓
-     16      0.058      3.56         0.87   0.1% ↓
-     17      0.061      3.55         0.86   0.4% ↓
-     18      0.064      3.53         0.86   1.1% ↓
-     19      0.067      3.49         0.83   2.5% ↓
-     20      0.070      3.42         0.80   3.7% ↓
-     21      0.073      3.35         0.77   4.3% ↓
-     22      0.076      3.22         0.71   7.4% ↓
-     23      0.079      3.01         0.62   12.7% ↓
-     24      0.082      2.83         0.55   11.3% ↓
-     25      0.085      2.79         0.54   2.8% ↓
-     26      0.088      2.79         0.53   0.1% ↓
-     27      0.091      2.79         0.53   
-     28      0.095      2.79         0.53   
-  done · converged · 28 iters · reduced χ² 0.53 · Rwp 2.79 % · 0.10 s
+      1      0.039      5.89         2.38   68.7% ↓
+      2      0.045      5.77         2.29   3.9% ↓
+      3      0.051      5.74         2.26   1.1% ↓
+      4      0.064      5.64         2.18   3.5% ↓
+      5      0.071      5.30         1.92   11.8% ↓
+      6      0.077      4.77         1.56   19.0% ↓
+      7      0.084      4.13         1.17   24.9% ↓
+      8      0.089      3.65         0.91   22.1% ↓
+      9      0.095      3.59         0.88   3.1% ↓
+     10      0.100      3.57         0.87   1.3% ↓
+     11      0.105      3.56         0.87   0.2% ↓
+     12      0.111      3.56         0.87   0.1% ↓
+     13      0.116      3.56         0.87   0.1% ↓
+     14      0.121      3.55         0.86   0.4% ↓
+     15      0.126      3.53         0.86   1.1% ↓
+     16      0.132      3.49         0.83   2.5% ↓
+     17      0.137      3.42         0.80   3.7% ↓
+     18      0.142      3.35         0.77   4.3% ↓
+     19      0.147      3.22         0.71   7.4% ↓
+     20      0.152      3.01         0.62   12.7% ↓
+     21      0.158      2.83         0.55   11.3% ↓
+     22      0.163      2.79         0.54   2.8% ↓
+     23      0.168      2.79         0.53   0.1% ↓
+     24      0.173      2.79         0.53   
+     25      0.181      2.79         0.53   
+  done · converged · 25 iters · reduced χ² 0.53 · Rwp 2.79 % · 0.19 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/8.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/9.html"></iframe>
 </div>
 
 ```python
@@ -228,7 +314,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/10.html"></iframe>
 </div>
 
 ### Background from the fitted model
@@ -248,18 +334,15 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 29 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 29 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.03         1.11
-      1      0.005      2.71         0.50   54.7% ↓
-      2      0.008      2.71         0.50   
-      3      0.012      2.71         0.50   
-      4      0.016      2.71         0.50   
-  done · converged · 4 iters · reduced χ² 0.50 · Rwp 2.71 % · 0.02 s
+      1      0.044      2.71         0.50   54.7% ↓
+  done · converged · 1 iters · reduced χ² 0.50 · Rwp 2.71 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/11.html"></iframe>
 </div>
 
 ```python
@@ -267,7 +350,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/12.html"></iframe>
 </div>
 
 ### Atom positions
@@ -284,29 +367,26 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 36 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 36 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.71         0.51
-      1      0.007      1.81         0.23   55.3% ↓
-      2      0.013      1.78         0.22   3.5% ↓
-      3      0.018      1.78         0.22   
-      4      0.024      1.78         0.22   
-      5      0.030      1.78         0.22   0.1% ↓
-      6      0.035      1.78         0.22   0.4% ↓
-      7      0.041      1.77         0.22   1.1% ↓
-      8      0.046      1.75         0.21   2.4% ↓
-      9      0.051      1.71         0.20   3.5% ↓
-     10      0.057      1.69         0.20   2.8% ↓
-     11      0.062      1.68         0.19   1.1% ↓
-     12      0.067      1.68         0.19   0.2% ↓
-     13      0.072      1.68         0.19   
-     14      0.078      1.68         0.19   
-     15      0.085      1.68         0.19   
-  done · converged · 15 iters · reduced χ² 0.19 · Rwp 1.68 % · 0.09 s
+      1      0.051      1.78         0.22   56.9% ↓
+      2      0.058      1.78         0.22   0.1% ↓
+      3      0.065      1.78         0.22   0.4% ↓
+      4      0.072      1.77         0.22   1.1% ↓
+      5      0.078      1.75         0.21   2.4% ↓
+      6      0.085      1.71         0.20   3.5% ↓
+      7      0.092      1.69         0.20   2.8% ↓
+      8      0.099      1.68         0.19   1.1% ↓
+      9      0.106      1.68         0.19   0.2% ↓
+     10      0.113      1.68         0.19   
+     11      0.120      1.68         0.19   
+     12      0.129      1.68         0.19   
+  done · converged · 12 iters · reduced χ² 0.19 · Rwp 1.68 % · 0.14 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/12.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/13.html"></iframe>
 </div>
 
 ```python
@@ -314,7 +394,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/14.html"></iframe>
 </div>
 
 ### Displacements
@@ -333,28 +413,25 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1459 loaded, 39 free
+edi fit: project pd-xray-cwl_lam7o3-p021, 1236 pts fitted / 1396 loaded, 39 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.68         0.19
-      1      0.007      1.62         0.18   6.5% ↓
-      2      0.013      1.61         0.18   1.8% ↓
-      3      0.018      1.60         0.18   0.4% ↓
-      4      0.023      1.60         0.18   0.4% ↓
-      5      0.028      1.60         0.18   0.2% ↓
-      6      0.033      1.60         0.18   0.1% ↓
-      7      0.037      1.60         0.18   0.3% ↓
-      8      0.042      1.59         0.18   0.7% ↓
-      9      0.047      1.58         0.17   1.0% ↓
-     10      0.052      1.58         0.17   0.9% ↓
-     11      0.057      1.57         0.17   0.4% ↓
-     12      0.061      1.57         0.17   0.1% ↓
-     13      0.066      1.57         0.17   
-     14      0.072      1.57         0.17   
-  done · converged · 14 iters · reduced χ² 0.17 · Rwp 1.57 % · 0.08 s
+      1      0.053      1.60         0.18   8.9% ↓
+      2      0.061      1.60         0.18   0.2% ↓
+      3      0.068      1.60         0.18   0.1% ↓
+      4      0.076      1.60         0.18   0.3% ↓
+      5      0.083      1.59         0.18   0.7% ↓
+      6      0.091      1.58         0.17   1.0% ↓
+      7      0.098      1.58         0.17   0.9% ↓
+      8      0.105      1.57         0.17   0.4% ↓
+      9      0.112      1.57         0.17   0.1% ↓
+     10      0.120      1.57         0.17   
+     11      0.130      1.57         0.17   
+  done · converged · 11 iters · reduced χ² 0.17 · Rwp 1.57 % · 0.14 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/14.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/15.html"></iframe>
 </div>
 
 ```python
@@ -362,7 +439,7 @@ project.display.pattern('p021')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/15.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/16.html"></iframe>
 </div>
 
 ```python
@@ -370,7 +447,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/16.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/17.html"></iframe>
 </div>
 
 ```python
@@ -378,17 +455,28 @@ project.display.structure('lam7o3')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/17.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_lam7o3-p021/18.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-xray-cwl_lam7o3-p021.html')
+```
+
+```text
+Saving report to 'pd-xray-cwl_lam7o3-p021.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-xray-cwl_lam7o3-p021')
-project.report.save_html('pd-xray-cwl_lam7o3-p021.html')
 ```
 
 ```text
 Saving project to 'pd-xray-cwl_lam7o3-p021'
-Saving report to 'pd-xray-cwl_lam7o3-p021.html'
 ```

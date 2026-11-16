@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_si-sepd/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_si-sepd.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,32 +12,98 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_s
 Fit silicon to time-of-flight neutron powder data from SEPD at Argonne, with the Jorgensen-Von
 Dreele profile.
 
-The project is the catalogue case `pd-neut-tof_si-sepd`, the one the command line and the app's
-Examples open.
+It builds the catalogue case `pd-neut-tof_si-sepd` step by step: the same project the command
+line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_si-sepd', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-tof_si-sepd')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_si-sepd-si', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['si']
-experiment = project.experiments['sepd']
 ```
 
 ```text
-Data 'pd-neut-tof_si-sepd' is at data/pd-neut-tof_si-sepd-e03f8b070e27/pd-neut-tof_si-sepd
+Data 'pd-neut-tof_si-sepd-si' is at data/pd-neut-tof_si-sepd-si.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('si')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from a file of measured data: `add_from_data_path` reads its time-of-
+flight, intensity and uncertainty columns. Here the file is SEPD's pattern from EasyDiffraction's
+collection; a file of your own on disk works the same way. Then describe the instrument, the peak
+profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-tof_si-sepd-sepd-data', destination='data')
+project.experiments.add_from_data_path(
+    name='sepd',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['sepd']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'tof-jorgensen-von-dreele'
+experiment.absorption.type = 'none'
+experiment.instrument.name = 'SEPD'
+experiment.instrument.facility = 'Argonne'
+experiment.peak.cutoff_fwhm = 8.2
+experiment.peak.rise_alpha_1 = 0.5971
+experiment.peak.decay_beta_0 = 0.04
+experiment.peak.decay_beta_1 = 0.01
+experiment.peak.broad_gauss_sigma_0 = 3
+experiment.peak.broad_gauss_sigma_1 = 30
+experiment.peak.broad_lorentz_gamma_1 = 3
+experiment.instrument.setup_twotheta_bank = 144.845
+experiment.instrument.calib_d_to_tof_linear = 7476.91
+experiment.instrument.calib_d_to_tof_quadratic = -1.54
+experiment.linked_structures.create(structure_id='si', scale=600)
+experiment.background.create(position=2000, intensity=120.0)
+experiment.background.create(position=9035, intensity=120.0)
+experiment.background.create(position=9335, intensity=120.0)
+experiment.background.create(position=11915, intensity=120.0)
+experiment.background.create(position=12315, intensity=120.0)
+experiment.background.create(position=12695, intensity=120.0)
+experiment.background.create(position=13745, intensity=120.0)
+experiment.background.create(position=14410, intensity=120.0)
+experiment.background.create(position=14875, intensity=120.0)
+experiment.background.create(position=15660, intensity=120.0)
+experiment.background.create(position=23075, intensity=120.0)
+experiment.background.create(position=23515, intensity=120.0)
+experiment.background.create(position=28100, intensity=120.0)
+experiment.background.create(position=29995, intensity=120.0)
+```
+
+```text
+Data 'pd-neut-tof_si-sepd-sepd-data' is at data/pd-neut-tof_si-sepd-sepd.xye
 ```
 
 ## Estimate the background
@@ -54,7 +120,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -75,7 +141,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 180px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/2.html"></iframe>
+<iframe style="width: 100%; height: 180px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/3.html"></iframe>
 </div>
 
 ```python
@@ -87,13 +153,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        52.36       204.71
-      1      0.049     10.45         8.16   96.0% ↓
-      2      0.061     10.45         8.16   
-  done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.07 s
+      1      0.067     10.45         8.16   96.0% ↓
+      2      0.083     10.45         8.16   
+  done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/4.html"></iframe>
 </div>
 
 ```python
@@ -101,7 +167,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/5.html"></iframe>
 </div>
 
 ### Background
@@ -122,12 +188,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.45         8.18
-      1      0.054      7.45         4.16   49.1% ↓
-  done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.06 s
+      1      0.078      7.45         4.16   49.1% ↓
+  done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.09 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/6.html"></iframe>
 </div>
 
 ```python
@@ -135,7 +201,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/7.html"></iframe>
 </div>
 
 ### Gaussian widths
@@ -158,12 +224,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.45         4.16
-      1      0.067      7.42         4.13   0.8% ↓
-  done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.08 s
+      1      0.094      7.42         4.13   0.8% ↓
+  done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/8.html"></iframe>
 </div>
 
 ```python
@@ -171,7 +237,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/9.html"></iframe>
 </div>
 
 ### Lorentzian width
@@ -191,12 +257,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.42         4.13
-      1      0.074      7.28         3.97   3.7% ↓
-  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.08 s
+      1      0.103      7.28         3.97   3.7% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/10.html"></iframe>
 </div>
 
 ```python
@@ -204,7 +270,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/11.html"></iframe>
 </div>
 
 ### Displacement
@@ -222,12 +288,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.98
-      1      0.070      7.28         3.97   0.2% ↓
-  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.08 s
+      1      0.096      7.28         3.97   0.2% ↓
+  done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.11 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/12.html"></iframe>
 </div>
 
 ```python
@@ -235,7 +301,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/13.html"></iframe>
 </div>
 
 ### Peak decay
@@ -256,13 +322,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.97
-      1      0.066      7.18         3.86   2.7% ↓
-      2      0.082      7.18         3.86   
-  done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.09 s
+      1      0.086      7.18         3.86   2.7% ↓
+      2      0.108      7.18         3.86   
+  done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/13.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/14.html"></iframe>
 </div>
 
 ```python
@@ -270,7 +336,7 @@ project.display.pattern('sepd')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/15.html"></iframe>
 </div>
 
 ```python
@@ -278,7 +344,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/15.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/16.html"></iframe>
 </div>
 
 ```python
@@ -286,45 +352,28 @@ project.display.structure('si')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/16.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/17.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_si-sepd.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_si-sepd.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_si-sepd')
-project.report.save_html('pd-neut-tof_si-sepd.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_si-sepd'
-Saving report to 'pd-neut-tof_si-sepd.html'
 ```
-
-## Your own measured data
-
-Measured data can also come from a file on your own disk. `add_from_data_path` reads a file of
-time-of-flight, intensity and uncertainty columns into a new experiment, here in a project of its
-own; the experiment then needs its instrument, profile and linked structure, as above. The file
-here is SEPD's pattern from the collection, saved to disk first.
-
-```python
-data_path = edi.download_data('pd-neut-tof_si-sepd-sepd-data', destination='data')
-own = edi.Project(name='own_sepd')
-own.experiments.add_from_data_path(
-    name='mine',
-    data_path=data_path,
-    sample_form='powder',
-    beam_mode='time-of-flight',
-    radiation_probe='neutron',
-)
-own.display.pattern('mine')
-```
-
-```text
-Data 'pd-neut-tof_si-sepd-sepd-data' is at data/pd-neut-tof_si-sepd-sepd.xye
-```
-
-<div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_si-sepd/17.html"></iframe>
-</div>

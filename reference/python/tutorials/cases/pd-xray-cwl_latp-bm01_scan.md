@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_latp-bm01_scan/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,48 +12,186 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_l
 Fit three phases, LATP and two AlPO₄ forms, to 73 synchrotron X-ray patterns from BM01 at ESRF,
 one after another, with linked displacement parameters.
 
-The project is the catalogue case `pd-xray-cwl_latp-bm01_scan`, the one the command line and the
-app's Examples open. Al shares Ti's site, coordinate and displacement, and the impurity phase's
-displacements are shared, from the start.
+It builds the catalogue case `pd-xray-cwl_latp-bm01_scan` step by step: the same project the
+command line fits and the app's Examples open. Al shares Ti's site, coordinate and displacement,
+and the impurity phase's displacements are shared.
+
+## Import the library
 
 ```python
 import csv
+import zipfile
 from pathlib import Path
 
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
 
-A sequential fit writes one row per pattern into the project's `analysis/results.csv`, so work
-on a copy of the project, saved to a folder of its own.
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-xray-cwl_latp-bm01_scan', destination='data')
-project = edi.Project.load(project_path)
-project.save_as('pd-xray-cwl_latp-bm01_scan')
+project = edi.Project(name='pd-xray-cwl_latp-bm01_scan')
+```
+
+## Define the structures
+
+Load the three structures from EasyDiffraction's collection. Each CIF gives its space group, cell
+and atom sites.
+
+```python
+path = edi.download_data('pd-xray-cwl_latp-bm01_scan-latp', destination='data')
+project.structures.add_from_cif_path(path)
+path = edi.download_data('pd-xray-cwl_latp-bm01_scan-alpo4_c2221', destination='data')
+project.structures.add_from_cif_path(path)
+path = edi.download_data('pd-xray-cwl_latp-bm01_scan-alpo4_p63mc', destination='data')
+project.structures.add_from_cif_path(path)
 latp = project.structures['latp']
 c2221 = project.structures['alpo4_c2221']
 p63mc = project.structures['alpo4_p63mc']
+```
+
+```text
+Data 'pd-xray-cwl_latp-bm01_scan-latp' is at data/pd-xray-cwl_latp-bm01_scan-latp.edi
+Data 'pd-xray-cwl_latp-bm01_scan-alpo4_c2221' is at data/pd-xray-cwl_latp-bm01_scan-alpo4_c2221.edi
+Data 'pd-xray-cwl_latp-bm01_scan-alpo4_p63mc' is at data/pd-xray-cwl_latp-bm01_scan-alpo4_p63mc.edi
+```
+
+```python
+project.display.structure('latp')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
+
+```python
+data_path = edi.download_data('pd-xray-cwl_latp-bm01_scan-bm01-data', destination='data')
+project.experiments.add_from_data_path(
+    name='bm01',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='xray',
+    scattering_type='bragg',
+)
 experiment = project.experiments['bm01']
+experiment.xray_dispersion = 'sasaki1989'
+experiment.peak.type = 'cwl-pseudo-voigt-berar-baldinozzi'
+experiment.absorption.type = 'cylinder-hewat'
+experiment.instrument.name = 'BM01'
+experiment.instrument.facility = 'ESRF'
+experiment.xray_dispersion = 'sasaki1989'
+experiment.peak.broad_gauss_u = 0.019
+experiment.peak.broad_gauss_v = 0.019
+experiment.peak.broad_gauss_w = 0.0156
+experiment.peak.mixing_eta_0 = 0.374
+experiment.peak.asym_beba_a0 = 0.088
+experiment.peak.asym_beba_b0 = 0.0043
+experiment.peak.cutoff_fwhm = 8
+experiment.instrument.setup_wavelength = 0.69687
+experiment.instrument.calib_twotheta_offset = -0.0388
+experiment.absorption.mu_r = 0.3
+experiment.excluded_regions.create(start=0, end=3.8)
+experiment.excluded_regions.create(start=62.3, end=180)
+experiment.linked_structures.create(structure_id='latp', scale=4.15)
+experiment.linked_structures.create(
+    structure_id='alpo4_c2221',
+    scale=0.54,
+)
+experiment.linked_structures.create(
+    structure_id='alpo4_p63mc',
+    scale=1.6,
+)
+experiment.background.create(id='4', position=4.0117, intensity=37000000)
+experiment.background.create(id='5', position=5.3148, intensity=41700000)
+experiment.background.create(id='7', position=7.1929, intensity=52700000)
+experiment.background.create(id='8', position=8.2721, intensity=67200000)
+experiment.background.create(id='9', position=8.9749, intensity=82700000)
+experiment.background.create(id='10', position=10.0793, intensity=79800000)
+experiment.background.create(id='12', position=12.3508, intensity=48200000)
+experiment.background.create(id='14', position=13.9092, intensity=37100000)
+experiment.background.create(id='16', position=15.6032, intensity=30700000)
+experiment.background.create(id='18', position=18.1069, intensity=26100000)
+experiment.background.create(id='20', position=20.4202, intensity=24300000)
+experiment.background.create(id='23', position=22.675, intensity=22900000)
+experiment.background.create(id='25', position=25.3704, intensity=22700000)
+experiment.background.create(id='27', position=27.1127, intensity=25100000)
+experiment.background.create(id='30', position=29.6603, intensity=24400000)
+experiment.background.create(id='33', position=32.5461, intensity=25900000)
+experiment.background.create(id='36', position=35.7233, intensity=19290000)
+experiment.background.create(id='38', position=37.9048, intensity=15950000)
+experiment.background.create(id='40', position=40.4041, intensity=16580000)
+experiment.background.create(id='43', position=42.6881, intensity=18850000)
+experiment.background.create(id='45', position=44.899, intensity=18080000)
+experiment.background.create(id='47', position=47.0073, intensity=17900000)
+experiment.background.create(id='49', position=49.2474, intensity=19470000)
+experiment.background.create(id='51', position=51.0337, intensity=20370000)
+experiment.background.create(id='53', position=53.2738, intensity=21920000)
+experiment.background.create(id='55', position=55.2504, intensity=22390000)
+experiment.background.create(id='57', position=56.9107, intensity=21830000)
+experiment.background.create(id='59', position=58.6676, intensity=23840000)
+experiment.background.create(id='61', position=61.4348, intensity=18960000)
+experiment.background.create(id='62', position=62.25, intensity=15500000)
+```
+
+```text
+Data 'pd-xray-cwl_latp-bm01_scan-bm01-data' is at data/pd-xray-cwl_latp-bm01_scan-bm01.xye
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='z_Ti1', param=latp.atom_sites['Ti1'].fract_z)
+project.analysis.aliases.create(id='z_Al1', param=latp.atom_sites['Al1'].fract_z)
+project.analysis.aliases.create(id='b_Ti1', param=latp.atom_sites['Ti1'].adp_iso)
+project.analysis.aliases.create(id='b_Al1', param=latp.atom_sites['Al1'].adp_iso)
+project.analysis.aliases.create(id='b2_Al1', param=c2221.atom_sites['Al1'].adp_iso)
+project.analysis.aliases.create(id='b2_P1', param=c2221.atom_sites['P1'].adp_iso)
+project.analysis.aliases.create(id='b2_O1', param=c2221.atom_sites['O1'].adp_iso)
+project.analysis.aliases.create(id='b2_O2', param=c2221.atom_sites['O2'].adp_iso)
+project.analysis.constraints.create(id='z_Al1', expression='z_Al1 = z_Ti1')
+project.analysis.constraints.create(id='b_Al1', expression='b_Al1 = b_Ti1')
+project.analysis.constraints.create(id='b2_P1', expression='b2_P1 = b2_Al1')
+project.analysis.constraints.create(id='b2_O1', expression='b2_O1 = b2_Al1')
+project.analysis.constraints.create(id='b2_O2', expression='b2_O2 = b2_Al1')
+```
+
+```python
+project.save_as('pd-xray-cwl_latp-bm01_scan')
 project.display.constraints()
 ```
 
 ```text
-Data 'pd-xray-cwl_latp-bm01_scan' is at data/pd-xray-cwl_latp-bm01_scan-270ca5b95bce/pd-xray-cwl_latp-bm01_scan
 Saving project to 'pd-xray-cwl_latp-bm01_scan'
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 460px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/1.html"></iframe>
+<iframe style="width: 100%; height: 460px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/2.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+The scan's patterns come from the collection as one archive. Unpack them into the project's
+folder and declare them as the scan the sequential fit runs over, from the last file up.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+scan_path = edi.download_data('pd-xray-cwl_latp-bm01_scan-scan', destination='data')
+with zipfile.ZipFile(scan_path) as archive:
+    archive.extractall('pd-xray-cwl_latp-bm01_scan/experiments/bm01_scan')
+project.analysis.sequential_fit.data_dir = 'experiments/bm01_scan'
+project.analysis.sequential_fit.file_pattern = '*.dat'
+project.analysis.sequential_fit.reverse = True
+project.analysis.template_file = 'latp_312.dat'
+project.save()
+```
+
+```text
+Data 'pd-xray-cwl_latp-bm01_scan-scan' is at data/pd-xray-cwl_latp-bm01_scan-scan.zip
+Saving project to 'pd-xray-cwl_latp-bm01_scan'
 ```
 
 ## Stage the template fit
@@ -70,7 +208,7 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -86,13 +224,16 @@ experiment.linked_structures['latp'].scale.free = True
 experiment.linked_structures['alpo4_c2221'].scale.free = True
 experiment.linked_structures['alpo4_p63mc'].scale.free = True
 experiment.instrument.calib_twotheta_offset.free = True
-latp.cell.length_a.free = True
-latp.cell.length_c.free = True
-c2221.cell.length_a.free = True
-c2221.cell.length_b.free = True
-c2221.cell.length_c.free = True
-p63mc.cell.length_a.free = True
-p63mc.cell.length_c.free = True
+for parameter in (
+    latp.cell.length_a,
+    latp.cell.length_c,
+    c2221.cell.length_a,
+    c2221.cell.length_b,
+    c2221.cell.length_c,
+    p63mc.cell.length_a,
+    p63mc.cell.length_c,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -100,7 +241,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 404px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/3.html"></iframe>
+<iframe style="width: 100%; height: 404px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/4.html"></iframe>
 </div>
 
 ```python
@@ -112,13 +253,13 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 11 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 140198364.17
-      1      0.146      4.51 140107944.41   0.1% ↓
-      2      0.165      4.51 140107929.77   
-  done · converged · 2 iters · reduced χ² 140107929.77 · Rwp 4.51 % · 0.18 s
+      1      0.241      4.51 140107944.41   0.1% ↓
+      2      0.274      4.51 140107929.77   
+  done · converged · 2 iters · reduced χ² 140107929.77 · Rwp 4.51 % · 0.30 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/5.html"></iframe>
 </div>
 
 ```python
@@ -126,7 +267,7 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/6.html"></iframe>
 </div>
 
 ### Background
@@ -145,12 +286,12 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 41 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 141475726.02
-      1      0.219      4.51 141465247.68   
-  done · converged · 1 iters · reduced χ² 141465247.68 · Rwp 4.51 % · 0.23 s
+      1      0.372      4.51 141465247.68   
+  done · converged · 1 iters · reduced χ² 141465247.68 · Rwp 4.51 % · 0.40 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/6.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/7.html"></iframe>
 </div>
 
 ```python
@@ -158,16 +299,19 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/8.html"></iframe>
 </div>
 
 ### Peak widths
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.mixing_eta_0.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.mixing_eta_0,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -179,14 +323,14 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 45 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 141649627.27
-      1      0.259      4.51 141613776.68   
-      2      0.279      4.51 141612434.44   
-      3      0.329      4.51 141612402.80   
-  done · converged · 3 iters · reduced χ² 141612402.80 · Rwp 4.51 % · 0.35 s
+      1      0.333      4.51 141613776.68   
+      2      0.364      4.51 141612434.44   
+      3      0.455      4.51 141612402.80   
+  done · converged · 3 iters · reduced χ² 141612402.80 · Rwp 4.51 % · 0.48 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/8.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/9.html"></iframe>
 </div>
 
 ```python
@@ -194,7 +338,7 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/10.html"></iframe>
 </div>
 
 ### Peak asymmetry
@@ -213,12 +357,12 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 47 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 141704748.40
-      1      0.228      4.51 141696202.86   
-  done · converged · 1 iters · reduced χ² 141696202.86 · Rwp 4.51 % · 0.24 s
+      1      0.405      4.51 141696202.86   
+  done · converged · 1 iters · reduced χ² 141696202.86 · Rwp 4.51 % · 0.43 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/11.html"></iframe>
 </div>
 
 ```python
@@ -226,7 +370,7 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/12.html"></iframe>
 </div>
 
 ### LATP positions
@@ -234,14 +378,17 @@ project.display.pattern('bm01')
 The main phase's free coordinates; Al's follows Ti's.
 
 ```python
-latp.atom_sites['Ti1'].fract_z.free = True
-latp.atom_sites['P1'].fract_x.free = True
-latp.atom_sites['O1'].fract_x.free = True
-latp.atom_sites['O1'].fract_y.free = True
-latp.atom_sites['O1'].fract_z.free = True
-latp.atom_sites['O2'].fract_x.free = True
-latp.atom_sites['O2'].fract_y.free = True
-latp.atom_sites['O2'].fract_z.free = True
+for parameter in (
+    latp.atom_sites['Ti1'].fract_z,
+    latp.atom_sites['P1'].fract_x,
+    latp.atom_sites['O1'].fract_x,
+    latp.atom_sites['O1'].fract_y,
+    latp.atom_sites['O1'].fract_z,
+    latp.atom_sites['O2'].fract_x,
+    latp.atom_sites['O2'].fract_y,
+    latp.atom_sites['O2'].fract_z,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -253,12 +400,12 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 55 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 142066771.55
-      1      0.246      4.51 142050914.06   
-  done · converged · 1 iters · reduced χ² 142050914.06 · Rwp 4.51 % · 0.26 s
+      1      0.431      4.51 142050914.06   
+  done · converged · 1 iters · reduced χ² 142050914.06 · Rwp 4.51 % · 0.46 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/12.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/13.html"></iframe>
 </div>
 
 ```python
@@ -266,16 +413,19 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/14.html"></iframe>
 </div>
 
 ### LATP displacements
 
 ```python
-latp.atom_sites['Ti1'].adp_iso.free = True
-latp.atom_sites['P1'].adp_iso.free = True
-latp.atom_sites['O1'].adp_iso.free = True
-latp.atom_sites['O2'].adp_iso.free = True
+for parameter in (
+    latp.atom_sites['Ti1'].adp_iso,
+    latp.atom_sites['P1'].adp_iso,
+    latp.atom_sites['O1'].adp_iso,
+    latp.atom_sites['O2'].adp_iso,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -287,15 +437,15 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 59 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 142236905.43
-      1      0.206      4.51 142230639.97   
-      2      0.240      4.51 142230292.15   
-      3      0.263      4.51 142228697.98   
-      4      0.321      4.51 142228650.74   
-  done · converged · 4 iters · reduced χ² 142228650.74 · Rwp 4.51 % · 0.34 s
+      1      0.336      4.51 142230639.97   
+      2      0.398      4.51 142230292.15   
+      3      0.435      4.51 142228697.98   
+      4      0.528      4.51 142228650.74   
+  done · converged · 4 iters · reduced χ² 142228650.74 · Rwp 4.51 % · 0.56 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/14.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/15.html"></iframe>
 </div>
 
 ```python
@@ -303,7 +453,7 @@ project.display.pattern('bm01')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/15.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/16.html"></iframe>
 </div>
 
 ```python
@@ -311,7 +461,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/16.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/17.html"></iframe>
 </div>
 
 ```python
@@ -319,7 +469,7 @@ project.display.structure('latp')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/17.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/18.html"></iframe>
 </div>
 
 ```python
@@ -327,7 +477,7 @@ project.display.structure('alpo4_c2221')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/18.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/19.html"></iframe>
 </div>
 
 ```python
@@ -335,7 +485,7 @@ project.display.structure('alpo4_p63mc')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/19.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-xray-cwl_latp-bm01_scan/20.html"></iframe>
 </div>
 
 ## Fit the scan
@@ -366,10 +516,10 @@ print(len(rows), 'rows; columns:', ', '.join(list(rows[0])[:6]), '...')
 ```
 
 ```text
-73 rows; columns: file_path, fit_result.reduced_chi_square, fit_result.success, fit_result.iterations, alpo4_c2221.cell.length_a, alpo4_c2221.cell.length_a.uncertainty ...
+73 rows; columns: file_path, fit_result.reduced_chi_square, fit_result.success, fit_result.iterations, latp.cell.length_a, latp.cell.length_a.uncertainty ...
 ```
 
-## Save the report
+## Report
 
 ```python
 project.report.save_html('pd-xray-cwl_latp-bm01_scan.html')
@@ -377,4 +527,17 @@ project.report.save_html('pd-xray-cwl_latp-bm01_scan.html')
 
 ```text
 Saving report to 'pd-xray-cwl_latp-bm01_scan.html'
+```
+
+## Save the project
+
+The fitted template and the scan results are in the project folder already; save the
+project once more after the fits.
+
+```python
+project.save()
+```
+
+```text
+Saving project to 'pd-xray-cwl_latp-bm01_scan'
 ```

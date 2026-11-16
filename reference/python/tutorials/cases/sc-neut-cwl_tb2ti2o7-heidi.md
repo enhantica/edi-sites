@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,32 +12,74 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_t
 Fit the pyrochlore Tb₂Ti₂O₇ to constant-wavelength neutron single-crystal data from HEiDi at
 MLZ, with anisotropic displacements and Becker-Coppens extinction.
 
-The project is the catalogue case `sc-neut-cwl_tb2ti2o7-heidi`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `sc-neut-cwl_tb2ti2o7-heidi` step by step: the same project the
+command line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('sc-neut-cwl_tb2ti2o7-heidi', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='sc-neut-cwl_tb2ti2o7-heidi')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('sc-neut-cwl_tb2ti2o7-heidi-tb2ti2o7', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['tb2ti2o7']
-experiment = project.experiments['heidi']
 ```
 
 ```text
-Data 'sc-neut-cwl_tb2ti2o7-heidi' is at data/sc-neut-cwl_tb2ti2o7-heidi-11aa5eb35229/sc-neut-cwl_tb2ti2o7-heidi
+Data 'sc-neut-cwl_tb2ti2o7-heidi-tb2ti2o7' is at data/sc-neut-cwl_tb2ti2o7-heidi-tb2ti2o7.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('tb2ti2o7')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('sc-neut-cwl_tb2ti2o7-heidi-heidi-data', destination='data')
+project.experiments.add_from_data_path(
+    name='heidi',
+    data_path=data_path,
+    sample_form='single crystal',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['heidi']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.extinction.type = 'becker-coppens-mixed'
+experiment.instrument.name = 'HEiDi'
+experiment.instrument.facility = 'MLZ (FRM II)'
+experiment.instrument.setup_wavelength = 0.793
+experiment.extinction.domain_radius = 25
+experiment.extinction.crystal_radius = 3
+experiment.linked_structures.create(structure_id='tb2ti2o7', scale=4)
+```
+
+```text
+Data 'sc-neut-cwl_tb2ti2o7-heidi-heidi-data' is at data/sc-neut-cwl_tb2ti2o7-heidi-heidi.hkl
 ```
 
 ```python
@@ -45,7 +87,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -66,7 +108,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 124px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/2.html"></iframe>
+<iframe style="width: 100%; height: 124px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/3.html"></iframe>
 </div>
 
 ```python
@@ -83,7 +125,7 @@ edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 1 free
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/4.html"></iframe>
 </div>
 
 ```python
@@ -91,7 +133,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/5.html"></iframe>
 </div>
 
 ### O1's position
@@ -111,12 +153,12 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 2 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         19.62        59.17
-      1      0.004      14.74        33.42   43.5% ↓
-  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.00 s
+      1      0.006      14.74        33.42   43.5% ↓
+  done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/6.html"></iframe>
 </div>
 
 ```python
@@ -124,7 +166,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/7.html"></iframe>
 </div>
 
 ### Anisotropic displacements
@@ -151,12 +193,12 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 10 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         14.74        34.69
-      1      0.005       6.09         5.93   82.9% ↓
+      1      0.008       6.09         5.93   82.9% ↓
   done · converged · 1 iters · reduced χ² 5.93 · wR(F²) 6.09 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/8.html"></iframe>
 </div>
 
 ```python
@@ -164,7 +206,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/9.html"></iframe>
 </div>
 
 ### Extinction
@@ -185,18 +227,18 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.09         5.98
-      1      0.007       2.90         1.35   77.4% ↓
-      2      0.008       2.88         1.33   1.6% ↓
-      3      0.009       2.88         1.33   
-      4      0.010       2.88         1.33   
-      5      0.011       2.88         1.33   
-      6      0.012       2.88         1.33   
-      7      0.013       2.88         1.33   
-  done · converged · 7 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.01 s
+      1      0.012       2.90         1.35   77.4% ↓
+      2      0.013       2.88         1.33   1.6% ↓
+      3      0.015       2.88         1.33   
+      4      0.016       2.88         1.33   
+      5      0.018       2.88         1.33   
+      6      0.020       2.88         1.33   
+      7      0.021       2.88         1.33   
+  done · converged · 7 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/10.html"></iframe>
 </div>
 
 ```python
@@ -204,7 +246,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/11.html"></iframe>
 </div>
 
 ```python
@@ -212,7 +254,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/11.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/12.html"></iframe>
 </div>
 
 ```python
@@ -220,17 +262,28 @@ project.display.structure('tb2ti2o7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/12.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi/13.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('sc-neut-cwl_tb2ti2o7-heidi.html')
+```
+
+```text
+Saving report to 'sc-neut-cwl_tb2ti2o7-heidi.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('sc-neut-cwl_tb2ti2o7-heidi')
-project.report.save_html('sc-neut-cwl_tb2ti2o7-heidi.html')
 ```
 
 ```text
 Saving project to 'sc-neut-cwl_tb2ti2o7-heidi'
-Saving report to 'sc-neut-cwl_tb2ti2o7-heidi.html'
 ```

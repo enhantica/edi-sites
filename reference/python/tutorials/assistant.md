@@ -56,3 +56,5 @@ starting values or miss a step, and the tutorial shows what each stage should gi
 The same prompt, asking for a project for `edi fit`, is on the
 [<span class="ed-interface-icons" aria-hidden="true">:fa5-terminal:</span> <span class="ed-icon-text">Command line</span>](https://easydiffraction.org/cli/tutorials/assistant/){ .ed-icon-label .ed-interface-link } tutorials. The application has an
 [AI assistant](https://easydiffraction.org/user-guide/ai-assistant/) built in.
+
+See the [recorded prompt trials](https://easydiffraction.org/assistant-prompt-trials/) for the tested models, dates and outcomes.

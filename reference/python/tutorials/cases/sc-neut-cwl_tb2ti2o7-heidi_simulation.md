@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -13,33 +13,72 @@ Calculate the single-crystal neutron reflections of the pyrochlore Tb₂Ti₂O�
 without any measured data. The structure, the wavelength and the extinction are in the project,
 and edi calculates every reflection up to the project's sin θ/λ limit.
 
-The project is the catalogue case `sc-neut-cwl_tb2ti2o7-heidi_simulation`: the files the command
-line calculates with
-`python -m edi calc docs/user/cli/sc-neut-cwl_tb2ti2o7-heidi_simulation/project` and the app
-opens from its Examples.
+It builds the catalogue case `sc-neut-cwl_tb2ti2o7-heidi_simulation` step by step: the same
+project the command line calculates and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('sc-neut-cwl_tb2ti2o7-heidi_simulation', destination='data')
-project = edi.Project.load(project_path)
-print(project.metadata.title)
-print('Structures:', ', '.join(structure.name for structure in project.structures))
-print('Experiments:', ', '.join(experiment.name for experiment in project.experiments))
+project = edi.Project(name='tb2ti2o7-heidi_simulation')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('sc-neut-cwl_tb2ti2o7-heidi_simulation-tb2ti2o7', destination='data')
+project.structures.add_from_cif_path(path)
+structure = project.structures['tb2ti2o7']
 ```
 
 ```text
-Data 'sc-neut-cwl_tb2ti2o7-heidi_simulation' is at data/sc-neut-cwl_tb2ti2o7-heidi_simulation-4b9d196caef2/sc-neut-cwl_tb2ti2o7-heidi_simulation
-Tb₂Ti₂O₇ [Fd-3m] · HEiDi @ MLZ (FRM II)
-Structures: tb2ti2o7
-Experiments: heidi
+Data 'sc-neut-cwl_tb2ti2o7-heidi_simulation-tb2ti2o7' is at data/sc-neut-cwl_tb2ti2o7-heidi_simulation-tb2ti2o7.edi
 ```
 
-## Calculate
+```python
+project.display.structure('tb2ti2o7')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi_simulation/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment, then describe the instrument, the peak profile, the range to calculate and
+the structure it links. It has no measured data; the calculation gives the pattern.
+
+```python
+project.experiments.create(
+    name='heidi',
+    sample_form='single crystal',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['heidi']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.extinction.type = 'becker-coppens-mixed'
+experiment.instrument.name = 'HEiDi'
+experiment.instrument.facility = 'MLZ (FRM II)'
+experiment.instrument.setup_wavelength = 0.793
+experiment.extinction.domain_radius = 25
+experiment.extinction.crystal_radius = 3
+experiment.data_range.sin_theta_over_lambda_max = 0.95
+experiment.linked_structures.create(structure_id='tb2ti2o7', scale=4)
+```
+
+## Perform the calculation
 
 There is nothing to fit: edi calculates the reflections from the model as it is.
 
@@ -52,7 +91,7 @@ project.display.pattern('heidi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi_simulation/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi_simulation/2.html"></iframe>
 </div>
 
 ```python
@@ -60,7 +99,7 @@ project.display.structure('tb2ti2o7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi_simulation/2.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/sc-neut-cwl_tb2ti2o7-heidi_simulation/3.html"></iframe>
 </div>
 
 ## Report
@@ -76,9 +115,9 @@ project.report.save_html('sc-neut-cwl_tb2ti2o7-heidi_simulation.html')
 Saving report to 'sc-neut-cwl_tb2ti2o7-heidi_simulation.html'
 ```
 
-## Save
+## Save the project
 
-`save_as` writes the project to a folder of its own; the catalogue's copy stays as it was.
+`save_as` writes the project to a folder of its own.
 
 ```python
 project.save_as('sc-neut-cwl_tb2ti2o7-heidi_simulation')

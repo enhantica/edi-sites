@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco-hrpt/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -180,8 +180,8 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        53.67        71.21
-      1      0.003     12.56         3.90   94.5% ↓
-      2      0.004     12.56         3.90   
+      1      0.005     12.56         3.90   94.5% ↓
+      2      0.007     12.56         3.90   
   done · converged · 2 iters · reduced χ² 3.90 · Rwp 12.56 % · 0.01 s
 ```
 
@@ -215,7 +215,7 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 8 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        12.56         3.91
-      1      0.004     10.92         2.95   24.4% ↓
+      1      0.006     10.92         2.95   24.4% ↓
   done · converged · 1 iters · reduced χ² 2.95 · Rwp 10.92 % · 0.01 s
 ```
 
@@ -236,10 +236,13 @@ project.display.pattern('hrpt')
 The profile terms now fit the widths and shapes of the peaks.
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.broad_lorentz_y.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.broad_lorentz_y,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -251,7 +254,7 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 12 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.92         2.96
-      1      0.005     10.75         2.86   3.2% ↓
+      1      0.009     10.75         2.86   3.2% ↓
   done · converged · 1 iters · reduced χ² 2.86 · Rwp 10.75 % · 0.01 s
 ```
 
@@ -273,10 +276,8 @@ Every atom sits on a special position of P m -3 m, so there are no coordinates t
 displacements change the peak intensities with angle and come last.
 
 ```python
-structure.atom_sites['La'].adp_iso.free = True
-structure.atom_sites['Ba'].adp_iso.free = True
-structure.atom_sites['Co'].adp_iso.free = True
-structure.atom_sites['O'].adp_iso.free = True
+for site in structure.atom_sites:
+    site.adp_iso.free = True
 ```
 
 ```python
@@ -288,9 +289,9 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 16 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.75         2.87
-      1      0.007      7.23         1.30   54.7% ↓
-      2      0.009      7.23         1.30   
-  done · converged · 2 iters · reduced χ² 1.30 · Rwp 7.23 % · 0.01 s
+      1      0.011      7.23         1.30   54.7% ↓
+      2      0.013      7.23         1.30   
+  done · converged · 2 iters · reduced χ² 1.30 · Rwp 7.23 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -341,7 +342,7 @@ project.display.fit.results()
 edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.23         1.30
-      1      0.006      7.23         1.30   
+      1      0.008      7.23         1.30   
   done · converged · 1 iters · reduced χ² 1.30 · Rwp 7.23 % · 0.01 s
 ```
 

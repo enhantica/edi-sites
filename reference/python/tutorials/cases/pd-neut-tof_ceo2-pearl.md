@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ceo2-pearl/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ceo2-pearl.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,32 +12,93 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_c
 Fit the CeO₂ standard to time-of-flight neutron powder data from PEARL at ISIS: the calibration
 and the profile, with a polynomial background.
 
-The project is the catalogue case `pd-neut-tof_ceo2-pearl`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `pd-neut-tof_ceo2-pearl` step by step: the same project the command
+line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_ceo2-pearl', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-tof_ceo2-pearl')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_ceo2-pearl-ceo2', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['ceo2']
-experiment = project.experiments['pearl']
 ```
 
 ```text
-Data 'pd-neut-tof_ceo2-pearl' is at data/pd-neut-tof_ceo2-pearl-672773a1ed12/pd-neut-tof_ceo2-pearl
+Data 'pd-neut-tof_ceo2-pearl-ceo2' is at data/pd-neut-tof_ceo2-pearl-ceo2.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('ceo2')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-tof_ceo2-pearl-pearl-data', destination='data')
+project.experiments.add_from_data_path(
+    name='pearl',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['pearl']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'tof-jorgensen-von-dreele'
+experiment.absorption.type = 'cylinder'
+experiment.background.type = 'polynomial'
+experiment.instrument.name = 'PEARL'
+experiment.instrument.facility = 'ISIS'
+experiment.peak.cutoff_fwhm = 8.0
+experiment.peak.rise_alpha_1 = 0.3
+experiment.peak.decay_beta_0 = 0.03
+experiment.peak.decay_beta_1 = 0.03
+experiment.peak.broad_gauss_sigma_1 = 80
+experiment.peak.broad_gauss_sigma_2 = 4
+experiment.peak.broad_lorentz_gamma_1 = 5
+experiment.instrument.setup_twotheta_bank = 90.0
+experiment.instrument.calib_d_to_tof_linear = 4680
+experiment.instrument.calib_d_to_tof_quadratic = 1.7621
+experiment.background_origin = 7000.0
+experiment.excluded_regions.create(start=1000.1, end=2000.0)
+experiment.excluded_regions.create(start=18700.0, end=20000.0)
+experiment.linked_structures.create(structure_id='ceo2', scale=2000)
+terms = []
+for coef in (2200.0, 0, 0, 0, 0, 0):
+    term = edi.PolynomialTerm()
+    term.order = len(terms)
+    term.coef = coef
+    terms.append(term)
+experiment.background_terms = terms
+```
+
+```text
+Data 'pd-neut-tof_ceo2-pearl-pearl-data' is at data/pd-neut-tof_ceo2-pearl-pearl.xye
 ```
 
 ```python
@@ -45,7 +106,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -69,7 +130,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/2.html"></iframe>
+<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/3.html"></iframe>
 </div>
 
 ```python
@@ -81,12 +142,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        14.21        27.74
-      1      0.035     13.03        23.34   15.8% ↓
-  done · converged · 1 iters · reduced χ² 23.34 · Rwp 13.03 % · 0.04 s
+      1      0.039     13.03        23.34   15.8% ↓
+      2      0.049     13.03        23.34   
+  done · converged · 2 iters · reduced χ² 23.34 · Rwp 13.03 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/4.html"></iframe>
 </div>
 
 ```python
@@ -94,7 +156,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/5.html"></iframe>
 </div>
 
 ### Background
@@ -115,12 +177,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.03        23.41
-      1      0.043      6.73         6.24   73.4% ↓
-  done · converged · 1 iters · reduced χ² 6.24 · Rwp 6.73 % · 0.05 s
+      1      0.047      6.73         6.24   73.4% ↓
+  done · converged · 1 iters · reduced χ² 6.24 · Rwp 6.73 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/6.html"></iframe>
 </div>
 
 ```python
@@ -128,7 +190,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/7.html"></iframe>
 </div>
 
 ### Gaussian widths
@@ -149,12 +211,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 12 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.73         6.24
-      1      0.036      6.27         5.43   13.0% ↓
-  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.04 s
+      1      0.053      6.27         5.43   13.0% ↓
+  done · converged · 1 iters · reduced χ² 5.43 · Rwp 6.27 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/8.html"></iframe>
 </div>
 
 ```python
@@ -162,7 +224,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/9.html"></iframe>
 </div>
 
 ### Lorentzian width
@@ -182,12 +244,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 13 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.27         5.43
-      1      0.046      6.19         5.30   2.5% ↓
-  done · converged · 1 iters · reduced χ² 5.30 · Rwp 6.19 % · 0.05 s
+      1      0.057      6.19         5.30   2.5% ↓
+  done · converged · 1 iters · reduced χ² 5.30 · Rwp 6.19 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/10.html"></iframe>
 </div>
 
 ```python
@@ -195,7 +257,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/11.html"></iframe>
 </div>
 
 ### Rise and decay
@@ -217,12 +279,13 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 16 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.19         5.30
-      1      0.039      5.67         4.44   16.3% ↓
-  done · converged · 1 iters · reduced χ² 4.44 · Rwp 5.67 % · 0.04 s
+      1      0.049      5.67         4.44   16.3% ↓
+      2      0.062      5.67         4.44   
+  done · converged · 2 iters · reduced χ² 4.44 · Rwp 5.67 % · 0.07 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/12.html"></iframe>
 </div>
 
 ```python
@@ -230,7 +293,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/13.html"></iframe>
 </div>
 
 ### Displacements
@@ -249,12 +312,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.67         4.44
-      1      0.040      5.29         3.88   12.7% ↓
-  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.05 s
+      1      0.065      5.29         3.88   12.7% ↓
+  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.07 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/13.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/14.html"></iframe>
 </div>
 
 ```python
@@ -262,7 +325,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/15.html"></iframe>
 </div>
 
 ### Absorption
@@ -283,12 +346,12 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_ceo2-pearl, 2237 pts fitted / 2524 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.29         3.88
-      1      0.035      5.29         3.88   
-  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.04 s
+      1      0.045      5.29         3.88   
+  done · converged · 1 iters · reduced χ² 3.88 · Rwp 5.29 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/15.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/16.html"></iframe>
 </div>
 
 ```python
@@ -296,7 +359,7 @@ project.display.pattern('pearl')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/16.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/17.html"></iframe>
 </div>
 
 ```python
@@ -304,7 +367,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/17.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/18.html"></iframe>
 </div>
 
 ```python
@@ -312,17 +375,28 @@ project.display.structure('ceo2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/18.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ceo2-pearl/19.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_ceo2-pearl.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_ceo2-pearl.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_ceo2-pearl')
-project.report.save_html('pd-neut-tof_ceo2-pearl.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_ceo2-pearl'
-Saving report to 'pd-neut-tof_ceo2-pearl.html'
 ```

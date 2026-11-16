@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,48 +12,226 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_f
 Calibrate the BEER instrument at ESS with two McStas-simulated banks of a ferrite and austenite
 duplex steel, fitted together: each bank has its own zero and resolution.
 
-The project is the catalogue case `pd-neut-tof_ferrite-austenite-beer`, the one the command line
-and the app's Examples open. Austenite's displacement follows ferrite's, and each phase's scale
-in bank n2 follows bank s2, from the start.
+It builds the catalogue case `pd-neut-tof_ferrite-austenite-beer` step by step: the same project
+the command line fits and the app's Examples open. Austenite's displacement follows ferrite's,
+and each phase's scale in bank n2 follows bank s2.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them. The joint
+fitting mode fits every experiment at once, against one set of structures.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_ferrite-austenite-beer', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='ferrite-austenite-beer')
+project.analysis.fitting_mode = 'joint'
+```
+
+## Define the structures
+
+Load the two structures from EasyDiffraction's collection. Each CIF gives its space group, cell
+and atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_ferrite-austenite-beer-ferrite', destination='data')
+project.structures.add_from_cif_path(path)
+path = edi.download_data('pd-neut-tof_ferrite-austenite-beer-austenite', destination='data')
+project.structures.add_from_cif_path(path)
 ferrite = project.structures['ferrite']
 austenite = project.structures['austenite']
-bank_s2 = project.experiments['expt_s2']
-bank_n2 = project.experiments['expt_n2']
-project.display.constraints()
 ```
 
 ```text
-Data 'pd-neut-tof_ferrite-austenite-beer' is at data/pd-neut-tof_ferrite-austenite-beer-764611d2acc1/pd-neut-tof_ferrite-austenite-beer
+Data 'pd-neut-tof_ferrite-austenite-beer-ferrite' is at data/pd-neut-tof_ferrite-austenite-beer-ferrite.edi
+Data 'pd-neut-tof_ferrite-austenite-beer-austenite' is at data/pd-neut-tof_ferrite-austenite-beer-austenite.edi
+```
+
+```python
+project.display.structure('ferrite')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 348px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/1.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/1.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+## Define the experiments
+
+Create the two experiments from their measured data in EasyDiffraction's collection, then
+describe each one's instrument, peak profile, background and the structures it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data(
+    'pd-neut-tof_ferrite-austenite-beer-expt_s2-data', destination='data'
+)
+project.experiments.add_from_data_path(
+    name='expt_s2',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+bank_s2 = project.experiments['expt_s2']
+bank_s2.neutron_scattering_length = 'sears1992'
+bank_s2.peak.type = 'tof-pseudo-voigt'
+bank_s2.absorption.type = 'none'
+bank_s2.instrument.name = 'BEER'
+bank_s2.instrument.facility = 'ESS'
+bank_s2.peak.cutoff_fwhm = 12
+bank_s2.peak.broad_gauss_sigma_0 = 900
+bank_s2.peak.broad_gauss_sigma_1 = 1000
+bank_s2.peak.broad_gauss_sigma_2 = 300
+bank_s2.peak.broad_lorentz_gamma_0 = 5
+bank_s2.instrument.setup_twotheta_bank = 90.0
+bank_s2.instrument.calib_d_to_tof_linear = 54902.1875
+bank_s2.excluded_regions.create(start=20000.0, end=40158.2305)
+bank_s2.excluded_regions.create(start=130000.0, end=180000.0)
+bank_s2.linked_structures.create(structure_id='ferrite', scale=400)
+bank_s2.linked_structures.create(structure_id='austenite', scale=100)
+bank_s2.background.create(position=40111.8789, intensity=0.18)
+bank_s2.background.create(position=41193.5664, intensity=0.18)
+bank_s2.background.create(position=42041.3750, intensity=0.18)
+bank_s2.background.create(position=42713.7734, intensity=0.18)
+bank_s2.background.create(position=44409.3945, intensity=0.18)
+bank_s2.background.create(position=45198.7344, intensity=0.18)
+bank_s2.background.create(position=46251.1875, intensity=0.18)
+bank_s2.background.create(position=49350.0742, intensity=0.18)
+bank_s2.background.create(position=51289.6836, intensity=0.18)
+bank_s2.background.create(position=55245.1992, intensity=0.18)
+bank_s2.background.create(position=55679.7070, intensity=0.18)
+bank_s2.background.create(position=56383.9102, intensity=0.18)
+bank_s2.background.create(position=58956.1797, intensity=0.18)
+bank_s2.background.create(position=61536.4570, intensity=0.18)
+bank_s2.background.create(position=63768.0469, intensity=0.18)
+bank_s2.background.create(position=65581.2109, intensity=0.18)
+bank_s2.background.create(position=70183.8516, intensity=0.18)
+bank_s2.background.create(position=71787.8203, intensity=0.18)
+bank_s2.background.create(position=78343.1094, intensity=0.18)
+bank_s2.background.create(position=80016.8047, intensity=0.18)
+bank_s2.background.create(position=98141.8516, intensity=0.18)
+bank_s2.background.create(position=99262.2344, intensity=0.18)
+bank_s2.background.create(position=100985.8516, intensity=0.18)
+bank_s2.background.create(position=101933.8516, intensity=0.18)
+bank_s2.background.create(position=108656.0312, intensity=0.18)
+bank_s2.background.create(position=110896.7500, intensity=0.18)
+bank_s2.background.create(position=113137.4844, intensity=0.18)
+bank_s2.background.create(position=114430.2031, intensity=0.18)
+bank_s2.background.create(position=116929.4844, intensity=0.18)
+bank_s2.background.create(position=119428.7422, intensity=0.18)
+bank_s2.background.create(position=134506.3438, intensity=0.18)
 ```
+
+```text
+Data 'pd-neut-tof_ferrite-austenite-beer-expt_s2-data' is at data/pd-neut-tof_ferrite-austenite-beer-expt_s2.xye
+```
+
+```python
+data_path = edi.download_data(
+    'pd-neut-tof_ferrite-austenite-beer-expt_n2-data', destination='data'
+)
+project.experiments.add_from_data_path(
+    name='expt_n2',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+bank_n2 = project.experiments['expt_n2']
+bank_n2.neutron_scattering_length = 'sears1992'
+bank_n2.peak.type = 'tof-pseudo-voigt'
+bank_n2.absorption.type = 'none'
+bank_n2.instrument.name = 'BEER'
+bank_n2.instrument.facility = 'ESS'
+bank_n2.peak.cutoff_fwhm = 12
+bank_n2.peak.broad_gauss_sigma_0 = 900
+bank_n2.peak.broad_gauss_sigma_1 = 1000
+bank_n2.peak.broad_gauss_sigma_2 = 300
+bank_n2.peak.broad_lorentz_gamma_0 = 5
+bank_n2.instrument.setup_twotheta_bank = 90.0
+bank_n2.instrument.calib_d_to_tof_linear = 54902.1875
+bank_n2.excluded_regions.create(start=20000.0, end=40158.2305)
+bank_n2.excluded_regions.create(start=130000.0, end=180000.0)
+bank_n2.linked_structures.create(structure_id='ferrite', scale=400)
+bank_n2.linked_structures.create(structure_id='austenite', scale=100)
+bank_n2.background.create(position=40111.8789, intensity=0.19)
+bank_n2.background.create(position=41193.5664, intensity=0.19)
+bank_n2.background.create(position=42041.3750, intensity=0.19)
+bank_n2.background.create(position=42713.7734, intensity=0.19)
+bank_n2.background.create(position=44409.3945, intensity=0.19)
+bank_n2.background.create(position=45198.7344, intensity=0.19)
+bank_n2.background.create(position=46251.1875, intensity=0.19)
+bank_n2.background.create(position=49350.0742, intensity=0.19)
+bank_n2.background.create(position=51289.6836, intensity=0.19)
+bank_n2.background.create(position=55245.1992, intensity=0.19)
+bank_n2.background.create(position=55679.7070, intensity=0.19)
+bank_n2.background.create(position=56383.9102, intensity=0.19)
+bank_n2.background.create(position=58956.1797, intensity=0.19)
+bank_n2.background.create(position=61536.4570, intensity=0.19)
+bank_n2.background.create(position=63768.0469, intensity=0.19)
+bank_n2.background.create(position=65581.2109, intensity=0.19)
+bank_n2.background.create(position=70183.8516, intensity=0.19)
+bank_n2.background.create(position=71787.8203, intensity=0.19)
+bank_n2.background.create(position=78343.1094, intensity=0.19)
+bank_n2.background.create(position=80016.8047, intensity=0.19)
+bank_n2.background.create(position=98141.8516, intensity=0.19)
+bank_n2.background.create(position=99262.2344, intensity=0.19)
+bank_n2.background.create(position=100985.8516, intensity=0.19)
+bank_n2.background.create(position=101933.8516, intensity=0.19)
+bank_n2.background.create(position=108656.0312, intensity=0.19)
+bank_n2.background.create(position=110896.7500, intensity=0.19)
+bank_n2.background.create(position=113137.4844, intensity=0.19)
+bank_n2.background.create(position=114430.2031, intensity=0.19)
+bank_n2.background.create(position=116929.4844, intensity=0.19)
+bank_n2.background.create(position=119428.7422, intensity=0.19)
+bank_n2.background.create(position=134506.3438, intensity=0.19)
+```
+
+```text
+Data 'pd-neut-tof_ferrite-austenite-beer-expt_n2-data' is at data/pd-neut-tof_ferrite-austenite-beer-expt_n2.xye
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='biso_ferrite', param=ferrite.atom_sites['Fe'].adp_iso)
+project.analysis.aliases.create(id='biso_austenite', param=austenite.atom_sites['Fe'].adp_iso)
+project.analysis.aliases.create(
+    id='s2_ferrite_scale', param=bank_s2.linked_structures['ferrite'].scale
+)
+project.analysis.aliases.create(
+    id='s2_austenite_scale', param=bank_s2.linked_structures['austenite'].scale
+)
+project.analysis.aliases.create(
+    id='n2_ferrite_scale', param=bank_n2.linked_structures['ferrite'].scale
+)
+project.analysis.aliases.create(
+    id='n2_austenite_scale', param=bank_n2.linked_structures['austenite'].scale
+)
+project.analysis.constraints.create(id='1', expression='biso_austenite = biso_ferrite')
+project.analysis.constraints.create(id='2', expression='n2_ferrite_scale = s2_ferrite_scale')
+project.analysis.constraints.create(id='3', expression='n2_austenite_scale = s2_austenite_scale')
+```
+
+```python
+project.display.constraints()
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 348px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/2.html"></iframe>
+</div>
 
 ```python
 project.display.pattern('expt_s2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -76,7 +254,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/3.html"></iframe>
+<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/4.html"></iframe>
 </div>
 
 ```python
@@ -85,16 +263,16 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 4 free
+edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
-                       41.43       229.76
-      1      0.009     23.83        76.04   66.9% ↓
-      2      0.011     23.83        76.04   
-  done · converged · 2 iters · reduced χ² 76.04 · Rwp 23.83 % · 0.01 s
+                       41.43       459.60
+      1      0.011     23.83       152.11   66.9% ↓
+      2      0.013     23.83       152.11   
+  done · converged · 2 iters · reduced χ² 152.11 · Rwp 23.83 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/5.html"></iframe>
 </div>
 
 ```python
@@ -102,7 +280,7 @@ project.display.pattern('expt_s2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/6.html"></iframe>
 </div>
 
 ```python
@@ -110,7 +288,7 @@ project.display.pattern('expt_n2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/7.html"></iframe>
 </div>
 
 ### Background
@@ -132,15 +310,15 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 64 free
+edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 64 free
    iter   time (s)   Rwp (%)  reduced χ²   change
-                       23.83        76.86
-      1      0.085     18.05        44.10   42.6% ↓
-  done · converged · 1 iters · reduced χ² 44.10 · Rwp 18.05 % · 0.09 s
+                       23.83       153.75
+      1      0.108     18.05        88.21   42.6% ↓
+  done · converged · 1 iters · reduced χ² 88.21 · Rwp 18.05 % · 0.12 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/8.html"></iframe>
 </div>
 
 ```python
@@ -148,7 +326,7 @@ project.display.pattern('expt_s2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/9.html"></iframe>
 </div>
 
 ```python
@@ -156,7 +334,7 @@ project.display.pattern('expt_n2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/10.html"></iframe>
 </div>
 
 ### Peak widths
@@ -164,14 +342,17 @@ project.display.pattern('expt_n2')
 Each bank's widths.
 
 ```python
-bank_s2.peak.broad_gauss_sigma_0.free = True
-bank_s2.peak.broad_gauss_sigma_1.free = True
-bank_s2.peak.broad_gauss_sigma_2.free = True
-bank_s2.peak.broad_lorentz_gamma_0.free = True
-bank_n2.peak.broad_gauss_sigma_0.free = True
-bank_n2.peak.broad_gauss_sigma_1.free = True
-bank_n2.peak.broad_gauss_sigma_2.free = True
-bank_n2.peak.broad_lorentz_gamma_0.free = True
+for parameter in (
+    bank_s2.peak.broad_gauss_sigma_0,
+    bank_s2.peak.broad_gauss_sigma_1,
+    bank_s2.peak.broad_gauss_sigma_2,
+    bank_s2.peak.broad_lorentz_gamma_0,
+    bank_n2.peak.broad_gauss_sigma_0,
+    bank_n2.peak.broad_gauss_sigma_1,
+    bank_n2.peak.broad_gauss_sigma_2,
+    bank_n2.peak.broad_lorentz_gamma_0,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -180,15 +361,15 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 72 free
+edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 72 free
    iter   time (s)   Rwp (%)  reduced χ²   change
-                       18.05        44.16
-      1      0.092     16.38        36.35   17.7% ↓
-  done · converged · 1 iters · reduced χ² 36.35 · Rwp 16.38 % · 0.10 s
+                       18.05        88.34
+      1      0.121     16.38        72.72   17.7% ↓
+  done · converged · 1 iters · reduced χ² 72.72 · Rwp 16.38 % · 0.13 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/11.html"></iframe>
 </div>
 
 ```python
@@ -196,7 +377,7 @@ project.display.pattern('expt_s2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/12.html"></iframe>
 </div>
 
 ```python
@@ -204,7 +385,7 @@ project.display.pattern('expt_n2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/13.html"></iframe>
 </div>
 
 ### Displacement
@@ -221,16 +402,16 @@ project.display.fit.results()
 ```
 
 ```text
-edi fit: joint project pd-neut-tof_ferrite-austenite-beer, 2 banks (expt_n2, expt_s2), 5642 pts fitted / 5998 loaded, 73 free
+edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 73 free
    iter   time (s)   Rwp (%)  reduced χ²   change
-                       16.38        36.36
-      1      0.071      7.13         6.89   81.0% ↓
-      2      0.107      7.13         6.89   
-  done · converged · 2 iters · reduced χ² 6.89 · Rwp 7.13 % · 0.12 s
+                       16.38        72.73
+      1      0.088      7.13        13.78   81.0% ↓
+      2      0.134      7.13        13.78   
+  done · converged · 2 iters · reduced χ² 13.78 · Rwp 7.13 % · 0.15 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/13.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/14.html"></iframe>
 </div>
 
 ```python
@@ -238,7 +419,7 @@ project.display.pattern('expt_s2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/15.html"></iframe>
 </div>
 
 ```python
@@ -246,7 +427,7 @@ project.display.pattern('expt_n2')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/15.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/16.html"></iframe>
 </div>
 
 ```python
@@ -254,7 +435,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/16.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/17.html"></iframe>
 </div>
 
 ```python
@@ -262,7 +443,7 @@ project.display.structure('ferrite')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/17.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/18.html"></iframe>
 </div>
 
 ```python
@@ -270,17 +451,28 @@ project.display.structure('austenite')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/18.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ferrite-austenite-beer/19.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_ferrite-austenite-beer.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_ferrite-austenite-beer.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_ferrite-austenite-beer')
-project.report.save_html('pd-neut-tof_ferrite-austenite-beer.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_ferrite-austenite-beer'
-Saving report to 'pd-neut-tof_ferrite-austenite-beer.html'
 ```

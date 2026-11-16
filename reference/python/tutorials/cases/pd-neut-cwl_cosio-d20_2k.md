@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -13,46 +13,126 @@ Fit the magnetic structure of the olivine Co₂SiO₄ to constant-wavelength neu
 from D20 at ILL, measured at 2.3 K, below its ordering temperature. The cobalt moments order with
 k = 0 in the magnetic space group Pnma.1: Co1 may point in any direction, Co2 only along b.
 
-The project is the catalogue case `pd-neut-cwl_cosio-d20_2k`, the one the command line and the
-app's Examples open. Its two Co sites share one displacement, and the two FCJ asymmetry terms are
-tied, from the start.
+It builds the catalogue case `pd-neut-cwl_cosio-d20_2k` step by step: the same project the
+command line fits and the app's Examples open. Its two Co sites share one displacement, and the
+two FCJ asymmetry terms are tied.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-cwl_cosio-d20_2k', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-cwl_cosio-d20_2k')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-cwl_cosio-d20_2k-cosio', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['cosio']
-experiment = project.experiments['d20']
-project.display.constraints()
 ```
 
 ```text
-Data 'pd-neut-cwl_cosio-d20_2k' is at data/pd-neut-cwl_cosio-d20_2k-84d4534215e5/pd-neut-cwl_cosio-d20_2k
+Data 'pd-neut-cwl_cosio-d20_2k-cosio' is at data/pd-neut-cwl_cosio-d20_2k-cosio.edi
+```
+
+```python
+project.display.structure('cosio')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/1.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/1.html"></iframe>
 </div>
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-cwl_cosio-d20_2k-d20-data', destination='data')
+project.experiments.add_from_data_path(
+    name='d20',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['d20']
+experiment.peak.type = 'cwl-tch-pseudo-voigt-fcj'
+experiment.absorption.type = 'cylinder-hewat'
+experiment.instrument.name = 'D20'
+experiment.instrument.facility = 'ILL'
+experiment.peak.broad_gauss_u = 0.273527
+experiment.peak.broad_gauss_v = -0.589718
+experiment.peak.broad_gauss_w = 0.413007
+experiment.peak.broad_lorentz_y = 0.017548
+experiment.peak.cutoff_fwhm = 8
+experiment.absorption.mu_r = 0.230
+experiment.instrument.setup_wavelength = 1.87
+experiment.instrument.calib_twotheta_offset = 0.29433
+experiment.excluded_regions.create(start=0, end=6)
+experiment.excluded_regions.create(start=64.65, end=64.74)
+experiment.excluded_regions.create(start=150, end=180)
+experiment.linked_structures.create(structure_id='cosio', scale=1.817226)
+experiment.background.create(position=6, intensity=603.5)
+experiment.background.create(position=6.5, intensity=585.0)
+experiment.background.create(position=7, intensity=568.5)
+experiment.background.create(position=7.6, intensity=528.8)
+experiment.background.create(position=12.6, intensity=418.9)
+experiment.background.create(position=13, intensity=420.2)
+experiment.background.create(position=13.5, intensity=416.5)
+experiment.background.create(position=15, intensity=416.0542)
+experiment.background.create(position=25, intensity=394.7747)
+experiment.background.create(position=30, intensity=373.1628)
+experiment.background.create(position=50, intensity=406.3737)
+experiment.background.create(position=70, intensity=408.5056)
+experiment.background.create(position=90, intensity=395.9971)
+experiment.background.create(position=110, intensity=345.9223)
+experiment.background.create(position=130, intensity=279.0409)
+experiment.background.create(position=150, intensity=230.6987)
 ```
+
+```text
+Data 'pd-neut-cwl_cosio-d20_2k-d20-data' is at data/pd-neut-cwl_cosio-d20_2k-d20.xye
+```
+
+The constraints the fit keeps, each between two named parameters (aliases).
+
+```python
+project.analysis.aliases.create(id='biso_Co1', param=structure.atom_sites['Co1'].adp_iso)
+project.analysis.aliases.create(id='biso_Co2', param=structure.atom_sites['Co2'].adp_iso)
+project.analysis.aliases.create(id='sl', param=experiment.peak.asym_fcj_1)
+project.analysis.aliases.create(id='dl', param=experiment.peak.asym_fcj_2)
+project.analysis.constraints.create(id='biso_Co2', expression='biso_Co2 = biso_Co1')
+project.analysis.constraints.create(id='dl', expression='dl = sl')
+```
+
+```python
+project.display.constraints()
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 264px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/2.html"></iframe>
+</div>
 
 ```python
 project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/2.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/3.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -66,7 +146,9 @@ asymmetry.
 The first stage frees the phase scale, the 2θ zero shift, the three cell lengths and the magnetic
 model: the moment components the magnetic space group allows (Co1 in any direction, Co2 only
 along b) and the j2 term of the Co²⁺ form factor, which sets how the magnetic intensities fall
-with angle.
+with angle. They are freed together because at 2 K many peaks are purely magnetic: the scale
+fitted alone would also absorb the error of the starting moments in those peaks, while freed
+with the moments it follows the nuclear peaks and the moments follow the magnetic ones.
 
 ```python
 experiment.linked_structures['cosio'].scale.free = True
@@ -74,10 +156,13 @@ experiment.instrument.calib_twotheta_offset.free = True
 structure.cell.length_a.free = True
 structure.cell.length_b.free = True
 structure.cell.length_c.free = True
-structure.atom_site_moment['Co1'].crystalaxis_x.free = True
-structure.atom_site_moment['Co1'].crystalaxis_y.free = True
-structure.atom_site_moment['Co1'].crystalaxis_z.free = True
-structure.atom_site_moment['Co2'].crystalaxis_y.free = True
+for parameter in (
+    structure.atom_site_moment['Co1'].crystalaxis_x,
+    structure.atom_site_moment['Co1'].crystalaxis_y,
+    structure.atom_site_moment['Co1'].crystalaxis_z,
+    structure.atom_site_moment['Co2'].crystalaxis_y,
+):
+    parameter.free = True
 structure.magnetic_form_factor['Co'].j2_coefficient.free = True
 ```
 
@@ -86,7 +171,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/4.html"></iframe>
 </div>
 
 ```python
@@ -98,15 +183,15 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.38        35.86
-      1      0.016      5.97         9.88   72.5% ↓
-      2      0.019      5.97         9.88   
-      3      0.022      5.97         9.88   
-      4      0.025      5.97         9.88   
-  done · converged · 4 iters · reduced χ² 9.88 · Rwp 5.97 % · 0.03 s
+      1      0.024      5.97         9.88   72.5% ↓
+      2      0.028      5.97         9.88   
+      3      0.032      5.97         9.88   
+      4      0.037      5.97         9.88   
+  done · converged · 4 iters · reduced χ² 9.88 · Rwp 5.97 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/4.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/5.html"></iframe>
 </div>
 
 ```python
@@ -114,7 +199,7 @@ project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/6.html"></iframe>
 </div>
 
 ### Background
@@ -135,14 +220,14 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 26 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.97         9.99
-      1      0.018      5.65         8.93   10.6% ↓
-      2      0.021      5.65         8.93   
-      3      0.025      5.65         8.93   
-  done · converged · 3 iters · reduced χ² 8.93 · Rwp 5.65 % · 0.03 s
+      1      0.028      5.65         8.93   10.6% ↓
+      2      0.033      5.65         8.93   
+      3      0.038      5.65         8.93   
+  done · converged · 3 iters · reduced χ² 8.93 · Rwp 5.65 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/6.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/7.html"></iframe>
 </div>
 
 ```python
@@ -150,14 +235,16 @@ project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/8.html"></iframe>
 </div>
 
 ### Atomic displacements and positions
 
 The third stage frees the atoms: each site's isotropic displacement (Co2's follows Co1's by the
 project's constraint) and the coordinates the symmetry leaves free. Co1 sits on a centre of
-symmetry, so it has none; the other sites lie on the mirror plane, except O3.
+symmetry, so it has none; the other sites lie on the mirror plane, except O3. Both are freed in
+one stage because positions and displacements change the same peak intensities: fitted apart,
+the one freed first would absorb the error of the other.
 
 ```python
 for site in structure.atom_sites:
@@ -176,16 +263,16 @@ edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 42 fre
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.65         9.03
       1      0.028      5.60         8.87   1.8% ↓
-      2      0.034      5.59         8.87   
-      3      0.037      5.59         8.87   
-      4      0.040      5.59         8.86   
-      5      0.043      5.59         8.86   
-      6      0.047      5.59         8.86   
-  done · converged · 6 iters · reduced χ² 8.86 · Rwp 5.59 % · 0.05 s
+      2      0.033      5.59         8.87   
+      3      0.038      5.59         8.87   
+      4      0.042      5.59         8.86   
+      5      0.047      5.59         8.86   
+      6      0.052      5.59         8.86   
+  done · converged · 6 iters · reduced χ² 8.86 · Rwp 5.59 % · 0.06 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/8.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/9.html"></iframe>
 </div>
 
 ```python
@@ -193,7 +280,7 @@ project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/9.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/10.html"></iframe>
 </div>
 
 ### Peak widths
@@ -201,10 +288,13 @@ project.display.pattern('d20')
 The fourth stage frees the peak profile: the Gaussian widths U, V and W and the Lorentzian Y.
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.broad_lorentz_y.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.broad_lorentz_y,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -216,20 +306,20 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 46 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.59         8.89
-      1      0.025      5.58         8.86   0.3% ↓
-      2      0.029      5.58         8.86   
-      3      0.032      5.58         8.86   
-      4      0.036      5.58         8.86   
-      5      0.039      5.58         8.86   
-      6      0.043      5.58         8.86   
-      7      0.047      5.58         8.86   
-      8      0.050      5.58         8.86   
-      9      0.055      5.58         8.86   
-  done · converged · 9 iters · reduced χ² 8.86 · Rwp 5.58 % · 0.06 s
+      1      0.033      5.58         8.86   0.3% ↓
+      2      0.039      5.58         8.86   
+      3      0.044      5.58         8.86   
+      4      0.049      5.58         8.86   
+      5      0.055      5.58         8.86   
+      6      0.060      5.58         8.86   
+      7      0.065      5.58         8.86   
+      8      0.071      5.58         8.86   
+      9      0.077      5.58         8.86   
+  done · converged · 9 iters · reduced χ² 8.86 · Rwp 5.58 % · 0.08 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/10.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/11.html"></iframe>
 </div>
 
 ```python
@@ -237,7 +327,7 @@ project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/12.html"></iframe>
 </div>
 
 ### Peak asymmetry
@@ -258,31 +348,31 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 47 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.58         8.87
-      1      0.135      5.51         8.62   2.8% ↓
-      2      0.139      5.44         8.41   2.4% ↓
-      3      0.142      5.36         8.16   3.0% ↓
-      4      0.146      5.21         7.71   5.5% ↓
-      5      0.150      5.06         7.28   5.6% ↓
-      6      0.155      4.74         6.39   12.1% ↓
-      7      0.159      4.72         6.33   1.0% ↓
-      8      0.163      4.70         6.27   1.0% ↓
-      9      0.169      4.69         6.26   0.1% ↓
-     10      0.174      4.69         6.26   
-     11      0.179      4.69         6.26   
-     12      0.184      4.69         6.26   
-     13      0.189      4.69         6.25   0.1% ↓
-     14      0.194      4.69         6.25   
-     15      0.200      4.69         6.25   
-     16      0.205      4.69         6.25   
-     17      0.210      4.69         6.25   
-     18      0.216      4.69         6.25   
-     19      0.221      4.69         6.25   
-     20      0.228      4.69         6.25   
-  done · converged · 20 iters · reduced χ² 6.25 · Rwp 4.69 % · 0.23 s
+      1      0.188      5.51         8.62   2.8% ↓
+      2      0.194      5.44         8.41   2.4% ↓
+      3      0.200      5.36         8.16   3.0% ↓
+      4      0.205      5.21         7.71   5.5% ↓
+      5      0.211      5.06         7.28   5.6% ↓
+      6      0.218      4.74         6.39   12.1% ↓
+      7      0.225      4.72         6.33   1.0% ↓
+      8      0.232      4.70         6.27   1.0% ↓
+      9      0.240      4.69         6.26   0.1% ↓
+     10      0.247      4.69         6.26   
+     11      0.256      4.69         6.26   
+     12      0.264      4.69         6.26   
+     13      0.272      4.69         6.25   0.1% ↓
+     14      0.280      4.69         6.25   
+     15      0.288      4.69         6.25   
+     16      0.297      4.69         6.25   
+     17      0.305      4.69         6.25   
+     18      0.314      4.69         6.25   
+     19      0.322      4.69         6.25   
+     20      0.335      4.69         6.25   
+  done · converged · 20 iters · reduced χ² 6.25 · Rwp 4.69 % · 0.34 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/12.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/13.html"></iframe>
 </div>
 
 ```python
@@ -290,7 +380,7 @@ project.display.pattern('d20')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/14.html"></iframe>
 </div>
 
 ```python
@@ -298,7 +388,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/14.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/15.html"></iframe>
 </div>
 
 ```python
@@ -306,17 +396,28 @@ project.display.structure('cosio')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/15.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_cosio-d20_2k/16.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-cwl_cosio-d20_2k.html')
+```
+
+```text
+Saving report to 'pd-neut-cwl_cosio-d20_2k.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-cwl_cosio-d20_2k')
-project.report.save_html('pd-neut-cwl_cosio-d20_2k.html')
 ```
 
 ```text
 Saving project to 'pd-neut-cwl_cosio-d20_2k'
-Saving report to 'pd-neut-cwl_cosio-d20_2k.html'
 ```

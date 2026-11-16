@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_y2o3-spodi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_y2o3-spodi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,32 +12,98 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_y
 Fit cubic Y₂O₃ to constant-wavelength neutron powder data from SPODI at FRM II, with anisotropic
 displacement tensors whose components the site symmetry ties together.
 
-The project is the catalogue case `pd-neut-cwl_y2o3-spodi`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `pd-neut-cwl_y2o3-spodi` step by step: the same project the command
+line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-cwl_y2o3-spodi', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-cwl_y2o3-spodi')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-cwl_y2o3-spodi-y2o3', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['y2o3']
-experiment = project.experiments['spodi']
 ```
 
 ```text
-Data 'pd-neut-cwl_y2o3-spodi' is at data/pd-neut-cwl_y2o3-spodi-6856c2525734/pd-neut-cwl_y2o3-spodi
+Data 'pd-neut-cwl_y2o3-spodi-y2o3' is at data/pd-neut-cwl_y2o3-spodi-y2o3.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('y2o3')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-cwl_y2o3-spodi-spodi-data', destination='data')
+project.experiments.add_from_data_path(
+    name='spodi',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['spodi']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'cwl-tch-pseudo-voigt'
+experiment.instrument.name = 'SPODI'
+experiment.instrument.facility = 'FRM II'
+experiment.peak.broad_gauss_u = 0.04
+experiment.peak.broad_gauss_v = -0.07
+experiment.peak.broad_gauss_w = 0.1
+experiment.instrument.setup_wavelength = 1.54822
+experiment.excluded_regions.create(start=0, end=12)
+experiment.excluded_regions.create(start=137.5, end=180)
+experiment.linked_structures.create(structure_id='y2o3', scale=0.1)
+experiment.background.create(position=12.5856, intensity=6400.0)
+experiment.background.create(position=19.4181, intensity=6400.0)
+experiment.background.create(position=21.8751, intensity=6400.0)
+experiment.background.create(position=27.8998, intensity=6400.0)
+experiment.background.create(position=32.9147, intensity=6400.0)
+experiment.background.create(position=39.1152, intensity=6400.0)
+experiment.background.create(position=45.712, intensity=6400.0)
+experiment.background.create(position=51.9387, intensity=6400.0)
+experiment.background.create(position=60.558, intensity=6400.0)
+experiment.background.create(position=68.1982, intensity=6400.0)
+experiment.background.create(position=81.3276, intensity=6400.0)
+experiment.background.create(position=88.7996, intensity=6400.0)
+experiment.background.create(position=94.3171, intensity=6400.0)
+experiment.background.create(position=98.1541, intensity=6400.0)
+experiment.background.create(position=100.9813, intensity=6400.0)
+experiment.background.create(position=104.3134, intensity=6400.0)
+experiment.background.create(position=108.7225, intensity=6400.0)
+experiment.background.create(position=116.0673, intensity=6400.0)
+experiment.background.create(position=121.4862, intensity=6400.0)
+experiment.background.create(position=131.2805, intensity=6400.0)
+experiment.background.create(position=135.7928, intensity=6400.0)
+```
+
+```text
+Data 'pd-neut-cwl_y2o3-spodi-spodi-data' is at data/pd-neut-cwl_y2o3-spodi-spodi.xye
 ```
 
 ## Estimate the background
@@ -54,7 +120,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -76,7 +142,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 180px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/2.html"></iframe>
+<iframe style="width: 100%; height: 180px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/3.html"></iframe>
 </div>
 
 ```python
@@ -88,13 +154,13 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         3.47         7.84
-      1      0.015      2.53         4.17   46.8% ↓
-      2      0.018      2.53         4.17   
-  done · converged · 2 iters · reduced χ² 4.17 · Rwp 2.53 % · 0.02 s
+      1      0.024      2.53         4.17   46.8% ↓
+      2      0.029      2.53         4.17   
+  done · converged · 2 iters · reduced χ² 4.17 · Rwp 2.53 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/4.html"></iframe>
 </div>
 
 ```python
@@ -102,7 +168,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/5.html"></iframe>
 </div>
 
 ### Background
@@ -123,12 +189,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.53         4.20
-      1      0.015      2.37         3.68   12.4% ↓
-  done · converged · 1 iters · reduced χ² 3.68 · Rwp 2.37 % · 0.02 s
+      1      0.025      2.37         3.68   12.4% ↓
+  done · converged · 1 iters · reduced χ² 3.68 · Rwp 2.37 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/6.html"></iframe>
 </div>
 
 ```python
@@ -136,7 +202,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/7.html"></iframe>
 </div>
 
 ### Peak widths
@@ -156,12 +222,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 27 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.37         3.69
-      1      0.021      1.78         2.08   43.5% ↓
-  done · converged · 1 iters · reduced χ² 2.08 · Rwp 1.78 % · 0.02 s
+      1      0.034      1.78         2.08   43.5% ↓
+  done · converged · 1 iters · reduced χ² 2.08 · Rwp 1.78 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/8.html"></iframe>
 </div>
 
 ```python
@@ -169,7 +235,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/9.html"></iframe>
 </div>
 
 ### Atom positions
@@ -191,12 +257,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 31 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.78         2.09
-      1      0.029      1.42         1.33   36.5% ↓
-  done · converged · 1 iters · reduced χ² 1.33 · Rwp 1.42 % · 0.03 s
+      1      0.045      1.42         1.33   36.5% ↓
+  done · converged · 1 iters · reduced χ² 1.33 · Rwp 1.42 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/10.html"></iframe>
 </div>
 
 ```python
@@ -204,7 +270,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/11.html"></iframe>
 </div>
 
 ### Anisotropic displacements
@@ -233,12 +299,12 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 43 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.42         1.33
-      1      0.031      1.33         1.17   11.9% ↓
-  done · converged · 1 iters · reduced χ² 1.17 · Rwp 1.33 % · 0.04 s
+      1      0.047      1.33         1.17   11.9% ↓
+  done · converged · 1 iters · reduced χ² 1.17 · Rwp 1.33 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/12.html"></iframe>
 </div>
 
 ```python
@@ -246,7 +312,7 @@ project.display.pattern('spodi')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/13.html"></iframe>
 </div>
 
 ```python
@@ -254,7 +320,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/13.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/14.html"></iframe>
 </div>
 
 ```python
@@ -262,17 +328,28 @@ project.display.structure('y2o3')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/14.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_y2o3-spodi/15.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-cwl_y2o3-spodi.html')
+```
+
+```text
+Saving report to 'pd-neut-cwl_y2o3-spodi.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-cwl_y2o3-spodi')
-project.report.save_html('pd-neut-cwl_y2o3-spodi.html')
 ```
 
 ```text
 Saving project to 'pd-neut-cwl_y2o3-spodi'
-Saving report to 'pd-neut-cwl_y2o3-spodi.html'
 ```

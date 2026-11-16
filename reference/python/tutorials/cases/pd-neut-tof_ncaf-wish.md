@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ncaf-wish/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ncaf-wish.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -12,36 +12,363 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_n
 Fit Na₂Ca₃Al₂F₁₄ to time-of-flight neutron powder data from WISH at ISIS, all five detector bank
 pairs at once. Each bank has its own calibration and profile; the structure is shared.
 
-The project is the catalogue case `pd-neut-tof_ncaf-wish`, the one the command line and the
-app's Examples open.
+It builds the catalogue case `pd-neut-tof_ncaf-wish` step by step: the same project the command
+line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them. The joint
+fitting mode fits every experiment at once, against one set of structures.
 
 ```python
-project_path = edi.download_data('pd-neut-tof_ncaf-wish', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-tof_ncaf-wish')
+project.analysis.fitting_mode = 'joint'
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-tof_ncaf-wish-ncaf', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['ncaf']
-wish_1_10 = project.experiments['wish_1_10']
-wish_2_9 = project.experiments['wish_2_9']
-wish_3_8 = project.experiments['wish_3_8']
-wish_4_7 = project.experiments['wish_4_7']
-wish_5_6 = project.experiments['wish_5_6']
 ```
 
 ```text
-Data 'pd-neut-tof_ncaf-wish' is at data/pd-neut-tof_ncaf-wish-806c3099eda1/pd-neut-tof_ncaf-wish
+Data 'pd-neut-tof_ncaf-wish-ncaf' is at data/pd-neut-tof_ncaf-wish-ncaf.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('ncaf')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/1.html"></iframe>
+</div>
+
+## Define the experiments
+
+Create the five experiments from their measured data in EasyDiffraction's collection, then
+describe each one's instrument, peak profile, background and the structures it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-tof_ncaf-wish-wish_1_10-data', destination='data')
+project.experiments.add_from_data_path(
+    name='wish_1_10',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+wish_1_10 = project.experiments['wish_1_10']
+wish_1_10.neutron_scattering_length = 'sears1992'
+wish_1_10.peak.type = 'tof-jorgensen-von-dreele'
+wish_1_10.absorption.type = 'cylinder'
+wish_1_10.instrument.name = 'WISH'
+wish_1_10.instrument.facility = 'ISIS'
+wish_1_10.peak.cutoff_fwhm = 8
+wish_1_10.peak.broad_gauss_sigma_2 = 15.4063
+wish_1_10.peak.broad_lorentz_gamma_1 = 8.2904
+wish_1_10.peak.decay_beta_0 = 0.004707
+wish_1_10.peak.decay_beta_1 = 0.137368
+wish_1_10.peak.rise_alpha_0 = 0.014439
+wish_1_10.peak.rise_alpha_1 = 0.05507
+wish_1_10.instrument.setup_twotheta_bank = 27.081
+wish_1_10.instrument.calib_d_to_tof_linear = 4985.32
+wish_1_10.instrument.calib_d_to_tof_quadratic = 1.85733
+wish_1_10.excluded_regions.create(start=0, end=7000)
+wish_1_10.excluded_regions.create(start=240000, end=300000)
+wish_1_10.linked_structures.create(structure_id='ncaf', scale=40)
+wish_1_10.background.create(position=6056.0952, intensity=210.0)
+wish_1_10.background.create(position=7099.4761, intensity=210.0)
+wish_1_10.background.create(position=8008.2271, intensity=210.0)
+wish_1_10.background.create(position=8816.0059, intensity=210.0)
+wish_1_10.background.create(position=9724.7568, intensity=210.0)
+wish_1_10.background.create(position=10532.5352, intensity=210.0)
+wish_1_10.background.create(position=11710.5459, intensity=210.0)
+wish_1_10.background.create(position=12619.2969, intensity=210.0)
+wish_1_10.background.create(position=13393.4180, intensity=210.0)
+wish_1_10.background.create(position=14470.4561, intensity=210.0)
+wish_1_10.background.create(position=15614.8096, intensity=210.0)
+wish_1_10.background.create(position=17264.0254, intensity=210.0)
+wish_1_10.background.create(position=19283.4707, intensity=210.0)
+wish_1_10.background.create(position=20192.2207, intensity=210.0)
+wish_1_10.background.create(position=22346.2969, intensity=210.0)
+wish_1_10.background.create(position=24433.0586, intensity=210.0)
+wish_1_10.background.create(position=27563.2012, intensity=210.0)
+wish_1_10.background.create(position=30356.7695, intensity=210.0)
+wish_1_10.background.create(position=33049.3672, intensity=210.0)
+wish_1_10.background.create(position=35203.4414, intensity=210.0)
+wish_1_10.background.create(position=38826.4766, intensity=210.0)
+wish_1_10.background.create(position=44447.2695, intensity=210.0)
+wish_1_10.background.create(position=50068.0625, intensity=210.0)
+wish_1_10.background.create(position=55587.8828, intensity=210.0)
+wish_1_10.background.create(position=63586.3867, intensity=210.0)
+wish_1_10.background.create(position=74289.4531, intensity=210.0)
+wish_1_10.background.create(position=86385.1953, intensity=210.0)
+wish_1_10.background.create(position=98097.9844, intensity=210.0)
+wish_1_10.background.create(position=114791.3281, intensity=210.0)
+wish_1_10.background.create(position=128630.5156, intensity=210.0)
+wish_1_10.background.create(position=147091.2500, intensity=210.0)
+wish_1_10.background.create(position=167026.9219, intensity=210.0)
+wish_1_10.background.create(position=187448.0156, intensity=210.0)
+wish_1_10.background.create(position=208808.5312, intensity=210.0)
+wish_1_10.background.create(position=231077.7812, intensity=210.0)
+wish_1_10.background.create(position=252332.8281, intensity=210.0)
+```
+
+```text
+Data 'pd-neut-tof_ncaf-wish-wish_1_10-data' is at data/pd-neut-tof_ncaf-wish-wish_1_10.xye
+```
+
+```python
+data_path = edi.download_data('pd-neut-tof_ncaf-wish-wish_2_9-data', destination='data')
+project.experiments.add_from_data_path(
+    name='wish_2_9',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+wish_2_9 = project.experiments['wish_2_9']
+wish_2_9.neutron_scattering_length = 'sears1992'
+wish_2_9.peak.type = 'tof-jorgensen-von-dreele'
+wish_2_9.absorption.type = 'cylinder'
+wish_2_9.instrument.name = 'WISH'
+wish_2_9.instrument.facility = 'ISIS'
+wish_2_9.peak.cutoff_fwhm = 8
+wish_2_9.peak.broad_gauss_sigma_1 = 34
+wish_2_9.peak.broad_gauss_sigma_2 = 11
+wish_2_9.peak.broad_lorentz_gamma_1 = 1
+wish_2_9.peak.decay_beta_0 = 0.0061
+wish_2_9.peak.decay_beta_1 = 0.096
+wish_2_9.peak.rise_alpha_0 = 0.053
+wish_2_9.peak.rise_alpha_1 = 0.031
+wish_2_9.instrument.setup_twotheta_bank = 58.33
+wish_2_9.instrument.calib_d_to_tof_linear = 10389.9
+wish_2_9.instrument.calib_d_to_tof_quadratic = 1.85233
+wish_2_9.excluded_regions.create(start=0, end=7000)
+wish_2_9.excluded_regions.create(start=134000, end=300000)
+wish_2_9.linked_structures.create(structure_id='ncaf', scale=40)
+wish_2_9.background.create(position=7246.0732, intensity=220.0)
+wish_2_9.background.create(position=9265.5195, intensity=220.0)
+wish_2_9.background.create(position=11097.9795, intensity=220.0)
+wish_2_9.background.create(position=13080.0303, intensity=220.0)
+wish_2_9.background.create(position=15473.4473, intensity=220.0)
+wish_2_9.background.create(position=16931.9355, intensity=220.0)
+wish_2_9.background.create(position=18614.8086, intensity=220.0)
+wish_2_9.background.create(position=20596.8594, intensity=220.0)
+wish_2_9.background.create(position=22504.1133, intensity=220.0)
+wish_2_9.background.create(position=26169.0332, intensity=220.0)
+wish_2_9.background.create(position=28113.6875, intensity=220.0)
+wish_2_9.background.create(position=30320.1172, intensity=220.0)
+wish_2_9.background.create(position=34770.3828, intensity=220.0)
+wish_2_9.background.create(position=40155.5703, intensity=220.0)
+wish_2_9.background.create(position=48341.8086, intensity=220.0)
+wish_2_9.background.create(position=58540.0156, intensity=220.0)
+wish_2_9.background.create(position=69139.8672, intensity=220.0)
+wish_2_9.background.create(position=80953.6328, intensity=220.0)
+wish_2_9.background.create(position=94214.6562, intensity=220.0)
+wish_2_9.background.create(position=107677.6328, intensity=220.0)
+wish_2_9.background.create(position=120889.3047, intensity=220.0)
+wish_2_9.background.create(position=132602.0938, intensity=220.0)
+```
+
+```text
+Data 'pd-neut-tof_ncaf-wish-wish_2_9-data' is at data/pd-neut-tof_ncaf-wish-wish_2_9.xye
+```
+
+```python
+data_path = edi.download_data('pd-neut-tof_ncaf-wish-wish_3_8-data', destination='data')
+project.experiments.add_from_data_path(
+    name='wish_3_8',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+wish_3_8 = project.experiments['wish_3_8']
+wish_3_8.neutron_scattering_length = 'sears1992'
+wish_3_8.peak.type = 'tof-jorgensen-von-dreele'
+wish_3_8.absorption.type = 'cylinder'
+wish_3_8.instrument.name = 'WISH'
+wish_3_8.instrument.facility = 'ISIS'
+wish_3_8.peak.cutoff_fwhm = 8
+wish_3_8.peak.broad_gauss_sigma_1 = 30
+wish_3_8.peak.broad_gauss_sigma_2 = 8.3
+wish_3_8.peak.broad_lorentz_gamma_1 = 0.0002
+wish_3_8.peak.decay_beta_0 = 0.0069
+wish_3_8.peak.decay_beta_1 = 0.032
+wish_3_8.peak.rise_alpha_0 = -0.016
+wish_3_8.peak.rise_alpha_1 = 0.16
+wish_3_8.instrument.setup_twotheta_bank = 90
+wish_3_8.instrument.calib_d_to_tof_linear = 15105.5
+wish_3_8.instrument.calib_d_to_tof_quadratic = 1.00785
+wish_3_8.excluded_regions.create(start=0, end=9000)
+wish_3_8.excluded_regions.create(start=116000, end=300000)
+wish_3_8.linked_structures.create(structure_id='ncaf', scale=40)
+wish_3_8.background.create(position=9089.7529, intensity=240.0)
+wish_3_8.background.create(position=11580.4033, intensity=240.0)
+wish_3_8.background.create(position=13667.1650, intensity=240.0)
+wish_3_8.background.create(position=15551.9824, intensity=240.0)
+wish_3_8.background.create(position=17739.7168, intensity=240.0)
+wish_3_8.background.create(position=20364.9961, intensity=240.0)
+wish_3_8.background.create(position=22653.7031, intensity=240.0)
+wish_3_8.background.create(position=24740.4648, intensity=240.0)
+wish_3_8.background.create(position=27130.1406, intensity=240.0)
+wish_3_8.background.create(position=29957.3672, intensity=240.0)
+wish_3_8.background.create(position=32616.3047, intensity=240.0)
+wish_3_8.background.create(position=36150.3359, intensity=240.0)
+wish_3_8.background.create(position=40963.3516, intensity=240.0)
+wish_3_8.background.create(position=47265.5195, intensity=240.0)
+wish_3_8.background.create(position=53391.1758, intensity=240.0)
+wish_3_8.background.create(position=62005.2383, intensity=240.0)
+wish_3_8.background.create(position=71866.8672, intensity=240.0)
+wish_3_8.background.create(position=82913.9922, intensity=240.0)
+wish_3_8.background.create(position=90385.9375, intensity=240.0)
+wish_3_8.background.create(position=99649.2188, intensity=240.0)
+wish_3_8.background.create(position=107356.7656, intensity=240.0)
+wish_3_8.background.create(position=115337.3203, intensity=240.0)
+```
+
+```text
+Data 'pd-neut-tof_ncaf-wish-wish_3_8-data' is at data/pd-neut-tof_ncaf-wish-wish_3_8.xye
+```
+
+```python
+data_path = edi.download_data('pd-neut-tof_ncaf-wish-wish_4_7-data', destination='data')
+project.experiments.add_from_data_path(
+    name='wish_4_7',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+wish_4_7 = project.experiments['wish_4_7']
+wish_4_7.neutron_scattering_length = 'sears1992'
+wish_4_7.peak.type = 'tof-jorgensen-von-dreele'
+wish_4_7.absorption.type = 'cylinder'
+wish_4_7.instrument.name = 'WISH'
+wish_4_7.instrument.facility = 'ISIS'
+wish_4_7.peak.cutoff_fwhm = 8
+wish_4_7.peak.broad_gauss_sigma_1 = 14
+wish_4_7.peak.broad_gauss_sigma_2 = 8.9
+wish_4_7.peak.decay_beta_0 = 0.0074
+wish_4_7.peak.decay_beta_1 = 0.017
+wish_4_7.peak.rise_alpha_0 = -0.015
+wish_4_7.peak.rise_alpha_1 = 0.16
+wish_4_7.instrument.setup_twotheta_bank = 121.66
+wish_4_7.instrument.calib_d_to_tof_linear = 18660.1
+wish_4_7.instrument.calib_d_to_tof_quadratic = -0.47488
+wish_4_7.excluded_regions.create(start=0, end=9000)
+wish_4_7.excluded_regions.create(start=108000, end=300000)
+wish_4_7.linked_structures.create(structure_id='ncaf', scale=40)
+wish_4_7.background.create(position=9089.7529, intensity=250.0)
+wish_4_7.background.create(position=10671.6523, intensity=250.0)
+wish_4_7.background.create(position=12287.2100, intensity=250.0)
+wish_4_7.background.create(position=14037.3975, intensity=250.0)
+wish_4_7.background.create(position=15451.0088, intensity=250.0)
+wish_4_7.background.create(position=16763.6504, intensity=250.0)
+wish_4_7.background.create(position=18076.2910, intensity=250.0)
+wish_4_7.background.create(position=19456.2461, intensity=250.0)
+wish_4_7.background.create(position=20465.9688, intensity=250.0)
+wish_4_7.background.create(position=21879.5801, intensity=250.0)
+wish_4_7.background.create(position=23798.0566, intensity=250.0)
+wish_4_7.background.create(position=25447.2715, intensity=250.0)
+wish_4_7.background.create(position=28072.5508, intensity=250.0)
+wish_4_7.background.create(position=30058.3418, intensity=250.0)
+wish_4_7.background.create(position=32582.6504, intensity=250.0)
+wish_4_7.background.create(position=34804.0391, intensity=250.0)
+wish_4_7.background.create(position=37160.0625, intensity=250.0)
+wish_4_7.background.create(position=40323.8594, intensity=250.0)
+wish_4_7.background.create(position=46894.5391, intensity=250.0)
+wish_4_7.background.create(position=50630.5156, intensity=250.0)
+wish_4_7.background.create(position=54602.0938, intensity=250.0)
+wish_4_7.background.create(position=58439.0430, intensity=250.0)
+wish_4_7.background.create(position=66519.8203, intensity=250.0)
+wish_4_7.background.create(position=75001.5000, intensity=250.0)
+wish_4_7.background.create(position=83649.2188, intensity=250.0)
+wish_4_7.background.create(position=92770.3828, intensity=250.0)
+wish_4_7.background.create(position=101524.3047, intensity=250.0)
+wish_4_7.background.create(position=107313.3906, intensity=250.0)
+```
+
+```text
+Data 'pd-neut-tof_ncaf-wish-wish_4_7-data' is at data/pd-neut-tof_ncaf-wish-wish_4_7.xye
+```
+
+```python
+data_path = edi.download_data('pd-neut-tof_ncaf-wish-wish_5_6-data', destination='data')
+project.experiments.add_from_data_path(
+    name='wish_5_6',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='time-of-flight',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+wish_5_6 = project.experiments['wish_5_6']
+wish_5_6.neutron_scattering_length = 'sears1992'
+wish_5_6.peak.type = 'tof-jorgensen-von-dreele'
+wish_5_6.absorption.type = 'cylinder'
+wish_5_6.instrument.name = 'WISH'
+wish_5_6.instrument.facility = 'ISIS'
+wish_5_6.peak.cutoff_fwhm = 8
+wish_5_6.peak.broad_gauss_sigma_2 = 7.7
+wish_5_6.peak.broad_lorentz_gamma_1 = 0.0019
+wish_5_6.peak.decay_beta_0 = 0.0077
+wish_5_6.peak.decay_beta_1 = 0.012
+wish_5_6.peak.rise_alpha_0 = -0.012
+wish_5_6.peak.rise_alpha_1 = 0.14
+wish_5_6.instrument.calib_d_to_tof_linear = 20772.9
+wish_5_6.instrument.calib_d_to_tof_quadratic = -1.08308
+wish_5_6.excluded_regions.create(start=0, end=9000)
+wish_5_6.excluded_regions.create(start=104000, end=300000)
+wish_5_6.linked_structures.create(structure_id='ncaf', scale=40)
+wish_5_6.background.create(position=11136.8740, intensity=260.0)
+wish_5_6.background.create(position=13313.3877, intensity=260.0)
+wish_5_6.background.create(position=9162.3037, intensity=260.0)
+wish_5_6.background.create(position=14906.5078, intensity=260.0)
+wish_5_6.background.create(position=16454.7500, intensity=260.0)
+wish_5_6.background.create(position=17352.2812, intensity=260.0)
+wish_5_6.background.create(position=18743.4551, intensity=260.0)
+wish_5_6.background.create(position=20179.5078, intensity=260.0)
+wish_5_6.background.create(position=21368.7363, intensity=260.0)
+wish_5_6.background.create(position=22176.0391, intensity=260.0)
+wish_5_6.background.create(position=22827.2266, intensity=260.0)
+wish_5_6.background.create(position=24644.7285, intensity=260.0)
+wish_5_6.background.create(position=26439.7910, intensity=260.0)
+wish_5_6.background.create(position=28257.2930, intensity=260.0)
+wish_5_6.background.create(position=31196.7109, intensity=260.0)
+wish_5_6.background.create(position=34034.4062, intensity=260.0)
+wish_5_6.background.create(position=37265.5195, intensity=260.0)
+wish_5_6.background.create(position=41214.6602, intensity=260.0)
+wish_5_6.background.create(position=44827.2266, intensity=260.0)
+wish_5_6.background.create(position=49830.9648, intensity=260.0)
+wish_5_6.background.create(position=52905.0117, intensity=260.0)
+wish_5_6.background.create(position=58204.9375, intensity=260.0)
+wish_5_6.background.create(position=62916.9805, intensity=260.0)
+wish_5_6.background.create(position=70186.9844, intensity=260.0)
+wish_5_6.background.create(position=74204.9375, intensity=260.0)
+wish_5_6.background.create(position=82103.2188, intensity=260.0)
+wish_5_6.background.create(position=91958.8672, intensity=260.0)
+wish_5_6.background.create(position=102712.0391, intensity=260.0)
+```
+
+```text
+Data 'pd-neut-tof_ncaf-wish-wish_5_6-data' is at data/pd-neut-tof_ncaf-wish-wish_5_6.xye
 ```
 
 ```python
@@ -49,7 +376,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -63,21 +390,27 @@ Each bank's scale and DIFC offset and linear term put its peaks in place and at 
 height.
 
 ```python
-wish_1_10.linked_structures['ncaf'].scale.free = True
-wish_1_10.instrument.calib_d_to_tof_offset.free = True
-wish_1_10.instrument.calib_d_to_tof_linear.free = True
-wish_2_9.linked_structures['ncaf'].scale.free = True
-wish_2_9.instrument.calib_d_to_tof_offset.free = True
-wish_2_9.instrument.calib_d_to_tof_linear.free = True
-wish_3_8.linked_structures['ncaf'].scale.free = True
-wish_3_8.instrument.calib_d_to_tof_offset.free = True
-wish_3_8.instrument.calib_d_to_tof_linear.free = True
-wish_4_7.linked_structures['ncaf'].scale.free = True
-wish_4_7.instrument.calib_d_to_tof_offset.free = True
-wish_4_7.instrument.calib_d_to_tof_linear.free = True
-wish_5_6.linked_structures['ncaf'].scale.free = True
-wish_5_6.instrument.calib_d_to_tof_offset.free = True
-wish_5_6.instrument.calib_d_to_tof_linear.free = True
+for parameter in (
+    wish_1_10.linked_structures['ncaf'].scale,
+    wish_2_9.linked_structures['ncaf'].scale,
+    wish_3_8.linked_structures['ncaf'].scale,
+    wish_4_7.linked_structures['ncaf'].scale,
+    wish_5_6.linked_structures['ncaf'].scale,
+):
+    parameter.free = True
+for parameter in (
+    wish_1_10.instrument.calib_d_to_tof_offset,
+    wish_1_10.instrument.calib_d_to_tof_linear,
+    wish_2_9.instrument.calib_d_to_tof_offset,
+    wish_2_9.instrument.calib_d_to_tof_linear,
+    wish_3_8.instrument.calib_d_to_tof_offset,
+    wish_3_8.instrument.calib_d_to_tof_linear,
+    wish_4_7.instrument.calib_d_to_tof_offset,
+    wish_4_7.instrument.calib_d_to_tof_linear,
+    wish_5_6.instrument.calib_d_to_tof_offset,
+    wish_5_6.instrument.calib_d_to_tof_linear,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -85,7 +418,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 516px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/2.html"></iframe>
+<iframe style="width: 100%; height: 516px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/3.html"></iframe>
 </div>
 
 ```python
@@ -97,17 +430,17 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 15 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        29.70       140.21
-      1      0.382     19.91        62.98   55.1% ↓
-      2      0.426     19.90        62.95   
-      3      0.487     19.90        62.95   
-      4      0.547     19.90        62.95   
-      5      0.608     19.90        62.95   
-      6      0.699     19.90        62.95   
-  done · converged · 6 iters · reduced χ² 62.95 · Rwp 19.90 % · 0.76 s
+      1      0.542     19.91        62.98   55.1% ↓
+      2      0.604     19.90        62.95   
+      3      0.670     19.90        62.95   
+      4      0.731     19.90        62.95   
+      5      0.794     19.90        62.95   
+      6      0.920     19.90        62.95   
+  done · converged · 6 iters · reduced χ² 62.95 · Rwp 19.90 % · 1.00 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/4.html"></iframe>
 </div>
 
 ```python
@@ -115,7 +448,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/5.html"></iframe>
 </div>
 
 ```python
@@ -123,7 +456,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/5.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/6.html"></iframe>
 </div>
 
 ```python
@@ -131,7 +464,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/7.html"></iframe>
 </div>
 
 ```python
@@ -139,7 +472,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/7.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/8.html"></iframe>
 </div>
 
 ```python
@@ -147,7 +480,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/9.html"></iframe>
 </div>
 
 ### Background
@@ -178,12 +511,12 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 149 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        19.90        63.39
-      1      0.759     13.97        31.21   50.8% ↓
-  done · converged · 1 iters · reduced χ² 31.21 · Rwp 13.97 % · 0.89 s
+      1      0.971     13.97        31.21   50.8% ↓
+  done · converged · 1 iters · reduced χ² 31.21 · Rwp 13.97 % · 1.14 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/10.html"></iframe>
 </div>
 
 ```python
@@ -191,7 +524,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/11.html"></iframe>
 </div>
 
 ```python
@@ -199,7 +532,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/11.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/12.html"></iframe>
 </div>
 
 ```python
@@ -207,7 +540,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/13.html"></iframe>
 </div>
 
 ```python
@@ -215,7 +548,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/13.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/14.html"></iframe>
 </div>
 
 ```python
@@ -223,7 +556,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/15.html"></iframe>
 </div>
 
 ### Peak asymmetry
@@ -232,22 +565,25 @@ Each bank's back-to-back exponentials, the terms its data determine; bank 1-10 k
 instrument values.
 
 ```python
-wish_2_9.peak.rise_alpha_0.free = True
-wish_2_9.peak.rise_alpha_1.free = True
-wish_2_9.peak.decay_beta_0.free = True
-wish_2_9.peak.decay_beta_1.free = True
-wish_3_8.peak.rise_alpha_0.free = True
-wish_3_8.peak.rise_alpha_1.free = True
-wish_3_8.peak.decay_beta_0.free = True
-wish_3_8.peak.decay_beta_1.free = True
-wish_4_7.peak.rise_alpha_0.free = True
-wish_4_7.peak.rise_alpha_1.free = True
-wish_4_7.peak.decay_beta_0.free = True
-wish_4_7.peak.decay_beta_1.free = True
-wish_5_6.peak.rise_alpha_0.free = True
-wish_5_6.peak.rise_alpha_1.free = True
-wish_5_6.peak.decay_beta_0.free = True
-wish_5_6.peak.decay_beta_1.free = True
+for parameter in (
+    wish_2_9.peak.rise_alpha_0,
+    wish_2_9.peak.rise_alpha_1,
+    wish_2_9.peak.decay_beta_0,
+    wish_2_9.peak.decay_beta_1,
+    wish_3_8.peak.rise_alpha_0,
+    wish_3_8.peak.rise_alpha_1,
+    wish_3_8.peak.decay_beta_0,
+    wish_3_8.peak.decay_beta_1,
+    wish_4_7.peak.rise_alpha_0,
+    wish_4_7.peak.rise_alpha_1,
+    wish_4_7.peak.decay_beta_0,
+    wish_4_7.peak.decay_beta_1,
+    wish_5_6.peak.rise_alpha_0,
+    wish_5_6.peak.rise_alpha_1,
+    wish_5_6.peak.decay_beta_0,
+    wish_5_6.peak.decay_beta_1,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -259,23 +595,23 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 165 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.97        31.24
-      1      0.743     10.41        17.36   44.4% ↓
-      2      0.835     10.30        17.00   2.1% ↓
-      3      0.926     10.26        16.85   0.9% ↓
-      4      1.017     10.24        16.80   0.3% ↓
-      5      1.108     10.23        16.78   0.1% ↓
-      6      1.197     10.23        16.77   
-      7      1.287     10.23        16.77   
-      8      1.397     10.23        16.77   
-      9      1.507     10.23        16.77   
-     10      1.618     10.23        16.77   
-     11      1.726     10.23        16.77   
-     12      1.881     10.23        16.77   
-  done · converged · 12 iters · reduced χ² 16.77 · Rwp 10.23 % · 2.02 s
+      1      0.975     10.41        17.36   44.4% ↓
+      2      1.093     10.30        17.00   2.1% ↓
+      3      1.214     10.26        16.85   0.9% ↓
+      4      1.333     10.24        16.80   0.3% ↓
+      5      1.452     10.23        16.78   0.1% ↓
+      6      1.573     10.23        16.77   
+      7      1.693     10.23        16.77   
+      8      1.813     10.23        16.77   
+      9      1.936     10.23        16.77   
+     10      2.057     10.23        16.77   
+     11      2.176     10.23        16.77   
+     12      2.389     10.23        16.77   
+  done · converged · 12 iters · reduced χ² 16.77 · Rwp 10.23 % · 2.58 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/15.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/16.html"></iframe>
 </div>
 
 ```python
@@ -283,7 +619,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/16.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/17.html"></iframe>
 </div>
 
 ### Gaussian widths
@@ -291,13 +627,16 @@ project.display.pattern('wish_2_9')
 The Gaussian width terms the banks' data determine.
 
 ```python
-wish_2_9.peak.broad_gauss_sigma_1.free = True
-wish_2_9.peak.broad_gauss_sigma_2.free = True
-wish_3_8.peak.broad_gauss_sigma_1.free = True
-wish_3_8.peak.broad_gauss_sigma_2.free = True
-wish_4_7.peak.broad_gauss_sigma_1.free = True
-wish_4_7.peak.broad_gauss_sigma_2.free = True
-wish_5_6.peak.broad_gauss_sigma_2.free = True
+for parameter in (
+    wish_2_9.peak.broad_gauss_sigma_1,
+    wish_2_9.peak.broad_gauss_sigma_2,
+    wish_3_8.peak.broad_gauss_sigma_1,
+    wish_3_8.peak.broad_gauss_sigma_2,
+    wish_4_7.peak.broad_gauss_sigma_1,
+    wish_4_7.peak.broad_gauss_sigma_2,
+    wish_5_6.peak.broad_gauss_sigma_2,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -309,24 +648,24 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 172 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.23        16.78
-      1      0.850     10.00        16.02   4.5% ↓
-      2      0.970     10.00        16.02   
-      3      1.087     10.00        16.02   
-      4      1.201     10.00        16.02   
-      5      1.316     10.00        16.02   
-      6      1.434     10.00        16.02   
-      7      1.531     10.00        16.01   
-      8      1.627      9.99        16.00   0.1% ↓
-      9      1.722      9.99        15.98   0.2% ↓
-     10      1.819      9.98        15.96   0.1% ↓
-     11      1.919      9.97        15.93   0.2% ↓
-     12      2.045      9.97        15.93   
-     13      2.230      9.97        15.93   
-  done · converged · 13 iters · reduced χ² 15.93 · Rwp 9.97 % · 2.40 s
+      1      1.120     10.00        16.02   4.5% ↓
+      2      1.252     10.00        16.02   
+      3      1.380     10.00        16.02   
+      4      1.510     10.00        16.02   
+      5      1.639     10.00        16.02   
+      6      1.768     10.00        16.02   
+      7      1.897     10.00        16.01   
+      8      2.027      9.99        16.00   0.1% ↓
+      9      2.157      9.99        15.98   0.2% ↓
+     10      2.289      9.98        15.96   0.1% ↓
+     11      2.425      9.97        15.93   0.2% ↓
+     12      2.560      9.97        15.93   
+     13      2.798      9.97        15.93   
+  done · converged · 13 iters · reduced χ² 15.93 · Rwp 9.97 % · 3.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/17.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/18.html"></iframe>
 </div>
 
 ```python
@@ -334,7 +673,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/18.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/19.html"></iframe>
 </div>
 
 ### Lorentzian width
@@ -354,12 +693,12 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 173 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.97        15.93
-      1      1.313      9.97        15.93   
-  done · converged · 1 iters · reduced χ² 15.93 · Rwp 9.97 % · 1.56 s
+      1      1.781      9.97        15.93   
+  done · converged · 1 iters · reduced χ² 15.93 · Rwp 9.97 % · 2.10 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/19.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/20.html"></iframe>
 </div>
 
 ```python
@@ -367,7 +706,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/20.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/21.html"></iframe>
 </div>
 
 ```python
@@ -375,7 +714,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/21.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/22.html"></iframe>
 </div>
 
 ```python
@@ -383,7 +722,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/22.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/23.html"></iframe>
 </div>
 
 ```python
@@ -391,7 +730,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/23.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/24.html"></iframe>
 </div>
 
 ```python
@@ -399,7 +738,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/24.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/25.html"></iframe>
 </div>
 
 ### Absorption
@@ -407,10 +746,13 @@ project.display.pattern('wish_5_6')
 Banks 2-9 to 5-6 each fit their absorption.
 
 ```python
-wish_2_9.absorption.abscor1.free = True
-wish_3_8.absorption.abscor1.free = True
-wish_4_7.absorption.abscor1.free = True
-wish_5_6.absorption.abscor1.free = True
+for parameter in (
+    wish_2_9.absorption.abscor1,
+    wish_3_8.absorption.abscor1,
+    wish_4_7.absorption.abscor1,
+    wish_5_6.absorption.abscor1,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -422,14 +764,14 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 177 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.97        15.94
-      1      1.131      9.91        15.74   1.2% ↓
-      2      1.257      9.91        15.74   
-      3      1.490      9.91        15.74   
-  done · converged · 3 iters · reduced χ² 15.74 · Rwp 9.91 % · 1.66 s
+      1      1.406      9.91        15.74   1.2% ↓
+      2      1.544      9.91        15.74   
+      3      1.782      9.91        15.74   
+  done · converged · 3 iters · reduced χ² 15.74 · Rwp 9.91 % · 2.00 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/25.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/26.html"></iframe>
 </div>
 
 ```python
@@ -437,7 +779,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/26.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/27.html"></iframe>
 </div>
 
 ```python
@@ -445,7 +787,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/27.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/28.html"></iframe>
 </div>
 
 ```python
@@ -453,7 +795,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/28.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/29.html"></iframe>
 </div>
 
 ```python
@@ -461,7 +803,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/29.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/30.html"></iframe>
 </div>
 
 ```python
@@ -469,7 +811,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/30.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/31.html"></iframe>
 </div>
 
 ### Atom positions
@@ -491,14 +833,14 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 187 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         9.91        15.75
-      1      1.258      8.07        10.43   33.8% ↓
-      2      1.400      8.07        10.43   
-      3      1.591      8.07        10.43   
-  done · converged · 3 iters · reduced χ² 10.43 · Rwp 8.07 % · 1.81 s
+      1      1.565      8.07        10.43   33.8% ↓
+      2      1.719      8.07        10.43   
+      3      1.967      8.07        10.43   
+  done · converged · 3 iters · reduced χ² 10.43 · Rwp 8.07 % · 2.25 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/31.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/32.html"></iframe>
 </div>
 
 ```python
@@ -506,7 +848,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/32.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/33.html"></iframe>
 </div>
 
 ```python
@@ -514,7 +856,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/33.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/34.html"></iframe>
 </div>
 
 ```python
@@ -522,7 +864,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/34.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/35.html"></iframe>
 </div>
 
 ```python
@@ -530,7 +872,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/35.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/36.html"></iframe>
 </div>
 
 ```python
@@ -538,7 +880,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/36.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/37.html"></iframe>
 </div>
 
 ### Displacements
@@ -557,13 +899,13 @@ project.display.fit.results()
 edi fit: joint project pd-neut-tof_ncaf-wish, 5 banks (wish_1_10, wish_2_9, wish_3_8, wish_4_7, wish_5_6), 18973 pts fitted / 20475 loaded, 193 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.07        10.43
-      1      7.655      7.69         9.50   9.0% ↓
-      2      8.096      7.69         9.50   
-  done · converged · 2 iters · reduced χ² 9.50 · Rwp 7.69 % · 8.49 s
+      1     10.389      7.69         9.50   9.0% ↓
+      2     11.077      7.69         9.50   
+  done · converged · 2 iters · reduced χ² 9.50 · Rwp 7.69 % · 11.69 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/37.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/38.html"></iframe>
 </div>
 
 ```python
@@ -571,7 +913,7 @@ project.display.pattern('wish_1_10')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/38.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/39.html"></iframe>
 </div>
 
 ```python
@@ -579,7 +921,7 @@ project.display.pattern('wish_2_9')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/39.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/40.html"></iframe>
 </div>
 
 ```python
@@ -587,7 +929,7 @@ project.display.pattern('wish_3_8')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/40.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/41.html"></iframe>
 </div>
 
 ```python
@@ -595,7 +937,7 @@ project.display.pattern('wish_4_7')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/41.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/42.html"></iframe>
 </div>
 
 ```python
@@ -603,7 +945,7 @@ project.display.pattern('wish_5_6')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/42.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/43.html"></iframe>
 </div>
 
 ```python
@@ -611,7 +953,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/43.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/44.html"></iframe>
 </div>
 
 ```python
@@ -619,17 +961,28 @@ project.display.structure('ncaf')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/44.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-tof_ncaf-wish/45.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-tof_ncaf-wish.html')
+```
+
+```text
+Saving report to 'pd-neut-tof_ncaf-wish.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-tof_ncaf-wish')
-project.report.save_html('pd-neut-tof_ncaf-wish.html')
 ```
 
 ```text
 Saving project to 'pd-neut-tof_ncaf-wish'
-Saving report to 'pd-neut-tof_ncaf-wish.html'
 ```

@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -10,37 +10,82 @@ Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_l
 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MyIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDkzIDIyIj48cmVjdCB3aWR0aD0iOTMiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjODM1NGE5IiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48c3ZnIHg9IjciIHk9IjUuMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgNjQwIDUxMiIgZmlsbD0iIzgzNTRhOSI+PHBhdGggZD0iTTQ3NiA0ODBDNDk1Ljg2OTE0MDYyNSA0ODAuMCA1MTIuMCA0NjMuODY5MTQwNjI1IDUxMi4wIDQ0NC4wVjI4OC4wSDYyNC4wQzYzMi44MzEwNTQ2ODc1IDI4OC4wIDY0MC4wIDI4MC44MzEwNTQ2ODc1IDY0MC4wIDI3Mi4wVjI0MC4wQzY0MC4wIDIzMS4xNjg5NDUzMTI1IDYzMi44MzEwNTQ2ODc1IDIyNC4wIDYyNC4wIDIyNC4wSDQ4NC4wQzQ2NC4xMzA4NTkzNzUgMjI0LjAgNDQ4LjAgMjQwLjEzMDg1OTM3NSA0NDguMCAyNjAuMFY0MTYuMEgzNTIuMFY2OC4wQzM1Mi4wIDQ4LjEzMDg1OTM3NSAzMzUuODY5MTQwNjI1IDMyLjAgMzE2LjAgMzIuMEgxNjQuMEMxNDQuMTMwODU5Mzc1IDMyLjAgMTI4LjAgNDguMTMwODU5Mzc1IDEyOC4wIDY4LjBWMjI0LjBIMTYuMEM3LjE2ODk0NTMxMjUgMjI0LjAgMC4wIDIzMS4xNjg5NDUzMTI1IDAuMCAyNDAuMFYyNzIuMEMwLjAgMjgwLjgzMTA1NDY4NzUgNy4xNjg5NDUzMTI1IDI4OC4wIDE2LjAgMjg4LjBIMTU2LjBDMTc1Ljg2OTE0MDYyNSAyODguMCAxOTIuMCAyNzEuODY5MTQwNjI1IDE5Mi4wIDI1Mi4wVjk2LjBIMjg4LjBWNDQ0LjBDMjg4LjAgNDYzLjg2OTE0MDYyNSAzMDQuMTMwODU5Mzc1IDQ4MC4wIDMyNC4wIDQ4MC4wWiIvPjwvc3ZnPjx0ZXh0IHg9IjI2IiB5PSIxNS4zIiBmb250LWZhbWlseT0iTm90byBTYW5zLCBTZWdvZSBVSSwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzgzNTRhOSI+U2ltdWxhdGlvbjwvdGV4dD48L3N2Zz4=" alt="Simulation" width="93" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDY2IDIyIj48cmVjdCB3aWR0aD0iNjYiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjOTY2MDFkIiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48c3ZnIHg9IjciIHk9IjUuMCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0iIzk2NjAxZCI+PHBhdGggZD0iTTI1NiA4QzExOS4wMzMyMDMxMjUgOC4wIDguMCAxMTkuMDMzMjAzMTI1IDguMCAyNTYuMEM4LjAgMzkyLjk2Njc5Njg3NSAxMTkuMDMzMjAzMTI1IDUwNC4wIDI1Ni4wIDUwNC4wQzM5Mi45NjY3OTY4NzUgNTA0LjAgNTA0LjAgMzkyLjk2Njc5Njg3NSA1MDQuMCAyNTYuMEM1MDQuMCAxMTkuMDMzMjAzMTI1IDM5Mi45NjY3OTY4NzUgOC4wIDI1Ni4wIDguMFpNMzM2LjAgMjU2LjBDMzM2LjAgMzAwLjExMjMwNDY4NzUgMzAwLjExMjMwNDY4NzUgMzM2LjAgMjU2LjAgMzM2LjBDMjExLjg4NzY5NTMxMjUgMzM2LjAgMTc2LjAgMzAwLjExMjMwNDY4NzUgMTc2LjAgMjU2LjBDMTc2LjAgMjExLjg4NzY5NTMxMjUgMjExLjg4NzY5NTMxMjUgMTc2LjAgMjU2LjAgMTc2LjBDMzAwLjExMjMwNDY4NzUgMTc2LjAgMzM2LjAgMjExLjg4NzY5NTMxMjUgMzM2LjAgMjU2LjBaIi8+PC9zdmc+PHRleHQgeD0iMjMiIHk9IjE1LjMiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMsIFNlZ29lIFVJLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjOTY2MDFkIj5TaW5nbGU8L3RleHQ+PC9zdmc+" alt="Single" width="66" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNyIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDI3IDIyIj48cmVjdCB3aWR0aD0iMjciIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjMDA4NGM3IiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48dGV4dCB4PSI3IiB5PSIxNS4zIiBmb250LWZhbWlseT0iTm90byBTYW5zLCBTZWdvZSBVSSwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwODRjNyI+cGQ8L3RleHQ+PC9zdmc+" alt="pd" width="27" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzOCIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDM4IDIyIj48cmVjdCB3aWR0aD0iMzgiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjMDA4NGM3IiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48dGV4dCB4PSI3IiB5PSIxNS4zIiBmb250LWZhbWlseT0iTm90byBTYW5zLCBTZWdvZSBVSSwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwODRjNyI+bmV1dDwvdGV4dD48L3N2Zz4=" alt="neut" width="38" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNSIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDM1IDIyIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjNDI0MjQyIiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48dGV4dCB4PSI3IiB5PSIxNS4zIiBmb250LWZhbWlseT0iTm90byBTYW5zLCBTZWdvZSBVSSwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzQyNDI0MiI+Y3dsPC90ZXh0Pjwvc3ZnPg==" alt="cwl" width="35" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDQ2IDIyIj48cmVjdCB3aWR0aD0iNDYiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjMDA4NGM3IiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48dGV4dCB4PSI3IiB5PSIxNS4zIiBmb250LWZhbWlseT0iTm90byBTYW5zLCBTZWdvZSBVSSwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwODRjNyI+QnJhZ2c8L3RleHQ+PC9zdmc+" alt="Bragg" width="46" height="22">&nbsp; <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAxMjIgMjIiPjxyZWN0IHdpZHRoPSIxMjIiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjMDA3OTZiIiBmaWxsLW9wYWNpdHk9IjAuMTMiLz48c3ZnIHg9IjciIHk9IjUuMCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0iIzAwNzk2YiI+PHBhdGggZD0iTTEyLjQxMDE1NjI1IDE0OC4wMTk1MzEyNSAyNDUuMzQ5NjA5Mzc1IDI1My42OTA0Mjk2ODc1QzI1Mi4xNTAzOTA2MjUgMjU2Ljc4MDI3MzQzNzUgMjU5LjgzOTg0Mzc1IDI1Ni43ODAyNzM0Mzc1IDI2Ni42Mzk2NDg0Mzc1IDI1My42OTA0Mjk2ODc1TDQ5OS41ODAwNzgxMjUgMTQ4LjAxOTUzMTI1QzUxNi4xMjk4ODI4MTI1IDE0MC41MDk3NjU2MjUgNTE2LjEyOTg4MjgxMjUgMTE1LjUgNDk5LjU4MDA3ODEyNSAxMDcuOTkwMjM0Mzc1TDI2Ni42NTAzOTA2MjUgMi4zMDk1NzAzMTI1QzI2My40MTMwODU5Mzc1IDAuODMwMDc4MTI1IDI1OS44MTU0Mjk2ODc1IDAuMDA1ODU5Mzc1IDI1Ni4wMjYzNjcxODc1IDAuMDA1ODU5Mzc1QzI1Mi4yMzczMDQ2ODc1IDAuMDA1ODU5Mzc1IDI0OC41OTY2Nzk2ODc1IDAuODMwMDc4MTI1IDI0NS4zNjAzNTE1NjI1IDIuMzA5NTcwMzEyNUwxMi40MTAxNTYyNSAxMDcuOTgwNDY4NzVDLTQuMTM5NjQ4NDM3NSAxMTUuNDkwMjM0Mzc1IC00LjEzOTY0ODQzNzUgMTQwLjUwOTc2NTYyNSAxMi40MTAxNTYyNSAxNDguMDE5NTMxMjVaTTQ5OS41ODk4NDM3NSAyMzYuMjk5ODA0Njg3NSA0NDEuNSAyMDkuOTY5NzI2NTYyNSAyNzkuODYwMzUxNTYyNSAyODMuMjQwMjM0Mzc1QzI3Mi4yOTk4MDQ2ODc1IDI4Ni42Njk5MjE4NzUgMjY0LjI2OTUzMTI1IDI4OC40MTAxNTYyNSAyNTYuMCAyODguNDEwMTU2MjVDMjQ3LjczMDQ2ODc1IDI4OC40MTAxNTYyNSAyMzkuNzA5OTYwOTM3NSAyODYuNjY5OTIxODc1IDIzMi4xMzk2NDg0Mzc1IDI4My4yNDAyMzQzNzVMNzAuNTA5NzY1NjI1IDIwOS45Njk3MjY1NjI1TDEyLjQxMDE1NjI1IDIzNi4yOTk4MDQ2ODc1Qy00LjEzOTY0ODQzNzUgMjQzLjc5OTgwNDY4NzUgLTQuMTM5NjQ4NDM3NSAyNjguNzk5ODA0Njg3NSAxMi40MTAxNTYyNSAyNzYuMjk5ODA0Njg3NUwyNDUuMzQ5NjA5Mzc1IDM4MS44ODk2NDg0Mzc1QzI1Mi4xNTAzOTA2MjUgMzg0Ljk2OTcyNjU2MjUgMjU5LjgzOTg0Mzc1IDM4NC45Njk3MjY1NjI1IDI2Ni42Mzk2NDg0Mzc1IDM4MS44ODk2NDg0Mzc1TDQ5OS41ODk4NDM3NSAyNzYuMjk5ODA0Njg3NUM1MTYuMTM5NjQ4NDM3NSAyNjguNzk5ODA0Njg3NSA1MTYuMTM5NjQ4NDM3NSAyNDMuNzk5ODA0Njg3NSA0OTkuNTg5ODQzNzUgMjM2LjI5OTgwNDY4NzVaTTQ5OS41ODk4NDM3NSAzNjQuMDk5NjA5Mzc1IDQ0MS43MTk3MjY1NjI1IDMzNy44NzAxMTcxODc1IDI3OS44NjAzNTE1NjI1IDQxMS4yNDAyMzQzNzVDMjcyLjI5OTgwNDY4NzUgNDE0LjY2OTkyMTg3NSAyNjQuMjY5NTMxMjUgNDE2LjQxMDE1NjI1IDI1Ni4wIDQxNi40MTAxNTYyNUMyNDcuNzMwNDY4NzUgNDE2LjQxMDE1NjI1IDIzOS43MDk5NjA5Mzc1IDQxNC42Njk5MjE4NzUgMjMyLjEzOTY0ODQzNzUgNDExLjI0MDIzNDM3NUw3MC4yOTAwMzkwNjI1IDMzNy44NzAxMTcxODc1TDEyLjQxMDE1NjI1IDM2NC4wOTk2MDkzNzVDLTQuMTM5NjQ4NDM3NSAzNzEuNTk5NjA5Mzc1IC00LjEzOTY0ODQzNzUgMzk2LjU5OTYwOTM3NSAxMi40MTAxNTYyNSA0MDQuMDk5NjA5Mzc1TDI0NS4zNDk2MDkzNzUgNTA5LjY5MDQyOTY4NzVDMjUyLjE1MDM5MDYyNSA1MTIuNzY5NTMxMjUgMjU5LjgzOTg0Mzc1IDUxMi43Njk1MzEyNSAyNjYuNjM5NjQ4NDM3NSA1MDkuNjkwNDI5Njg3NUw0OTkuNTg5ODQzNzUgNDA0LjA5OTYwOTM3NUM1MTYuMTM5NjQ4NDM3NSAzOTYuNTk5NjA5Mzc1IDUxNi4xMzk2NDg0Mzc1IDM3MS41OTk2MDkzNzUgNDk5LjU4OTg0Mzc1IDM2NC4wOTk2MDkzNzVaIi8+PC9zdmc+PHRleHQgeD0iMjMiIHk9IjE1LjMiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMsIFNlZ29lIFVJLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMDA3OTZiIj5DcnlzdGFsIHN0cnVjdHVyZTwvdGV4dD48L3N2Zz4=" alt="Crystal structure" width="122" height="22">
 
 Calculate a constant-wavelength neutron pattern of the cubic perovskite La₀.₅Ba₀.₅CoO₃ without
-any measured data. The structure, the HRPT instrument, the peak profile and the background are in
-the project, and edi calculates the pattern over the project's 2θ range.
+any measured data. The structure comes from EasyDiffraction's collection; the tutorial describes
+the HRPT instrument, the peak profile, the background and the 2θ range, and edi calculates the
+pattern.
 
-The project is the catalogue case `pd-neut-cwl_lbco_simulation`: the files the command line fits
-with `python -m edi fit docs/user/cli/pd-neut-cwl_lbco_simulation/project` and the app opens from
-its Examples.
+It builds the catalogue case `pd-neut-cwl_lbco_simulation` step by step: the same project the
+command line calculates and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-cwl_lbco_simulation', destination='data')
-project = edi.Project.load(project_path)
-print(project.metadata.title)
-print('Structures:', ', '.join(structure.name for structure in project.structures))
-print('Experiments:', ', '.join(experiment.name for experiment in project.experiments))
-print('Fitting mode:', project.fitting_mode)
+project = edi.Project(name='pd-neut-cwl_lbco_simulation')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-cwl_lbco_simulation-lbco', destination='data')
+project.structures.add_from_cif_path(path)
+structure = project.structures['lbco']
 ```
 
 ```text
-Data 'pd-neut-cwl_lbco_simulation' is at data/pd-neut-cwl_lbco_simulation-e5794bb040ac/pd-neut-cwl_lbco_simulation
-La₀.₅Ba₀.₅CoO₃ [Pm-3m] · HRPT @ PSI
-Structures: lbco
-Experiments: hrpt
-Fitting mode: single
+Data 'pd-neut-cwl_lbco_simulation-lbco' is at data/pd-neut-cwl_lbco_simulation-lbco.edi
 ```
 
-## Calculate
+```python
+project.display.structure('lbco')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lbco_simulation/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment, then describe the instrument, the peak profile, the range to calculate and
+the structure it links. It has no measured data; the calculation gives the pattern.
+
+```python
+project.experiments.create(
+    name='hrpt',
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['hrpt']
+experiment.peak.type = 'cwl-tch-pseudo-voigt'
+experiment.instrument.name = 'HRPT'
+experiment.instrument.facility = 'PSI'
+experiment.instrument.setup_wavelength = 1.494
+experiment.peak.broad_gauss_u = 0.1
+experiment.peak.broad_gauss_v = -0.1
+experiment.peak.broad_gauss_w = 0.1
+experiment.peak.broad_lorentz_y = 0.1
+experiment.peak.cutoff_fwhm = 30
+experiment.data_range.two_theta_min = 10
+experiment.data_range.two_theta_max = 160
+experiment.data_range.two_theta_inc = 0.05
+experiment.linked_structures.create(structure_id='lbco', scale=10.0)
+experiment.background.create(position=10, intensity=20)
+experiment.background.create(position=160, intensity=20)
+```
+
+## Perform the calculation
 
 There is nothing to fit: edi calculates the pattern from the model as it is.
 
@@ -51,10 +96,10 @@ print(len(pattern.intensity_calc), 'points, highest', round(max(pattern.intensit
 ```
 
 ```text
-3001 points, highest 4134.2
+3000 points, highest 4134.2
 ```
 
-## Patterns and report
+## Report
 
 The HTML report draws the measured, calculated and difference patterns with the reflection
 positions, and lists the structure and the fit. Open it in a browser.
@@ -67,10 +112,9 @@ project.report.save_html('pd-neut-cwl_lbco_simulation.html')
 Saving report to 'pd-neut-cwl_lbco_simulation.html'
 ```
 
-## Save
+## Save the project
 
-`save_as` writes the project with its new values to a folder of its own; the catalogue's copy
-stays as it was.
+`save_as` writes the project to a folder of its own.
 
 ```python
 project.save_as('pd-neut-cwl_lbco_simulation')
@@ -79,16 +123,3 @@ project.save_as('pd-neut-cwl_lbco_simulation')
 ```text
 Saving project to 'pd-neut-cwl_lbco_simulation'
 ```
-
-## Explore the interactive report
-
-Run the cell and trust the notebook to interact with the report. It includes Plotly plots and three.js structures where available.
-
-```python
-project.report.html_offline = True
-project.report
-```
-
-<div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 800px; border: none" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_lbco_simulation/1.html"></iframe>
-</div>

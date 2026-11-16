@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_hs-hrpt/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/242dee6bc4b7976ba68347889c1f89c8e8ef26df/docs/user/tutorials/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_hs-hrpt.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -13,32 +13,87 @@ Fit herbertsmithite, ZnCu₃(OD)₆Cl₂, a deuterated kagome antiferromagnet, t
 neutron powder data from HRPT at PSI, with a pseudo-Voigt profile and Bérar-Baldinozzi
 asymmetry.
 
-The project is the catalogue case `pd-neut-cwl_hs-hrpt`, the one the command line and the app's
-Examples open.
+It builds the catalogue case `pd-neut-cwl_hs-hrpt` step by step: the same project the command
+line fits and the app's Examples open.
+
+## Import the library
 
 ```python
 import easydiffraction as edi
 ```
 
-## Load the project
+## Define the project
+
+A new project is empty: it holds no structure and no experiment until you add them.
 
 ```python
-project_path = edi.download_data('pd-neut-cwl_hs-hrpt', destination='data')
-project = edi.Project.load(project_path)
+project = edi.Project(name='pd-neut-cwl_hs-hrpt')
+```
+
+## Define the structure
+
+Load the structure from EasyDiffraction's collection. Its CIF gives the space group, the cell and
+the atom sites.
+
+```python
+path = edi.download_data('pd-neut-cwl_hs-hrpt-hs', destination='data')
+project.structures.add_from_cif_path(path)
 structure = project.structures['hs']
-experiment = project.experiments['hrpt']
 ```
 
 ```text
-Data 'pd-neut-cwl_hs-hrpt' is at data/pd-neut-cwl_hs-hrpt-870ec5cc6fa0/pd-neut-cwl_hs-hrpt
+Data 'pd-neut-cwl_hs-hrpt-hs' is at data/pd-neut-cwl_hs-hrpt-hs.edi
 ```
 
-The project marks what its fit frees. The fit below frees it in stages, so start with all of it
-fixed.
+```python
+project.display.structure('hs')
+```
+
+<div class="ed-notebook-output" markdown="0">
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/1.html"></iframe>
+</div>
+
+## Define the experiment
+
+Create the experiment from the measured data in EasyDiffraction's collection, then describe the
+instrument, the peak profile, the background and the structure it links.
 
 ```python
-for parameter in project.free_parameters:
-    parameter.free = False
+data_path = edi.download_data('pd-neut-cwl_hs-hrpt-hrpt-data', destination='data')
+project.experiments.add_from_data_path(
+    name='hrpt',
+    data_path=data_path,
+    sample_form='powder',
+    beam_mode='constant wavelength',
+    radiation_probe='neutron',
+    scattering_type='bragg',
+)
+experiment = project.experiments['hrpt']
+experiment.neutron_scattering_length = 'sears1992'
+experiment.peak.type = 'cwl-pseudo-voigt-berar-baldinozzi'
+experiment.instrument.name = 'HRPT'
+experiment.instrument.facility = 'PSI'
+experiment.peak.broad_gauss_u = 0.1
+experiment.peak.broad_gauss_v = -0.2
+experiment.peak.broad_gauss_w = 0.2
+experiment.peak.mixing_eta_0 = 0.5
+experiment.peak.cutoff_fwhm = 8
+experiment.instrument.setup_wavelength = 1.89
+experiment.linked_structures.create(structure_id='hs', scale=0.5)
+experiment.background.create(position=4, intensity=460.0)
+experiment.background.create(position=20, intensity=460.0)
+experiment.background.create(position=40, intensity=460.0)
+experiment.background.create(position=60, intensity=460.0)
+experiment.background.create(position=80, intensity=460.0)
+experiment.background.create(position=100, intensity=460.0)
+experiment.background.create(position=120, intensity=460.0)
+experiment.background.create(position=140, intensity=460.0)
+experiment.background.create(position=160, intensity=460.0)
+experiment.background.create(position=165, intensity=460.0)
+```
+
+```text
+Data 'pd-neut-cwl_hs-hrpt-hrpt-data' is at data/pd-neut-cwl_hs-hrpt-hrpt.xye
 ```
 
 ```python
@@ -46,7 +101,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/1.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/2.html"></iframe>
 </div>
 
 ## Perform the analysis
@@ -69,7 +124,7 @@ project.display.parameters.free()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/2.html"></iframe>
+<iframe style="width: 100%; height: 208px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/3.html"></iframe>
 </div>
 
 ```python
@@ -81,28 +136,28 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        39.94       121.13
-      1      0.007     25.02        47.54   60.8% ↓
-      2      0.009     24.70        46.30   2.6% ↓
-      3      0.010     24.51        45.59   1.5% ↓
-      4      0.011     24.40        45.19   0.9% ↓
-      5      0.012     24.34        44.97   0.5% ↓
-      6      0.013     24.30        44.84   0.3% ↓
-      7      0.014     24.28        44.77   0.2% ↓
-      8      0.016     24.27        44.73   0.1% ↓
-      9      0.017     24.27        44.71   
-     10      0.018     24.26        44.70   
-     11      0.019     24.26        44.69   
-     12      0.020     24.26        44.69   
-     13      0.021     24.26        44.69   
-     14      0.023     24.26        44.68   
-     15      0.024     24.26        44.68   
-     16      0.025     24.26        44.68   
-     17      0.026     24.26        44.68   
-  done · converged · 17 iters · reduced χ² 44.68 · Rwp 24.26 % · 0.03 s
+      1      0.011     25.02        47.54   60.8% ↓
+      2      0.013     24.70        46.30   2.6% ↓
+      3      0.015     24.51        45.59   1.5% ↓
+      4      0.017     24.40        45.19   0.9% ↓
+      5      0.018     24.34        44.97   0.5% ↓
+      6      0.020     24.30        44.84   0.3% ↓
+      7      0.022     24.28        44.77   0.2% ↓
+      8      0.024     24.27        44.73   0.1% ↓
+      9      0.025     24.27        44.71   
+     10      0.027     24.26        44.70   
+     11      0.029     24.26        44.69   
+     12      0.030     24.26        44.69   
+     13      0.032     24.26        44.69   
+     14      0.034     24.26        44.68   
+     15      0.035     24.26        44.68   
+     16      0.037     24.26        44.68   
+     17      0.040     24.26        44.68   
+  done · converged · 17 iters · reduced χ² 44.68 · Rwp 24.26 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/3.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/4.html"></iframe>
 </div>
 
 ```python
@@ -110,7 +165,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/4.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/5.html"></iframe>
 </div>
 
 ### Background
@@ -131,13 +186,13 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 14 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        24.26        44.82
-      1      0.009     21.75        36.02   19.6% ↓
-      2      0.011     21.75        36.02   
-  done · converged · 2 iters · reduced χ² 36.02 · Rwp 21.75 % · 0.01 s
+      1      0.014     21.75        36.02   19.6% ↓
+      2      0.017     21.75        36.02   
+  done · converged · 2 iters · reduced χ² 36.02 · Rwp 21.75 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/5.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/6.html"></iframe>
 </div>
 
 ```python
@@ -145,7 +200,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/6.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/7.html"></iframe>
 </div>
 
 ### Peak widths
@@ -154,10 +209,13 @@ The Gaussian widths and the mixing η₀, with the background staying free. diff
 the Lorentzian Y where this profile has η₀.
 
 ```python
-experiment.peak.broad_gauss_u.free = True
-experiment.peak.broad_gauss_v.free = True
-experiment.peak.broad_gauss_w.free = True
-experiment.peak.mixing_eta_0.free = True
+for parameter in (
+    experiment.peak.broad_gauss_u,
+    experiment.peak.broad_gauss_v,
+    experiment.peak.broad_gauss_w,
+    experiment.peak.mixing_eta_0,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -169,18 +227,18 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        21.75        36.06
-      1      0.010     13.45        13.79   61.8% ↓
-      2      0.012     13.44        13.77   0.1% ↓
-      3      0.014     13.44        13.77   
-      4      0.016     13.44        13.77   
-      5      0.018     13.44        13.77   
-      6      0.020     13.44        13.77   
-      7      0.022     13.44        13.77   
-  done · converged · 7 iters · reduced χ² 13.77 · Rwp 13.44 % · 0.02 s
+      1      0.017     13.45        13.79   61.8% ↓
+      2      0.020     13.44        13.77   0.1% ↓
+      3      0.023     13.44        13.77   
+      4      0.026     13.44        13.77   
+      5      0.029     13.44        13.77   
+      6      0.032     13.44        13.77   
+      7      0.037     13.44        13.77   
+  done · converged · 7 iters · reduced χ² 13.77 · Rwp 13.44 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/7.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/8.html"></iframe>
 </div>
 
 ```python
@@ -188,7 +246,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/8.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/9.html"></iframe>
 </div>
 
 ### Atom positions
@@ -210,14 +268,14 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.44        13.79
-      1      0.017      8.21         5.15   62.7% ↓
-      2      0.020      8.21         5.15   
-      3      0.024      8.21         5.15   
-  done · converged · 3 iters · reduced χ² 5.15 · Rwp 8.21 % · 0.03 s
+      1      0.028      8.21         5.15   62.7% ↓
+      2      0.032      8.21         5.15   
+      3      0.037      8.21         5.15   
+  done · converged · 3 iters · reduced χ² 5.15 · Rwp 8.21 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/9.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/10.html"></iframe>
 </div>
 
 ```python
@@ -225,7 +283,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/10.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/11.html"></iframe>
 </div>
 
 ### Displacements
@@ -246,13 +304,13 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 28 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         8.21         5.16
-      1      0.016      5.45         2.27   56.0% ↓
-      2      0.019      5.45         2.27   
-  done · converged · 2 iters · reduced χ² 2.27 · Rwp 5.45 % · 0.02 s
+      1      0.025      5.45         2.27   56.0% ↓
+      2      0.031      5.45         2.27   
+  done · converged · 2 iters · reduced χ² 2.27 · Rwp 5.45 % · 0.03 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/11.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/12.html"></iframe>
 </div>
 
 ```python
@@ -260,7 +318,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/12.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/13.html"></iframe>
 </div>
 
 ### Asymmetry
@@ -268,10 +326,13 @@ project.display.pattern('hrpt')
 Last, the four Bérar-Baldinozzi asymmetry terms.
 
 ```python
-experiment.peak.asym_beba_a0.free = True
-experiment.peak.asym_beba_b0.free = True
-experiment.peak.asym_beba_a1.free = True
-experiment.peak.asym_beba_b1.free = True
+for parameter in (
+    experiment.peak.asym_beba_a0,
+    experiment.peak.asym_beba_b0,
+    experiment.peak.asym_beba_a1,
+    experiment.peak.asym_beba_b1,
+):
+    parameter.free = True
 ```
 
 ```python
@@ -283,14 +344,14 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_hs-hrpt, 3220 pts fitted / 3220 loaded, 32 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.45         2.27
-      1      0.017      5.30         2.15   5.3% ↓
-      2      0.019      5.30         2.15   
-      3      0.023      5.30         2.15   
-  done · converged · 3 iters · reduced χ² 2.15 · Rwp 5.30 % · 0.03 s
+      1      0.027      5.30         2.15   5.3% ↓
+      2      0.031      5.30         2.15   
+      3      0.036      5.30         2.15   
+  done · converged · 3 iters · reduced χ² 2.15 · Rwp 5.30 % · 0.04 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/13.html"></iframe>
+<iframe style="width: 100%; height: 376px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/14.html"></iframe>
 </div>
 
 ```python
@@ -298,7 +359,7 @@ project.display.pattern('hrpt')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/14.html"></iframe>
+<iframe style="width: 100%; height: 480px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/15.html"></iframe>
 </div>
 
 ```python
@@ -306,7 +367,7 @@ project.display.fit.correlations()
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/15.html"></iframe>
+<iframe style="width: 100%; height: 560px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/16.html"></iframe>
 </div>
 
 ```python
@@ -314,17 +375,28 @@ project.display.structure('hs')
 ```
 
 <div class="ed-notebook-output" markdown="0">
-<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/16.html"></iframe>
+<iframe style="width: 100%; height: 660px; border: none" onload="(f=&gt;{const d=f.contentDocument;if(!d)return;const r=()=&gt;{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+'px'};r();new ResizeObserver(r).observe(d.body)})(this)" loading="lazy" src="../../../assets/tutorials/views/pd-neut-cwl_hs-hrpt/17.html"></iframe>
 </div>
+
+## Report
+
+The HTML report draws the measured, calculated and difference patterns with the reflection
+positions, and lists the structures, the experiments and the fit. Open it in a browser.
+
+```python
+project.report.save_html('pd-neut-cwl_hs-hrpt.html')
+```
+
+```text
+Saving report to 'pd-neut-cwl_hs-hrpt.html'
+```
 
 ## Save the project
 
 ```python
 project.save_as('pd-neut-cwl_hs-hrpt')
-project.report.save_html('pd-neut-cwl_hs-hrpt.html')
 ```
 
 ```text
 Saving project to 'pd-neut-cwl_hs-hrpt'
-Saving report to 'pd-neut-cwl_hs-hrpt.html'
 ```
