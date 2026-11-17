@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0fa31db22c4ad74028c166bbd6e6e07771e96e60/docs/user/tutorials/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 

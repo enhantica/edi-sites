@@ -73,6 +73,8 @@
     
       <link rel="stylesheet" href="../../assets/parameter-reference.css?v=3">
     
+      <link rel="stylesheet" href="../../assets/about/about.css?v=3">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
@@ -593,8 +595,6 @@
       
         
           
-        
-      
         
       
         
@@ -10028,8 +10028,6 @@
       
         
       
-        
-      
     
     
     
@@ -10194,36 +10192,6 @@
     
   
   How to cite
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-                
-              
-                
-                  
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../assistant-prompt-trials/" class="md-nav__link">
-        
-  
-  
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!-- Font Awesome Free 5.15.4 by @fontawesome, https://fontawesome.com, CC BY 4.0 --><path d="M336 64H256C256.0 28.7001953125 227.2998046875 0.0 192.0 0.0C156.7001953125 0.0 128.0 28.7001953125 128.0 64.0H48.0C21.5 64.0 0.0 85.5 0.0 112.0V464.0C0.0 490.5 21.5 512.0 48.0 512.0H336.0C362.5 512.0 384.0 490.5 384.0 464.0V112.0C384.0 85.5 362.5 64.0 336.0 64.0ZM192.0 40.0C205.2998046875 40.0 216.0 50.7001953125 216.0 64.0C216.0 77.2998046875 205.2998046875 88.0 192.0 88.0C178.7001953125 88.0 168.0 77.2998046875 168.0 64.0C168.0 50.7001953125 178.7001953125 40.0 192.0 40.0ZM313.2001953125 271.7998046875 170.2001953125 413.599609375C165.5 418.2998046875 157.900390625 418.2001953125 153.2001953125 413.5L70.599609375 330.2001953125C65.900390625 325.5 66.0 317.900390625 70.7001953125 313.2001953125L99.099609375 285.0C103.7998046875 280.2998046875 111.400390625 280.400390625 116.099609375 285.099609375L162.099609375 331.5L268.099609375 226.2998046875C272.7998046875 221.599609375 280.400390625 221.7001953125 285.099609375 226.400390625L313.2998046875 254.7998046875C318.0 259.599609375 317.900390625 267.099609375 313.2001953125 271.7998046875Z"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-  Assistant prompt trials
 
     
   </span>
@@ -10507,31 +10475,20 @@ the component later with <strong>EasyDiffraction Maintenance Tool</strong>. Rest
 after changing the installed components.</p>
 <h2 id="install-and-update">Install and update<a class="headerlink" href="#install-and-update" title="Permanent link">&para;</a></h2>
 <p>EasyDiffraction comes with all required application dependencies. Download and extract the
-whole ZIP for your platform. The online installer needs an internet connection. The
-installers are not signed yet: on macOS, open the installer once, then select <strong>Open Anyway</strong> in
-<strong>System Settings → Privacy &amp; Security</strong>.</p>
+whole ZIP for your platform. The online installer needs an internet connection. The macOS and
+Windows installers are signed by the European Spallation Source, and Apple has checked the macOS
+installer, so both open without a security warning.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS</label><label for="__tabbed_1_2">Windows</label><label for="__tabbed_1_3">Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
 <li>Open the extracted installer app.</li>
-<li>If macOS blocks it, click <strong>Done</strong>. In <strong>System Settings → Privacy &amp; Security</strong>,
-   scroll to <strong>Security</strong>, select <strong>Open Anyway</strong>, and confirm. This applies to the
-   installer you just opened. <a href="https://support.apple.com/en-gb/102445">Apple’s instructions</a></li>
 <li>Follow setup. The suggested folder is <code>/Applications/EasyDiffraction</code>.</li>
 </ol>
 </div>
 <div class="tabbed-block">
 <ol>
 <li>Right-click the ZIP and select <strong>Extract All</strong>, then open the installer <code>.exe</code>.</li>
-<li>If Microsoft Defender SmartScreen warns about the installer, use <strong>More info → Run
-   anyway</strong> if Windows offers it and you downloaded the installer using the links above.
-   Smart App Control can block unsigned apps without offering a per-app exception.
-   <a href="https://support.microsoft.com/en-gb/windows/security/threat-malware-protection/smart-app-control-frequently-asked-questions">Microsoft’s Smart App Control guide</a></li>
-<li>If there is no <strong>Run anyway</strong> (common on managed office laptops), start the installer from
-   Command Prompt instead: open <strong>Command Prompt</strong>, go to the extracted folder with
-   <code>cd %USERPROFILE%\Downloads\&lt;extracted folder&gt;</code>, then type the installer's file name, for example
-   <code>EasyDiffraction-&lt;version&gt;-windows-x86_64-online.exe</code>, and press Enter.</li>
 <li>Follow setup to choose the installation folder.</li>
 </ol>
 </div>
@@ -10681,7 +10638,9 @@ On the next launch, <strong>What's new</strong> shows the changes since your pre
       
         <script src="../../assets/contact-form.js?v=3"></script>
       
-        <script src="../../assets/survey/survey.js?v=9"></script>
+        <script src="../../assets/survey/survey.js?v=10"></script>
+      
+        <script src="../../assets/about/email-link.js?v=2"></script>
       
         <script src="../../assets/code-breaks.js?v=2"></script>
       

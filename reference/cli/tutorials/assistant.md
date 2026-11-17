@@ -58,4 +58,4 @@ The same prompt, asking for a Jupyter notebook, is on the
 [<span class="ed-interface-icons" aria-hidden="true">:simple-python:</span> <span class="ed-icon-text">Python</span>](https://easydiffraction.org/python/tutorials/assistant/){ .ed-icon-label .ed-interface-link } tutorials. The application has an
 [AI assistant](https://easydiffraction.org/user-guide/ai-assistant/) built in.
 
-See the [recorded prompt trials](https://easydiffraction.org/assistant-prompt-trials/) for the tested models, dates and outcomes.
+This prompt was last checked on 13 November 2026; another assistant may take different steps.

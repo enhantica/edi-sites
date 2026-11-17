@@ -2,8 +2,9 @@ Canonical page: https://easydiffraction.org/about/community/
 
 # Get in touch
 
-Ask a question, share feedback, report a problem or suggest an idea. Messages reach the same people as the app's Help
-and feedback.
+Ask a question, share feedback, report a problem or suggest an idea. Messages reach the EasyDiffraction developers, the
+same people as the app's Help and feedback, and every one is read. Give your name and e-mail if you would like an answer,
+or leave them empty to write anonymously. To write to Andrew Sazonov, who leads the project, see [About](https://easydiffraction.org/about/).
 
 ## Send a message
 
@@ -28,7 +29,8 @@ When you report a problem, it helps to say:
 
 ## Take the survey
 
-Have 15 minutes? The [survey](https://easydiffraction.org/about/survey/) asks how you work and what you need, and it shapes what we build next.
+Have 10-15 minutes? The [survey](https://easydiffraction.org/about/survey/) is anonymous. It asks how you work and what you need, and your answers
+shape what we build next.
 
 ## Other ways
 

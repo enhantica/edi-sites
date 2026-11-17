@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9daabad54b9965a9689796d303f0823870e6b50b/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0fa31db22c4ad74028c166bbd6e6e07771e96e60/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -153,7 +153,7 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 2 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         19.62        59.17
-      1      0.006      14.74        33.42   43.5% ↓
+      1      0.007      14.74        33.42   43.5% ↓
   done · converged · 1 iters · reduced χ² 33.42 · wR(F²) 14.74 % · 0.01 s
 ```
 
@@ -227,13 +227,13 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.09         5.98
-      1      0.012       2.90         1.35   77.4% ↓
-      2      0.013       2.88         1.33   1.6% ↓
-      3      0.015       2.88         1.33   
-      4      0.016       2.88         1.33   
-      5      0.018       2.88         1.33   
-      6      0.020       2.88         1.33   
-      7      0.021       2.88         1.33   
+      1      0.008       2.90         1.35   77.4% ↓
+      2      0.009       2.88         1.33   1.6% ↓
+      3      0.011       2.88         1.33   
+      4      0.012       2.88         1.33   
+      5      0.014       2.88         1.33   
+      6      0.015       2.88         1.33   
+      7      0.017       2.88         1.33   
   done · converged · 7 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.02 s
 ```
 

@@ -57,4 +57,4 @@ The same prompt, asking for a project for `edi fit`, is on the
 [<span class="ed-interface-icons" aria-hidden="true">:fa5-terminal:</span> <span class="ed-icon-text">Command line</span>](https://easydiffraction.org/cli/tutorials/assistant/){ .ed-icon-label .ed-interface-link } tutorials. The application has an
 [AI assistant](https://easydiffraction.org/user-guide/ai-assistant/) built in.
 
-See the [recorded prompt trials](https://easydiffraction.org/assistant-prompt-trials/) for the tested models, dates and outcomes.
+This prompt was last checked on 13 November 2026; another assistant may take different steps.
