@@ -178,6 +178,110 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.20",
+      "date": "2026-11-16",
+      "commit": "0e2d7caba1f83e05efbcee163acd60e8676fe96b",
+      "notes": {
+        "Added": [
+          {
+            "title": "Faster fits, selectable stop rules, ABSCOR2 removed",
+            "pull_request": 24,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python",
+              "cli-python",
+              "cli-standalone"
+            ]
+          },
+          {
+            "title": "Survey, intro animation, merged title bar and Auto fits",
+            "pull_request": 73,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python",
+              "cli-python",
+              "cli-standalone"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Install the smoke-test wheel with its declared dependencies",
+            "pull_request": 75,
+            "interfaces": [
+              "python"
+            ]
+          },
+          {
+            "title": "Keep the environment lib directory on the macOS CLI link path",
+            "pull_request": 76,
+            "interfaces": [
+              "cli-standalone"
+            ]
+          },
+          {
+            "title": "Link only the SDK's sleef into the macOS CLI",
+            "pull_request": 77,
+            "interfaces": [
+              "cli-standalone"
+            ]
+          },
+          {
+            "title": "Admit the system libc++abi in the macOS CLI runtime check",
+            "pull_request": 78,
+            "interfaces": [
+              "cli-standalone"
+            ]
+          },
+          {
+            "title": "Skip a macOS library's own install name in the dependency checks",
+            "pull_request": 79,
+            "interfaces": [
+              "cli-standalone"
+            ]
+          }
+        ],
+        "Changed": []
+      }
+    },
+    {
+      "version": "2026.11.22",
+      "date": "2026-11-17",
+      "commit": "cdf4adf4c19891bfd467c72b48be3a1df597f355",
+      "notes": {
+        "Added": [
+          {
+            "title": "Sign the installers and command-line tools on macOS and Windows",
+            "pull_request": 82,
+            "interfaces": [
+              "desktop",
+              "web",
+              "cli-standalone"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Point the Pages check's fake web app at its multithread kit",
+            "pull_request": 80,
+            "interfaces": [
+              "web"
+            ]
+          },
+          {
+            "title": "Ship a separately signed maintenance tool on macOS",
+            "pull_request": 83,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
