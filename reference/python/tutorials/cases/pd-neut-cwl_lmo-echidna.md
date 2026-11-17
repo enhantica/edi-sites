@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lmo-echidna/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0fa31db22c4ad74028c166bbd6e6e07771e96e60/docs/user/tutorials/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/cdf4adf4c19891bfd467c72b48be3a1df597f355/docs/user/tutorials/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lmo-echidna.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -346,8 +346,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_lmo-echidna, 3002 pts fitted / 3200 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         6.20         3.67
-      1      0.019      5.31         2.70   26.6% ↓
-      2      0.023      5.31         2.70   
+      1      0.022      5.31         2.70   26.6% ↓
+      2      0.027      5.31         2.70   
   done · converged · 2 iters · reduced χ² 2.70 · Rwp 5.31 % · 0.03 s
 ```
 
