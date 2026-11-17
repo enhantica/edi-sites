@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-xray-cwl_latp-bm01_scan/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/d1635833c786f7c650d8889c76a93a5244c93e6b/docs/user/tutorials/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/83abf69967c55888a4d94382794ba2e23c8cfa15/docs/user/tutorials/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-xray-cwl_latp-bm01_scan.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -253,9 +253,9 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 11 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 140198364.17
-      1      0.267      4.51 140107944.41   0.1% ↓
-      2      0.300      4.51 140107929.77   
-  done · converged · 2 iters · reduced χ² 140107929.77 · Rwp 4.51 % · 0.32 s
+      1      0.234      4.51 140107944.41   0.1% ↓
+      2      0.265      4.51 140107929.77   
+  done · converged · 2 iters · reduced χ² 140107929.77 · Rwp 4.51 % · 0.29 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -323,10 +323,10 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 45 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 141649627.27
-      1      0.356      4.51 141613776.68   
-      2      0.389      4.51 141612434.44   
-      3      0.480      4.51 141612402.80   
-  done · converged · 3 iters · reduced χ² 141612402.80 · Rwp 4.51 % · 0.51 s
+      1      0.338      4.51 141613776.68   
+      2      0.368      4.51 141612434.44   
+      3      0.453      4.51 141612402.80   
+  done · converged · 3 iters · reduced χ² 141612402.80 · Rwp 4.51 % · 0.48 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -357,7 +357,7 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 47 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 141704748.40
-      1      0.381      4.51 141696202.86   
+      1      0.385      4.51 141696202.86   
   done · converged · 1 iters · reduced χ² 141696202.86 · Rwp 4.51 % · 0.41 s
 ```
 
@@ -400,8 +400,8 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 55 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 142066771.55
-      1      0.465      4.51 142050914.06   
-  done · converged · 1 iters · reduced χ² 142050914.06 · Rwp 4.51 % · 0.50 s
+      1      0.442      4.51 142050914.06   
+  done · converged · 1 iters · reduced χ² 142050914.06 · Rwp 4.51 % · 0.47 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -437,11 +437,11 @@ project.display.fit.results()
 edi fit: project pd-xray-cwl_latp-bm01_scan, 3114 pts fitted / 3163 loaded, 59 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.51 142236905.43
-      1      0.341      4.51 142230639.97   
-      2      0.396      4.51 142230292.15   
-      3      0.431      4.51 142228697.98   
-      4      0.520      4.51 142228650.74   
-  done · converged · 4 iters · reduced χ² 142228650.74 · Rwp 4.51 % · 0.55 s
+      1      0.329      4.51 142230639.97   
+      2      0.382      4.51 142230292.15   
+      3      0.417      4.51 142228697.98   
+      4      0.506      4.51 142228650.74   
+  done · converged · 4 iters · reduced χ² 142228650.74 · Rwp 4.51 % · 0.54 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
