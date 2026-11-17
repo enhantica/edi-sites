@@ -10,6 +10,21 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [v2026.11.22 (17 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.22)
+
+**Added**
+
+- Sign the installers and command-line tools on macOS and Windows ([#82](https://github.com/enhantica/edi/pull/82)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface } **:fa5-terminal: cli**{ .ed-release-interface }
+
+**Fixed**
+
+- Point the Pages check's fake web app at its multithread kit ([#80](https://github.com/enhantica/edi/pull/80)) **:fa5-globe: web**{ .ed-release-interface }
+- Ship a separately signed maintenance tool on macOS ([#83](https://github.com/enhantica/edi/pull/83)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-17 -->
+
+---
+
 ## [v2026.11.20 (16 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.20)
 
 **Added**

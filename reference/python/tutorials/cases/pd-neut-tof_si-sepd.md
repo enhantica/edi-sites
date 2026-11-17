@@ -153,8 +153,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        52.36       204.71
-      1      0.081     10.45         8.16   96.0% ↓
-      2      0.101     10.45         8.16   
+      1      0.080     10.45         8.16   96.0% ↓
+      2      0.100     10.45         8.16   
   done · converged · 2 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.11 s
 ```
 
@@ -188,7 +188,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.45         8.18
-      1      0.086      7.45         4.16   49.1% ↓
+      1      0.087      7.45         4.16   49.1% ↓
   done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.10 s
 ```
 
@@ -257,7 +257,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.42         4.13
-      1      0.113      7.28         3.97   3.7% ↓
+      1      0.115      7.28         3.97   3.7% ↓
   done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.13 s
 ```
 
@@ -288,7 +288,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.98
-      1      0.115      7.28         3.97   0.2% ↓
+      1      0.117      7.28         3.97   0.2% ↓
   done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.13 s
 ```
 
@@ -322,8 +322,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.97
-      1      0.103      7.18         3.86   2.7% ↓
-      2      0.128      7.18         3.86   
+      1      0.104      7.18         3.86   2.7% ↓
+      2      0.129      7.18         3.86   
   done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.14 s
 ```
 
