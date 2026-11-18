@@ -8,7 +8,7 @@ Canonical page: https://easydiffraction.org/application/structure/appearance/
 
 ## Change the appearance
 
-On **Structure → Extra**, expand **Appearance**. Choose how atom sizes are drawn, adjust the display scale or use displacement ellipsoids. For ellipsoids, set the probability level.
+On **Structure → Extra**, expand **Appearance**. Its switches show or hide labels, bonds, polyhedra, the cell, magnetic moments and axes, as the structure view's toolbar buttons do. Choose how atom sizes are drawn, also in the toolbar's **Atom view** box, adjust the display scale or use displacement ellipsoids. For ellipsoids, set the probability level.
 
 These controls change the picture. Edit the scientific model in [Space group](https://easydiffraction.org/application/structure/space-group/), [Cell](https://easydiffraction.org/application/structure/cell/#enter-the-unit-cell), [Atom sites](https://easydiffraction.org/application/structure/atom-sites/) and [Atomic displacement](https://easydiffraction.org/application/structure/atomic-displacement/). [Scattering lengths](https://easydiffraction.org/application/structure/scattering-lengths/) and [experiment links](https://easydiffraction.org/application/experiment/linked-structures/) have their own controls.
 

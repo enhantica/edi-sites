@@ -39,12 +39,12 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.4ab2de0c.min.css?v=4ab2de0c7884">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.b60ce83d.min.css?v=b60ce83de5a2">
       
       
 
@@ -63,17 +63,17 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/brand-colors.css?v=1">
+      <link rel="stylesheet" href="../../assets/brand-colors.css?v=63dec6a8ce5c">
     
-      <link rel="stylesheet" href="../../assets/wordmark.css?v=header-2">
+      <link rel="stylesheet" href="../../assets/wordmark.css?v=8fa0f06065cd">
     
-      <link rel="stylesheet" href="../../assets/site-components.css?v=tables-5">
+      <link rel="stylesheet" href="../../assets/site-components.css?v=8cf9342643e1">
     
-      <link rel="stylesheet" href="../../assets/experiment-tags.css?v=5">
+      <link rel="stylesheet" href="../../assets/experiment-tags.css?v=50c36d806852">
     
-      <link rel="stylesheet" href="../../assets/parameter-reference.css?v=3">
+      <link rel="stylesheet" href="../../assets/parameter-reference.css?v=dfd29061a5d8">
     
-      <link rel="stylesheet" href="../../assets/about/about.css?v=5">
+      <link rel="stylesheet" href="../../assets/about/about.css?v=8edf3572a2df">
     
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
@@ -1046,6 +1046,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Calculation and fitting
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-fit-needs-from-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What a fit needs from you
       </span>
     </span>
   </a>
@@ -2154,6 +2165,8 @@
       
         
       
+        
+      
     
     
     
@@ -2678,6 +2691,36 @@
     
   
   Appearance
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../application/structure/polyhedra/" class="md-nav__link">
+        
+  
+  
+  
+    <span class="ed-reference-icon ed-nav-category" aria-hidden="true"></span>
+  
+  <span class="md-ellipsis">
+    
+  
+  Polyhedra
 
     
   </span>
@@ -10418,6 +10461,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-a-fit-needs-from-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What a fit needs from you
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#least-squares-and-bayesian-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -10676,6 +10730,9 @@
 <p>A calculation predicts the diffraction pattern from the current structure and experiment. It does not need measured intensities. Use it to inspect peak positions and the influence of the model before fitting.</p>
 <p>A fit needs observations to compare against. A least-squares fit reduces the weighted difference between observations and calculations: it changes the parameters marked as free, while fixed parameters still contribute to the calculated pattern. The starting model, free-parameter set, constraints, excluded regions and minimizer conditions all influence the result.</p>
 <p>Start from a physically meaningful model. Inspect the initial pattern, allow parameters to vary deliberately, and review the result after each meaningful change. Adding more free parameters may reduce a residual without making the model more informative.</p>
+<h2 id="what-a-fit-needs-from-you">What a fit needs from you<a class="headerlink" href="#what-a-fit-needs-from-you" title="Permanent link">&para;</a></h2>
+<p>EasyDiffraction fits a model you provide. Its values may be off, but its symmetry and composition must be right: the space group, the atoms in the cell and, for a magnetic structure, the magnetic space group or propagation vector. Its starting values, such as the cell, the atom positions and the scale, must be reasonable, so that the calculated pattern already resembles the measured one. A fit then moves those values towards the observations.</p>
+<p>EasyDiffraction has no tools to find a model from the data: no structure solution and no propagation-vector search. Take the starting model from a database entry, a related compound or a structure-solution program, and load it as a CIF.</p>
 <h2 id="least-squares-and-bayesian-analysis">Least squares and Bayesian analysis<a class="headerlink" href="#least-squares-and-bayesian-analysis" title="Permanent link">&para;</a></h2>
 <p>Both compare a model with observations, but summarise parameter uncertainty differently.</p>
 <table>
@@ -10811,19 +10868,19 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.indexes","navigation.path","navigation.top","navigation.footer","toc.follow","content.code.copy","content.tabs.link"],"redirect":null,"search":"../../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.77dd0ce9.min.js?v=77dd0ce9ff23"></script>
       
-        <script src="../../assets/example-catalogue.js?v=7"></script>
+        <script src="../../assets/example-catalogue.js?v=9ac74a23a1a2"></script>
       
-        <script src="../../assets/feedback-form.js"></script>
+        <script src="../../assets/feedback-form.js?v=384a778f5d51"></script>
       
-        <script src="../../assets/contact-form.js?v=3"></script>
+        <script src="../../assets/contact-form.js?v=cfa725f32185"></script>
       
-        <script src="../../assets/survey/survey.js?v=10"></script>
+        <script src="../../assets/survey/survey.js?v=4c55a7857f71"></script>
       
-        <script src="../../assets/about/email-link.js?v=2"></script>
+        <script src="../../assets/code-breaks.js?v=46501ce2e823"></script>
       
-        <script src="../../assets/code-breaks.js?v=2"></script>
+        <script src="../../assets/about/email-link.js?v=3b07641cbe32"></script>
       
     
   </body>

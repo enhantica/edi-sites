@@ -78,6 +78,7 @@ This export supplies reference content; it does not implement a chat integration
 - [<span class="ed-reference-icon" aria-hidden="true">&#62193;</span> Magnetic operators](https://easydiffraction.org/reference/application/structure/magnetic-operators.md)
 - [<span class="ed-reference-icon" aria-hidden="true">&#61558;</span> Magnetic space group](https://easydiffraction.org/reference/application/structure/magnetic-space-group.md)
 - [<span class="ed-reference-icon" aria-hidden="true">&#61732;</span> Moments in the cell](https://easydiffraction.org/reference/application/structure/moments-in-the-cell.md)
+- [<span class="ed-reference-icon" aria-hidden="true">&#63183;</span> Polyhedra](https://easydiffraction.org/reference/application/structure/polyhedra.md)
 - [<span class="ed-reference-icon" aria-hidden="true">&#62219;</span> Propagation vectors](https://easydiffraction.org/reference/application/structure/propagation-vectors.md)
 - [<span class="ed-reference-icon" data-reference-category="scattering-length" aria-hidden="true">&#62789;</span> Scattering lengths](https://easydiffraction.org/reference/application/structure/scattering-lengths.md)
 - [<span class="ed-reference-icon" data-reference-category="space-group" aria-hidden="true">&#63423;</span> Space group](https://easydiffraction.org/reference/application/structure/space-group.md)
