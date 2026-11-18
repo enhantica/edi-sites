@@ -10,6 +10,25 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [v2026.11.24 (18 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.24)
+
+**Added**
+
+- Signed installers, series fits, complete pages and fitting fixes ([#91](https://github.com/enhantica/edi/pull/91)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface } **:simple-python: py**{ .ed-release-interface } **:fa5-terminal: cli**{ .ed-release-interface }
+
+**Fixed**
+
+- Allow the Windows API set the crysta runtime imports ([#93](https://github.com/enhantica/edi/pull/93)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+**Changed**
+
+- Show the contributors on the About page ([#84](https://github.com/enhantica/edi/pull/84)) **:fa5-globe: web**{ .ed-release-interface }
+- Publish main only to the public hosts ([#86](https://github.com/enhantica/edi/pull/86)) **:fa5-globe: web**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-18 -->
+
+---
+
 ## [v2026.11.22 (17 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.22)
 
 **Added**

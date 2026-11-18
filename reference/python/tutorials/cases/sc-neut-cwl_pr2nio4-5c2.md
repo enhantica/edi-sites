@@ -117,8 +117,8 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                        115.85      6415.49
-      1      0.005      49.30      1161.93   81.9% ↓
-  done · converged · 1 iters · reduced χ² 1161.93 · wR(F²) 49.30 % · 0.01 s
+      1      0.003      49.30      1161.93   81.9% ↓
+  done · converged · 1 iters · reduced χ² 1161.93 · wR(F²) 49.30 % · 0.00 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -152,16 +152,16 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 6 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         49.30      1192.18
-      1      0.009      46.64      1067.00   10.5% ↓
-      2      0.011      46.63      1066.25   0.1% ↓
-      3      0.012      46.61      1065.55   0.1% ↓
-      4      0.014      46.60      1065.20   
-      5      0.015      46.60      1064.86   
-      6      0.017      46.59      1064.67   
-      7      0.018      46.59      1064.48   
-      8      0.020      46.59      1064.37   
-      9      0.022      46.58      1064.26   
-  done · converged · 9 iters · reduced χ² 1064.26 · wR(F²) 46.58 % · 0.02 s
+      1      0.004      46.64      1067.00   10.5% ↓
+      2      0.006      46.63      1066.25   0.1% ↓
+      3      0.007      46.61      1065.55   0.1% ↓
+      4      0.008      46.60      1065.20   
+      5      0.009      46.60      1064.86   
+      6      0.010      46.59      1064.67   
+      7      0.011      46.59      1064.48   
+      8      0.011      46.59      1064.37   
+      9      0.013      46.58      1064.26   
+  done · converged · 9 iters · reduced χ² 1064.26 · wR(F²) 46.58 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -193,7 +193,7 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 7 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         46.58      1069.84
-      1      0.009      46.52      1066.80   0.3% ↓
+      1      0.005      46.52      1066.80   0.3% ↓
   done · converged · 1 iters · reduced χ² 1066.80 · wR(F²) 46.52 % · 0.01 s
 ```
 
@@ -235,12 +235,12 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 23 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         46.52      1164.34
-      1      0.011       4.29         9.88   99.2% ↓
-      2      0.013       4.27         9.79   0.9% ↓
-      3      0.015       4.26         9.76   0.3% ↓
-      4      0.018       4.26         9.75   0.1% ↓
-      5      0.020       4.26         9.75   
-      6      0.022       4.26         9.75   
+      1      0.010       4.29         9.88   99.2% ↓
+      2      0.012       4.27         9.79   0.9% ↓
+      3      0.014       4.26         9.76   0.3% ↓
+      4      0.015       4.26         9.75   0.1% ↓
+      5      0.017       4.26         9.75   
+      6      0.018       4.26         9.75   
   done · converged · 6 iters · reduced χ² 9.75 · wR(F²) 4.26 % · 0.02 s
 ```
 
