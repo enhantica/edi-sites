@@ -5541,6 +5541,364 @@
      "cli_docs": "docs/user/cli/sc-neut-tof_taurine-senju/index.md"
     }
    }
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf",
+   "kind": "structure",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "space_group": "I 21 3",
+   "cell": [
+    10.250256,
+    10.250256,
+    10.250256,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "structures/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf.edi",
+     "format": "edi",
+     "sha256": "74d8713bf4161141a7c3879961802522b130a18c011038bdb06d206014219bbd",
+     "bytes": 817
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_1_10",
+   "kind": "experiment",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "structures": [
+    "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf"
+   ],
+   "files": [
+    {
+     "path": "experiments/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_1_10.edi",
+     "format": "edi",
+     "sha256": "0056571abbc302e60be1941b25d914c259db4984a0db3f4b2815d5429254b940",
+     "bytes": 139568
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_2_9",
+   "kind": "experiment",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "structures": [
+    "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf"
+   ],
+   "files": [
+    {
+     "path": "experiments/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_2_9.edi",
+     "format": "edi",
+     "sha256": "eb66e982bceff3940062ccb1cfff91ee18efe2225c227b9f652dd8f09b1c6f27",
+     "bytes": 137950
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_3_8",
+   "kind": "experiment",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "structures": [
+    "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf"
+   ],
+   "files": [
+    {
+     "path": "experiments/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_3_8.edi",
+     "format": "edi",
+     "sha256": "65fc2b6ada078663801a5674cc5154a6092fff58791df008992755a740f3f1f8",
+     "bytes": 131366
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_4_7",
+   "kind": "experiment",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "structures": [
+    "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf"
+   ],
+   "files": [
+    {
+     "path": "experiments/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_4_7.edi",
+     "format": "edi",
+     "sha256": "234c64292175c0b2876ef8148e0153264f99156f04f6dcfebc6fb68da392285d",
+     "bytes": 133916
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_5_6",
+   "kind": "experiment",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "structures": [
+    "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-ncaf"
+   ],
+   "files": [
+    {
+     "path": "experiments/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_5_6.edi",
+     "format": "edi",
+     "sha256": "8d56edee77b9f56ad900336100075f246d63a50dd606ed2131461b2302232d28",
+     "bytes": 136356
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-scan",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-scan.zip",
+     "format": "zip",
+     "sha256": "f1205ef081b6ac57b5e7d1be6c0add2e3cca8fccd97f517424dd3210d3096f21",
+     "bytes": 29617305
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_1_10-data",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_1_10.xye",
+     "format": "xye",
+     "sha256": "eb5605e75fe96743863114a7aafc535c67987686ee562a0b2cb0fcf497e139af",
+     "bytes": 117382
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_2_9-data",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_2_9.xye",
+     "format": "xye",
+     "sha256": "eafd52f2534c00479a5f96dc49f0649795f5b2359b817abb336e282f560b3fe4",
+     "bytes": 116167
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_3_8-data",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_3_8.xye",
+     "format": "xye",
+     "sha256": "9ae4929595c6739777cd23d26d33cb3009c2150ecd68e1c45064ad063cd00d7a",
+     "bytes": 110565
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_4_7-data",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_4_7.xye",
+     "format": "xye",
+     "sha256": "c51a0ce807e51543b314d4a917a430897ba06cf4c9963457bba486ca7295e1d1",
+     "bytes": 112607
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_5_6-data",
+   "kind": "data",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "data/pd-neut-tof_ncaf-wish-5bank_synthetic-100p-wish_5_6.xye",
+     "format": "xye",
+     "sha256": "a9d3df1f0b541c041c636e6792795cf81b53c10e94d3ca9f56b5fffffeda1092",
+     "bytes": 114693
+    }
+   ]
+  },
+  {
+   "id": "pd-neut-tof_ncaf-wish-5bank_synthetic-100p",
+   "kind": "project",
+   "name": "Na₂Ca₃Al₂F₁₄ [I2₁3]",
+   "description": "100 points × 5 banks · Synthetic series of joint fits",
+   "formula": "Al Ca F Na",
+   "elements": [
+    "Al",
+    "Ca",
+    "F",
+    "Na"
+   ],
+   "radiation": "neutron",
+   "technique": "powder time-of-flight",
+   "instrument": "WISH",
+   "facility": "ISIS",
+   "source": "EasyDiffraction",
+   "files": [
+    {
+     "path": "projects/pd-neut-tof_ncaf-wish-5bank_synthetic-100p.zip",
+     "format": "zip",
+     "sha256": "47b772ee66c480920fb0955bfa404814416a0e70f4ccbc6f6cdf7644b9784d08",
+     "bytes": 29985674
+    }
+   ]
   }
  ]
 }
