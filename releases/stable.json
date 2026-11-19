@@ -282,6 +282,98 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.24",
+      "date": "2026-11-18",
+      "commit": "7fdd08055df9e6f9d759fd68e622fc1e55622f44",
+      "notes": {
+        "Added": [
+          {
+            "title": "Signed installers, series fits, complete pages and fitting fixes",
+            "pull_request": 91,
+            "interfaces": [
+              "desktop",
+              "web",
+              "python",
+              "cli-standalone"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Allow the Windows API set the crysta runtime imports",
+            "pull_request": 93,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": [
+          {
+            "title": "Show the contributors on the About page",
+            "pull_request": 84,
+            "interfaces": [
+              "web"
+            ]
+          },
+          {
+            "title": "Publish main only to the public hosts",
+            "pull_request": 86,
+            "interfaces": [
+              "web"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "version": "2026.11.27",
+      "date": "2026-11-19",
+      "commit": "255d9fc638220a96d423e1436e3f348a7c0213ea",
+      "notes": {
+        "Added": [
+          {
+            "title": "Signed installers, magnetic structures, untitled projects and fixes",
+            "pull_request": 89,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Let the assistant load data through the Experiments group",
+            "pull_request": 96,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Let the assistant search aliases by full name",
+            "pull_request": 97,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Accept native line endings in the runtime checker on Windows",
+            "pull_request": 98,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Open older magnetic projects again",
+            "pull_request": 99,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
