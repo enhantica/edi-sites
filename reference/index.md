@@ -27,7 +27,7 @@ Canonical page: https://easydiffraction.org/
 
 </div>
 
-<p class="ed-landing__release" markdown="span">EasyDiffraction [v2026.11.24](https://easydiffraction.org/changelog/) · released 18 Nov</p>
+<p class="ed-landing__release" markdown="span">EasyDiffraction [v2026.11.28](https://easydiffraction.org/changelog/) · released 19 Nov</p>
 
 
 </div>

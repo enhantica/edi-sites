@@ -190,6 +190,9 @@
         <loc>https://easydiffraction.org/application/structure/magnetic-form-factors/</loc>
       </url>
       <url>
+        <loc>https://easydiffraction.org/application/structure/magnetic-group-symbols/</loc>
+      </url>
+      <url>
         <loc>https://easydiffraction.org/application/structure/magnetic-moments/</loc>
       </url>
       <url>
@@ -200,6 +203,9 @@
       </url>
       <url>
         <loc>https://easydiffraction.org/application/structure/moments-in-the-cell/</loc>
+      </url>
+      <url>
+        <loc>https://easydiffraction.org/application/structure/parent-space-group/</loc>
       </url>
       <url>
         <loc>https://easydiffraction.org/application/structure/polyhedra/</loc>

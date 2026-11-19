@@ -10,6 +10,33 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [v2026.11.28 (19 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.28)
+
+**Fixed**
+
+- Fix a chart hover crash and fit results sizing loops ([#100](https://github.com/enhantica/edi/pull/100)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-19 -->
+
+---
+
+## [v2026.11.27 (19 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.27)
+
+**Added**
+
+- Signed installers, magnetic structures, untitled projects and fixes ([#89](https://github.com/enhantica/edi/pull/89)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+
+**Fixed**
+
+- Let the assistant load data through the Experiments group ([#96](https://github.com/enhantica/edi/pull/96)) **:fa5-desktop: desktop**{ .ed-release-interface }
+- Let the assistant search aliases by full name ([#97](https://github.com/enhantica/edi/pull/97)) **:fa5-desktop: desktop**{ .ed-release-interface }
+- Accept native line endings in the runtime checker on Windows ([#98](https://github.com/enhantica/edi/pull/98)) **:fa5-desktop: desktop**{ .ed-release-interface }
+- Open older magnetic projects again ([#99](https://github.com/enhantica/edi/pull/99)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-19 -->
+
+---
+
 ## [v2026.11.24 (18 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.24)
 
 **Added**

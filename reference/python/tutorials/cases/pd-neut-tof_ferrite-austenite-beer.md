@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_ferrite-austenite-beer/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/7fdd08055df9e6f9d759fd68e622fc1e55622f44/docs/user/tutorials/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b1d25154ced32e859544507942be9ad8399e24fc/docs/user/tutorials/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_ferrite-austenite-beer.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -266,8 +266,8 @@ project.display.fit.results()
 edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        41.43       459.60
-      1      0.010     23.83       152.11   66.9% ↓
-  done · converged · 1 iters · reduced χ² 152.11 · Rwp 23.83 % · 0.01 s
+      1      0.017     23.83       152.11   66.9% ↓
+  done · converged · 1 iters · reduced χ² 152.11 · Rwp 23.83 % · 0.02 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -312,7 +312,7 @@ project.display.fit.results()
 edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 64 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        23.83       153.75
-      1      0.106     18.05        88.21   42.6% ↓
+      1      0.114     18.05        88.21   42.6% ↓
   done · converged · 1 iters · reduced χ² 88.21 · Rwp 18.05 % · 0.12 s
 ```
 
@@ -363,7 +363,7 @@ project.display.fit.results()
 edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 72 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        18.05        88.34
-      1      0.125     16.38        72.72   17.7% ↓
+      1      0.128     16.38        72.72   17.7% ↓
   done · converged · 1 iters · reduced χ² 72.72 · Rwp 16.38 % · 0.14 s
 ```
 
@@ -404,9 +404,9 @@ project.display.fit.results()
 edi fit: joint project ferrite-austenite-beer, 2 banks (expt_s2, expt_n2), 5641 pts fitted / 5992 loaded, 73 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        16.38        72.73
-      1      0.088      7.13        13.78   81.0% ↓
-      2      0.133      7.13        13.78   
-  done · converged · 2 iters · reduced χ² 13.78 · Rwp 7.13 % · 0.15 s
+      1      0.094      7.13        13.78   81.0% ↓
+      2      0.147      7.13        13.78   
+  done · converged · 2 iters · reduced χ² 13.78 · Rwp 7.13 % · 0.16 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

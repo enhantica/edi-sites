@@ -1,4 +1,4 @@
-window.edFeedbackForm = {"endpoint": "https://edi-feedback.savanna-animas-0g.workers.dev/feedback", "status": {"sending": "Sending...", "sent": "Your message was sent. Thank you!", "but": "But %1.", "tooMany": "Too many messages were sent from here recently. Please try again later.", "notSent": "The message was not sent: %1", "offline": "No connection to the feedback service. Check your connection and try again.", "refused": "The feedback service did not take the message (%1): %2", "failed": "Sending failed (%1). Please try again later."}, "close": "Close", "files": {"attach": "Attach files", "tooltip": "Any files: screenshots and videos show in the message, other files arrive as one zip; up to 5 files, 5 MB each, 10 MB in total. Files can also be dropped on the form.", "remove": "Remove", "unreadable": "Not attached, could not be read: %1", "refused": "Not sent: %1. Remove a file to send.", "notAttached": "%1 was not attached", "notAttachedMany": "%1 were not attached"}, "copyReport": "Copy report", "reasons": [{"value": "feedback", "text": "Share feedback"}, {"value": "question", "text": "Ask a question"}, {"value": "problem", "text": "Report a problem"}, {"value": "idea", "text": "Suggest an idea"}], "contact": {"name": "Name (optional)", "email": "E-mail (optional)", "affiliation": "Affiliation (optional)"}, "subject": {"question": "Your question in a few words (optional)", "problem": "What went wrong, in a few words (optional)", "idea": "Your idea in a few words (optional)", "feedback": "Your feedback in a few words (optional)"}, "message": {"question": "What would you like to know, and what have you tried?", "problem": "What did you do, what happened, and what did you expect?", "idea": "What would you like the app to do, and how would it help?", "feedback": "What works well for you, and what could be better?"}, "privacy": "Only your text and the files you attach are sent. Your name, e-mail and affiliation are sent only if you fill them in."};
+window.edFeedbackForm = {"endpoint": "https://edi-feedback.savanna-animas-0g.workers.dev/feedback", "status": {"sending": "Sending...", "sent": "Your message was sent. Thank you!", "but": "But %1.", "tooMany": "Too many messages were sent from here recently. Please try again later.", "notSent": "The message was not sent: %1", "offline": "No connection to the feedback service. Check your connection and try again.", "refused": "The feedback service did not take the message (%1): %2", "failed": "Sending failed (%1). Please try again later."}, "close": "Close", "files": {"attach": "Attach files", "tooltip": "Any files: screenshots and videos show in the message, other files arrive as one zip; up to 5 files, 5 MB each, 10 MB in total. Files can also be dropped on the form.", "remove": "Remove", "unreadable": "Not attached, could not be read: %1", "refused": "Not sent: %1. Remove a file to send.", "notAttached": "%1 was not attached", "notAttachedMany": "%1 were not attached"}, "reasons": [{"value": "feedback", "text": "Share feedback"}, {"value": "question", "text": "Ask a question"}, {"value": "problem", "text": "Report a problem"}, {"value": "idea", "text": "Suggest an idea"}], "contact": {"name": "Name (optional)", "email": "E-mail (optional)", "affiliation": "Affiliation (optional)"}, "subject": {"question": "Your question in a few words (optional)", "problem": "What went wrong, in a few words (optional)", "idea": "Your idea in a few words (optional)", "feedback": "Your feedback in a few words (optional)"}, "message": {"question": "What would you like to know, and what have you tried?", "problem": "What did you do, what happened, and what did you expect?", "idea": "What would you like the app to do, and how would it help?", "feedback": "What works well for you, and what could be better?"}, "privacy": "Only your text and the files you attach are sent. Your name, e-mail and affiliation are sent only if you fill them in."};
 window.edFeedbackPayload = (function () {
 // SPDX-License-Identifier: BSD-3-Clause
 // What Help and feedback sends, and how (ADR-0063). The form shows exactly what buildPayload returns, and
@@ -265,9 +265,24 @@ function filesProblem(files) {
 
 // The files as the feedback service receives them: each `name` (as given), `type`, decoded `size` and base64 `data`,
 // a text file's content with the home folder and user name replaced as in the log. A file past a limit refuses all.
+// The last list encoded, and what it gave: the form rebuilds the payload on every letter typed, and decoding and
+// encoding a screenshot each time made typing lag.
+var encodedFiles = null;
+var encodedFor = null;
+
 function attachmentsFor(files, home, user) {
     if (!Array.isArray(files))
         throw new Error("attached files must be a list");
+    if (encodedFor !== null && encodedFor.files === files && encodedFor.home === home && encodedFor.user === user &&
+            encodedFor.items.length === files.length && encodedFor.items.every(function (file, index) { return file === files[index]; }))
+        return encodedFiles;
+    var result = encodeAttachments(files, home, user);
+    encodedFor = {"files": files, "items": files.slice(), "home": home, "user": user};
+    encodedFiles = result;
+    return result;
+}
+
+function encodeAttachments(files, home, user) {
     var decoded = files.map(function (file) {
         if (file === null || typeof file !== "object" || typeof file.name !== "string" || file.name === "")
             throw new Error("an attached file has no name");
@@ -413,6 +428,15 @@ function wireText(payload, readable) {
     if (typeof payload.fullLog === "string") {
         shown = Object.assign({}, payload);
         shown.fullLog = "(the whole log, " + payload.fullLog.length + " characters, attached as log.txt)";
+    }
+    // A file's bytes are named, not shown: pages of base64 say nothing and slowed the form down.
+    if (Array.isArray(payload.attachments) && payload.attachments.length > 0) {
+        shown = Object.assign({}, shown);
+        shown.attachments = payload.attachments.map(function (file) {
+            var described = Object.assign({}, file);
+            described.data = "(" + file.size + " bytes, sent as the file)";
+            return described;
+        });
     }
     return JSON.stringify(shown, null, 2);
 }
