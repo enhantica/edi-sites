@@ -374,6 +374,24 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.28",
+      "date": "2026-11-19",
+      "commit": "4f89fea8cec238b5696f3507cb786b950bd31a62",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Fix a chart hover crash and fit results sizing loops",
+            "pull_request": 100,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
