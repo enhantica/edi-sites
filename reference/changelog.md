@@ -10,6 +10,16 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [v2026.11.29 (19 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.29)
+
+**Fixed**
+
+- Calculate linked structure edits once and refresh the docs ([#102](https://github.com/enhantica/edi/pull/102)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-19 -->
+
+---
+
 ## [v2026.11.28 (19 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.28)
 
 **Fixed**
