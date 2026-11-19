@@ -6,47 +6,47 @@
   <Name>org.easydiffraction.app</Name>
   <DisplayName>EasyDiffraction</DisplayName>
   <Description>Diffraction analysis with crysta and Qt.</Description>
-  <Version>2026.11.28</Version>
+  <Version>2026.11.29</Version>
   <ReleaseDate>2026-11-19</ReleaseDate>
   <Default>true</Default>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi</Replaces>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="91515383" OS="Any" UncompressedSize="248122158"/>
+  <UpdateFile CompressedSize="91513168" OS="Any" UncompressedSize="248122670"/>
   <DownloadableArchives>bin.7z,lib.7z,libexec.7z,share.7z,content.7z</DownloadableArchives>
   <Licenses>
    <License file="COPYING" name="GNU General Public License v3 (application)"/>
   </Licenses>
-  <SHA1>0f764635004b195fdc7aaebe377aba0566632c0b</SHA1>
+  <SHA1>1213b25dea2f1b3c8a722ae63198989b06ba7330</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easydiffraction.app.assistant</Name>
   <DisplayName>AI assistant</DisplayName>
   <Description>Optional runtime for the ChatGPT assistant in EasyDiffraction.</Description>
-  <Version>2026.11.28</Version>
+  <Version>2026.11.29</Version>
   <ReleaseDate>2026-11-19</ReleaseDate>
   <Dependencies>org.easydiffraction.app</Dependencies>
   <Default>false</Default>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi.assistant</Replaces>
-  <UpdateFile CompressedSize="85338497" OS="Any" UncompressedSize="360148728"/>
+  <UpdateFile CompressedSize="85334745" OS="Any" UncompressedSize="360148728"/>
   <DownloadableArchives>libexec.7z,content.7z</DownloadableArchives>
-  <SHA1>cd05cf4a0eac7860a12dac263a828d9f0138a767</SHA1>
+  <SHA1>2e17f10bc8076a8633f17cbbe63e986b706345c7</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easydiffraction.app.maintenancetool</Name>
   <DisplayName>Maintenance tool</DisplayName>
   <Description>Updates and removes EasyDiffraction.</Description>
-  <Version>2026.11.28</Version>
+  <Version>2026.11.29</Version>
   <ReleaseDate>2026-11-19</ReleaseDate>
   <Virtual>true</Virtual>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi.maintenancetool</Replaces>
   <Script>maintenancescript.qs</Script>
-  <UpdateFile CompressedSize="12859603" OS="Any" UncompressedSize="38036192"/>
+  <UpdateFile CompressedSize="12860723" OS="Any" UncompressedSize="38036192"/>
   <DownloadableArchives>maintenancetool.7z</DownloadableArchives>
-  <SHA1>25718cd6bfadaffc2472d58435de3d0b2674323d</SHA1>
+  <SHA1>84cc72eb85e20e439787150ccc87a45f04a5e0ec</SHA1>
  </PackageUpdate>
 </Updates>

@@ -392,6 +392,24 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.29",
+      "date": "2026-11-19",
+      "commit": "b1d25154ced32e859544507942be9ad8399e24fc",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Calculate linked structure edits once and refresh the docs",
+            "pull_request": 102,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
