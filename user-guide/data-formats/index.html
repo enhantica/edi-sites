@@ -1080,6 +1080,78 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#other-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects from other programs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects from other programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cryspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        cryspy
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fullprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FullProf
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gsas-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        GSAS-II
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to-cryspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export to cryspy
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to-fullprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export to FullProf
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cif-files" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -10547,6 +10619,78 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#other-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects from other programs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects from other programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cryspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        cryspy
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fullprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FullProf
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gsas-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        GSAS-II
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to-cryspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export to cryspy
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to-fullprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export to FullProf
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cif-files" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -10934,6 +11078,50 @@ O  O   0   0.5 0.5 1.0 1.4041</code></pre></div>
 <span class="w">    </span><span class="p">]</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div>
+<h2 id="other-programs">Projects from other programs<a class="headerlink" href="#other-programs" title="Permanent link">&para;</a></h2>
+<p>On the Project page, <strong>Get started &gt; Load project</strong> lists <strong>Import cryspy...</strong>, <strong>Import FullProf...</strong>
+and <strong>Import GSAS-II...</strong> under <em>Import from another program</em>. The import creates a new, unsaved
+project named after the file. Its description says where it came from. Save it with <strong>Save project
+as</strong>. The original files are not changed. If the open project has unsaved changes, you are asked
+to save them first. When the source uses something EasyDiffraction does not have, the import stops
+and names it. Where EasyDiffraction calculates an item differently from the source program, the
+import says so in a warning. Each program's design record lists what is not supported.</p>
+<h3 id="cryspy">cryspy<a class="headerlink" href="#cryspy" title="Permanent link">&para;</a></h3>
+<p>Select the project's <code>.rcif</code> file. EasyDiffraction reads unpolarised constant-wavelength neutron
+powder projects with isotropic atoms: the cell, space group and atoms, the wavelength, zero offset,
+peak widths and asymmetry, background points, phase scale, range, excluded regions and measured
+data. Values written with a bracket, such as <code>8.4793(1)</code>, become free parameters. cryspy's own
+calculated output in the file is not read.</p>
+<h3 id="fullprof">FullProf<a class="headerlink" href="#fullprof" title="Permanent link">&para;</a></h3>
+<p>Select the <code>.pcr</code> file. Keep the measured powder data, single-crystal <code>.int</code> and any instrument
+resolution file beside it, with the file names FullProf expects. The import reads single- and
+multi-pattern files for supported X-ray and neutron powder models and neutron single-crystal
+experiments, in the XYDATA, stepped, ILL, GSAS ALT and ISIS RALF/FXYE data formats. An INT file can
+hold several reflection datasets with their own wavelength or scale. Compatible commensurate
+magnetic phases become EasyDiffraction magnetic structures. FullProf codewords become free
+parameters and constraints.</p>
+<h3 id="gsas-ii">GSAS-II<a class="headerlink" href="#gsas-ii" title="Permanent link">&para;</a></h3>
+<p>Select the <code>.gpx</code> file. The import reads supported constant-wavelength neutron and X-ray powder
+projects and time-of-flight neutron powder projects. Compatible paired nuclear and magnetic phases
+from CW neutron projects become one EasyDiffraction structure.</p>
+<h3 id="export-to-cryspy">Export to cryspy<a class="headerlink" href="#export-to-cryspy" title="Permanent link">&para;</a></h3>
+<p><strong>Save project as &gt; As cryspy...</strong> writes a copy and leaves the open project as it is. Choose a
+parent folder. EasyDiffraction creates a new <code>&lt;project-name&gt;-cryspy</code> folder with <code>project.rcif</code>,
+which holds the structures, the experiments and their measured data. Free parameters are written
+with their standard uncertainty in brackets, so cryspy refines them. The export covers what the
+cryspy import reads; anything else, such as another peak profile or anisotropic displacements, stops
+the export and is named.</p>
+<h3 id="export-to-fullprof">Export to FullProf<a class="headerlink" href="#export-to-fullprof" title="Permanent link">&para;</a></h3>
+<p><strong>Save project as &gt; As FullProf...</strong> writes a copy and leaves the open project as it is. Choose a
+parent folder. EasyDiffraction creates a new <code>&lt;project-name&gt;-fullprof</code> folder with <code>project.pcr</code>
+and its powder <code>.dat</code> or single-crystal <code>.int</code> files. Powder simulations export their calculation
+grid. The instrument parameters go into <code>project.pcr</code> with their fitted values. When the project
+holds a fit, <code>fit_results.txt</code> beside it lists the fit's reduced chi-square and R factors and each
+free parameter's value with its standard uncertainty, which a PCR has no place for. The command
+line writes the same copy, with every parameter fixed for a forward calculation
+when <code>--fixed</code> is given:</p>
+<div class="highlight"><pre><span></span><code>easydiffraction<span class="w"> </span>export-fullprof<span class="w"> </span>path/to/project<span class="w"> </span>path/to/fullprof-copy<span class="w"> </span>--fixed
 </code></pre></div>
 <h2 id="cif-files">Importing a CIF<a class="headerlink" href="#cif-files" title="Permanent link">&para;</a></h2>
 <p>A CIF file can bring in a structure or an experiment wherever a <code>.edi</code> file can. EasyDiffraction reads both CIF 1.1 and CIF 2.0, and goes by the names inside the file rather than by its suffix.</p>
