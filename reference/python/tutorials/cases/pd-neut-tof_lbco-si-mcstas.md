@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-tof_lbco-si-mcstas/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/b1d25154ced32e859544507942be9ad8399e24fc/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/ffb27403ee0118aa2fcd82055a1c89599928bd9f/docs/user/tutorials/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-tof_lbco-si-mcstas.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -147,8 +147,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 4 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        50.18       398.16
-      1      0.627     23.12        84.52   78.8% ↓
-  done · converged · 1 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.68 s
+      1      0.618     23.12        84.52   78.8% ↓
+  done · converged · 1 iters · reduced χ² 84.52 · Rwp 23.12 % · 0.66 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -179,8 +179,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        23.12        86.31
-      1      0.669     21.09        71.82   16.8% ↓
-  done · converged · 1 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.72 s
+      1      0.640     21.09        71.82   16.8% ↓
+  done · converged · 1 iters · reduced χ² 71.82 · Rwp 21.09 % · 0.69 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -212,14 +212,14 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        21.09        72.17
-      1      0.689     21.02        71.67   0.7% ↓
-      2      0.774     21.00        71.52   0.2% ↓
-      3      0.856     20.95        71.22   0.4% ↓
-      4      0.939     20.90        70.86   0.5% ↓
-      5      1.021     20.88        70.73   0.2% ↓
-      6      1.141     20.88        70.73   
-      7      1.251     20.88        70.73   
-  done · converged · 7 iters · reduced χ² 70.73 · Rwp 20.88 % · 1.30 s
+      1      0.670     21.02        71.67   0.7% ↓
+      2      0.753     21.00        71.52   0.2% ↓
+      3      0.835     20.95        71.22   0.4% ↓
+      4      0.917     20.90        70.86   0.5% ↓
+      5      0.999     20.88        70.73   0.2% ↓
+      6      1.118     20.88        70.73   
+      7      1.215     20.88        70.73   
+  done · converged · 7 iters · reduced χ² 70.73 · Rwp 20.88 % · 1.26 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -251,8 +251,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.88        71.07
-      1      0.172     20.86        70.91   0.2% ↓
-  done · converged · 1 iters · reduced χ² 70.91 · Rwp 20.86 % · 0.18 s
+      1      0.139     20.86        70.91   0.2% ↓
+  done · converged · 1 iters · reduced χ² 70.91 · Rwp 20.86 % · 0.15 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -285,15 +285,15 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_lbco-si-mcstas, 633 pts fitted / 1000 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        20.86        71.15
-      1      0.150      5.50         4.94   93.1% ↓
-      2      0.168      5.38         4.74   4.0% ↓
-      3      0.185      5.27         4.54   4.3% ↓
-      4      0.201      5.13         4.30   5.2% ↓
-      5      0.217      5.06         4.18   2.8% ↓
-      6      0.232      5.04         4.16   0.6% ↓
-      7      0.248      5.04         4.16   
-      8      0.293      5.04         4.16   
-  done · converged · 8 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.31 s
+      1      0.111      5.50         4.94   93.1% ↓
+      2      0.125      5.38         4.74   4.0% ↓
+      3      0.139      5.27         4.54   4.3% ↓
+      4      0.152      5.13         4.30   5.2% ↓
+      5      0.166      5.06         4.18   2.8% ↓
+      6      0.181      5.04         4.16   0.6% ↓
+      7      0.195      5.04         4.16   
+      8      0.225      5.04         4.16   
+  done · converged · 8 iters · reduced χ² 4.16 · Rwp 5.04 % · 0.24 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
