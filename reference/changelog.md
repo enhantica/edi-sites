@@ -10,6 +10,26 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [v2026.11.30 (25 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.30)
+
+**Added**
+
+- Faster app, layout that fits the window and working tutorials ([#94](https://github.com/enhantica/edi/pull/94)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+- Load and save projects from other programs ([#154](https://github.com/enhantica/edi/pull/154)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+
+**Fixed**
+
+- Fix reading of magnetic structures, form factors and CIF files ([#104](https://github.com/enhantica/edi/pull/104)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+- Shorter installers, larger cells and R-factors for each fitted point ([#156](https://github.com/enhantica/edi/pull/156)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+
+**Known issues**
+
+- In the web app, when a screen reader or another accessibility tool is active, a click made within about a second after a project opens may be ignored. `web`
+
+<!-- edi release date 2026-11-25 -->
+
+---
+
 ## [v2026.11.29 (19 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.29)
 
 **Fixed**
