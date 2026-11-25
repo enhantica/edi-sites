@@ -454,6 +454,25 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.31",
+      "date": "2026-11-25",
+      "commit": "874eb8fe09b7b211c09fa5dbbc637954760b78c3",
+      "notes": {
+        "Added": [],
+        "Fixed": [
+          {
+            "title": "Typing a value replaces the old one",
+            "pull_request": 178,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
