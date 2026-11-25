@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_tb2ti2o7-heidi_simulation/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/bf6d466d6c45ae58cbbbe07018cf713408e7190f/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/a77bd907583ecf873da0e169534a5c16acbe5009/docs/user/tutorials/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_tb2ti2o7-heidi_simulation.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
