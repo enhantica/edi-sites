@@ -24,6 +24,7 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 
 **Known issues**
 
+- When editing a value in a table, select it first (Ctrl+A or Cmd+A): a number you type is put in front of the old one, and the app refuses it. A fix is on the way. `desktop` `web`
 - In the web app, when a screen reader or another accessibility tool is active, a click made within about a second after a project opens may be ignored. `web`
 
 <!-- edi release date 2026-11-25 -->

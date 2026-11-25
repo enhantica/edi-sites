@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/a77bd907583ecf873da0e169534a5c16acbe5009/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/874eb8fe09b7b211c09fa5dbbc637954760b78c3/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -159,8 +159,8 @@ edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 6 free
       5      0.008      46.60      1064.86   
       6      0.009      46.59      1064.67   
       7      0.010      46.59      1064.48   
-      8      0.010      46.59      1064.37   
-      9      0.011      46.58      1064.26   
+      8      0.011      46.59      1064.37   
+      9      0.012      46.58      1064.26   
   done · converged · 9 iters · reduced χ² 1064.26 · wR(F²) 46.58 % · 0.01 s
 ```
 
@@ -193,7 +193,7 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 7 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         46.58      1069.84
-      1      0.005      46.52      1066.80   0.3% ↓
+      1      0.006      46.52      1066.80   0.3% ↓
   done · converged · 1 iters · reduced χ² 1066.80 · wR(F²) 46.52 % · 0.01 s
 ```
 
@@ -237,7 +237,7 @@ edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 23 free
                         46.52      1164.34
       1      0.008       4.29         9.88   99.2% ↓
       2      0.009       4.27         9.79   0.9% ↓
-      3      0.011       4.26         9.76   0.3% ↓
+      3      0.010       4.26         9.76   0.3% ↓
       4      0.012       4.26         9.75   0.1% ↓
       5      0.013       4.26         9.75   
       6      0.014       4.26         9.75   
