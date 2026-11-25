@@ -153,7 +153,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        52.36       204.71
-      1      0.095     10.45         8.16   96.0% ↓
+      1      0.096     10.45         8.16   96.0% ↓
   done · converged · 1 iters · reduced χ² 8.16 · Rwp 10.45 % · 0.11 s
 ```
 
@@ -187,7 +187,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 17 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        10.45         8.18
-      1      0.090      7.45         4.16   49.1% ↓
+      1      0.087      7.45         4.16   49.1% ↓
   done · converged · 1 iters · reduced χ² 4.16 · Rwp 7.45 % · 0.10 s
 ```
 
@@ -223,7 +223,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 19 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.45         4.16
-      1      0.122      7.42         4.13   0.8% ↓
+      1      0.123      7.42         4.13   0.8% ↓
   done · converged · 1 iters · reduced χ² 4.13 · Rwp 7.42 % · 0.14 s
 ```
 
@@ -256,7 +256,7 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.42         4.13
-      1      0.124      7.28         3.97   3.7% ↓
+      1      0.121      7.28         3.97   3.7% ↓
   done · converged · 1 iters · reduced χ² 3.97 · Rwp 7.28 % · 0.14 s
 ```
 
@@ -321,8 +321,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_si-sepd, 5600 pts fitted / 5600 loaded, 23 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         7.28         3.97
-      1      0.107      7.18         3.86   2.7% ↓
-      2      0.132      7.18         3.86   
+      1      0.108      7.18         3.86   2.7% ↓
+      2      0.133      7.18         3.86   
   done · converged · 2 iters · reduced χ² 3.86 · Rwp 7.18 % · 0.15 s
 ```
 

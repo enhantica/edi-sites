@@ -154,8 +154,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         3.47         7.84
-      1      0.025      2.53         4.17   46.8% ↓
-      2      0.030      2.53         4.17   
+      1      0.024      2.53         4.17   46.8% ↓
+      2      0.029      2.53         4.17   
   done · converged · 2 iters · reduced χ² 4.17 · Rwp 2.53 % · 0.03 s
 ```
 
@@ -299,7 +299,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 43 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.42         1.33
-      1      0.049      1.33         1.17   11.9% ↓
+      1      0.050      1.33         1.17   11.9% ↓
   done · converged · 1 iters · reduced χ² 1.17 · Rwp 1.33 % · 0.06 s
 ```
 

@@ -202,7 +202,7 @@ edi fit: project pd-neut-cwl_cosio-d20_scan-213f, 1438 pts fitted / 1506 loaded,
    iter   time (s)   Rwp (%)  reduced χ²   change
                        15.23        64.02
       1      0.039     14.22        55.83   12.8% ↓
-  done · converged · 1 iters · reduced χ² 55.83 · Rwp 14.22 % · 0.04 s
+  done · converged · 1 iters · reduced χ² 55.83 · Rwp 14.22 % · 0.05 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -235,7 +235,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_scan-213f, 1438 pts fitted / 1506 loaded, 21 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        14.22        56.46
-      1      0.030     13.46        50.59   10.4% ↓
+      1      0.033     13.46        50.59   10.4% ↓
   done · converged · 1 iters · reduced χ² 50.59 · Rwp 13.46 % · 0.04 s
 ```
 
@@ -271,7 +271,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_scan-213f, 1438 pts fitted / 1506 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.46        50.70
-      1      0.041     13.28        49.35   2.7% ↓
+      1      0.042     13.28        49.35   2.7% ↓
   done · converged · 1 iters · reduced χ² 49.35 · Rwp 13.28 % · 0.05 s
 ```
 
@@ -304,7 +304,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_scan-213f, 1438 pts fitted / 1506 loaded, 35 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.28        49.74
-      1      0.048     13.22        49.27   0.9% ↓
+      1      0.044     13.22        49.27   0.9% ↓
   done · converged · 1 iters · reduced χ² 49.27 · Rwp 13.22 % · 0.05 s
 ```
 
@@ -338,7 +338,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_scan-213f, 1438 pts fitted / 1506 loaded, 40 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        13.22        49.45
-      1      0.044     13.00        47.83   3.3% ↓
+      1      0.045     13.00        47.83   3.3% ↓
   done · converged · 1 iters · reduced χ² 47.83 · Rwp 13.00 % · 0.05 s
 ```
 
