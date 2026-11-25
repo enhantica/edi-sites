@@ -410,6 +410,50 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.30",
+      "date": "2026-11-25",
+      "commit": "a77bd907583ecf873da0e169534a5c16acbe5009",
+      "notes": {
+        "Added": [
+          {
+            "title": "Faster app, layout that fits the window and working tutorials",
+            "pull_request": 94,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          },
+          {
+            "title": "Load and save projects from other programs",
+            "pull_request": 154,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Fix reading of magnetic structures, form factors and CIF files",
+            "pull_request": 104,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          },
+          {
+            "title": "Shorter installers, larger cells and R-factors for each fitted point",
+            "pull_request": 156,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Changed": []
+      }
     }
   ]
 }
