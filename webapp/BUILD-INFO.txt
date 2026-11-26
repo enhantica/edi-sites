@@ -1,5 +1,5 @@
 EasyDiffraction web app
-edi: v2026.11.30-1-g874eb8fe
+edi: v2026.11.31-1-g49990937
 Qt: 6.11.2 (wasm_multithread); Emscripten: 4.0.7
 Size optimization: 0
-multithread (multithread-c3338b309839/): crysta 940362af1a30e4ae69e6aa8b2e40bc9148e7677d; edi_app.wasm 79528169 bytes (25570995 gzip -9)
+multithread (multithread-2118f66012cd/): crysta 8453a08e9b74a3e7dddc9ea898476f0681764451; edi_app.wasm 79531915 bytes (25571943 gzip -9)
