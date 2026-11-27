@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/9999c69d835460682f3d592525e9080fb5e3819f/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/eb45dc1a7573e81e0febbf501067715573fa7f1a/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -183,7 +183,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.38        35.86
-      1      0.024      5.97         9.88   72.5% ↓
+      1      0.023      5.97         9.88   72.5% ↓
       2      0.029      5.97         9.88   
   done · converged · 2 iters · reduced χ² 9.88 · Rwp 5.97 % · 0.03 s
 ```
@@ -298,7 +298,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 46 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.59         8.89
-      1      0.026      5.58         8.86   0.3% ↓
+      1      0.027      5.58         8.86   0.3% ↓
   done · converged · 1 iters · reduced χ² 8.86 · Rwp 5.58 % · 0.03 s
 ```
 
@@ -332,21 +332,21 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 47 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.58         8.87
-      1      0.192      5.51         8.62   2.8% ↓
-      2      0.198      5.44         8.41   2.4% ↓
-      3      0.205      5.43         8.39   0.2% ↓
-      4      0.211      5.36         8.17   2.7% ↓
-      5      0.217      5.20         7.69   5.8% ↓
-      6      0.223      4.91         6.85   11.0% ↓
-      7      0.230      4.85         6.68   2.4% ↓
-      8      0.237      4.71         6.31   5.6% ↓
-      9      0.245      4.71         6.30   0.2% ↓
-     10      0.253      4.70         6.29   0.2% ↓
-     11      0.260      4.70         6.28   0.1% ↓
-     12      0.268      4.70         6.27   0.1% ↓
-     13      0.276      4.70         6.27   0.1% ↓
-     14      0.283      4.69         6.26   0.1% ↓
-     15      0.291      4.69         6.26   0.1% ↓
+      1      0.201      5.51         8.62   2.8% ↓
+      2      0.207      5.44         8.41   2.4% ↓
+      3      0.213      5.43         8.39   0.2% ↓
+      4      0.219      5.36         8.17   2.7% ↓
+      5      0.224      5.20         7.69   5.8% ↓
+      6      0.230      4.91         6.85   11.0% ↓
+      7      0.237      4.85         6.68   2.4% ↓
+      8      0.243      4.71         6.31   5.6% ↓
+      9      0.250      4.71         6.30   0.2% ↓
+     10      0.257      4.70         6.29   0.2% ↓
+     11      0.264      4.70         6.28   0.1% ↓
+     12      0.271      4.70         6.27   0.1% ↓
+     13      0.278      4.70         6.27   0.1% ↓
+     14      0.285      4.69         6.26   0.1% ↓
+     15      0.292      4.69         6.26   0.1% ↓
      16      0.298      4.69         6.25   0.1% ↓
      17      0.309      4.69         6.25   
   done · converged · 17 iters · reduced χ² 6.25 · Rwp 4.69 % · 0.32 s
