@@ -18,6 +18,7 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 
 **Known issues**
 
+- On macOS, the app may close when a new experiment is switched to time-of-flight. Save the project first. `desktop`
 - In the web app, when a screen reader or another accessibility tool is active, a click made within about a second after a project opens may be ignored. `web`
 
 <!-- edi release date 2026-11-25 -->
