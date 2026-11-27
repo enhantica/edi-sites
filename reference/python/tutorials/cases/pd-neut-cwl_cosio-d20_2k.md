@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_cosio-d20_2k/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/de5c88b3d26d62ce4dd473cedd76ce0b79f19554/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0e4e61687f70cf8f371e6d87c96ac1dab448f531/docs/user/tutorials/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_cosio-d20_2k.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -183,8 +183,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 10 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.38        35.86
-      1      0.026      5.97         9.88   72.5% ↓
-      2      0.031      5.97         9.88   
+      1      0.023      5.97         9.88   72.5% ↓
+      2      0.028      5.97         9.88   
   done · converged · 2 iters · reduced χ² 9.88 · Rwp 5.97 % · 0.03 s
 ```
 
@@ -218,7 +218,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 26 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.97         9.99
-      1      0.035      5.65         8.93   10.6% ↓
+      1      0.031      5.65         8.93   10.6% ↓
   done · converged · 1 iters · reduced χ² 8.93 · Rwp 5.65 % · 0.04 s
 ```
 
@@ -258,8 +258,8 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 42 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.65         9.03
-      1      0.033      5.59         8.86   1.8% ↓
-      2      0.040      5.59         8.86   
+      1      0.029      5.59         8.86   1.8% ↓
+      2      0.035      5.59         8.86   
   done · converged · 2 iters · reduced χ² 8.86 · Rwp 5.59 % · 0.04 s
 ```
 
@@ -298,7 +298,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 46 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.59         8.89
-      1      0.028      5.58         8.86   0.3% ↓
+      1      0.027      5.58         8.86   0.3% ↓
   done · converged · 1 iters · reduced χ² 8.86 · Rwp 5.58 % · 0.03 s
 ```
 
@@ -332,20 +332,20 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_cosio-d20_2k, 1438 pts fitted / 1506 loaded, 47 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         5.58         8.87
-      1      0.191      5.51         8.62   2.8% ↓
-      2      0.197      5.44         8.41   2.4% ↓
-      3      0.203      5.43         8.39   0.2% ↓
-      4      0.208      5.36         8.17   2.7% ↓
-      5      0.214      5.20         7.69   5.8% ↓
-      6      0.219      4.91         6.85   11.0% ↓
-      7      0.226      4.85         6.68   2.4% ↓
-      8      0.232      4.71         6.31   5.6% ↓
-      9      0.240      4.71         6.30   0.2% ↓
-     10      0.247      4.70         6.29   0.2% ↓
-     11      0.254      4.70         6.28   0.1% ↓
-     12      0.261      4.70         6.27   0.1% ↓
-     13      0.268      4.70         6.27   0.1% ↓
-     14      0.276      4.69         6.26   0.1% ↓
+      1      0.197      5.51         8.62   2.8% ↓
+      2      0.202      5.44         8.41   2.4% ↓
+      3      0.208      5.43         8.39   0.2% ↓
+      4      0.213      5.36         8.17   2.7% ↓
+      5      0.218      5.20         7.69   5.8% ↓
+      6      0.224      4.91         6.85   11.0% ↓
+      7      0.230      4.85         6.68   2.4% ↓
+      8      0.236      4.71         6.31   5.6% ↓
+      9      0.243      4.71         6.30   0.2% ↓
+     10      0.250      4.70         6.29   0.2% ↓
+     11      0.256      4.70         6.28   0.1% ↓
+     12      0.263      4.70         6.27   0.1% ↓
+     13      0.270      4.70         6.27   0.1% ↓
+     14      0.277      4.69         6.26   0.1% ↓
      15      0.283      4.69         6.26   0.1% ↓
      16      0.289      4.69         6.25   0.1% ↓
      17      0.300      4.69         6.25   
