@@ -189,7 +189,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 24 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.53         4.20
-      1      0.025      2.37         3.68   12.4% ↓
+      1      0.024      2.37         3.68   12.4% ↓
   done · converged · 1 iters · reduced χ² 3.68 · Rwp 2.37 % · 0.03 s
 ```
 
@@ -222,7 +222,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 27 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.37         3.69
-      1      0.037      1.78         2.08   43.5% ↓
+      1      0.035      1.78         2.08   43.5% ↓
   done · converged · 1 iters · reduced χ² 2.08 · Rwp 1.78 % · 0.04 s
 ```
 
@@ -257,7 +257,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 31 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.78         2.09
-      1      0.044      1.42         1.33   36.5% ↓
+      1      0.041      1.42         1.33   36.5% ↓
   done · converged · 1 iters · reduced χ² 1.33 · Rwp 1.42 % · 0.05 s
 ```
 
@@ -299,7 +299,7 @@ project.display.fit.results()
 edi fit: project pd-neut-cwl_y2o3-spodi, 2509 pts fitted / 3060 loaded, 43 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         1.42         1.33
-      1      0.052      1.33         1.17   11.9% ↓
+      1      0.047      1.33         1.17   11.9% ↓
   done · converged · 1 iters · reduced χ² 1.17 · Rwp 1.33 % · 0.06 s
 ```
 

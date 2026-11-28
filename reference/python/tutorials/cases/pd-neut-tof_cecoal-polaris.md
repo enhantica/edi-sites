@@ -144,8 +144,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 6 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        11.38        84.57
-      1      0.613      4.13        11.13   86.8% ↓
-  done · converged · 1 iters · reduced χ² 11.13 · Rwp 4.13 % · 0.70 s
+      1      0.610      4.13        11.13   86.8% ↓
+  done · converged · 1 iters · reduced χ² 11.13 · Rwp 4.13 % · 0.69 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -179,8 +179,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 18 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         4.13        11.17
-      1      0.644      2.31         3.51   68.5% ↓
-  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.73 s
+      1      0.639      2.31         3.51   68.5% ↓
+  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.72 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -211,8 +211,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 20 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.31         3.51
-      1      0.696      2.31         3.51   0.2% ↓
-  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.78 s
+      1      0.691      2.31         3.51   0.2% ↓
+  done · converged · 1 iters · reduced χ² 3.51 · Rwp 2.31 % · 0.77 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -246,8 +246,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 25 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.31         3.51
-      1      0.718      2.14         3.00   14.5% ↓
-  done · converged · 1 iters · reduced χ² 3.00 · Rwp 2.14 % · 0.80 s
+      1      0.706      2.14         3.00   14.5% ↓
+  done · converged · 1 iters · reduced χ² 3.00 · Rwp 2.14 % · 0.79 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -278,8 +278,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 30 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.14         3.01
-      1      0.727      2.10         2.89   3.7% ↓
-  done · converged · 1 iters · reduced χ² 2.89 · Rwp 2.10 % · 0.81 s
+      1      0.708      2.10         2.89   3.7% ↓
+  done · converged · 1 iters · reduced χ² 2.89 · Rwp 2.10 % · 0.79 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -312,9 +312,9 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 31 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.10         2.90
-      1      0.632      2.08         2.86   1.3% ↓
-      2      0.766      2.08         2.86   
-  done · converged · 2 iters · reduced χ² 2.86 · Rwp 2.08 % · 0.85 s
+      1      0.622      2.08         2.86   1.3% ↓
+      2      0.754      2.08         2.86   
+  done · converged · 2 iters · reduced χ² 2.86 · Rwp 2.08 % · 0.84 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -346,8 +346,8 @@ project.display.fit.results()
 edi fit: project pd-neut-tof_cecoal-polaris, 3692 pts fitted / 3693 loaded, 32 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                         2.08         2.86
-      1      0.728      2.08         2.85   0.2% ↓
-  done · converged · 1 iters · reduced χ² 2.85 · Rwp 2.08 % · 0.82 s
+      1      0.717      2.08         2.85   0.2% ↓
+  done · converged · 1 iters · reduced χ² 2.85 · Rwp 2.08 % · 0.80 s
 ```
 
 <div class="ed-notebook-output" markdown="0">

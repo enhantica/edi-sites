@@ -121,7 +121,7 @@ edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 1 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                         22.22        75.58
       1      0.004      19.62        58.90   22.1% ↓
-  done · converged · 1 iters · reduced χ² 58.90 · wR(F²) 19.62 % · 0.00 s
+  done · converged · 1 iters · reduced χ² 58.90 · wR(F²) 19.62 % · 0.01 s
 ```
 
 <div class="ed-notebook-output" markdown="0">
@@ -227,8 +227,8 @@ project.display.fit.results()
 edi fit: project sc-neut-cwl_tb2ti2o7-heidi, 220 pts fitted / 220 loaded, 12 free
    iter   time (s) wR(F²) (%)  reduced χ²   change
                          6.09         5.98
-      1      0.009       2.90         1.35   77.4% ↓
-      2      0.011       2.88         1.33   1.6% ↓
+      1      0.008       2.90         1.35   77.4% ↓
+      2      0.009       2.88         1.33   1.6% ↓
       3      0.012       2.88         1.33   
   done · converged · 3 iters · reduced χ² 1.33 · wR(F²) 2.88 % · 0.01 s
 ```

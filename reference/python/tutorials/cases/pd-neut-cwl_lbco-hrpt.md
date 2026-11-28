@@ -181,7 +181,7 @@ edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        53.67        71.21
       1      0.006     12.56         3.90   94.5% ↓
-      2      0.008     12.56         3.90   
+      2      0.007     12.56         3.90   
   done · converged · 2 iters · reduced χ² 3.90 · Rwp 12.56 % · 0.01 s
 ```
 
