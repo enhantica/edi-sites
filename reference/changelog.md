@@ -10,6 +10,26 @@ Changes in published EasyDiffraction releases, newest first. The labels show whi
 - **:simple-python: cli-py**{ .ed-release-interface } Affects the CLI installed from the Python package
 - **:fa5-terminal: cli**{ .ed-release-interface } Affects the standalone CLI executable
 
+## [EasyDiffraction 26.17 (27 Nov 2026)](https://github.com/enhantica/edi/releases/tag/v26.17)
+
+**Added**
+
+- Clicks on the web page are no longer lost; fixes in the assistant, Scan and Analysis; a smoother installer; short version numbers ([#189](https://github.com/enhantica/edi/pull/189)) **:fa5-desktop: desktop**{ .ed-release-interface } **:fa5-globe: web**{ .ed-release-interface }
+
+**Fixed**
+
+- Switching to time-of-flight no longer closes the app ([#177](https://github.com/enhantica/edi/pull/177)) **:fa5-desktop: desktop**{ .ed-release-interface }
+- Update the Maintenance Tool's pages with each release ([#195](https://github.com/enhantica/edi/pull/195)) **:fa5-desktop: desktop**{ .ed-release-interface }
+- Installed 2026.11 versions see the update to 26.17 ([#196](https://github.com/enhantica/edi/pull/196)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+**Changed**
+
+- Windows installers are tested in full again before each release ([#192](https://github.com/enhantica/edi/pull/192)) **:fa5-desktop: desktop**{ .ed-release-interface }
+
+<!-- edi release date 2026-11-27 -->
+
+---
+
 ## [v2026.11.31 (25 Nov)](https://github.com/enhantica/edi/releases/tag/v2026.11.31)
 
 **Fixed**

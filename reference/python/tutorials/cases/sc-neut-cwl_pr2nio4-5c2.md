@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/sc-neut-cwl_pr2nio4-5c2/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0e4e61687f70cf8f371e6d87c96ac1dab448f531/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/212509209e8914c22f7cde3bcc243dd014c80739/docs/user/tutorials/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/sc-neut-cwl_pr2nio4-5c2.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -160,7 +160,7 @@ edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 6 free
       6      0.010      46.59      1064.67   
       7      0.011      46.59      1064.48   
       8      0.011      46.59      1064.37   
-      9      0.013      46.58      1064.26   
+      9      0.012      46.58      1064.26   
   done · converged · 9 iters · reduced χ² 1064.26 · wR(F²) 46.58 % · 0.01 s
 ```
 
@@ -237,9 +237,9 @@ edi fit: project sc-neut-cwl_pr2nio4-5c2, 198 pts fitted / 198 loaded, 23 free
                         46.52      1164.34
       1      0.008       4.29         9.88   99.2% ↓
       2      0.009       4.27         9.79   0.9% ↓
-      3      0.010       4.26         9.76   0.3% ↓
+      3      0.011       4.26         9.76   0.3% ↓
       4      0.012       4.26         9.75   0.1% ↓
-      5      0.013       4.26         9.75   
+      5      0.014       4.26         9.75   
       6      0.015       4.26         9.75   
   done · converged · 6 iters · reduced χ² 9.75 · wR(F²) 4.26 % · 0.02 s
 ```

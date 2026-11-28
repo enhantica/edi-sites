@@ -1,7 +1,7 @@
 Canonical page: https://easydiffraction.org/python/tutorials/cases/pd-neut-cwl_lbco-hrpt/
 
 <div class="ed-tutorial-buttons" markdown>
-[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/0e4e61687f70cf8f371e6d87c96ac1dab448f531/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
+[:simple-googlecolab: Open in Google Colab](https://colab.research.google.com/github/enhantica/edi/blob/212509209e8914c22f7cde3bcc243dd014c80739/docs/user/tutorials/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button target="_blank" rel="noopener" }
 [:fa5-download: Download Notebook](https://easydiffraction.org/assets/tutorials/notebooks/pd-neut-cwl_lbco-hrpt.ipynb){ .md-button .ed-tutorial-button download }
 </div>
 
@@ -181,7 +181,7 @@ edi fit: project lbco_hrpt, 3098 pts fitted / 3098 loaded, 3 free
    iter   time (s)   Rwp (%)  reduced χ²   change
                        53.67        71.21
       1      0.006     12.56         3.90   94.5% ↓
-      2      0.007     12.56         3.90   
+      2      0.008     12.56         3.90   
   done · converged · 2 iters · reduced χ² 3.90 · Rwp 12.56 % · 0.01 s
 ```
 
