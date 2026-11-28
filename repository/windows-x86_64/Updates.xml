@@ -5,47 +5,53 @@
  <PackageUpdate>
   <Name>org.easydiffraction.app</Name>
   <DisplayName>EasyDiffraction</DisplayName>
-  <Description>Diffraction analysis with crysta and Qt.</Description>
-  <Version>2026.11.31</Version>
-  <ReleaseDate>2026-11-25</ReleaseDate>
+  <Description>Calculate diffraction patterns and fit a structural model to your data.</Description>
+  <Version>26.17</Version>
+  <ReleaseDate>2026-11-27</ReleaseDate>
   <Default>true</Default>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi</Replaces>
+  <SortingPriority>200</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="92316175" OS="Any" UncompressedSize="251037596"/>
+  <UpdateFile CompressedSize="92584918" OS="Any" UncompressedSize="251828154"/>
+  <ContentSha1>dd628349e45f5d80a3f5a985000e3beed4ea25f9</ContentSha1>
   <DownloadableArchives>bin.7z,lib.7z,libexec.7z,share.7z,content.7z</DownloadableArchives>
-  <SHA1>21f4503fd471a1f89f9d67b5899692c8705a7764</SHA1>
+  <SHA1>1e7ac066799e2c232af3d11e4d71327f4d4b7bc1</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easydiffraction.app.assistant</Name>
   <DisplayName>AI assistant</DisplayName>
   <Description>Optional runtime for the ChatGPT assistant in EasyDiffraction.</Description>
-  <Version>2026.11.31</Version>
-  <ReleaseDate>2026-11-25</ReleaseDate>
+  <Version>26.17</Version>
+  <ReleaseDate>2026-11-27</ReleaseDate>
   <Dependencies>org.easydiffraction.app</Dependencies>
   <Default>false</Default>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi.assistant</Replaces>
+  <SortingPriority>100</SortingPriority>
   <Script>assistantscript.qs</Script>
-  <UpdateFile CompressedSize="85352907" OS="Any" UncompressedSize="360148728"/>
+  <UpdateFile CompressedSize="85329354" OS="Any" UncompressedSize="360148728"/>
+  <ContentSha1>08a208a9ca624a7f12eb93e0e8424b3a4363e4d5</ContentSha1>
   <DownloadableArchives>libexec.7z,content.7z</DownloadableArchives>
   <UserInterfaces>AssistantForm.ui,ProgressForm.ui,DoneForm.ui</UserInterfaces>
-  <SHA1>0c24267b4cddcf5506e7cca763cc8c6a0ef67b5c</SHA1>
+  <SHA1>d0f880b8261a48d0d4b8c644803006ddf74233ce</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easydiffraction.app.maintenancetool</Name>
   <DisplayName>Maintenance tool</DisplayName>
   <Description>Updates and removes EasyDiffraction.</Description>
-  <Version>2026.11.31</Version>
-  <ReleaseDate>2026-11-25</ReleaseDate>
+  <Version>26.17</Version>
+  <ReleaseDate>2026-11-27</ReleaseDate>
   <Virtual>true</Virtual>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi.maintenancetool</Replaces>
+  <SortingPriority>150</SortingPriority>
   <Script>maintenancescript.qs</Script>
-  <UpdateFile CompressedSize="12865897" OS="Any" UncompressedSize="38036192"/>
+  <UpdateFile CompressedSize="12900006" OS="Any" UncompressedSize="38162656"/>
+  <ContentSha1>cc15f9a5c0ac9a9d1d3ecc3e9bbadff2d851c9b1</ContentSha1>
   <DownloadableArchives>maintenancetool.7z</DownloadableArchives>
-  <SHA1>5f254bc84d0efb453745767c8391cd0af1f4b49c</SHA1>
+  <SHA1>879574f76bb3d3d54c43f898ea9d56e24d1647ce</SHA1>
  </PackageUpdate>
 </Updates>

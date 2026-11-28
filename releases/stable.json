@@ -473,6 +473,59 @@
         ],
         "Changed": []
       }
+    },
+    {
+      "version": "2026.11.32",
+      "date": "2026-11-27",
+      "commit": "de5c88b3d26d62ce4dd473cedd76ce0b79f19554",
+      "notes": {
+        "Added": [
+          {
+            "title": "This update is EasyDiffraction 26.17: releases are now numbered by year (26.17, 27.1, ...)",
+            "pull_request": 189
+          },
+          {
+            "title": "Clicks on the web page are no longer lost; fixes in the assistant, Scan and Analysis; a smoother installer; short version numbers",
+            "pull_request": 189,
+            "interfaces": [
+              "desktop",
+              "web"
+            ]
+          }
+        ],
+        "Fixed": [
+          {
+            "title": "Switching to time-of-flight no longer closes the app",
+            "pull_request": 177,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Update the Maintenance Tool's pages with each release",
+            "pull_request": 195,
+            "interfaces": [
+              "desktop"
+            ]
+          },
+          {
+            "title": "Installed 2026.11 versions see the update to 26.17",
+            "pull_request": 196,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ],
+        "Changed": [
+          {
+            "title": "Windows installers are tested in full again before each release",
+            "pull_request": 192,
+            "interfaces": [
+              "desktop"
+            ]
+          }
+        ]
+      }
     }
   ]
 }

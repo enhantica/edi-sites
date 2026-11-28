@@ -5,32 +5,36 @@
  <PackageUpdate>
   <Name>org.easydiffraction.app</Name>
   <DisplayName>EasyDiffraction</DisplayName>
-  <Description>Diffraction analysis with crysta and Qt.</Description>
-  <Version>2026.11.31</Version>
-  <ReleaseDate>2026-11-25</ReleaseDate>
+  <Description>Calculate diffraction patterns and fit a structural model to your data.</Description>
+  <Version>26.17</Version>
+  <ReleaseDate>2026-11-27</ReleaseDate>
   <Default>true</Default>
   <ForcedInstallation>true</ForcedInstallation>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi</Replaces>
+  <SortingPriority>200</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="83051991" OS="Any" UncompressedSize="335710507"/>
+  <UpdateFile CompressedSize="85961983" OS="Any" UncompressedSize="336535173"/>
+  <ContentSha1>8b6db26059ef8b17ced1425d3d69111f623ef239</ContentSha1>
   <DownloadableArchives>bin.7z,installer-runtime.7z,lib.7z,libexec.7z,share.7z,content.7z</DownloadableArchives>
-  <SHA1>7893a699413191fe1dfe0abcb5fc2bb01794e803</SHA1>
+  <SHA1>e6035591caa55d744f6f3d569c30516b33b2c990</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>org.easydiffraction.app.assistant</Name>
   <DisplayName>AI assistant</DisplayName>
   <Description>Optional runtime for the ChatGPT assistant in EasyDiffraction.</Description>
-  <Version>2026.11.31</Version>
-  <ReleaseDate>2026-11-25</ReleaseDate>
+  <Version>26.17</Version>
+  <ReleaseDate>2026-11-27</ReleaseDate>
   <Dependencies>org.easydiffraction.app</Dependencies>
   <Default>false</Default>
   <RequiresAdminRights>false</RequiresAdminRights>
   <Replaces>org.easyscience.edi.assistant</Replaces>
+  <SortingPriority>100</SortingPriority>
   <Script>assistantscript.qs</Script>
-  <UpdateFile CompressedSize="76367358" OS="Any" UncompressedSize="307823758"/>
+  <UpdateFile CompressedSize="76459515" OS="Any" UncompressedSize="307823758"/>
+  <ContentSha1>904b053fbb222018632652023a92f48187293fe3</ContentSha1>
   <DownloadableArchives>libexec.7z,content.7z</DownloadableArchives>
   <UserInterfaces>AssistantForm.ui,ProgressForm.ui,DoneForm.ui</UserInterfaces>
-  <SHA1>7210b20da689d8ae1e544d58b81e3c7d9ca227a0</SHA1>
+  <SHA1>aafc9d341e73ea345f31daae45ce715c5ec93626</SHA1>
  </PackageUpdate>
 </Updates>
