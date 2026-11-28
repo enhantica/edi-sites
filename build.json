@@ -1,7 +1,7 @@
 {
-  "multithread": "multithread-c3338b309839",
+  "multithread": "multithread-9d10b274c3da",
   "release": {
-    "version": "2026.11.31",
-    "commit": "874eb8fe09b7b211c09fa5dbbc637954760b78c3"
+    "version": "26.17",
+    "commit": "de5c88b3d26d62ce4dd473cedd76ce0b79f19554"
   }
 }
